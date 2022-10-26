@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //rb.AddForce(Vector2.right * 50.0f);
+        rb.velocity = StartVelocity;
 
     }
 
