@@ -29,7 +29,7 @@ public class PlayManager : MonoBehaviour
 
             if (MyRayCast)
             {
-                //Arrow.gameObject.SetActive(true);
+                Arrow.gameObject.SetActive(true);
                 StartPos = Input.mousePosition;
                 IsHit = true;
             }
@@ -44,9 +44,15 @@ public class PlayManager : MonoBehaviour
 
                 targetPos = MyRayCast.point;
 
-               // if (Arrow.transform.rotation.eulerAngles.z > 180.0f) tempM = 180.0f; else tempM = 0;
-                //
-                //Arrow.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f,Arrow.transform.rotation.eulerAngles.z-Vector2.Angle(Vector2.up, targetPos)- tempM));
+                Vector3 myPos = Arrow.transform.position;
+                Vector3 targetPos1 = targetPos;
+                targetPos1.z = myPos.z;
+
+                Vector3 vectorToTarget = targetPos1 - myPos;
+                Vector3 quaternionToTarget = Quaternion.Euler(0, 0, 0) * vectorToTarget;
+
+                Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: quaternionToTarget);
+                Arrow.transform.rotation = Quaternion.RotateTowards(Arrow.transform.rotation, targetRotation, 500 * Time.deltaTime);
                 Debug.DrawLine(CurPlayer.transform.position, targetPos, Color.red);
             }
             
@@ -58,7 +64,7 @@ public class PlayManager : MonoBehaviour
             if (IsHit)
             {
                 EndPos = Input.mousePosition;
-                //Arrow.gameObject.SetActive(false);
+                Arrow.gameObject.SetActive(false);
                 //Àû´çÇÑ ÆÄ¿ö¸¦ À§ÇØ 20 ³·Ãã
                 Power = Vector2.Distance(StartPos, EndPos)/20.0f;
                 Power = Mathf.Clamp(Power, LimitPower.x, LimitPower.y);
