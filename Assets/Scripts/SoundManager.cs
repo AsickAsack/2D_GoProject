@@ -47,13 +47,13 @@ public class SoundManager : MonoBehaviour
     //ÀÌÆåÆ® º¼·ý ¼öÁ¤
     public void ChangeEffectVolume(float v)
     {
-        EffectAudio.volume = v / 100;
+        EffectAudio.volume = v;
     }
 
     //bgm º¼·ý ¼öÁ¤
     public void ChangeBgmVolume(float v)
     {
-        BgmAudio.volume = v / 100;
+        BgmAudio.volume = v;
     }
 
 
