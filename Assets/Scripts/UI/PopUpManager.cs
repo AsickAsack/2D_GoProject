@@ -15,6 +15,9 @@ public class PopUpManager : MonoBehaviour
     {
         Dont_TouchPanel.SetActive(true);
         MyPopups[index].SetAndOpenPopup(title, detail);
+
+        if (PopupAction == null) return;
+
         for(int i=0;i<PopupAction.Length;i++)
         {
             MyPopups[index].SetBtnAction(i, PopupAction[i]);

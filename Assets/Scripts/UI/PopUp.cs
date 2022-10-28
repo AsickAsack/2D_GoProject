@@ -23,9 +23,11 @@ public class PopUp : MonoBehaviour
 
 
     public void SetBtnAction(int index,UnityAction PopupAction)
-    {        
-            Buttons[index].onClick.RemoveAllListeners();
-            Buttons[index].onClick.AddListener(PopupAction);
+    {
+        if (Buttons.Length == 0) return;
+
+        Buttons[index].onClick.RemoveAllListeners();
+        Buttons[index].onClick.AddListener(PopupAction);
     }
     
 

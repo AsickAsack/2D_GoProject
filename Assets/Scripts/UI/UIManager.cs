@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 
     public void QuitGame(int index)
     {
-        popupManager.OpenPopup(index, "Quit Game", "Quit Game?", () => Application.Quit());
+        popupManager.OpenPopup(index, "Quit Game", "Really Quit Game?",()=> Debug.Log("³Î"));
 
     }
 

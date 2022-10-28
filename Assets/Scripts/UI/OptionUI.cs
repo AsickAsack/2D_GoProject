@@ -13,12 +13,25 @@ public class OptionUI : MonoBehaviour
     public Toggle CutScene;
     public Toggle Push;
 
-    public void SetBgmSlider()
+    private void Start()
     {
-        GameManager.instance.SoundManager.ChangeBgmVolume(Bgm_Slider.value);
-        BgmVolumeTx.text = (Bgm_Slider.value * 100).ToString();
+        SetBgmSlider();
+        SetEffectSlider();
     }
 
 
-    
+    public void SetBgmSlider()
+    {
+        GameManager.instance.SoundManager.ChangeBgmVolume(Bgm_Slider.value);
+        BgmVolumeTx.text = (Bgm_Slider.value * 100).ToString("N0");
+    }
+
+    public void SetEffectSlider()
+    {
+        GameManager.instance.SoundManager.ChangeEffectVolume(Effect_Slider.value);
+        EffectVolumeTx.text = (Effect_Slider.value * 100).ToString("N0");
+    }
+
+
+
 }
