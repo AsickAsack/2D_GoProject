@@ -11,25 +11,27 @@ public class PlayerBall : Character
     {
         if(collision.transform.CompareTag("EnemyBall"))
         {
-            //collision.transform.GetComponent<EnemyBall>().GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized,Power<0.0f ? 0.0f:Power);
-            collision.transform.GetComponent<EnemyBall>().GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, 30f);
-            //this.GoForward()
+            EnemyBall Enemy = collision.transform.GetComponent<EnemyBall>();
+
+            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized,Power<0.0f ? 1.0f:Power);
+
 
             //줄어드는 파워
             Power -= 5.0f;
         }
+
+        //서있는 흰돌 맞았을때도 생각
     }
 
     public void GoForward(Vector2 Dir,float Power)
     {
         this.Power = Power;
         MyRigid.AddForce(Dir * this.Power, ForceMode2D.Impulse);
-        //MyRigid.velocity = Dir * this.Power;
     }
 
     private void Update()
     {
-        this.Power -= Time.deltaTime* dirspeed;
+        this.Power -= Time.deltaTime * dirspeed;
     }
 
 }
