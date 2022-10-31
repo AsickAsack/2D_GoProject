@@ -46,7 +46,6 @@ public class LoadingManager : MonoBehaviour
 
     IEnumerator Loading(int index)
     {
-        Debug.Log("코루틴 시작");
 
         LoadingHelper Loading_Helper = GameObject.FindObjectOfType<LoadingHelper>();
         AsyncOperation ao = SceneManager.LoadSceneAsync(index);

@@ -6,14 +6,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public PlayManager playmanager;
-    public SoundManager SoundManager;
-
+    public List<Characters> myCharacters = new List<Characters>();
 
     private void Awake()
     {
         instance = this;
     }
+
+    private void Start()
+    {
+
+
+
+
+    }
+
 
 
 }

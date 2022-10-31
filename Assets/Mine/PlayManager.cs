@@ -35,8 +35,9 @@ public class PlayManager : MonoBehaviour
 
             StartPos = Input.mousePosition;
 
-            if (MyRayCast)
+            if (MyRayCast.transform == CurPlayer.transform)
             {
+                
                 Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);    
                 IsHit = true;
@@ -48,7 +49,7 @@ public class PlayManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
-
+       
             if (IsHit)
             {
 

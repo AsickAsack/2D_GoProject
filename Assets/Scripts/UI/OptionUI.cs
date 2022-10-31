@@ -22,13 +22,13 @@ public class OptionUI : MonoBehaviour
 
     public void SetBgmSlider()
     {
-        GameManager.instance.SoundManager.ChangeBgmVolume(Bgm_Slider.value);
+        SoundManager.Instance.ChangeBgmVolume(Bgm_Slider.value);
         BgmVolumeTx.text = (Bgm_Slider.value * 100).ToString("N0");
     }
 
     public void SetEffectSlider()
     {
-        GameManager.instance.SoundManager.ChangeEffectVolume(Effect_Slider.value);
+        SoundManager.Instance.ChangeEffectVolume(Effect_Slider.value);
         EffectVolumeTx.text = (Effect_Slider.value * 100).ToString("N0");
     }
 

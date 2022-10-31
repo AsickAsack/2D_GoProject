@@ -4,8 +4,47 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource BgmAudio;
-    public AudioSource EffectAudio;
+    private static SoundManager _Instance = null;
+
+    public static SoundManager Instance
+    {
+        get
+        {
+            if (_Instance == null)
+            {
+                _Instance = FindObjectOfType<SoundManager>();
+                if(_Instance == null)
+                {
+                    GameObject obj = Resources.Load("SoundManager") as GameObject;
+                    _Instance = obj.GetComponent<SoundManager>();
+                    DontDestroyOnLoad(obj);
+                }
+            }
+            return _Instance;
+        }
+
+    }
+
+
+    private AudioSource _BgmAudio;
+    public AudioSource BgmAudio
+    {
+        get
+        {
+            _BgmAudio = Camera.main.GetComponent<AudioSource>();
+            return _BgmAudio;
+        }
+    }
+
+    private AudioSource _EffectAudio;
+    public AudioSource EffectAudio
+    {
+        get
+        {
+            _EffectAudio = Camera.main.transform.GetChild(0).GetComponent<AudioSource>();
+            return _EffectAudio;
+        }
+    }
 
     public AudioClip[] BgmClips;
     public AudioClip[] EffectClips;
