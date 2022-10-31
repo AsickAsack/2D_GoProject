@@ -19,9 +19,14 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
-    #region
 
 
+    #region æ¿¿Ãµø
+
+    public void MoveScene(int index)
+    {
+        LoadingManager.Instance.Loading_LoadScene(index);
+    }
 
 
     #endregion
