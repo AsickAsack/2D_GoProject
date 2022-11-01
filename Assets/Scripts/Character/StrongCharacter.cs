@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrongCharacter : Characters
+public class StrongCharacter : CharacterPlay
 {
     public override void AcitveSkill()
     {

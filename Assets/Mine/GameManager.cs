@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public List<Characters> myCharacters = new List<Characters>();
+    public UIManager uimanager;
+
+    public List<CharacterPlay> myCharacters = new List<CharacterPlay>();
 
     private void Awake()
     {

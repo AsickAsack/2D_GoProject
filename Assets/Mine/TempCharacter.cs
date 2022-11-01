@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Character : MonoBehaviour
+public class TempCharacter : MonoBehaviour
 {
     [SerializeField]
     protected float Mass;
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
         get => this.GetComponentInChildren<Rigidbody2D>();
     }
 
-    public void IsYourTurn(Character NewChar)
+    public void IsYourTurn(TempCharacter NewChar)
     {
         MyTurn = false;
         NewChar.MyTurn = true;

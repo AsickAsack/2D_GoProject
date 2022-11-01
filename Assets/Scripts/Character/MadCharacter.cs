@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MadCharacter : Characters
+public class MadCharacter : CharacterPlay
 {
     public override void AcitveSkill()
     {

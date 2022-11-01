@@ -37,15 +37,15 @@ public class PlayerDB : MonoBehaviour
     }
 
 
-    private List<Characters> MyCharacters = new List<Characters>();
+    private List<Character> MyCharacters = new List<Character>();
     public int Gold { get; set; }
     //유저 스킬도 있음
 
 
-    public void addCharacter(Characters newCharacter)
+    public void addCharacter(Character newCharacter)
     {
         MyCharacters.Add(newCharacter);
-        Debug.Log(newCharacter.name + "이 추가되었습니다.");
+        //Debug.Log(newCharacter.name + "이 추가되었습니다.");
     }
 
     public void SaveData()
@@ -58,7 +58,7 @@ public class PlayerDB : MonoBehaviour
     public void LoadData()
     {
         string data = File.ReadAllText(Application.dataPath + "/PlayerDB.json");
-        MyCharacters = JsonConvert.DeserializeObject(data) as List<Characters>;
+        MyCharacters = JsonConvert.DeserializeObject(data) as List<Character>;
     }
 
     

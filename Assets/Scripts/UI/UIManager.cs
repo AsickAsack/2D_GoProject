@@ -6,13 +6,14 @@ public class UIManager : MonoBehaviour
 {
     public PopUpManager popupManager;
     public OptionUI optionUI;
+    public ScreenSwtich screen_swtich;
     
 
     #region 게임 스타트 UI 기능
 
     public void QuitGame(int index)
     {
-        popupManager.OpenPopup(index, "Quit Game", "Really Quit Game?",()=> Debug.Log("널"));
+        popupManager.OpenPopup(index, "종료하기", "정말 종료 하시겠습니까?",()=> Debug.Log("널"));
 
     }
 

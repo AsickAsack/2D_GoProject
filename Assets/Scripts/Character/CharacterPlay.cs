@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class Characters : MonoBehaviour
+public abstract class CharacterPlay : MonoBehaviour
 {
+
+    public Character character;
 
     bool IsPassive;
 
