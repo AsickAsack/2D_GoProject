@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayManager : MonoBehaviour
 {
     
-    bool IsHit = false;
+    public bool IsHit = false;
     Vector2 StartPos;
     Vector2 EndPos;
     Vector2 targetPos;
@@ -28,13 +28,12 @@ public class PlayManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
 
-            MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("PlayerBall"));
+            MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
 
             StartPos = Input.mousePosition;
 
             if (MyRayCast)
             {
-               
                 CameraMovePanel.raycastTarget = false;
                 Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);    

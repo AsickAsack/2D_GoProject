@@ -10,7 +10,6 @@ public class Character
     public Character() { }
     public Character(int name)
     {
-        Debug.Log((int)name);
         MyCharacter = (CharacterName)name;
         int temp = 1;
         Name = GameDB.CharacterDB[(int)name][temp++];

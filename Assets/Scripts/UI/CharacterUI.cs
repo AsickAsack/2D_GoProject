@@ -29,8 +29,8 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     
     public void SetCharacterUI()
     {
-        CharacterIcon.sprite = GameDB.Instance.CharacterIcon[(int)PlayerDB.Instance.MyCharacters[0].MyCharacter - 1001];
-        CharacterName_Text.text = PlayerDB.Instance.MyCharacters[0].Name;
+        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex].MyCharacter);
+        CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
     }
 
     public void SetCharacterUI(float f)
@@ -39,13 +39,13 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
         if (f > 0.0f)
         {
-            Charindex = ++Charindex % PlayerDB.Instance.MyCharacters.Count;
-        }
-        else
-        {
             Charindex = --Charindex % PlayerDB.Instance.MyCharacters.Count;
             if (Charindex < 0) Charindex = PlayerDB.Instance.MyCharacters.Count - 1;
+            
         }
+        else
+            Charindex = ++Charindex % PlayerDB.Instance.MyCharacters.Count;
+        
 
 
         CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
