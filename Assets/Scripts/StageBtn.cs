@@ -10,13 +10,18 @@ public class StageBtn : MonoBehaviour
     [SerializeField]
     private Text StageText;
     public Sprite Icon;
+    public float PaddingY;
 
+
+    public RectTransform myRect;
     Vector2 OrgPos = Vector2.zero;
 
     private void Awake()
     {
         Initailize();
-        OrgPos = this.transform.position;
+        myRect = this.GetComponent<RectTransform>();
+        OrgPos = myRect.anchoredPosition;
+        
     }
 
     public void Initailize()
@@ -25,13 +30,13 @@ public class StageBtn : MonoBehaviour
         this.transform.GetChild(0).GetComponent<Image>().sprite = Icon;
     }
 
-    public void GoDown()
+    public void GoDown(float y)
     {
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 500.0f);
+        myRect.anchoredPosition = new Vector2(myRect.anchoredPosition.x, myRect.anchoredPosition.y - y);
     }
     public void ResetPosition()
     {
-        this.transform.position = OrgPos;
+        myRect.anchoredPosition = OrgPos;
 
     }
 

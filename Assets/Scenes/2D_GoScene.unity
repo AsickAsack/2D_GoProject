@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &58027187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1032,8 +1032,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageBtn: []
-  DownBtns: {fileID: 58027186}
-  PaddingY: 150
+  DownBtns: {fileID: 58027187}
+  PaddingY: 500
 --- !u!224 &366060102
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1255,6 +1255,8 @@ MonoBehaviour:
   stageIndex: 1
   StageText: {fileID: 857284404}
   Icon: {fileID: 21300000, guid: 2c2a87de09abe4a5ca8de6cbd76711e0, type: 3}
+  PaddingY: 150
+  myRect: {fileID: 0}
 --- !u!114 &395393404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2182,8 @@ MonoBehaviour:
   stageIndex: 3
   StageText: {fileID: 685039608}
   Icon: {fileID: 21300000, guid: 2c2a87de09abe4a5ca8de6cbd76711e0, type: 3}
+  PaddingY: 150
+  myRect: {fileID: 0}
 --- !u!114 &487775542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3984,10 +3988,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4429726fee76534aab48d94d00373bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character:
+    Name: 
+    Character_Des: 
   Effect: {fileID: 0}
   Index: 1003
-  Name: 
-  Character_Des: 
 --- !u!4 &785480841
 Transform:
   m_ObjectHideFlags: 0
@@ -4189,7 +4194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4197,7 +4202,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -5279,6 +5284,8 @@ MonoBehaviour:
   stageIndex: 2
   StageText: {fileID: 764860710}
   Icon: {fileID: 21300000, guid: 2c2a87de09abe4a5ca8de6cbd76711e0, type: 3}
+  PaddingY: 150
+  myRect: {fileID: 0}
 --- !u!114 &954842708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6064,10 +6071,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f038fff0a2f2253428cae5fe53518014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character:
+    Name: 
+    Character_Des: 
   Effect: {fileID: 0}
   Index: 1002
-  Name: 
-  Character_Des: 
 --- !u!4 &1061852870
 Transform:
   m_ObjectHideFlags: 0
@@ -7445,6 +7453,8 @@ MonoBehaviour:
   stageIndex: 4
   StageText: {fileID: 1820380348}
   Icon: {fileID: 21300000, guid: 2c2a87de09abe4a5ca8de6cbd76711e0, type: 3}
+  PaddingY: 150
+  myRect: {fileID: 0}
 --- !u!114 &1349262107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8405,6 +8415,8 @@ MonoBehaviour:
   stageIndex: 0
   StageText: {fileID: 1652498150}
   Icon: {fileID: 21300000, guid: d6b2ea048947e4289af031c148a21b77, type: 3}
+  PaddingY: 150
+  myRect: {fileID: 0}
 --- !u!114 &1551929453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9621,6 +9633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594c8169814c9944296e0e10155c0a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterIcon: []
 --- !u!4 &1811770491
 Transform:
   m_ObjectHideFlags: 0
@@ -10053,10 +10066,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f038fff0a2f2253428cae5fe53518014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character:
+    Name: 
+    Character_Des: 
   Effect: {fileID: 0}
   Index: 1001
-  Name: 
-  Character_Des: 
 --- !u!4 &1923180434
 Transform:
   m_ObjectHideFlags: 0

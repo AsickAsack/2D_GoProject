@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public enum CharacterName
 {
-    Strong,lazy,mad
+    Strong=1001,lazy,mad,twin,prophet,Vampire,PackMan,
+    Covid,Leesin,Nerd
 }
 
 public enum CharacterStat
 {
-    Name=1,Character_Des,Min_Power,Max_Power,Mass,Drag,Active_Des,Active_Figure,Passive_Des,Passive_Figure,Passive_Range
+    Name=1,Character_Des,Min_Power,Max_Power,Mass,Drag,
+    Active_Des,Active_Target,Active_Figure,
+    Passive_Des, Passive_probability, Passive_Range
+}
+
+public enum ActiveTarget
+{
+    Team=1,Enemy,All,Obstacle
 }
 
 
@@ -18,6 +27,8 @@ public class GameDB : MonoBehaviour
 {
     const string URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
     public static Dictionary<int,string[]> CharacterDB = new Dictionary<int,string[]>();
+
+    public Sprite[] CharacterIcon;
 
     //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
     /*

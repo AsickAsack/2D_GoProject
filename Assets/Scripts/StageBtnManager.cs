@@ -5,7 +5,7 @@ using UnityEngine;
 public class StageBtnManager : MonoBehaviour
 {
     public StageBtn[] stageBtn;
-    public GameObject DownBtns;
+    public RectTransform DownBtns;
     public float PaddingY;
     private int? CurIndex = null;
 
@@ -32,10 +32,10 @@ public class StageBtnManager : MonoBehaviour
 
         ResetPos();
         for (int i = index + 1; i < stageBtn.Length; i++)
-            stageBtn[i].GoDown();
+            stageBtn[i].GoDown(PaddingY);
 
         DownBtns.gameObject.SetActive(true);
-        DownBtns.transform.position = new Vector3(stageBtn[index].transform.position.x, stageBtn[index].transform.position.y - PaddingY);
+        DownBtns.anchoredPosition = new Vector2(stageBtn[index].myRect.anchoredPosition.x, stageBtn[index].myRect.anchoredPosition.y - stageBtn[index].myRect.sizeDelta.y);
 
     }
 

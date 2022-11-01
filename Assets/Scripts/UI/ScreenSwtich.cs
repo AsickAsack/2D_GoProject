@@ -14,9 +14,12 @@ public class ScreenSwtich : MonoBehaviour
 
     IEnumerator SwtichImage(float f)
     {
-        while (ScreenSwitch_Imgae.fillAmount < 1.0f)
+        Debug.Log(ScreenSwitch_Imgae.color.a);
+        while (ScreenSwitch_Imgae.color.a < 1.0f)
         {
-            ScreenSwitch_Imgae.fillAmount += Time.deltaTime * f;
+            float tempf = ScreenSwitch_Imgae.color.a + Time.deltaTime;
+            Color temp = new Color(ScreenSwitch_Imgae.color.r, ScreenSwitch_Imgae.color.g, ScreenSwitch_Imgae.color.b, tempf);
+            ScreenSwitch_Imgae.color = temp;
 
             yield return null;
         }
@@ -25,9 +28,11 @@ public class ScreenSwtich : MonoBehaviour
 
         //yield return new WaitForSeconds(0.2f);
 
-        while (ScreenSwitch_Imgae.fillAmount > 0.0f)
+        while (ScreenSwitch_Imgae.color.a > 0.0f)
         {
-            ScreenSwitch_Imgae.fillAmount -= Time.deltaTime * f;
+            float tempf = ScreenSwitch_Imgae.color.a - Time.deltaTime;
+            Color temp = new Color(ScreenSwitch_Imgae.color.r, ScreenSwitch_Imgae.color.g, ScreenSwitch_Imgae.color.b, tempf);
+            ScreenSwitch_Imgae.color = temp;
 
             yield return null;
         }
