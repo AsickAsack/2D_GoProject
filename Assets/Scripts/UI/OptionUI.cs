@@ -19,6 +19,10 @@ public class OptionUI : MonoBehaviour
         SetEffectSlider();
     }
 
+    public void ChangeCutScene()
+    {
+        GameManager.instance.CutScene = CutScene.isOn;
+    }
 
     public void SetBgmSlider()
     {

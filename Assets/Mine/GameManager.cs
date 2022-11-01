@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public bool CutScene;
+
     public UIManager uimanager;
 
     public List<CharacterPlay> myCharacters = new List<CharacterPlay>();
@@ -15,13 +17,7 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
 
-
-
-
-    }
 
 
 

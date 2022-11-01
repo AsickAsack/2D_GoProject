@@ -14,7 +14,8 @@ public class ScreenSwtich : MonoBehaviour
 
     IEnumerator SwtichImage(float f)
     {
-        Debug.Log(ScreenSwitch_Imgae.color.a);
+        
+
         while (ScreenSwitch_Imgae.color.a < 1.0f)
         {
             float tempf = ScreenSwitch_Imgae.color.a + Time.deltaTime;

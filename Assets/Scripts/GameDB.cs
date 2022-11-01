@@ -25,10 +25,33 @@ public enum ActiveTarget
 
 public class GameDB : MonoBehaviour
 {
-    const string URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
-    public static Dictionary<int,string[]> CharacterDB = new Dictionary<int,string[]>();
+    public static GameDB Instance;
 
+    const string URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
+    public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
+
+    public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
+
+    private void Awake()
+    {
+        Instance = this;
+
+    }
+
+    public Sprite GetCharacterImage(CharacterName name)
+    {
+        return CharacterImage[(int)name - (int)CharacterName.Strong];
+    }
+
+    public Sprite GetCharacterIcon(CharacterName name)
+    {
+        return CharacterIcon[(int)name - (int)CharacterName.Strong];
+    }
+
+    
+
+
 
     //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
     /*
@@ -50,7 +73,10 @@ public class GameDB : MonoBehaviour
             CharacterDB.Add(int.Parse(tempDB2[0]), tempDB2);
         }
 
-        
-       
+        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
+        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
+        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
+
+
     }
 }

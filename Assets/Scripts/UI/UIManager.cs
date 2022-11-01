@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+   
     public PopUpManager popupManager;
     public OptionUI optionUI;
     public ScreenSwtich screen_swtich;
-    
+    public CharacterUI characterUI;
+
 
     #region 게임 스타트 UI 기능
 
@@ -19,6 +21,16 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
+
+    #region 캐릭터창
+
+   public void OpenCharacterUI()
+    {
+        characterUI.SetCharacterUI();
+    }
+
+
+    #endregion
 
 
 

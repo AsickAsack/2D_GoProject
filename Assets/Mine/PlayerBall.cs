@@ -14,11 +14,11 @@ public class PlayerBall : TempCharacter
         {
             EnemyBall Enemy = collision.transform.GetComponent<EnemyBall>();
 
-            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized,Power<0.0f ? 1.0f:Power);
+            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized,this.GetComponent<Rigidbody2D>().velocity.magnitude);
 
-
+            
             //줄어드는 파워
-            Power -= 5.0f;
+            //Power -= 5.0f;
         }
 
         //서있는 흰돌 맞았을때도 생각
@@ -28,11 +28,6 @@ public class PlayerBall : TempCharacter
     {
         this.Power = Power;
         MyRigid.AddForce(Dir * this.Power, ForceMode2D.Impulse);
-    }
-
-    private void Update()
-    {
-        this.Power -= Time.deltaTime * dirspeed;
     }
 
 

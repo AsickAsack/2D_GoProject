@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class Character
 {
 
     public Character() { }
-    public Character(CharacterName name)
+    public Character(int name)
     {
-        int temp = 0;
+        Debug.Log((int)name);
+        MyCharacter = (CharacterName)name;
+        int temp = 1;
         Name = GameDB.CharacterDB[(int)name][temp++];
         Character_Des = GameDB.CharacterDB[(int)name][temp++];
         Min_Power = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
@@ -22,15 +25,19 @@ public class Character
         Passive_Des = GameDB.CharacterDB[(int)name][temp++];
         Passive_probability = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Passive_Range = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        GetTime = DateTime.Now;
     }
 
-    int Level;
+    public CharacterName MyCharacter;
+
+    int grade;
+    int Level=1;
     int Max_Level;
     int Size;
     
     float EXP;
     float Max_EXP;
-
+    DateTime GetTime;
     //맞을때, 때릴때, 스킬, 패시브 생각
     int SkillEffectindex;
 
@@ -48,12 +55,10 @@ public class Character
     float Passive_Range;
 
     
-    //스킬 강화효과
-    
-    //발사 위력
-    //컷씬
+
+    //스킬 강화효과  
     //사운드
-    //이미지
+    //이미지 
 
 
 

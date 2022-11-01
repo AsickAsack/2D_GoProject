@@ -16,18 +16,24 @@ public class EnemyBall : TempCharacter
             enemyBall.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, Power <= 0.0f ? 1.0f : Power);
             
         }
-        //서있는 흰돌 맞았을때도 생각
-    }
 
-    private void Update()
-    {
-        Power -= Time.deltaTime*100.0f;
+        if (collision.transform.CompareTag("PlayerBall"))
+        {
+            Debug.Log("흰돌 박음");
+            PlayerBall PlayerBall = collision.transform.GetComponent<PlayerBall>();
+            PlayerBall.GoForward((Vector2.Reflect(GetComponent<Rigidbody2D>().velocity,-this.transform.right)), collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            Debug.Log(Power);
+
+        }
+
+
+        //서있는 흰돌 맞았을때도 생각
     }
 
     public void GoForward(Vector2 Dir, float Power)
     {
         this.Power = Power;
-        MyRigid.AddForce(Dir * this.Power, ForceMode2D.Impulse);
+        MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
         
     }
 }
