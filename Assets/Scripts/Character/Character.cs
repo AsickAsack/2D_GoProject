@@ -24,6 +24,7 @@ public class Character
         Passive_Des = GameDB.CharacterDB[(int)name][temp++];
         Passive_probability = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Passive_Range = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Story = GetStory(GameDB.CharacterDB[(int)name][temp++]);
         GetTime = DateTime.Now;
     }
 
@@ -42,24 +43,30 @@ public class Character
 
     public string Name;
     public string Character_Des;
-    float Min_Power;
-    float Max_Power;
-    float Mass;
-    float Drag;
-    string Active_Des;
-    ActiveTarget active_target;
-    float Active_Figure;
-    string Passive_Des;
-    float Passive_probability;
-    float Passive_Range;
-
-    
+    public float Min_Power;
+    public float Max_Power;
+    public float Mass;
+    public float Drag;
+    public string Active_Des;
+    public ActiveTarget active_target;
+    public float Active_Figure;
+    public string Passive_Des;
+    public float Passive_probability;
+    public float Passive_Range;
+    public string Story;
 
     //스킬 강화효과  
     //사운드
     //이미지 
 
 
+    string GetStory(string story)
+    {
+        story = story.Replace("`","\n");
+        story = story.Replace("~",",");
+
+        return story;
+    }
 
 }
 

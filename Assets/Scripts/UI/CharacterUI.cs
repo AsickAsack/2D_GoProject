@@ -10,10 +10,14 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     int Charindex = 0;
     Vector2 StartPos;
     Vector2 EndPos;
-
+    Vector2 TargetPos;
+    
+    [SerializeField]
+    private Vector2 touchRange;
     public TMPro.TMP_Text Sort_Text;
     public TMPro.TMP_Text CharacterName_Text;
     public Image CharacterIcon;
+    public Charcter_DetailUI detail;
 
      public void OnPointerDown(PointerEventData eventData)
     {
@@ -23,19 +27,34 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
         EndPos = eventData.position;
-        SetCharacterUI((EndPos-StartPos).normalized.x);
+
+        TargetPos = EndPos - StartPos;
+
+        if (TargetPos.magnitude > touchRange.x && Mathf.Abs(TargetPos.y) < touchRange.y)
+        { 
+        SetCharacterUI(TargetPos.normalized.x);
+        }
+        else 
+        {
+            if(eventData.pointerCurrentRaycast.gameObject.CompareTag("CharacterUI"))
+            {
+                detail.SetDetail(PlayerDB.Instance.MyCharacters[Charindex]);
+            }
+        }
+        
+   
     }
 
     
     public void SetCharacterUI()
     {
-        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex].MyCharacter);
+        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex]);
         CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
     }
 
     public void SetCharacterUI(float f)
     {
-
+        
 
         if (f > 0.0f)
         {
@@ -49,7 +68,7 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
 
         CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
-        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex].MyCharacter);
+        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex]);
 
     }
 

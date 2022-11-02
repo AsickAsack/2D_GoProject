@@ -9,6 +9,7 @@ TagManager:
   - BlackBall
   - PlayerBall
   - EnemyBall
+  - CharacterUI
   layers:
   - Default
   - TransparentFX

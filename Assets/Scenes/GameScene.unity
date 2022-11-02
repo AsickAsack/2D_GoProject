@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d751bf7e08ba3834a9f10e92d10c5ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraMoveSpeed: 2
+  CameraMoveSpeed: 0.5
   CameraMoveSmooth: 15
   playManager: {fileID: 1733273276}
 --- !u!114 &750070398

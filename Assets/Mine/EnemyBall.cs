@@ -22,7 +22,7 @@ public class EnemyBall : TempCharacter
             
             PlayerBall PlayerBall = collision.transform.GetComponent<PlayerBall>();
             PlayerBall.GoForward((Vector2.Reflect(GetComponent<Rigidbody2D>().velocity,this.transform.up)), collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude/10);            
-            Debug.Log(Power);
+            
 
         }
 

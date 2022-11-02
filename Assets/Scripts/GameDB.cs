@@ -14,7 +14,7 @@ public enum CharacterStat
 {
     Name=1,Character_Des,Min_Power,Max_Power,Mass,Drag,
     Active_Des,Active_Target,Active_Figure,
-    Passive_Des, Passive_probability, Passive_Range
+    Passive_Des, Passive_probability, Passive_Range, Character_Story
 }
 
 public enum ActiveTarget
@@ -39,18 +39,15 @@ public class GameDB : MonoBehaviour
 
     }
 
-    public Sprite GetCharacterImage(CharacterName name)
+    public Sprite GetCharacterImage(Character Char)
     {
-        return CharacterImage[(int)name - (int)CharacterName.Strong];
+        return CharacterImage[(int)Char.MyCharacter-(int)CharacterName.Strong];
     }
 
-    public Sprite GetCharacterIcon(CharacterName name)
+    public Sprite GetCharacterIcon(Character Char)
     {
-        return CharacterIcon[(int)name - (int)CharacterName.Strong];
+        return CharacterIcon[(int)Char.MyCharacter-(int)CharacterName.Strong];
     }
-
-    
-
 
 
     //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
@@ -67,10 +64,12 @@ public class GameDB : MonoBehaviour
 
         string[] tempDB = data.Split('\n');
 
-        for(int i= 1;i<12;i++)
+        for(int i= 1;i<tempDB.Length;i++)
         {
             string[] tempDB2 = tempDB[i].Split(',');
+            Debug.Log(tempDB2[0]);
             CharacterDB.Add(int.Parse(tempDB2[0]), tempDB2);
+            
         }
 
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
