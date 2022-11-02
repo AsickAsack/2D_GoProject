@@ -67,9 +67,7 @@ public class GameDB : MonoBehaviour
         for(int i= 1;i<tempDB.Length;i++)
         {
             string[] tempDB2 = tempDB[i].Split(',');
-            Debug.Log(tempDB2[0]);
             CharacterDB.Add(int.Parse(tempDB2[0]), tempDB2);
-            
         }
 
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
