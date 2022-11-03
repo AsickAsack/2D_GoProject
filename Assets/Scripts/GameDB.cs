@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+public enum ObstacleName
+{
+    Wall//현재는 벽만 구현함
+}
+
 public enum MonsterName
 { 
     Basic=2001,Big,Silence,Boss,Bomb,Armor, cushion // 반복이동,순서
@@ -42,6 +47,7 @@ public class GameDB : MonoBehaviour
 
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
     public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
+    public MonsterPlay[] MonsterScripit;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
@@ -83,8 +89,7 @@ public class GameDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
 
-        Debug.Log(MonsterDB[2001][1]);
-        Debug.Log(MonsterDB[2002][1]);
+
 
     }
 

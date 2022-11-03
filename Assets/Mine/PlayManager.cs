@@ -22,6 +22,11 @@ public class PlayManager : MonoBehaviour
 
     public Image CameraMovePanel;
 
+    private void Awake()
+    {
+      //  StageManager.instance.SetStage((int)StageManager.instance.CurStage.x-1, (int)StageManager.instance.CurStage.y-1);
+    }
+
 
     void Update()
     {
