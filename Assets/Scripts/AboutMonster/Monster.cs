@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public abstract class Monster : MonoBehaviour
+public class Monster
 {
-    float Mass;
-    float Drag;
-    float Skill_Range;
 
-    public abstract void Initialize();
-    public abstract void Skill();
+    public string Name;
+    public string Skill_Des;
+    public int Skill_Figure;
+    public float Mass;
+    public float Size;
+  
 
+    public Monster() { }
+    public Monster(int a) 
+    { 
+    }
 
 
 

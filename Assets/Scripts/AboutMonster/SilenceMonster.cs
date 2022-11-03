@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SilenceMonster : Monster
+public class SilenceMonster : MonsterPlay
 {
     public override void Initialize()
     {

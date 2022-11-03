@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMonster : Monster
+public class BossMonster : MonsterPlay
 {
 
     //생성할 몬스터 프리펩

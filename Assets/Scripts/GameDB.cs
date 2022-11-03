@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+public enum MonsterName
+{ 
+    Basic=2001,Big,Silence,Boss,Bomb,Armor, cushion // 반복이동,순서
+}
+
+public enum MonsterStat
+{
+    Name,Des,Skill_Figure,Mass,Size
+}
+
 public enum CharacterName
 {
     Strong=1001,lazy,mad,twin,prophet,Vampire,PackMan,
@@ -27,8 +37,11 @@ public class GameDB : MonoBehaviour
 {
     public static GameDB Instance;
 
-    const string URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
+    const string Char_URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
+    const string Mon_URL = "https://docs.google.com/spreadsheets/d/1MHohZTbe87kDvFujM9cYgBkQgGATA6cjONlPEv3jPuo/export?format=csv";
+
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
+    public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
@@ -36,14 +49,12 @@ public class GameDB : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
     }
 
     public Sprite GetCharacterImage(Character Char)
     {
         return CharacterImage[(int)Char.MyCharacter-(int)CharacterName.Strong];
     }
-
     public Sprite GetCharacterIcon(Character Char)
     {
         return CharacterIcon[(int)Char.MyCharacter-(int)CharacterName.Strong];
@@ -58,22 +69,41 @@ public class GameDB : MonoBehaviour
     */
     private IEnumerator Start()
     {
-        UnityWebRequest www = UnityWebRequest.Get(URL);
+        UnityWebRequest www = UnityWebRequest.Get(Char_URL);
         yield return www.SendWebRequest();
-        string data = www.downloadHandler.text;
 
-        string[] tempDB = data.Split('\n');
+        InputDB(DownLoad_DB(www), CharacterDB);
 
-        for(int i= 1;i<tempDB.Length;i++)
-        {
-            string[] tempDB2 = tempDB[i].Split(',');
-            CharacterDB.Add(int.Parse(tempDB2[0]), tempDB2);
-        }
+        UnityWebRequest www2 = UnityWebRequest.Get(Mon_URL);
+        yield return www2.SendWebRequest();
+
+        InputDB(DownLoad_DB(www2), MonsterDB);
 
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
 
+        Debug.Log(MonsterDB[2001][1]);
+        Debug.Log(MonsterDB[2002][1]);
 
     }
+
+    //DB 다운로드
+    string DownLoad_DB(UnityWebRequest www)
+    {
+        return www.downloadHandler.text; 
+    }
+
+    //딕셔너리에 DB넣기
+    public void InputDB(string data,Dictionary<int,string[]> dic)
+    { 
+        string[] tempDB = data.Split('\n');
+
+        for (int i = 1; i < tempDB.Length; i++)
+        {
+            string[] tempDB2 = tempDB[i].Split(',');
+            dic.Add(int.Parse(tempDB2[0]), tempDB2);
+        }
+    }
+
 }

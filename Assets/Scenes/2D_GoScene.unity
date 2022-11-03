@@ -3833,6 +3833,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f60bc5a4369dea469cc2b63dbfc002d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Curbtn: {fileID: 0}
+  CurChar:
+    MyCharacter: 0
+    Name: 
+    Character_Des: 
+    Min_Power: 0
+    Max_Power: 0
+    Mass: 0
+    Drag: 0
+    Active_Des: 
+    active_target: 0
+    Active_Figure: 0
+    Passive_Des: 
+    Passive_probability: 0
+    Passive_Range: 0
+    Story: 
+  Icon: {fileID: 0}
+  IsSelect: 0
 --- !u!1 &487775538
 GameObject:
   m_ObjectHideFlags: 0
@@ -8137,6 +8155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f60bc5a4369dea469cc2b63dbfc002d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Curbtn: {fileID: 0}
+  CurChar:
+    MyCharacter: 0
+    Name: 
+    Character_Des: 
+    Min_Power: 0
+    Max_Power: 0
+    Mass: 0
+    Drag: 0
+    Active_Des: 
+    active_target: 0
+    Active_Figure: 0
+    Passive_Des: 
+    Passive_probability: 0
+    Passive_Range: 0
+    Story: 
+  Icon: {fileID: 0}
+  IsSelect: 0
 --- !u!1 &967674906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12560,6 +12596,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f60bc5a4369dea469cc2b63dbfc002d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Curbtn: {fileID: 0}
+  CurChar:
+    MyCharacter: 0
+    Name: 
+    Character_Des: 
+    Min_Power: 0
+    Max_Power: 0
+    Mass: 0
+    Drag: 0
+    Active_Des: 
+    active_target: 0
+    Active_Figure: 0
+    Passive_Des: 
+    Passive_probability: 0
+    Passive_Range: 0
+    Story: 
+  Icon: {fileID: 0}
+  IsSelect: 0
 --- !u!1 &1566635019
 GameObject:
   m_ObjectHideFlags: 0
@@ -14804,7 +14858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00000834465, y: 112323.555}
+  m_AnchoredPosition: {x: 0.00000834465, y: 75382.164}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1885826217
