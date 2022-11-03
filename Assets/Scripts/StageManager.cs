@@ -33,7 +33,7 @@ public struct SubStage
 [System.Serializable]
 public class Stage
 {
-    public SubStage[]subStage;
+    public SubStage[] subStage;
 }
 
 
@@ -64,30 +64,47 @@ public class StageManager : MonoBehaviour
 
     #endregion
 
+    public List<MonsterPlay> CurMonsters = new List<MonsterPlay>();
 
     public Vector2 CurStage;
     public Stage[] stage;
-
+    
     public void SetStage(int Stage,int SubStage)
     {
+        Stage--;
+        SubStage--;
+
         for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyMonster.Length;i++)
         {
-            GameObject obj = Instantiate(Resources.Load("Monster") as GameObject, stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].Monster_Pos, Quaternion.identity);
-            //종류에 따라 스크립트 박아야함 //아이콘 수정되어야함 ( 몬스터 초기화 시키면 될듯?)
+            CurMonsters.Add(Instantiate(GameDB.Instance.GetMonster(stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].monster_name),
+                stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].Monster_Pos, Quaternion.identity).GetComponent<MonsterPlay>());
+
+            CurMonsters[^1].monster = new Monster(stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].monster_name);
+            CurMonsters[^1].Basic_init();
+
+            //아이콘 수정되어야함 (몬스터 초기화 시키면 될듯?)
+
 
         }
 
         for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyObstacle.Length; i++)
         {
-            //앵글 수정
-            GameObject obj = Instantiate(Resources.Load("Obstacle") as GameObject, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos, Quaternion.identity);
+            
+            GameObject obj = Instantiate(Resources.Load("Obstacle") as GameObject, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos, 
+                Quaternion.Euler(0,0, stage[Stage-1].subStage[SubStage-1].Object_Information.MyObstacle[i].Angle));
 
+            
             //종류에 따라 다르게
         }
 
-        //Debug.Log()
+        CurMonsters[^1].name = "쓰레기";
 
+        foreach(MonsterPlay a in CurMonsters)
+        {
+            Debug.Log(a.name);
+        }
 
     }
+
 
 }

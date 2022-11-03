@@ -24,7 +24,7 @@ public class PlayManager : MonoBehaviour
 
     private void Awake()
     {
-      //  StageManager.instance.SetStage((int)StageManager.instance.CurStage.x-1, (int)StageManager.instance.CurStage.y-1);
+      StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
     }
 
 

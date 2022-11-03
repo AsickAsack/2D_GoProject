@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommonMonster : MonsterPlay
+public class ArmorMonster : MonsterPlay
 {
     public override void Initialize()
     {
-       
-        //기본 스텟으로 초기화
+        throw new System.NotImplementedException();
     }
 
     public override void Skill()
     {
-       //스킬 없음
+        throw new System.NotImplementedException();
     }
 }

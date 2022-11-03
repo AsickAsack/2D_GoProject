@@ -12,8 +12,14 @@ public class Monster
   
 
     public Monster() { }
-    public Monster(int a) 
-    { 
+    public Monster(MonsterName name) 
+    {
+        int temp = 1;
+        this.Name = GameDB.MonsterDB[(int)name][temp++];
+        this.Skill_Des = GameDB.MonsterDB[(int)name][temp++];
+        this.Skill_Figure = int.Parse(GameDB.MonsterDB[(int)name][temp++]);
+        this.Mass = int.Parse(GameDB.MonsterDB[(int)name][temp++]);
+        this.Size = float.Parse(GameDB.MonsterDB[(int)name][temp++]);
     }
 
 

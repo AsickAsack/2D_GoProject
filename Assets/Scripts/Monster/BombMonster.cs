@@ -7,19 +7,19 @@ public class BombMonster : MonsterPlay
     //public GameObject BombEffect;
     int LimitCount;
     public float BombRange;
-    public GameObject Circle;
+    //public GameObject Circle;
 
 
     public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        
     }
 
   
     private void Update()
     {
-        Circle.transform.position = this.transform.position;
-        Circle.transform.localScale = new Vector2(BombRange*2, BombRange*2);
+        //Circle.transform.position = this.transform.position;
+        //Circle.transform.localScale = new Vector2(BombRange*2, BombRange*2);
         
     }
 

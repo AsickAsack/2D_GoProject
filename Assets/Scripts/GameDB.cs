@@ -46,8 +46,9 @@ public class GameDB : MonoBehaviour
     const string Mon_URL = "https://docs.google.com/spreadsheets/d/1MHohZTbe87kDvFujM9cYgBkQgGATA6cjONlPEv3jPuo/export?format=csv";
 
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
+
     public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
-    public MonsterPlay[] MonsterScripit;
+    public GameObject[] Monsters;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
@@ -66,6 +67,11 @@ public class GameDB : MonoBehaviour
         return CharacterIcon[(int)Char.MyCharacter-(int)CharacterName.Strong];
     }
 
+    public GameObject GetMonster(MonsterName name)
+    {
+        return Monsters[(int)name - (int)MonsterName.Basic];
+    }
+
 
     //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
     /*
@@ -73,6 +79,7 @@ public class GameDB : MonoBehaviour
     public Sprite[] BigImage;
     public Sprite[] CharacterIcon;
     */
+
     private IEnumerator Start()
     {
         UnityWebRequest www = UnityWebRequest.Get(Char_URL);
@@ -88,7 +95,6 @@ public class GameDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
-
 
 
     }
