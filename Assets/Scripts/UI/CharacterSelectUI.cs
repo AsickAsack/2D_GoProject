@@ -33,9 +33,6 @@ public class CharacterSelectUI : MonoBehaviour
                 return;
             }    
         }
-
-        
-
     }
 
 

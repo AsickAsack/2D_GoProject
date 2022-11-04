@@ -40,6 +40,7 @@ public class Stage
 public class StageManager : MonoBehaviour
 {
 
+
     #region 싱글톤
 
     private static StageManager _Instance = null;
@@ -64,7 +65,9 @@ public class StageManager : MonoBehaviour
 
     #endregion
 
+    public List<Character> CurCharacters = new List<Character>();
     public List<MonsterPlay> CurMonsters = new List<MonsterPlay>();
+    public List<Obstacle> CurObstacle = new List<Obstacle>();
 
     public Vector2 CurStage;
     public Stage[] stage;
@@ -83,27 +86,18 @@ public class StageManager : MonoBehaviour
             CurMonsters[^1].Basic_init();
 
             //아이콘 수정되어야함 (몬스터 초기화 시키면 될듯?)
-
-
         }
 
         for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyObstacle.Length; i++)
         {
-            
-            GameObject obj = Instantiate(Resources.Load("Obstacle") as GameObject, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos, 
-                Quaternion.Euler(0,0, stage[Stage-1].subStage[SubStage-1].Object_Information.MyObstacle[i].Angle));
+
+            GameObject obj = Instantiate(GameDB.Instance.GetObstacle(stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_name),
+                stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos,
+                Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].Angle));
 
             
             //종류에 따라 다르게
         }
-
-        CurMonsters[^1].name = "쓰레기";
-
-        foreach(MonsterPlay a in CurMonsters)
-        {
-            Debug.Log(a.name);
-        }
-
     }
 
 

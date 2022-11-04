@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageBtnManager : MonoBehaviour
 {
     public StageBtn[] stageBtn;
     public RectTransform DownBtns;
+    public Button[] StageDownBtns;
     public float PaddingY;
     private int? CurIndex = null;
 
@@ -37,6 +39,7 @@ public class StageBtnManager : MonoBehaviour
         DownBtns.gameObject.SetActive(true);
         DownBtns.anchoredPosition = new Vector2(stageBtn[index].myRect.anchoredPosition.x, stageBtn[index].myRect.anchoredPosition.y - stageBtn[index].myRect.sizeDelta.y);
 
+        SetBtnListeners(index);
     }
 
     public void ResetPos()
@@ -46,4 +49,29 @@ public class StageBtnManager : MonoBehaviour
             stageBtn[i].ResetPosition();
     }
 
+    public void setDebug(int index)
+    {
+        Debug.Log(index);
+    }
+
+    public void SetBtnListeners(int Stage)
+    {
+
+        for(int i = 0; i < StageDownBtns.Length; i++)
+        {
+            int temp = i;
+            StageDownBtns[i].onClick.AddListener(() =>
+            {
+                StageManager.instance.CurStage.x = Stage + 1;
+                StageManager.instance.CurStage.y = temp + 1;
+
+            });
+
+        }
+        
+
+    }
+
+
+    
 }

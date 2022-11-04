@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8aacb51f1249c4d956c826a8b45d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurCharacters: []
+  CurMonsters: []
+  CurObstacle: []
   CurStage: {x: 1, y: 1}
   stage:
   - subStage:
@@ -59,4 +62,7 @@ MonoBehaviour:
           Monster_Pos: {x: -1.65, y: 1.75}
         - monster_name: 2005
           Monster_Pos: {x: 0, y: 1.75}
-        MyObstacle: []
+        MyObstacle:
+        - obstacle_name: 0
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 26

@@ -46,9 +46,10 @@ public class GameDB : MonoBehaviour
     const string Mon_URL = "https://docs.google.com/spreadsheets/d/1MHohZTbe87kDvFujM9cYgBkQgGATA6cjONlPEv3jPuo/export?format=csv";
 
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
-
     public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
+
     public GameObject[] Monsters;
+    public GameObject[] Obstacles;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
@@ -72,6 +73,10 @@ public class GameDB : MonoBehaviour
         return Monsters[(int)name - (int)MonsterName.Basic];
     }
 
+    public GameObject GetObstacle(ObstacleName name)
+    {
+        return Obstacles[(int)name];
+    }
 
     //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
     /*
