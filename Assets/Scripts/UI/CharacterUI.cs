@@ -32,7 +32,7 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
         if (TargetPos.magnitude > touchRange.x && Mathf.Abs(TargetPos.y) < touchRange.y)
         { 
-        SetCharacterUI(TargetPos.normalized.x);
+            SetCharacterUI(TargetPos.normalized.x);
         }
         else 
         {
@@ -41,11 +41,8 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
                 detail.SetDetail(PlayerDB.Instance.MyCharacters[Charindex]);
             }
         }
-        
-   
     }
 
-    
     public void SetCharacterUI()
     {
         CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex]);

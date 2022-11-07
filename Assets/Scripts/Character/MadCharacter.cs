@@ -8,7 +8,7 @@ public class MadCharacter : CharacterPlay
     {
         Collider2D[] coll = Physics2D.OverlapCircleAll(this.transform.position, 2.0f);
 
-        GameObject obj = Instantiate(Effect, this.transform.position, Quaternion.identity);
+        //GameObject obj = Instantiate(Effect, this.transform.position, Quaternion.identity);
 
 
         for (int i = 0; i < coll.Length; i++)

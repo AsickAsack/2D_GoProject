@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class MonsterPlay : MonoBehaviour
 {
 
@@ -20,9 +21,10 @@ public abstract class MonsterPlay : MonoBehaviour
     public abstract void Initialize();
     public abstract void Skill();
 
+
     private void Start()
     {
-        //Basic_init();
+        Basic_init();
     }
 
     //모든 몬스터들이 필요한 초기화(질량,크기)
@@ -32,9 +34,6 @@ public abstract class MonsterPlay : MonoBehaviour
         this.transform.localScale = new Vector2(monster.Size, monster.Size);
         Initialize();
     }
-
-
-
 
 
 }

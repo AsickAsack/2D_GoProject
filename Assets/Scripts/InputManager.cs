@@ -5,8 +5,5 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     private RectTransform Arrow;
-    void Update()
-    {
-        
-    }
+ 
 }

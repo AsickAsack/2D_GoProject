@@ -33,6 +33,7 @@ public class PlayerDB : MonoBehaviour
 
 
     public List<Character> MyCharacters = new List<Character>();
+    public bool CutScene;
     public int Gold { get; set; }
     //유저 스킬도 있음
 

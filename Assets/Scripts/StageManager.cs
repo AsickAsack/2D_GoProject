@@ -40,7 +40,6 @@ public class Stage
 public class StageManager : MonoBehaviour
 {
 
-
     #region 싱글톤
 
     private static StageManager _Instance = null;
@@ -65,19 +64,44 @@ public class StageManager : MonoBehaviour
 
     #endregion
 
-    public List<Character> CurCharacters = new List<Character>();
+    public List<Character> SelectCharacters = new List<Character>();
+    public List<CharacterPlay> CurCharacters = new List<CharacterPlay>();
     public List<MonsterPlay> CurMonsters = new List<MonsterPlay>();
     public List<Obstacle> CurObstacle = new List<Obstacle>();
 
     public Vector2 CurStage;
     public Stage[] stage;
-    
+
+
     public void SetStage(int Stage,int SubStage)
     {
         Stage--;
         SubStage--;
 
-        for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyMonster.Length;i++)
+        SetCharacter();
+        SetMonster(Stage,SubStage);
+        SetObstacle(Stage,SubStage);
+    }
+
+    public void SetCharacter()
+    {
+        for (int i = 0; i < SelectCharacters.Count;i++)
+        {
+            CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero,Quaternion.identity).GetComponent<CharacterPlay>();
+
+            
+            CurCharacters.Add(obj);
+            CurCharacters[i].character = SelectCharacters[i];
+            CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);
+            CurCharacters[i].gameObject.SetActive(false);
+        }
+    }
+
+
+    //스테이지DB에 맞는 몬스터 생성
+    public void SetMonster(int Stage,int SubStage)
+    {
+        for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyMonster.Length; i++)
         {
             CurMonsters.Add(Instantiate(GameDB.Instance.GetMonster(stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].monster_name),
                 stage[Stage].subStage[SubStage].Object_Information.MyMonster[i].Monster_Pos, Quaternion.identity).GetComponent<MonsterPlay>());
@@ -87,7 +111,12 @@ public class StageManager : MonoBehaviour
 
             //아이콘 수정되어야함 (몬스터 초기화 시키면 될듯?)
         }
+    }
 
+
+    //스테이지DB에 맞는 장애물 생성
+    public void SetObstacle(int Stage,int SubStage)
+    {
         for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyObstacle.Length; i++)
         {
 
@@ -95,9 +124,10 @@ public class StageManager : MonoBehaviour
                 stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos,
                 Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].Angle));
 
-            
+
             //종류에 따라 다르게
         }
+
     }
 
 

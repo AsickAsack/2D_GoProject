@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
                     DontDestroyOnLoad(obj);
                 }
             }
+
             return _Instance;
         }
 

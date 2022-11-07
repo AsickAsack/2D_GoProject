@@ -59,6 +59,7 @@ public class StageBtnManager : MonoBehaviour
 
         for(int i = 0; i < StageDownBtns.Length; i++)
         {
+            //그냥 i로 버튼 배열에 접근하면 참조가 일어남 
             int temp = i;
             StageDownBtns[i].onClick.AddListener(() =>
             {

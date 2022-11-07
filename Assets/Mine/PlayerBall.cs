@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerBall : TempCharacter
-{
-    public float dirspeed;
-
+{ 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -16,9 +14,6 @@ public class PlayerBall : TempCharacter
 
             Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized,this.GetComponent<Rigidbody2D>().velocity.magnitude);
 
-            
-            //줄어드는 파워
-            //Power -= 5.0f;
         }
 
         //서있는 흰돌 맞았을때도 생각

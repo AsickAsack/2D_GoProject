@@ -28,6 +28,7 @@ public class Character
         GetTime = DateTime.Now;
     }
 
+
     public CharacterName MyCharacter;
 
     int grade;

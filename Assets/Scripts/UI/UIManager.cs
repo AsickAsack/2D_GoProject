@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,21 @@ public class UIManager : MonoBehaviour
     public OptionUI optionUI;
     public ScreenSwtich screen_swtich;
     public CharacterUI characterUI;
+
+    public TMPro.TMP_Text Gold_Text;
+
+    private void Awake()
+    {
+        PlayerDB.Instance.Gold += 50000;
+        SetGold_Text();
+    }
+
+
+    public void SetGold_Text()
+    {
+        Gold_Text.text = PlayerDB.Instance.Gold.ToString("N0") + " 골드";
+    }
+
 
 
     #region 게임 스타트 UI 기능

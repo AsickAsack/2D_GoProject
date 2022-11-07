@@ -23,6 +23,9 @@ public class PopUpManager : MonoBehaviour
             MyPopups[index].SetBtnAction(i, PopupAction[i]);
         }
     }
-  
+    
+
+
+
 }
 

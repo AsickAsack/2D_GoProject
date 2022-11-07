@@ -40,24 +40,41 @@ public enum ActiveTarget
 
 public class GameDB : MonoBehaviour
 {
-    public static GameDB Instance;
+    private static GameDB _Instance = null;
+    public static GameDB Instance
+    {
+        get
+        {
+            if(_Instance == null)
+            {
+                _Instance = FindObjectOfType<GameDB>();
+                if(_Instance == null)
+                {
+                    GameObject obj = Resources.Load("GameDB") as GameObject;
+                    _Instance = obj.GetComponent<GameDB>();
+                    DontDestroyOnLoad(obj);
+                }
+            }
 
-    const string Char_URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
-    const string Mon_URL = "https://docs.google.com/spreadsheets/d/1MHohZTbe87kDvFujM9cYgBkQgGATA6cjONlPEv3jPuo/export?format=csv";
+            return _Instance;
+        }
+    }
+
+
+    public const string Char_URL = "https://docs.google.com/spreadsheets/d/1G6EXf961cN9OO_SmY-67wblpfaSLLb8N_odImJvg9Ls/export?format=csv";
+    public const string Mon_URL = "https://docs.google.com/spreadsheets/d/1MHohZTbe87kDvFujM9cYgBkQgGATA6cjONlPEv3jPuo/export?format=csv";
 
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
     public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
 
+    public GameObject[] Characters;
     public GameObject[] Monsters;
     public GameObject[] Obstacles;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+  
 
     public Sprite GetCharacterImage(Character Char)
     {
@@ -68,44 +85,25 @@ public class GameDB : MonoBehaviour
         return CharacterIcon[(int)Char.MyCharacter-(int)CharacterName.Strong];
     }
 
+    //캐릭터 얻기
+    public GameObject GetCharacter(CharacterName name)
+    {
+        return Characters[(int)name - (int)CharacterName.Strong];
+    }
+
+    //몬스터 얻기
     public GameObject GetMonster(MonsterName name)
     {
         return Monsters[(int)name - (int)MonsterName.Basic];
     }
 
+    //장애물 얻기
     public GameObject GetObstacle(ObstacleName name)
     {
         return Obstacles[(int)name];
     }
-
-    //아이콘은 게임 DB에서 관리하거나 직렬화 하지 않기
-    /*
-    public Sprite[] CutScene;
-    public Sprite[] BigImage;
-    public Sprite[] CharacterIcon;
-    */
-
-    private IEnumerator Start()
-    {
-        UnityWebRequest www = UnityWebRequest.Get(Char_URL);
-        yield return www.SendWebRequest();
-
-        InputDB(DownLoad_DB(www), CharacterDB);
-
-        UnityWebRequest www2 = UnityWebRequest.Get(Mon_URL);
-        yield return www2.SendWebRequest();
-
-        InputDB(DownLoad_DB(www2), MonsterDB);
-
-        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
-        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
-        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
-
-
-    }
-
     //DB 다운로드
-    string DownLoad_DB(UnityWebRequest www)
+    public string DownLoad_DB(UnityWebRequest www)
     {
         return www.downloadHandler.text; 
     }

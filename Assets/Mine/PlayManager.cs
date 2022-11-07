@@ -10,9 +10,14 @@ public enum GameState
 
 public class PlayManager : MonoBehaviour
 {
-    public InGameUI ingameUI;
+    public static PlayManager Instance;
 
+    public InGameUI ingameUI;
+    public CharacterManager CharManager;
+
+    public bool IsActive;
     public bool IsHit = false;
+    public Transform BaseCamp;
     Vector2 StartPos;
     Vector2 EndPos;
     Vector2 targetPos;
@@ -23,13 +28,15 @@ public class PlayManager : MonoBehaviour
     public Vector2 LimitPower;
 
     //오브젝트
-    public PlayerBall CurPlayer;
+    public CharacterPlay CurPlayer;
     public GameObject Arrow;
 
-    public Image CameraMovePanel;
+
 
     private void Awake()
     {
+        Instance = this;
+
         //게임 세팅
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
     }
@@ -51,14 +58,22 @@ public class PlayManager : MonoBehaviour
         switch (s)
         {
             case GameState.Ready:
-                // 오른쪽 UI클릭해서 말 터치하기 -> 
+                ingameUI.SetTextPhase("Choice Phase");
+                ingameUI.SetCharacterPopUP(true);
+                //오른쪽 UI클릭해서 말 터치하기 -> 
                 break;
 
             case GameState.Shot:
+                ingameUI.SetTextPhase("Shot Phase");
+                ingameUI.SetCharacterPopUP(false);
+                //ingameUI.inGameIcon[
+
 
                 break;
 
             case GameState.End:
+                //ingameUI.SetTextPhase("End Phase");
+                //판정 하고 넘어가기
                 break;
         }
     }
@@ -68,6 +83,7 @@ public class PlayManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.Ready:
+                Ready_Loop();
                 break;
 
             case GameState.Shot:
@@ -75,16 +91,15 @@ public class PlayManager : MonoBehaviour
                 break;
 
             case GameState.End:
+                
                 break;
         }
     }
 
 
    
-
-    #region State.Shot
-
-    public void ShotLoop()
+    //당기기 전
+    public void Ready_Loop()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -95,14 +110,23 @@ public class PlayManager : MonoBehaviour
 
             if (MyRayCast)
             {
-                CameraMovePanel.raycastTarget = false;
+                ingameUI.CameraMovePanel.raycastTarget = false;
                 Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
+                //발사 페이즈 진입
+                ChangeState(GameState.Shot);
             }
         }
 
+    }
 
+
+
+    #region State.Shot
+
+    public void ShotLoop()
+    {
 
         if (Input.GetMouseButton(0))
         {
@@ -146,9 +170,11 @@ public class PlayManager : MonoBehaviour
 
 
                 //플레이어 스크립트에서 보내기
-                CurPlayer.GoForward(targetPos, Power);
+                CurPlayer.GetComponent<PlayerBall>().GoForward(targetPos, Power);
                 IsHit = false;
-                CameraMovePanel.raycastTarget = true;
+                ingameUI.CameraMovePanel.raycastTarget = true;
+                //End 상태로 체인지
+                ChangeState(GameState.End);
             }
         }
     }
