@@ -109,7 +109,6 @@ public class CharacterSelectManager : MonoBehaviour
         {
             if(!MySelected_Char[i].IsSelected)
             {
-                Debug.Log(i);
                 return i;
             }
         }

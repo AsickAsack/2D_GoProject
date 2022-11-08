@@ -33,6 +33,7 @@ public class InGameUI : MonoBehaviour
     public GameObject CutSceneObj;
     public Image CutSceneImage;
     public Animator CutSceneAnim;
+    public Animator PhaseAnim;
 
     public void CutScene(int index)
     {
@@ -61,15 +62,23 @@ public class InGameUI : MonoBehaviour
 
     public void SetTextPhase(string Text)
     {
+
+        Phase_Text.text = Text;
+        PhaseAnim.SetTrigger("PhaseChange");
+        /*
         if(PTextCo != null)
         StopCoroutine(PTextCo);
 
         PTextCo = StartCoroutine(PhaseText(Text));
+        */
     }
 
+    /* 이거 쓸지 안쓸지 모르겠다ㅎㅎ
+     
     IEnumerator PhaseText(string Text)
     {
         Phase_Text.gameObject.SetActive(true);
+        PhaseAnim.SetTrigger("PhaseChange");
         Phase_Text.fontSize = LimitTextSize.x;
         Phase_Text.text = Text;
 
@@ -83,6 +92,7 @@ public class InGameUI : MonoBehaviour
         Phase_Text.gameObject.SetActive(false);
 
     }
+    */
 
     #endregion
 

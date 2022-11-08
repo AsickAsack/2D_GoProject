@@ -29,7 +29,7 @@ public class StageBtnManager : MonoBehaviour
             BackMain();
             return; 
         }
-
+        
         CurIndex = index;
 
         ResetPos();
@@ -61,17 +61,13 @@ public class StageBtnManager : MonoBehaviour
             stageBtn[i].ResetPosition();
     }
 
-    public void setDebug(int index)
-    {
-        Debug.Log(index);
-    }
 
     public void SetBtnListeners(int Stage)
     {
 
         for(int i = 0; i < StageDownBtns.Length; i++)
         {
-            //그냥 i로 버튼 배열에 접근하면 참조가 일어남 
+            //그냥 i로 버튼 배열에 접근하면 참조가 일어남 (AddListener라서.....)
             int temp = i;
             StageDownBtns[temp].onClick.RemoveAllListeners();
             StageDownBtns[temp].onClick.AddListener(() =>

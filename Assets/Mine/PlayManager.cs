@@ -72,7 +72,7 @@ public class PlayManager : MonoBehaviour
                 break;
 
             case GameState.End:
-                //ingameUI.SetTextPhase("End Phase");
+                //  
                 //판정 하고 넘어가기
                 break;
         }
@@ -96,8 +96,6 @@ public class PlayManager : MonoBehaviour
         }
     }
 
-
-   
     //당기기 전
     public void Ready_Loop()
     {
@@ -179,6 +177,7 @@ public class PlayManager : MonoBehaviour
 
     #endregion
 
+    //옆에 돌 눌렀을 때
     public void ChangeCurPlayer(int index)
     {
         if (StageManager.instance.CurCharacters[index].OnBoard) return;
@@ -190,8 +189,11 @@ public class PlayManager : MonoBehaviour
         CurPlayer.transform.position = BaseCamp.position;
         CurPlayer.gameObject.SetActive(true);
 
+
+        //액티브가 켜져 있다면
         if(IsActive)
         ingameUI.ChangeAcitveBtn();
+        
     }
 
 }

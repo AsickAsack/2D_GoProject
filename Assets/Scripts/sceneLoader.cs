@@ -44,7 +44,6 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator Loading(int i)
     {
-        Debug.Log("코루틴 시작");
         Slider loadingSlider = GameObject.Find("LoadingProgress")?.GetComponent<Slider>(); //LoadingProgress라는 이름을 가진 게임오브젝트를 찾아서 널이 아니라면?
         AsyncOperation ao = SceneManager.LoadSceneAsync(i);
         //씬로딩이 끝나기 전까진 씬을 활성화하지 않는다.
