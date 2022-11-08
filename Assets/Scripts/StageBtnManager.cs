@@ -61,10 +61,13 @@ public class StageBtnManager : MonoBehaviour
         {
             //그냥 i로 버튼 배열에 접근하면 참조가 일어남 
             int temp = i;
-            StageDownBtns[i].onClick.AddListener(() =>
+            StageDownBtns[temp].onClick.RemoveAllListeners();
+            StageDownBtns[temp].onClick.AddListener(() =>
             {
                 StageManager.instance.CurStage.x = Stage + 1;
                 StageManager.instance.CurStage.y = temp + 1;
+
+                CharacterSelectManager.Instance.OpenCharacterSelectUI();
 
             });
 

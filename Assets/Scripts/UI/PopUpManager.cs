@@ -5,8 +5,17 @@ using UnityEngine.Events;
 
 public class PopUpManager : MonoBehaviour
 {
+    public static PopUpManager Instance;
+
+
     public PopUp[] MyPopups;
     public GameObject Dont_TouchPanel;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     /// <summary>
     /// index = 0: Èò»ö ÆË¾÷ , 1: °ËÀº»ö ÆË¾÷

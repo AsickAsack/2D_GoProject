@@ -69,6 +69,7 @@ public class StageManager : MonoBehaviour
     public List<MonsterPlay> CurMonsters = new List<MonsterPlay>();
     public List<Obstacle> CurObstacle = new List<Obstacle>();
 
+
     public Vector2 CurStage;
     public Stage[] stage;
 

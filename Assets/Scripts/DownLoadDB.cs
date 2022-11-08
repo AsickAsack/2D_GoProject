@@ -25,9 +25,6 @@ public class DownLoadDB : MonoBehaviour
         StageManager.instance.SelectCharacters.Add(PlayerDB.Instance.MyCharacters[1]);
         StageManager.instance.SelectCharacters.Add(PlayerDB.Instance.MyCharacters[2]);
 
-        foreach(Character C in PlayerDB.Instance.MyCharacters)
-        {
-            Debug.Log(C.Name);
-        }
+ 
     }
 }

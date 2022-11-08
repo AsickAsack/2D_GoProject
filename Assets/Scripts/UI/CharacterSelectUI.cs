@@ -3,23 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//캐릭터 선택시 띄워주는 UI를 담당하는 Class
 public class CharacterSelectUI : MonoBehaviour
 {
-    public CharacterSelect_Btn[] CS_Btns;
-    public CS_List[] MyCs;
-    public TMPro.TMP_Text Select_Count;
+    public Image Icon;
+    public int CurIndex;
+    public bool IsSelected = false;
 
-
-
-    //캐릭터 선택 UI열기
-    public void OpenCharacterSelectUI()
+    public void ResetBtn()
     {
-        for(int i = 0; i < PlayerDB.Instance.MyCharacters.Count;i++)
+        Icon.gameObject.SetActive(false);
+        IsSelected = false;
+    }
+
+    public void SetBtn(int Index,Sprite CharSprite)
+    {
+        CurIndex = Index;
+        Icon.sprite = CharSprite;
+
+        if (CurIndex == -1)
         {
-            //보유 캐릭터 수만큼 켜지고 아이콘 까지 세팅
-
-            CS_Btns[i].SetBtn(GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[i]));
-
+            Icon.gameObject.SetActive(true);
+            IsSelected = true;
         }
+        else
+        {    
+            Icon.gameObject.SetActive(false);
+            IsSelected = false;
+        }
+
     }
 }
