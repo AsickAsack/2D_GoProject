@@ -15,15 +15,9 @@ public class InGameIcon : MonoBehaviour, IPointerClickHandler
     {
         //여기 코드 예쁘게 수정 해야됨 
         //Ready페이즈일때 누르면 소환 , 아무것도 없으면 교환
-        if (StageManager.instance.CurCharacters[Myindex].OnBoard) return;
 
-        if(PlayManager.Instance.CurPlayer !=null)
-            PlayManager.Instance.CurPlayer.gameObject?.SetActive(false); 
-
-
-        PlayManager.Instance.CurPlayer = StageManager.instance.CurCharacters[Myindex];
-        PlayManager.Instance.CurPlayer.transform.position = PlayManager.Instance.BaseCamp.position;
-        PlayManager.Instance.CurPlayer.gameObject.SetActive(true);
+        PlayManager.Instance.ChangeCurPlayer(Myindex);
+        
     }
 
     private void Awake()

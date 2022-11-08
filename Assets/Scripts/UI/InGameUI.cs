@@ -31,20 +31,31 @@ public class InGameUI : MonoBehaviour
     //액티브 꺼졌을때 버튼
     public GameObject ActiveOffBtn;
     public GameObject CutSceneObj;
+    public Image CutSceneImage;
     public Animator CutSceneAnim;
 
     public void CutScene(int index)
     {
+        if (PlayManager.Instance.CurPlayer == null) return;
+
         //액티브 킬때
         if(index == 1 && PlayerDB.Instance.CutScene)
         {
+            CutSceneImage.sprite = GameDB.Instance.GetCharacterImage(PlayManager.Instance.CurPlayer.character);
             CutSceneAnim.SetTrigger("CutOn");
         }
-        
+
+        ChangeAcitveBtn();
+    }
+
+    public void ChangeAcitveBtn()
+    {
         ActiveOnBtn.SetActive(!ActiveOnBtn.activeSelf);
         ActiveOffBtn.SetActive(!ActiveOffBtn.activeSelf);
         PlayManager.Instance.IsActive = ActiveOnBtn.activeSelf;
     }
+
+
 
     #region 텍스트기능
 

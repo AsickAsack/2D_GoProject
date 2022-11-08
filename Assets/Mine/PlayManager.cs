@@ -156,8 +156,6 @@ public class PlayManager : MonoBehaviour
                 Arrow.transform.localScale = new Vector3(Power / 100.0f, Power / 100.0f, 0.0f);
 
             }
-
-
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -180,5 +178,20 @@ public class PlayManager : MonoBehaviour
     }
 
     #endregion
+
+    public void ChangeCurPlayer(int index)
+    {
+        if (StageManager.instance.CurCharacters[index].OnBoard) return;
+
+        if (CurPlayer != null)
+            CurPlayer.gameObject.SetActive(false);
+
+        CurPlayer = StageManager.instance.CurCharacters[index];
+        CurPlayer.transform.position = BaseCamp.position;
+        CurPlayer.gameObject.SetActive(true);
+
+        if(IsActive)
+        ingameUI.ChangeAcitveBtn();
+    }
 
 }

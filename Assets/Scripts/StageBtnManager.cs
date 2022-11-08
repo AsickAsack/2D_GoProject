@@ -33,14 +33,26 @@ public class StageBtnManager : MonoBehaviour
         CurIndex = index;
 
         ResetPos();
+
         for (int i = index + 1; i < stageBtn.Length; i++)
             stageBtn[i].GoDown(PaddingY);
 
+        SetButtonText(index);
         DownBtns.gameObject.SetActive(true);
         DownBtns.anchoredPosition = new Vector2(stageBtn[index].myRect.anchoredPosition.x, stageBtn[index].myRect.anchoredPosition.y - stageBtn[index].myRect.sizeDelta.y);
 
         SetBtnListeners(index);
     }
+
+    // # 여기 코드 예쁘게 좀....;;;
+    public void SetButtonText(int index)
+    {
+        for(int i = 0; i < StageDownBtns.Length; i++)
+        {
+            StageDownBtns[i].transform.GetChild(0).GetComponent<Text>().text = $"스테이지 {(index + 1)} - {(i + 1)}";
+        }
+    }
+
 
     public void ResetPos()
     {

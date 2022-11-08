@@ -21,10 +21,6 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
 
-        StageManager.instance.SelectCharacters.Add(PlayerDB.Instance.MyCharacters[0]);
-        StageManager.instance.SelectCharacters.Add(PlayerDB.Instance.MyCharacters[1]);
-        StageManager.instance.SelectCharacters.Add(PlayerDB.Instance.MyCharacters[2]);
-
  
     }
 }
