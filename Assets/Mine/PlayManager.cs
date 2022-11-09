@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+public interface Death
+{
+    public void Death();
+}
+
+
 public enum GameState
 {
     Ready, Shot, End
@@ -38,6 +44,11 @@ public class PlayManager : MonoBehaviour
     public GameObject Arrow;
     Quaternion ArrowOriginAngle;
 
+    //효과
+
+    //판정
+    public int EnemyCount;
+    public int PlayerCount;
 
     private void Awake()
     {
@@ -45,6 +56,8 @@ public class PlayManager : MonoBehaviour
         ArrowOriginAngle = Arrow.transform.rotation;
         //게임 세팅
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
+        EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].Object_Information.MyMonster.Length;
+        PlayerCount = StageManager.instance.CurCharacters.Count;
     }
 
     public GameState gameState = GameState.Ready;
@@ -78,9 +91,16 @@ public class PlayManager : MonoBehaviour
 
 
                 break;
-
             case GameState.End:
-                //  
+                if(EnemyCount == 0)
+                {
+                    Debug.Log("패배");
+                }
+                else if(PlayerCount == 0)
+                {
+                    Debug.Log("플레이어 패배");
+                }
+
                 //판정 하고 넘어가기
                 break;
         }
@@ -99,7 +119,11 @@ public class PlayManager : MonoBehaviour
                 break;
 
             case GameState.End:
-                
+                //죽었을때 생각
+                if (CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+                {
+                    ChangeState(GameState.Ready);
+                }
                 break;
         }
     }
@@ -123,6 +147,12 @@ public class PlayManager : MonoBehaviour
                 Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
+
+                //GameObject obj = Instantiate(effectManager.EffectPrefaps[0],CurPlayer.transform);
+                //obj.transform.position = CurPlayer.transform.position;
+
+               
+
                 //발사 페이즈 진입
                 ChangeState(GameState.Shot);
             }
@@ -164,7 +194,7 @@ public class PlayManager : MonoBehaviour
                 Power = Vector2.Distance(StartPos, Input.mousePosition) / DividePower;
                 Power = Mathf.Clamp(Power, LimitPower.x, LimitPower.y);
 
-                Debug.Log(Power);
+               
                 Arrow.transform.localScale = new Vector3(Power / DivideArrowSize, Power / DivideArrowSize, 0.0f);
 
             }
@@ -183,8 +213,9 @@ public class PlayManager : MonoBehaviour
                 CurPlayer.GoForward(targetPos, Power);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
+                CurPlayer.Death();
                 //End 상태로 체인지
-                ChangeState(GameState.Ready);
+                ChangeState(GameState.End);
             }
         }
     }
@@ -202,6 +233,7 @@ public class PlayManager : MonoBehaviour
         CurPlayer = StageManager.instance.CurCharacters[index];
         CurPlayer.transform.position = BaseCamp.position;
         CurPlayer.gameObject.SetActive(true);
+
 
         CurPlayerIcon = Obj;
         //액티브가 켜져 있다면

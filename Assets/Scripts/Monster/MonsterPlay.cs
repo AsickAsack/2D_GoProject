@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class MonsterPlay : MonoBehaviour
+public abstract class MonsterPlay : MonoBehaviour, Death
 {
 
     private Rigidbody2D _myRigid;
@@ -35,5 +35,14 @@ public abstract class MonsterPlay : MonoBehaviour
         Initialize();
     }
 
+    public void Death()
+    {
+        PlayManager.Instance.EnemyCount--;
+        Debug.Log(PlayManager.Instance.EnemyCount);
+    }
 
+    private void OnDestroy()
+    {
+        Death();
+    }
 }

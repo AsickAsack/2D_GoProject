@@ -35,6 +35,30 @@ public class InGameUI : MonoBehaviour
     public Animator CutSceneAnim;
     public Animator PhaseAnim;
 
+    [Header("[¾×Æ¼ºê UI]")]
+
+    public GameObject ActiveObj;
+
+
+    public void OnActive()
+    {
+        StartCoroutine(ActiveCo());
+    }
+
+    IEnumerator ActiveCo()
+    {
+        ActiveObj.SetActive(true);
+        Time.timeScale = 0.5f;
+
+        yield return new WaitForSeconds(0.25f);
+
+        Time.timeScale = 1;
+        ActiveObj.SetActive(false);
+    }
+
+
+
+
     public void CutScene(int index)
     {
         if (PlayManager.Instance.CurPlayer == null || PlayManager.Instance.gameState != GameState.Ready) return;

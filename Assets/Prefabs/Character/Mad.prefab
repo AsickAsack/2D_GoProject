@@ -142,7 +142,6 @@ MonoBehaviour:
   Power: 0
   Minus_Speed: 0
   MyTurn: 0
-  dirspeed: 50
 --- !u!114 &3044526923310632992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,8 +169,11 @@ MonoBehaviour:
     Passive_probability: 0
     Passive_Range: 0
     Story: 
+  OnBoard: 0
+  IsActive: 0
   InGame_Sprite: {fileID: 0}
   Effect: {fileID: 0}
+  Power: 0
   Index: 0
 --- !u!1 &6134260428480012705
 GameObject:
