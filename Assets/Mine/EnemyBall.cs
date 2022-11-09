@@ -16,7 +16,7 @@ public class EnemyBall : TempCharacter
             enemyBall.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude/10);
             
         }
-
+  
         if (collision.transform.CompareTag("PlayerBall"))
         {
             
@@ -25,7 +25,7 @@ public class EnemyBall : TempCharacter
             
 
         }
-
+       
 
         //서있는 흰돌 맞았을때도 생각
     }

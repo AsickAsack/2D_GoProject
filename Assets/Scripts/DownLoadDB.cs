@@ -7,6 +7,8 @@ public class DownLoadDB : MonoBehaviour
 {
     public IEnumerator Start()
     {
+        if (!PlayerDB.Instance.IsFirst) yield break;
+
         UnityWebRequest www = UnityWebRequest.Get(GameDB.Char_URL);
         yield return www.SendWebRequest();
 
@@ -21,6 +23,6 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
 
- 
+        PlayerDB.Instance.IsFirst = false;
     }
 }

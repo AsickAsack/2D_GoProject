@@ -13,7 +13,7 @@ public class MadCharacter : CharacterPlay
 
         for (int i = 0; i < coll.Length; i++)
         {
-            if ((coll[i].CompareTag("EnemyBall") || coll[i].transform.CompareTag("PlayerBall")) && coll[i].transform != this.transform)
+            if ((coll[i].CompareTag("EnemyBall") || coll[i].CompareTag("PlayerBall")) && coll[i].transform != this.transform)
                 Destroy(coll[i].gameObject);
         }
 
@@ -26,13 +26,6 @@ public class MadCharacter : CharacterPlay
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
-        {
-            AcitveSkill();
 
-        }
-    }
 
 }

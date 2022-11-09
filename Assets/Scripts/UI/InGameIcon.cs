@@ -16,7 +16,7 @@ public class InGameIcon : MonoBehaviour, IPointerClickHandler
         //여기 코드 예쁘게 수정 해야됨 
         //Ready페이즈일때 누르면 소환 , 아무것도 없으면 교환
 
-        PlayManager.Instance.ChangeCurPlayer(Myindex);
+        PlayManager.Instance.ChangeCurPlayer(Myindex,this.gameObject);
         
     }
 
@@ -30,4 +30,6 @@ public class InGameIcon : MonoBehaviour, IPointerClickHandler
     {
         Icon.sprite = GameDB.Instance.GetCharacterIcon(StageManager.instance.SelectCharacters[Myindex]);
     }
+
+    
 }

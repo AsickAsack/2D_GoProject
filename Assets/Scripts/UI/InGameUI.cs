@@ -37,7 +37,7 @@ public class InGameUI : MonoBehaviour
 
     public void CutScene(int index)
     {
-        if (PlayManager.Instance.CurPlayer == null) return;
+        if (PlayManager.Instance.CurPlayer == null || PlayManager.Instance.gameState != GameState.Ready) return;
 
         //액티브 킬때
         if(index == 1 && PlayerDB.Instance.CutScene)
@@ -54,6 +54,7 @@ public class InGameUI : MonoBehaviour
         ActiveOnBtn.SetActive(!ActiveOnBtn.activeSelf);
         ActiveOffBtn.SetActive(!ActiveOffBtn.activeSelf);
         PlayManager.Instance.IsActive = ActiveOnBtn.activeSelf;
+        Debug.Log(ActiveOnBtn.activeSelf);
     }
 
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public enum GameState
 {
@@ -14,6 +15,7 @@ public class PlayManager : MonoBehaviour
 
     public InGameUI ingameUI;
     public CharacterManager CharManager;
+    public EffectManager effectManager;
 
     public bool IsActive;
     public bool IsHit = false;
@@ -26,22 +28,26 @@ public class PlayManager : MonoBehaviour
     //파워 관련
     public float Power;
     public Vector2 LimitPower;
+    public float DividePower;
+    public float DivideArrowSize;
+
 
     //오브젝트
     public CharacterPlay CurPlayer;
+    GameObject CurPlayerIcon;
     public GameObject Arrow;
-
+    Quaternion ArrowOriginAngle;
 
 
     private void Awake()
     {
         Instance = this;
-
+        ArrowOriginAngle = Arrow.transform.rotation;
         //게임 세팅
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
     }
 
-    GameState gameState = GameState.Ready;
+    public GameState gameState = GameState.Ready;
 
     void Update()
     {
@@ -58,6 +64,8 @@ public class PlayManager : MonoBehaviour
         switch (s)
         {
             case GameState.Ready:
+                CurPlayer.OnBoard = true;
+                CurPlayer = null;
                 ingameUI.SetTextPhase("Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
                 //오른쪽 UI클릭해서 말 터치하기 -> 
@@ -66,7 +74,7 @@ public class PlayManager : MonoBehaviour
             case GameState.Shot:
                 ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
-                //ingameUI.inGameIcon[
+                CurPlayerIcon.SetActive(false);
 
 
                 break;
@@ -101,14 +109,17 @@ public class PlayManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
-            MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
+            //Perspective 아닐때
+            //MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
+            
+            MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition),float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
 
             StartPos = Input.mousePosition;
 
             if (MyRayCast)
             {
                 ingameUI.CameraMovePanel.raycastTarget = false;
+                Arrow.transform.rotation = ArrowOriginAngle;
                 Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
@@ -128,10 +139,12 @@ public class PlayManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
+            //MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
+            MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
 
             if (IsHit)
             {
+
 
                 targetPos = -(MyRayCast.point - (Vector2)CurPlayer.transform.position).normalized;
 
@@ -147,11 +160,12 @@ public class PlayManager : MonoBehaviour
 
 
 
-                //적당한 파워를 위해 20 나눔
-                Power = Vector2.Distance(StartPos, Input.mousePosition) / 20.0f;
+                //적당한 파워를 위해 나눔
+                Power = Vector2.Distance(StartPos, Input.mousePosition) / DividePower;
                 Power = Mathf.Clamp(Power, LimitPower.x, LimitPower.y);
 
-                Arrow.transform.localScale = new Vector3(Power / 100.0f, Power / 100.0f, 0.0f);
+                Debug.Log(Power);
+                Arrow.transform.localScale = new Vector3(Power / DivideArrowSize, Power / DivideArrowSize, 0.0f);
 
             }
         }
@@ -166,11 +180,11 @@ public class PlayManager : MonoBehaviour
 
 
                 //플레이어 스크립트에서 보내기
-                CurPlayer.GetComponent<PlayerBall>().GoForward(targetPos, Power);
+                CurPlayer.GoForward(targetPos, Power);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
                 //End 상태로 체인지
-                ChangeState(GameState.End);
+                ChangeState(GameState.Ready);
             }
         }
     }
@@ -178,7 +192,7 @@ public class PlayManager : MonoBehaviour
     #endregion
 
     //옆에 돌 눌렀을 때
-    public void ChangeCurPlayer(int index)
+    public void ChangeCurPlayer(int index,GameObject Obj)
     {
         if (StageManager.instance.CurCharacters[index].OnBoard) return;
 
@@ -189,11 +203,10 @@ public class PlayManager : MonoBehaviour
         CurPlayer.transform.position = BaseCamp.position;
         CurPlayer.gameObject.SetActive(true);
 
-
+        CurPlayerIcon = Obj;
         //액티브가 켜져 있다면
-        if(IsActive)
-        ingameUI.ChangeAcitveBtn();
+        if (IsActive)
+            ingameUI.ChangeAcitveBtn();
         
     }
-
 }
