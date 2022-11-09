@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public interface Death
-{
-    public void Death();
-}
-
-
 public enum GameState
 {
     Ready, Shot, End

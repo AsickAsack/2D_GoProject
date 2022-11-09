@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface DeathProcess
+{
+    public void Death();
+}
 
-public abstract class MonsterPlay : MonoBehaviour, Death
+public abstract class MonsterPlay : MonoBehaviour, DeathProcess
 {
 
     private Rigidbody2D _myRigid;
@@ -35,7 +39,9 @@ public abstract class MonsterPlay : MonoBehaviour, Death
         Initialize();
     }
 
-    public void Death()
+    public abstract void Death();
+
+    public void CountProcess()
     {
         PlayManager.Instance.EnemyCount--;
         Debug.Log(PlayManager.Instance.EnemyCount);
@@ -45,4 +51,5 @@ public abstract class MonsterPlay : MonoBehaviour, Death
     {
         Death();
     }
+
 }

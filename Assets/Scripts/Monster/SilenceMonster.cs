@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SilenceMonster : MonsterPlay
 {
+    public override void Death()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void Initialize()
     {
         throw new System.NotImplementedException();

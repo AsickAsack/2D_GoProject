@@ -10,6 +10,12 @@ public class BossMonster : MonsterPlay
     
     //생성할 가로세로 랜덤위치 제한
     public Vector2 RangeOfcreate;
+
+    public override void Death()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void Initialize()
     {
         //몬스터 프리펩, 기본 스텟, 레인지까지

@@ -50,5 +50,8 @@ public class BombMonster : MonsterPlay
         }
     }
 
-
+    public override void Death()
+    {
+        throw new System.NotImplementedException();
+    }
 }
