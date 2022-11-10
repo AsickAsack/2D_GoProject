@@ -25,16 +25,6 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
     {
         InGame_Sprite = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
-
-    /*
-    private void Update()
-    {
-        if(OnBoard)
-        {
-            PassiveSkill();
-        }
-    }
-    */
     
     public abstract void AcitveSkill();
     public abstract void PassiveSkill();
@@ -53,21 +43,29 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
             }
 
         }
-        else //아닐때
+        else //아닐때. 즉, 쏠 때
         {
             Debug.Log("온보드 아님");
             if (collision.transform.CompareTag("EnemyBall"))
             {
-                EnemyBall Enemy = collision.transform.GetComponent<EnemyBall>();
+                Debug.Log("나는 플레이어인데 몬스터와 충돌함");
+
+                MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
 
                 AcitveSkill();
 
-                Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+                if (!Enemy.GetComponent<ArmorMonster>().IsHelmet)
+                    Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+                else
+                    Enemy.Skill();
+
+                
 
             }
 
             if (collision.transform.CompareTag("PlayerBall"))
             {
+                
 
                 CharacterPlay Enemy = collision.transform.GetComponent<CharacterPlay>();
 

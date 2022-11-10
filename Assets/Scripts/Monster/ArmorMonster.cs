@@ -5,10 +5,11 @@ using UnityEngine;
 public class ArmorMonster : MonsterPlay
 {
     public GameObject Helmet;
+    public bool IsHelmet = true;
 
     public override void Death()
     {
-            CountProcess();
+       CountProcess();
     }
 
     IEnumerator TakeOff_Helmet()
@@ -26,7 +27,8 @@ public class ArmorMonster : MonsterPlay
         Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], Helmet.transform.position, Quaternion.identity);
         Destroy(Helmet.gameObject);
 
-        Helmet = null;
+        IsHelmet = false;
+        //myRigid.bodyType = RigidbodyType2D.Dynamic;
     }
 
     public override void Initialize()
@@ -36,18 +38,18 @@ public class ArmorMonster : MonsterPlay
 
     public override void Skill()
     {
-        if (Helmet != null)
+        if (IsHelmet)
         {
             //Çï¸ä ³¯¾Æ°¡±â
             StartCoroutine(TakeOff_Helmet());
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void PlayerConflicRoutine(Collision2D collision)
     {
         if(collision.transform.CompareTag("PlayerBall"))
         {
-            Skill();
+
         }
     }
 }

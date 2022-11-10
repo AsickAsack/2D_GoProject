@@ -19,8 +19,8 @@ public class EnemyBall : TempCharacter
   */
         if (collision.transform.CompareTag("PlayerBall"))
         {
-            
-            PlayerBall PlayerBall = collision.transform.GetComponent<PlayerBall>();
+
+            CharacterPlay PlayerBall = collision.transform.GetComponent < CharacterPlay>();
             PlayerBall.GoForward((Vector2.Reflect(GetComponent<Rigidbody2D>().velocity,this.transform.up)), collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude/10);            
             
 

@@ -21,6 +21,11 @@ public class BossMonster : MonsterPlay
         //몬스터 프리펩, 기본 스텟, 레인지까지
     }
 
+    public override void PlayerConflicRoutine(Collision2D collision)
+    {
+        
+    }
+
     public override void Skill()
     {
         Debug.Log(this.transform.position);

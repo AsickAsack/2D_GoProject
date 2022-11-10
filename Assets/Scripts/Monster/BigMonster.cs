@@ -14,6 +14,11 @@ public class BigMonster : MonsterPlay
         //질량 높게 
     }
 
+    public override void PlayerConflicRoutine(Collision2D collision)
+    {
+        BasicConflictPlayer(collision);
+    }
+
     public override void Skill()
     {
         //얘는 스킬 없음

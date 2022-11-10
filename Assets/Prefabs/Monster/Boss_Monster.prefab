@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 241363113802261839}
   - component: {fileID: 241363113802261838}
   - component: {fileID: 241363113802261833}
-  - component: {fileID: 241363113802261832}
   - component: {fileID: 7152854793024052977}
   m_Layer: 7
   m_Name: Boss_Monster
@@ -210,22 +209,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &241363113802261832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241363113802261835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1718f6815864b864f9da3da826aed517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mass: 0
-  Power: 0
-  Minus_Speed: 0
-  MyTurn: 0
 --- !u!114 &7152854793024052977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,5 +227,6 @@ MonoBehaviour:
     Skill_Figure: 0
     Mass: 0
     Size: 0
+  Power: 0
   MonsterPrefab: {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
   RangeOfcreate: {x: -0.2, y: 0.2}

@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 241363113802261839}
   - component: {fileID: 241363113802261838}
   - component: {fileID: 241363113802261833}
-  - component: {fileID: 241363113802261832}
   - component: {fileID: 2695470480391528611}
   m_Layer: 7
   m_Name: Big_Monster
@@ -210,22 +209,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &241363113802261832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241363113802261835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1718f6815864b864f9da3da826aed517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mass: 0
-  Power: 0
-  Minus_Speed: 0
-  MyTurn: 0
 --- !u!114 &2695470480391528611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a491f6a05d912d64b86c79f8760958bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster:
+    Name: 
+    Skill_Des: 
+    Skill_Figure: 0
+    Mass: 0
+    Size: 0

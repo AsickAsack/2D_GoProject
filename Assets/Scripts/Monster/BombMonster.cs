@@ -52,6 +52,11 @@ public class BombMonster : MonsterPlay
 
     public override void Death()
     {
-        throw new System.NotImplementedException();
+        
+    }
+
+    public override void PlayerConflicRoutine(Collision2D collision)
+    {
+        
     }
 }

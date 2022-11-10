@@ -11,7 +11,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
 {
 
     private Rigidbody2D _myRigid;
-    protected Rigidbody2D myRigid
+    public Rigidbody2D myRigid
     {
         get 
         {
@@ -21,9 +21,12 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
     }
 
     public Monster monster;
+    public float Power;
 
     public abstract void Initialize();
     public abstract void Skill();
+
+    public abstract void PlayerConflicRoutine(Collision2D collision);
 
 
     private void Start()
@@ -47,6 +50,57 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
         Destroy(this.gameObject);
     }
 
-   
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        PlayerConflicRoutine(collision);
+
+        BasicConflictMonster(collision);
+
+
+    }
+
+
+
+    public void BasicConflictPlayer(Collision2D collision)
+    {
+        //서있는 흰돌 맞았을때도 생각
+        if (collision.transform.CompareTag("PlayerBall"))
+        {
+            Debug.Log("나는 몬스터인데 플레이어와 충돌함");
+
+            CharacterPlay Enemy = collision.transform.GetComponent<CharacterPlay>();
+
+            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+
+        }
+    }
+
+    public void BasicConflictMonster(Collision2D collision)
+    {
+        //몬스터가 몬스터에 맞았을때
+        if (collision.transform.CompareTag("EnemyBall"))
+        {
+            MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
+
+            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+
+        }
+
+    }
+
+
+
+
+
+    public void GoForward(Vector2 Dir, float Power)
+    {
+        this.Power = Power;
+        myRigid.AddForce(Dir * this.Power, ForceMode2D.Impulse);
+        
+    }
+
+
 
 }
