@@ -44,12 +44,9 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
     public void CountProcess()
     {
         PlayManager.Instance.EnemyCount--;
-        Debug.Log(PlayManager.Instance.EnemyCount);
+        Destroy(this.gameObject);
     }
 
-    private void OnDestroy()
-    {
-        Death();
-    }
+   
 
 }

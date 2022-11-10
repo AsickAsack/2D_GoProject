@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public abstract class CharacterPlay : MonoBehaviour
+public abstract class CharacterPlay : MonoBehaviour, DeathProcess
 {
     public Character character;
     public bool OnBoard =false;
@@ -86,7 +86,7 @@ public abstract class CharacterPlay : MonoBehaviour
 
     public void Death()
     {
-        PlayManager.Instance.PlayerCount--;
+        Destroy(this.gameObject);
     }
 }
 

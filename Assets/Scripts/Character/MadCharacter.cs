@@ -19,7 +19,7 @@ public class MadCharacter : CharacterPlay
             if ((coll[i].CompareTag("EnemyBall") || coll[i].CompareTag("PlayerBall")) && coll[i].transform != this.transform)
             {
                 GameObject obj1 = Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], coll[i].transform.position, Quaternion.identity);
-                Destroy(coll[i].gameObject);
+                coll[i].GetComponent<DeathProcess>()?.Death();
                 
             }
         }

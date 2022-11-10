@@ -207,7 +207,7 @@ public class PlayManager : MonoBehaviour
                 CurPlayer.GoForward(targetPos, Power);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
-                CurPlayer.Death();
+                PlayerCount--;
                 //End 상태로 체인지
                 ChangeState(GameState.End);
             }

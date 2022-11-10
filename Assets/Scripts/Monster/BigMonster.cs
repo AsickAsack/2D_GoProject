@@ -6,7 +6,7 @@ public class BigMonster : MonsterPlay
 {
     public override void Death()
     {
-        throw new System.NotImplementedException();
+        CountProcess();
     }
 
     public override void Initialize()
