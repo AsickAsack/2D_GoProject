@@ -86,14 +86,6 @@ public class PlayManager : MonoBehaviour
 
                 break;
             case GameState.End:
-                if(EnemyCount == 0)
-                {
-                    Debug.Log("패배");
-                }
-                else if(PlayerCount == 0)
-                {
-                    Debug.Log("플레이어 패배");
-                }
 
                 //판정 하고 넘어가기
                 break;
@@ -113,12 +105,33 @@ public class PlayManager : MonoBehaviour
                 break;
 
             case GameState.End:
-                //죽었을때 생각
+                
+                if(CurPlayer == null)
+                {
+                    Check_Exit();
+                    ChangeState(GameState.Ready);
+                    return;
+                }
+
                 if (CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
                 {
+                    Check_Exit();
                     ChangeState(GameState.Ready);
                 }
                 break;
+        }
+    }
+
+    public void Check_Exit()
+    {
+        if (EnemyCount == 0)
+        {
+            Debug.Log("플레이어 승리 ㅋ");
+            //SceneLoader.Instance.Loading_LoadScene(0);
+        }
+        else if (PlayerCount == 0)
+        {
+            Debug.Log("알파고 승리 ㅋ");
         }
     }
 
@@ -134,11 +147,10 @@ public class PlayManager : MonoBehaviour
 
             StartPos = Input.mousePosition;
 
-            if (MyRayCast)
+            if (MyRayCast && CurPlayer != null)
             {
                 ingameUI.CameraMovePanel.raycastTarget = false;
                 Arrow.transform.rotation = ArrowOriginAngle;
-                Arrow.transform.position = CurPlayer.transform.position;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
 

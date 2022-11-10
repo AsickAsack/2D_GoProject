@@ -13,7 +13,7 @@ public class BossMonster : MonsterPlay
 
     public override void Death()
     {
-        throw new System.NotImplementedException();
+        CountProcess();
     }
 
     public override void Initialize()
@@ -23,11 +23,29 @@ public class BossMonster : MonsterPlay
 
     public override void Skill()
     {
+        Debug.Log(this.transform.position);
+
         GameObject Obj = Instantiate(MonsterPrefab,
-            new Vector2(transform.position.x + Random.Range(RangeOfcreate.x, RangeOfcreate.y), transform.position.y + Random.Range(RangeOfcreate.x, RangeOfcreate.y)), Quaternion.identity);
+            this.transform.position, Quaternion.identity);
+
+        Obj.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
+
+        GameObject Obj1 = Instantiate(MonsterPrefab,
+            this.transform.position, Quaternion.identity);
+
+        Obj1.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
+
+        PlayManager.Instance.EnemyCount += 2;
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.CompareTag("PlayerBall"))
+        {
+            Skill();
+        }
+    }
+
 
 
 

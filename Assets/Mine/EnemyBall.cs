@@ -7,7 +7,7 @@ public class EnemyBall : TempCharacter
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        /*
         //적 돌이 적을 쳤을때,,,
         if(collision.transform.CompareTag("EnemyBall"))
         {
@@ -16,7 +16,7 @@ public class EnemyBall : TempCharacter
             enemyBall.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude/10);
             
         }
-  
+  */
         if (collision.transform.CompareTag("PlayerBall"))
         {
             

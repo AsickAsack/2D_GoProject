@@ -238,5 +238,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac4aef5ac2f371439eac4b7ba1dae06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPrefab: {fileID: 0}
-  RangeOfcreate: {x: 0, y: 0}
+  monster:
+    Name: 
+    Skill_Des: 
+    Skill_Figure: 0
+    Mass: 0
+    Size: 0
+  MonsterPrefab: {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
+  RangeOfcreate: {x: -0.2, y: 0.2}
