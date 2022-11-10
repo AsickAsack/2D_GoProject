@@ -55,15 +55,12 @@ MonoBehaviour:
         MyMonster:
         - monster_name: 2004
           Monster_Pos: {x: -1.63, y: 4.1}
-        - monster_name: 2001
+        - monster_name: 2004
           Monster_Pos: {x: 1.65, y: 4.74}
-        - monster_name: 2001
+        - monster_name: 2004
           Monster_Pos: {x: 1.17, y: 3.33}
         - monster_name: 2004
           Monster_Pos: {x: -1.65, y: 1.75}
-        - monster_name: 2001
+        - monster_name: 2004
           Monster_Pos: {x: 0, y: 1.75}
-        MyObstacle:
-        - obstacle_name: 0
-          obstacle_Pos: {x: 1.65, y: 2}
-          Angle: 30
+        MyObstacle: []

@@ -32,6 +32,7 @@ public class EnemyBall : TempCharacter
 
     public void GoForward(Vector2 Dir, float Power)
     {
+        
         this.Power = Power;
         MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
         
