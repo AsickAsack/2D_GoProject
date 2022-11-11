@@ -9,13 +9,13 @@ public class TempCollider : MonoBehaviour
     {
         if (collision.transform.CompareTag("EnemyBall"))
         {
-            GameObject obj = Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], collision.transform.position, Quaternion.identity);
+            GameObject obj = PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, collision.transform.position, Quaternion.identity);
             collision.GetComponent<DeathProcess>()?.Death();
         }
 
         if (collision.transform.CompareTag("PlayerBall"))
         {
-            GameObject obj = Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], collision.transform.position, Quaternion.identity);
+            GameObject obj = PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, collision.transform.position, Quaternion.identity);
             collision.GetComponent<DeathProcess>()?.Death();
         }
     }

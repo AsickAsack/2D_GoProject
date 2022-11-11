@@ -37,6 +37,7 @@ public class OptionScript : MonoBehaviour
     //메인 화면 이동
     public void GoMain()
     {
+        StageManager.instance.CurCharacters.Clear();
         SceneLoader.Instance.Loading_LoadScene(0);
 
 

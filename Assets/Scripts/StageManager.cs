@@ -125,7 +125,7 @@ public class StageManager : MonoBehaviour
                 Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].Angle));
 
 
-            //종류에 따라 다르게
+            //종류에 따라 다르게..MonsterClass가 필요할까?
         }
 
     }

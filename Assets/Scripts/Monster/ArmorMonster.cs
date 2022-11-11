@@ -24,7 +24,7 @@ public class ArmorMonster : MonsterPlay
             yield return null;
         }
 
-        Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], Helmet.transform.position, Quaternion.identity);
+        //Instantiate(PlayManager.Instance.objectPool.PoolEffectPrefab[1], Helmet.transform.position, Quaternion.identity);
         Destroy(Helmet.gameObject);
 
         IsHelmet = false;

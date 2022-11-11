@@ -10,7 +10,7 @@ public class MadCharacter : CharacterPlay
         PlayManager.Instance.ingameUI.OnActive();
 
         Collider2D[] coll = Physics2D.OverlapCircleAll(this.transform.position, 2.0f);
-        GameObject obj = Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[2], this.transform.position, Quaternion.identity);
+        GameObject obj = PlayManager.Instance.objectPool.GetEffect(2, this.transform.position, Quaternion.identity);
         
         
 
@@ -18,7 +18,7 @@ public class MadCharacter : CharacterPlay
         {
             if ((coll[i].CompareTag("EnemyBall") || coll[i].CompareTag("PlayerBall")) && coll[i].transform != this.transform)
             {
-                GameObject obj1 = Instantiate(PlayManager.Instance.effectManager.EffectPrefaps[1], coll[i].transform.position, Quaternion.identity);
+                GameObject obj1 = PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall,coll[i].transform.position,Quaternion.identity);
                 coll[i].GetComponent<DeathProcess>()?.Death();
                 
             }

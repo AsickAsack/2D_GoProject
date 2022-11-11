@@ -49,15 +49,14 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
             if (collision.transform.CompareTag("EnemyBall"))
             {
                 Debug.Log("나는 플레이어인데 몬스터와 충돌함");
+                GameObject Obj= PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit,collision.GetContact(0).point,Quaternion.identity);
 
                 MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
 
                 AcitveSkill();
 
-                if (!Enemy.GetComponent<ArmorMonster>().IsHelmet)
+                
                     Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
-                else
-                    Enemy.Skill();
 
                 
 
@@ -86,5 +85,6 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
     {
         Destroy(this.gameObject);
     }
+  
 }
 

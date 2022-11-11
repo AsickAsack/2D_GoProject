@@ -15,7 +15,7 @@ public class PlayManager : MonoBehaviour
 
     public InGameUI ingameUI;
     public CharacterManager CharManager;
-    public EffectManager effectManager;
+    public ObjectPool objectPool;
 
     public bool IsActive;
     public bool IsHit = false;
