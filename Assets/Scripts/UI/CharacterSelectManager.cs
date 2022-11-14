@@ -22,7 +22,7 @@ public class CharacterSelectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        TempSelect_Char = new Character[3];
+        TempSelect_Char = new Character[5];
     }
 
     public void ExitSelect()
@@ -100,7 +100,7 @@ public class CharacterSelectManager : MonoBehaviour
     public void Set_CountText(int Count)
     {
         this.Count = Count;
-        Select_CountTX.text = this.Count + " / 3";
+        Select_CountTX.text = this.Count + " / 5";
     }
 
     public int GetPointer()
@@ -120,7 +120,7 @@ public class CharacterSelectManager : MonoBehaviour
     //확인을 누르면 List에 Add후에 씬 이동
     public void Confirm_StageCharacter()
     {
-        if(Count != 3)
+        if(Count != 5)
         {
             PopUpManager.Instance.OpenPopup(0, "안내", "캐릭터를 다 선택 해주세요.", null);
             return;

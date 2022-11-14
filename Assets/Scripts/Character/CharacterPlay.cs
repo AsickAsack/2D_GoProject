@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public abstract class CharacterPlay : MonoBehaviour, DeathProcess
 {
+    public ActiveClass MyActive;
     public Character character;
     public bool OnBoard =false;
     bool IsPassive;
@@ -26,10 +27,15 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
         InGame_Sprite = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     
+
     public abstract void AcitveSkill();
     public abstract void PassiveSkill();
+
+
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        /*
         //보드에 있을때
         if (OnBoard)
         {
@@ -48,12 +54,13 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
             Debug.Log("온보드 아님");
             if (collision.transform.CompareTag("EnemyBall"))
             {
+
                 Debug.Log("나는 플레이어인데 몬스터와 충돌함");
                 GameObject Obj= PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit,collision.GetContact(0).point,Quaternion.identity);
 
                 MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
 
-                AcitveSkill();
+                //AcitveSkill();
 
                 
                     Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
@@ -73,8 +80,9 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
             }
         }
         //서있는 흰돌 맞았을때도 생각
+        */
     }
-
+    
     public void GoForward(Vector2 Dir, float Power)
     {
         this.Power = Power;
@@ -84,6 +92,13 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
     public void Death()
     {
         Destroy(this.gameObject);
+    }
+
+    public void ExitGame()
+    {
+        //구멍에 빠졌을때
+        //그냥 떨어졌을때 -> 1. 살려줄 패시브가 있는지 탐색 or  // 2. 
+        
     }
   
 }

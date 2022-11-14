@@ -21,6 +21,12 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     private int[] CreateNum;
 
+    public GameObject GetActiveEffects(int index,Vector2 pos)
+    {
+        return Instantiate(EffectPrefabs[index], pos,Quaternion.identity);
+    }
+
+
 
     private void Awake()
     {
@@ -33,6 +39,7 @@ public class ObjectPool : MonoBehaviour
       
         for (int i = 0; i < PoolEffectPrefab.Length; i++)
         {
+
             objectPool.Add((EffectName)i, new Queue<GameObject>());
 
             for (int j = 0; j < CreateNum[i]; j++)

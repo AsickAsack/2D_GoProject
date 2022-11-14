@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StrongCharacter : CharacterPlay
 {
+
     public override void AcitveSkill()
     {   //충돌 시 밀어내는 힘 2배, 액티브 켰는지 확인해야함
         if (PlayManager.Instance.IsActive)

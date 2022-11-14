@@ -10,7 +10,7 @@ public class MadCharacter : CharacterPlay
         PlayManager.Instance.ingameUI.OnActive();
 
         Collider2D[] coll = Physics2D.OverlapCircleAll(this.transform.position, 2.0f);
-        GameObject obj = PlayManager.Instance.objectPool.GetEffect(2, this.transform.position, Quaternion.identity);
+        GameObject obj = PlayManager.Instance.objectPool.GetEffect(1, this.transform.position, Quaternion.identity);
         
         
 

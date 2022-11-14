@@ -30,17 +30,17 @@ public class CharacterSelectListUI : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
        
-        //캐릭터 선택 UI 켜줌
-        SelectObj.gameObject.SetActive(!IsSelect);
 
         //이미 선택 된 캐릭터를 눌렀을때
         if (IsSelect)
         { 
             CharacterSelectManager.Instance.Set_CharacterIcon(null,MyIndex);
+            //캐릭터 선택 UI 켜줌
+            SelectObj.gameObject.SetActive(!IsSelect);
         }
         else //선택 안된 캐릭터를 눌렀을때
         {
-            if (CharacterSelectManager.Instance.Count == 3)
+            if (CharacterSelectManager.Instance.Count == 5)
             {
                 PopUpManager.Instance.OpenPopup(0, "안내", "캐릭터를 전부 선택했습니다.", null);
                 return;
@@ -48,6 +48,8 @@ public class CharacterSelectListUI : MonoBehaviour, IPointerDownHandler
 
             MyIndex = CharacterSelectManager.Instance.GetPointer();
             CharacterSelectManager.Instance.Set_CharacterIcon(character,-1);
+            //캐릭터 선택 UI 켜줌
+            SelectObj.gameObject.SetActive(!IsSelect);
         }
 
         //이 버튼이 선택되었는지 check

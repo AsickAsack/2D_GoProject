@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public enum GameState
 {
-    Ready, Shot, End
+    Ready, Shot,Move,End
 }
 
 public class PlayManager : MonoBehaviour
@@ -85,6 +85,10 @@ public class PlayManager : MonoBehaviour
 
 
                 break;
+
+            case GameState.Move:
+                break;
+
             case GameState.End:
 
                 //판정 하고 넘어가기
@@ -102,6 +106,9 @@ public class PlayManager : MonoBehaviour
 
             case GameState.Shot:
                 ShotLoop();
+                break;
+
+            case GameState.Move:
                 break;
 
             case GameState.End:
@@ -153,7 +160,7 @@ public class PlayManager : MonoBehaviour
                 Arrow.transform.rotation = ArrowOriginAngle;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
-
+                LimitPower.y = CurPlayer.character.Max_Power;
                 //GameObject obj = Instantiate(effectManager.EffectPrefaps[0],CurPlayer.transform);
                 //obj.transform.position = CurPlayer.transform.position;
 

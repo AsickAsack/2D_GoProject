@@ -74,8 +74,26 @@ MonoBehaviour:
           Monster_Pos: {x: 1.26, y: 4.49}
         - monster_name: 2001
           Monster_Pos: {x: -1.8, y: 1.1}
-        - monster_name: 2004
+        - monster_name: 2002
           Monster_Pos: {x: 1.76, y: 3.07}
+        MyObstacle:
+        - obstacle_name: 0
+          obstacle_Pos: {x: -1.5, y: 3.16}
+          Angle: 30
+    - Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: -1.45, y: 4.91}
+        - monster_name: 2001
+          Monster_Pos: {x: 0.34, y: 3.9}
+        - monster_name: 2001
+          Monster_Pos: {x: 1.26, y: 3.52}
+        - monster_name: 2001
+          Monster_Pos: {x: -1.8, y: 1.1}
+        - monster_name: 2002
+          Monster_Pos: {x: 1.76, y: 3.07}
+        - monster_name: 2002
+          Monster_Pos: {x: 0.5, y: 3.07}
         MyObstacle:
         - obstacle_name: 0
           obstacle_Pos: {x: -1.5, y: 3.16}

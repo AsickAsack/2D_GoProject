@@ -84,7 +84,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
         {
             MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
 
-            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+           // Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
 
         }
 
@@ -94,11 +94,11 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
 
 
 
-    public void GoForward(Vector2 Dir, float Power)
+    public void GoForward(Vector2 Dir, float temp)
     {
-        this.Power = Power;
-        myRigid.AddForce(Dir * this.Power, ForceMode2D.Impulse);
-        
+        //this.Power = Power;
+        myRigid.AddForce(Dir * temp, ForceMode2D.Impulse);
+        Debug.Log("들어온 파워" + this.Power);
     }
 
 
