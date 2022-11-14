@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4314214917462345104}
   - component: {fileID: -420281431393452653}
   - component: {fileID: 1470700785185713112}
+  - component: {fileID: -6316394956905700920}
   m_Layer: 8
   m_Name: Killer
   m_TagString: PlayerBall
@@ -273,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e377eee6c2991244b8f429debaa7c1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyActive: {fileID: 0}
+  MyActive: {fileID: -6316394956905700920}
   character:
     MyCharacter: 0
     Name: 
@@ -295,6 +296,22 @@ MonoBehaviour:
   Effect: {fileID: 0}
   Power: 0
   Index: 0
+--- !u!114 &-6316394956905700920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314214917462345070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbff6b28522f6604fad968ecfe91f59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyState: 0
+  Condition: 0
+  myColl: {fileID: 0}
+  myRigid2d: {fileID: 0}
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0
