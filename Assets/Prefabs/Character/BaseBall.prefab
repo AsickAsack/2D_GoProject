@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2945015398230e54fbefa3466555e434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyActive: {fileID: 0}
   character:
     MyCharacter: 0
     Name: 
@@ -290,7 +289,9 @@ MonoBehaviour:
     Passive_Range: 0
     Story: 
   OnBoard: 0
+  IsConfilct: 1
   IsActive: 0
+  ActivePrefab_Index: 0
   InGame_Sprite: {fileID: 0}
   Effect: {fileID: 0}
   Power: 0

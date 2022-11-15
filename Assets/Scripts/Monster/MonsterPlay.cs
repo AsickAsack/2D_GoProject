@@ -7,7 +7,7 @@ public interface DeathProcess
     public void Death();
 }
 
-public abstract class MonsterPlay : MonoBehaviour, DeathProcess
+public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
 {
 
     private Rigidbody2D _myRigid;
@@ -22,6 +22,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
 
     public Monster monster;
     public float Power;
+    public bool IsConflict = true;
 
     public abstract void Initialize();
     public abstract void Skill();
@@ -101,6 +102,8 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess
         Debug.Log("들어온 파워" + this.Power);
     }
 
-
-
+    public bool CheckConfilct()
+    {
+        return IsConflict;
+    }
 }

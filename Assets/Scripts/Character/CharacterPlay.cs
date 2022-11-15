@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public abstract class CharacterPlay : MonoBehaviour, DeathProcess
+public interface Confilct
 {
-    public ActiveClass MyActive;
+    public bool CheckConfilct();
+}
+
+
+
+public abstract class CharacterPlay : MonoBehaviour, DeathProcess, Confilct
+{
+
     public Character character;
     public bool OnBoard =false;
     bool IsPassive;
+    public bool IsConfilct;
     public bool IsActive;
+    public int ActivePrefab_Index;
+
 
     public SpriteRenderer InGame_Sprite;
     public GameObject Effect;
@@ -28,61 +37,60 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
     }
     
 
-    public abstract void AcitveSkill();
+    public abstract bool ActiveSkill(Vector2 pos , Collision2D collision = null);
     public abstract void PassiveSkill();
+
+    public virtual void ChangeONBorad()
+    {
+        OnBoard = true;
+    }
 
 
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*
-        //보드에 있을때
-        if (OnBoard)
+        // 상대 돌과 부딪혔을때
+        if (collision.transform.CompareTag("EnemyBall"))
         {
-            Debug.Log("온보드");
-            if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
-            {
-                int rand = Random.Range(1, 11);
-
-                if (rand < 4)
-                    PassiveSkill();
-            }
-
+            CheckProcess(collision, ActiveTarget.Enemy);
         }
-        else //아닐때. 즉, 쏠 때
+        else if (collision.transform.CompareTag("PlayerBall"))
         {
-            Debug.Log("온보드 아님");
-            if (collision.transform.CompareTag("EnemyBall"))
-            {
-
-                Debug.Log("나는 플레이어인데 몬스터와 충돌함");
-                GameObject Obj= PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit,collision.GetContact(0).point,Quaternion.identity);
-
-                MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
-
-                //AcitveSkill();
-
-                
-                    Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
-
-                
-
-            }
-
-            if (collision.transform.CompareTag("PlayerBall"))
-            {
-                
-
-                CharacterPlay Enemy = collision.transform.GetComponent<CharacterPlay>();
-
-                Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
-
-            }
+            CheckProcess(collision, ActiveTarget.Team);
         }
-        //서있는 흰돌 맞았을때도 생각
-        */
+
     }
-    
+
+    public void CheckProcess(Collision2D collision,ActiveTarget activeTarget)
+    {
+        if (character.active_target == activeTarget || character.active_target == ActiveTarget.All && !OnBoard)
+        {
+            if (PlayManager.Instance.IsActive)
+            {
+                if (ActiveSkill(collision.GetContact(0).point, collision))
+                    ConflictProcess(collision, MyRigid.velocity.magnitude);
+            }
+            else
+                ConflictProcess(collision, MyRigid.velocity.magnitude);
+        }
+        else
+        {
+
+            if(collision.gameObject.GetComponent<Confilct>().CheckConfilct())
+            ConflictProcess(collision, MyRigid.velocity.magnitude);
+            
+        }
+    }
+
+    public void ConflictProcess(Collision2D collision, float Power)
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        Rigidbody2D TempRigid = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        TempRigid.AddForce((collision.GetContact(0).point - (Vector2)this.transform.position).normalized * Power , ForceMode2D.Impulse);
+    }
+
+
     public void GoForward(Vector2 Dir, float Power)
     {
         this.Power = Power;
@@ -100,6 +108,11 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess
         //그냥 떨어졌을때 -> 1. 살려줄 패시브가 있는지 탐색 or  // 2. 
         
     }
-  
+
+
+    public bool CheckConfilct()
+    {
+        return IsConfilct;
+    }
 }
 

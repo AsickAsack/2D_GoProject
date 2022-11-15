@@ -21,7 +21,7 @@ public enum MonsterStat
 
 public enum CharacterName
 {
-    Strong=1001,lazy,mad,Killer,Witch,BaseBall
+    Strong=1001,lazy,mad,Killer,Witch,BaseBall,Leesin
 }
 
 public enum CharacterStat
@@ -33,7 +33,7 @@ public enum CharacterStat
 
 public enum ActiveTarget
 {
-    Team=1,Enemy,All,Obstacle
+    None,Team,Enemy,All,Obstacle
 }
 
 

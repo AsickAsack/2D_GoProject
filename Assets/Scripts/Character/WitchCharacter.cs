@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WitchCharacter : CharacterPlay
 {
-    public override void AcitveSkill()
+
+    public override bool ActiveSkill(Vector2 pos, Collision2D collision = null)
     {
         throw new System.NotImplementedException();
     }

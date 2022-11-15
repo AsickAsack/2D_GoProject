@@ -25,6 +25,7 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Killer));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Witch));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.BaseBall));
+        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Leesin));
 
         PlayerDB.Instance.IsFirst = false;
     }

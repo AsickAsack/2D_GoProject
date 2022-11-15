@@ -5,14 +5,13 @@ using UnityEngine;
 public class StrongCharacter : CharacterPlay
 {
 
-    public override void AcitveSkill()
-    {   //충돌 시 밀어내는 힘 2배, 액티브 켰는지 확인해야함
-        if (PlayManager.Instance.IsActive)
-        {
-            Debug.Log("전" + this.MyRigid.velocity);
-            this.MyRigid.velocity *= 2;
-            Debug.Log("후" + this.MyRigid.velocity);
-        }
+
+    public override bool ActiveSkill(Vector2 pos, Collision2D collision = null)
+    {
+        Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(ActivePrefab_Index, pos));
+        //충돌 시 밀어내는 힘 2배
+        this.MyRigid.velocity *= this.character.Active_Figure;
+        return true;
     }
 
     public override void PassiveSkill()

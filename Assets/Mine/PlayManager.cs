@@ -71,7 +71,7 @@ public class PlayManager : MonoBehaviour
         switch (s)
         {
             case GameState.Ready:
-                CurPlayer.OnBoard = true;
+                CurPlayer.ChangeONBorad();
                 CurPlayer = null;
                 ingameUI.SetTextPhase("Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
@@ -226,6 +226,7 @@ public class PlayManager : MonoBehaviour
                 CurPlayer.GoForward(targetPos, Power);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
+                Arrow.transform.localScale = new Vector3(LimitPower.x / DivideArrowSize, LimitPower.x / DivideArrowSize, 0.0f);
                 PlayerCount--;
                 //End 상태로 체인지
                 ChangeState(GameState.End);

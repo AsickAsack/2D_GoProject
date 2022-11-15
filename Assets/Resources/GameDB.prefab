@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 4314214917462345070, guid: 82f1703617ba3dc4885e3eb292952432, type: 3}
   - {fileID: 4314214917462345070, guid: 90173205e32467e4bb3d72e9d88defaf, type: 3}
   - {fileID: 4314214917462345070, guid: f9762e052b26ff44d8d047e34eb2c3c9, type: 3}
+  - {fileID: 4314214917462345070, guid: 9380cb1fab9f16b4b9b9f8858bd4707a, type: 3}
   Monsters:
   - {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
   - {fileID: 241363113802261835, guid: f9ad87daf125f394789cb8b27bd38598, type: 3}
@@ -67,6 +68,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bec8e73108e9f1a488644f2a178af66b, type: 3}
   - {fileID: 21300000, guid: 1af371af7bad7b94e8e6dac81e997804, type: 3}
   - {fileID: 21300000, guid: 0a101e9ebea6b5f48b6c0ab1c1b372db, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
   CharacterIcon:
   - {fileID: 21300000, guid: a6a01d1016a5a9c48959a5a649487e0e, type: 3}
   - {fileID: 21300000, guid: 78a534e611c78554e9128193197f27c7, type: 3}
@@ -74,3 +76,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bec8e73108e9f1a488644f2a178af66b, type: 3}
   - {fileID: 21300000, guid: 1af371af7bad7b94e8e6dac81e997804, type: 3}
   - {fileID: 21300000, guid: 0a101e9ebea6b5f48b6c0ab1c1b372db, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}

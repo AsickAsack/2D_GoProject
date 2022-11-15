@@ -3872,6 +3872,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 77ec3c4e07a36814fb3169ecef41b50a, type: 3}
   - {fileID: 5024009746357069194, guid: 8c52ec6f895ea4b44af25200ae7e2c8f, type: 3}
   - {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
+  - {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784, type: 3}
   PoolEffectPrefab:
   - {fileID: 2955623459812423943, guid: 8178aff3134c34646a965e698728f05e, type: 3}
   - {fileID: 8460667080445658512, guid: a4d29c6244db25e45a0613de7a27d13a, type: 3}
@@ -4085,7 +4086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 100.00012, y: 0}
+  m_AnchoredPosition: {x: 100.000244, y: 0}
   m_SizeDelta: {x: 200, y: 1050}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1598781482
