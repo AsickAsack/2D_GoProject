@@ -44,6 +44,8 @@ public class PlayManager : MonoBehaviour
     public int EnemyCount;
     public int PlayerCount;
 
+    public List<CharacterPlay> OnBoardPlayer = new List<CharacterPlay>();
+
     private void Awake()
     {
         Instance = this;

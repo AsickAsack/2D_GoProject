@@ -110,6 +110,7 @@ public class StageManager : MonoBehaviour
             CurMonsters[^1].Basic_init();
 
             //아이콘 수정되어야함 (몬스터 초기화 시키면 될듯?)
+            //여기도 좀 획기적으로 수정을,,
         }
     }
 
@@ -120,10 +121,9 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyObstacle.Length; i++)
         {
 
-            GameObject obj = Instantiate(GameDB.Instance.GetObstacle(stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_name),
+                GameObject obj = Instantiate(GameDB.Instance.GetObstacle(stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_name),
                 stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].obstacle_Pos,
                 Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyObstacle[i].Angle));
-
 
             //종류에 따라 다르게..MonsterClass가 필요할까?
         }

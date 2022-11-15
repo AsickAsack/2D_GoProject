@@ -7,8 +7,14 @@ public class KillerCharacter : CharacterPlay
 
     public override void ChangeONBorad()
     {
-        OnBoard = true;
-        IsConfilct = true;
+        if (this != null)
+        {
+            PlayManager.Instance.OnBoardPlayer.Add(this);
+            PassiveRangeObj.SetActive(true);
+            OnBoard = true;
+            IsConfilct = true;
+        }
+        
     }
 
     public override bool ActiveSkill(Vector2 pos, Collision2D collision = null)
@@ -25,5 +31,7 @@ public class KillerCharacter : CharacterPlay
         
     }
 
+
+    
 
 }

@@ -82,7 +82,6 @@ public class ObjectPool : MonoBehaviour
     //ÇÁ¸®Æé ¹Ý³³
     public void ReturnPrefabs(EffectName name, GameObject obj)
     {
-        Debug.Log(obj.gameObject.name);
         obj.gameObject.SetActive(false);
         objectPool[name].Enqueue(obj);
     }

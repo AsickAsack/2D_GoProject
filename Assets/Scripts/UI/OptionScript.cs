@@ -31,6 +31,7 @@ public class OptionScript : MonoBehaviour
     public void ReStartStage()
     {
         StageManager.instance.CurCharacters.Clear();
+        PlayManager.Instance.OnBoardPlayer.Clear();
         SceneLoader.Instance.Loading_LoadScene(2);
     }
 
