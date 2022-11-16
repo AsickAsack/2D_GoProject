@@ -97,8 +97,7 @@ GameObject:
   - component: {fileID: 4314214917462345107}
   - component: {fileID: 4314214917462345104}
   - component: {fileID: -420281431393452653}
-  - component: {fileID: 1470700785185713112}
-  - component: {fileID: -1800859000478961774}
+  - component: {fileID: 769087477744146481}
   m_Layer: 8
   m_Name: Killer
   m_TagString: PlayerBall
@@ -120,7 +119,6 @@ Transform:
   m_Children:
   - {fileID: 6134260428480012706}
   - {fileID: 1088078493676167986}
-  - {fileID: 3194570993896835262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -348,7 +346,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &1470700785185713112
+--- !u!114 &769087477744146481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,7 +355,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4314214917462345070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e377eee6c2991244b8f429debaa7c1b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 93f958ef7a5040d42b6a74cf9a85164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character:
@@ -375,94 +373,12 @@ MonoBehaviour:
     Passive_probability: 0
     Passive_Range: 0
     Story: 
+  MySkill: {fileID: 0}
   OnBoard: 0
-  IsConfilct: 0
-  IsActive: 0
-  ActivePrefab_Index: 3
-  passiveType: 0
-  PassiveRangeObj: {fileID: 3682560954033278294}
+  PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
-  Effect: {fileID: 0}
   Power: 0
   Index: 0
---- !u!58 &-1800859000478961774
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314214917462345070}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
---- !u!1 &5254017615015883787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3194570993896835262}
-  - component: {fileID: 186002277110034393}
-  - component: {fileID: 6449282719468427327}
-  m_Layer: 0
-  m_Name: KillerTrriger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3194570993896835262
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254017615015883787}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4314214917462345109}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &186002277110034393
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254017615015883787}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 4
---- !u!114 &6449282719468427327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254017615015883787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c0324af2d1d5c46a8d67ca8627413b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCharacter: {fileID: 1470700785185713112}
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StrongActive : ActiveClass
 {
@@ -10,18 +11,21 @@ public class StrongActive : ActiveClass
     {
        if(collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
-            //온보드일때
-
+            
             Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
-            //Debug.Log(myRigid2d.velocity.magnitude);
-            //myRigid2d.velocity *= 2.0f;
-            //Debug.Log(myRigid2d.velocity.magnitude);
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity *= 2;
            ConflictProcess(collision,myRigid2d.velocity.magnitude*2.0f);
 
+            
         }
-
-       
         
+    }
+
+
+
+    public void sadf()
+    {
+
     }
     
     

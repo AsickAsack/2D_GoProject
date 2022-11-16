@@ -4,12 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+public interface ISubject
+{
+    public void RegisterObserver(IObserver O);
+    public void RemoveObserver(IObserver O);
+    public void NotifyToObserver();
+
+}
+
+public interface IObserver
+{
+    public void ListenToSubeject(Skill_Type Skill_Type,Skill_Condition Skill_Condition);
+}
+
+
+
 public enum GameState
 {
     Ready, Shot,Move,End
 }
 
-public class PlayManager : MonoBehaviour
+public class PlayManager : MonoBehaviour,ISubject
 {
     public static PlayManager Instance;
 
@@ -44,7 +59,7 @@ public class PlayManager : MonoBehaviour
     public int EnemyCount;
     public int PlayerCount;
 
-    public List<CharacterPlay> OnBoardPlayer = new List<CharacterPlay>();
+    public List<IObserver> OnBoardPlayer = new List<IObserver>();
 
     private void Awake()
     {
@@ -256,5 +271,23 @@ public class PlayManager : MonoBehaviour
         if (IsActive)
             ingameUI.ChangeAcitveBtn();
         
+    }
+
+    public void RegisterObserver(IObserver O)
+    {
+        OnBoardPlayer.Add(O);
+    }
+
+    public void RemoveObserver(IObserver O)
+    {
+        OnBoardPlayer.Remove(O);
+    }
+
+    public void NotifyToObserver()
+    {
+        for (int i = 0; i < OnBoardPlayer.Count; i++)
+        {
+            //OnBoardPlayer[i].ListenToSubeject(Skill_Type Skill_Type, Skill_Condition Skill_Condition);
+        }
     }
 }

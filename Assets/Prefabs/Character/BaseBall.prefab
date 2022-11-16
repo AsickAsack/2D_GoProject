@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4314214917462345107}
   - component: {fileID: 4314214917462345104}
   - component: {fileID: -420281431393452653}
-  - component: {fileID: 108752951329894416}
+  - component: {fileID: 1345029846616968283}
   m_Layer: 8
   m_Name: BaseBall
   m_TagString: PlayerBall
@@ -262,7 +262,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &108752951329894416
+--- !u!114 &1345029846616968283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4314214917462345070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2945015398230e54fbefa3466555e434, type: 3}
+  m_Script: {fileID: 11500000, guid: 93f958ef7a5040d42b6a74cf9a85164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character:
@@ -289,14 +289,10 @@ MonoBehaviour:
     Passive_probability: 0
     Passive_Range: 0
     Story: 
+  MySkill: {fileID: 0}
   OnBoard: 0
-  IsConfilct: 1
-  IsActive: 0
-  ActivePrefab_Index: 0
-  passiveType: 0
-  PassiveRangeObj: {fileID: 8802229054688900286}
+  PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
-  Effect: {fileID: 0}
   Power: 0
   Index: 0
 --- !u!1 &6134260428480012705

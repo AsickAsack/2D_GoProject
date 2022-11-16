@@ -14,20 +14,16 @@ public enum PassiveType
 }
 
 
-public abstract class CharacterPlay : MonoBehaviour, DeathProcess, Confilct
+public class CharacterPlay : MonoBehaviour, DeathProcess
 {
 
     public Character character;
+    public ConfiltAndSKill MySkill;
     public bool OnBoard =false;
-    bool IsPassive;
-    public bool IsConfilct;
-    public bool IsActive;
-    public int ActivePrefab_Index;
-    public PassiveType passiveType;
+    
     public GameObject PassiveRangeObj;
 
     public SpriteRenderer InGame_Sprite;
-    public GameObject Effect;
     public float Power;
     public int Index;
 
@@ -42,78 +38,18 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess, Confilct
     }
     
 
-    public abstract bool ActiveSkill(Vector2 pos , Collision2D collision = null);
-    public abstract void PassiveSkill();
-    public virtual UnityAction PassiveCheck(PassiveType passvieType, GameObject gameObject)
-    {
-
-        return null;
-    }
+  
     
     public virtual void ChangeONBorad()
     {
         if(this != null)
         { 
-            PlayManager.Instance.OnBoardPlayer.Add(this);
+           // PlayManager.Instance.OnBoardPlayer.Add(this);
             PassiveRangeObj.SetActive(true);
             OnBoard = true;
         }
     }
 
-
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // »ó´ë µ¹°ú ºÎµúÇûÀ»¶§
-        if (collision.transform.CompareTag("EnemyBall"))
-        {
-            CheckProcess(collision, ActiveTarget.Enemy,true);
-        }
-        else if (collision.transform.CompareTag("PlayerBall"))
-        {
-            CheckProcess(collision, ActiveTarget.Team,false);
-        }
-
-    }
-
-    public void CheckProcess(Collision2D collision,ActiveTarget activeTarget, bool Monster)
-    {
-        if (character.active_target == activeTarget || character.active_target == ActiveTarget.All && !OnBoard)
-        {
-            if (PlayManager.Instance.IsActive)
-            {
-                if (ActiveSkill(collision.GetContact(0).point, collision))
-                    ConflictProcess(collision, MyRigid.velocity.magnitude, Monster);
-            }
-            else
-                ConflictProcess(collision, MyRigid.velocity.magnitude, Monster);
-        }
-        else
-        {
-            if (collision.gameObject.GetComponent<Confilct>().CheckConfilct() && OnBoard)
-                ConflictProcess(collision, MyRigid.velocity.magnitude, Monster);
-        }
-
-    }
-
-    public void ConflictProcess(Collision2D collision, float Power, bool Monster)
-    {
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
-        Rigidbody2D TempRigid = collision.gameObject.GetComponent<Rigidbody2D>();
-
-        if (Monster)
-        {
-            for (int i = 0; i < PlayManager.Instance.OnBoardPlayer.Count; i++)
-            {
-                UnityAction temp = PlayManager.Instance.OnBoardPlayer[i].PassiveCheck(PassiveType.Conflict, this.gameObject);
-
-                if (temp != null)
-                    temp();
-            }
-        }
-
-        TempRigid.AddForce((collision.GetContact(0).point - (Vector2)this.transform.position).normalized * Power , ForceMode2D.Impulse);
-    }
 
 
     public void GoForward(Vector2 Dir, float Power)
@@ -135,9 +71,6 @@ public abstract class CharacterPlay : MonoBehaviour, DeathProcess, Confilct
     }
 
 
-    public bool CheckConfilct()
-    {
-        return IsConfilct;
-    }
+
 }
 

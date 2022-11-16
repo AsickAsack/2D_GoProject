@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4314214917462345106}
   - component: {fileID: 4314214917462345107}
   - component: {fileID: 4314214917462345104}
-  - component: {fileID: -6661430122573773275}
   - component: {fileID: 1626053693059830772}
+  - component: {fileID: 5635703100718696875}
   m_Layer: 8
   m_Name: Lazy
   m_TagString: PlayerBall
@@ -127,43 +127,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.05}
   serializedVersion: 2
   m_Radius: 2.4
---- !u!114 &-6661430122573773275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314214917462345070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2075a024589497d4c92d870f65b16395, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character:
-    MyCharacter: 0
-    Name: 
-    Character_Des: 
-    Min_Power: 0
-    Max_Power: 0
-    Mass: 0
-    Drag: 0
-    Active_Des: 
-    active_target: 0
-    Active_Figure: 0
-    Passive_Des: 
-    Passive_probability: 0
-    Passive_Range: 0
-    Story: 
-  OnBoard: 0
-  IsConfilct: 1
-  IsActive: 0
-  ActivePrefab_Index: 4
-  passiveType: 0
-  PassiveRangeObj: {fileID: 4717380342204496831}
-  InGame_Sprite: {fileID: 0}
-  Effect: {fileID: 0}
-  Power: 0
-  Index: 0
 --- !u!96 &1626053693059830772
 TrailRenderer:
   serializedVersion: 2
@@ -299,6 +262,39 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &5635703100718696875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314214917462345070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f958ef7a5040d42b6a74cf9a85164d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character:
+    MyCharacter: 0
+    Name: 
+    Character_Des: 
+    Min_Power: 0
+    Max_Power: 0
+    Mass: 0
+    Drag: 0
+    Active_Des: 
+    active_target: 0
+    Active_Figure: 0
+    Passive_Des: 
+    Passive_probability: 0
+    Passive_Range: 0
+    Story: 
+  MySkill: {fileID: 0}
+  OnBoard: 0
+  PassiveRangeObj: {fileID: 0}
+  InGame_Sprite: {fileID: 0}
+  Power: 0
+  Index: 0
 --- !u!1 &4717380342204496831
 GameObject:
   m_ObjectHideFlags: 0

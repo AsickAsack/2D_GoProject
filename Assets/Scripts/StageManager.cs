@@ -20,6 +20,7 @@ public struct ObstacleSetting
 [System.Serializable]
 public struct StageSetting
 {
+    public int NeedCharacter;
     public MonsterSetting[] MyMonster;
     public ObstacleSetting[] MyObstacle;
 }
