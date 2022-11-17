@@ -4394,7 +4394,6 @@ MonoBehaviour:
   Arrow: {fileID: 1631021438}
   EnemyCount: 0
   PlayerCount: 0
-  OnBoardPlayer: []
   gameState: 0
 --- !u!1 &1791443354
 GameObject:
@@ -4650,7 +4649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671929422533960651, guid: ec56e366e4edd174c9630579b9289136, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3671929422533960692, guid: ec56e366e4edd174c9630579b9289136, type: 3}
       propertyPath: m_RootOrder
@@ -5726,7 +5725,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0

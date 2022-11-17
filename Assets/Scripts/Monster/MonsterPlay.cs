@@ -60,6 +60,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
         BasicConflictMonster(collision);
 
 
+
     }
 
 

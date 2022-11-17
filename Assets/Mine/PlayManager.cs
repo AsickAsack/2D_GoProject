@@ -21,7 +21,10 @@ public interface IObserver
 
 public enum GameState
 {
-    Ready, Shot,Move,End
+    Ready, //게임 시작 후 알 선택 단계
+    Shot, //알 발사를 위해 드래그 하는 단계
+    Move,// 알이 움직이고 있는 단계
+    End // 끝나고 종료 조건 계산 단계
 }
 
 public class PlayManager : MonoBehaviour,ISubject
@@ -85,6 +88,8 @@ public class PlayManager : MonoBehaviour,ISubject
 
         gameState = s;
 
+        
+
         switch (s)
         {
             case GameState.Ready:
@@ -100,17 +105,20 @@ public class PlayManager : MonoBehaviour,ISubject
                 ingameUI.SetCharacterPopUP(false);
                 CurPlayerIcon.SetActive(false);
 
-
                 break;
 
             case GameState.Move:
+                
                 break;
 
             case GameState.End:
+                
 
                 //판정 하고 넘어가기
                 break;
         }
+
+        Check_SkillExist(s);
     }
 
     public void GameLoop()
@@ -126,27 +134,25 @@ public class PlayManager : MonoBehaviour,ISubject
                 break;
 
             case GameState.Move:
+                MoveLoop();
                 break;
 
             case GameState.End:
-                
-                if(CurPlayer == null)
-                {
-                    Check_Exit();
-                    ChangeState(GameState.Ready);
-                    return;
-                }
+                Check_MoveStop();
 
-                if (CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
-                {
-                    Check_Exit();
-                    ChangeState(GameState.Ready);
-                }
                 break;
         }
     }
 
-    public void Check_Exit()
+    public void MoveLoop()
+    {
+        if (CurPlayer == null || CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        {
+            ChangeState(GameState.End);
+        }
+    }
+
+    public void Check_MoveStop()
     {
         if (EnemyCount == 0)
         {
@@ -157,6 +163,18 @@ public class PlayManager : MonoBehaviour,ISubject
         {
             Debug.Log("알파고 승리 ㅋ");
         }
+        else
+        {
+            ChangeState(GameState.Ready);
+        }
+    }
+
+    //발동 할 스킨이 있는지 확인
+    public void Check_SkillExist(GameState gameState)
+    {
+        if (CurPlayer == null) return;
+
+        CurPlayer.MySkill.CheckSKill(gameState);
     }
 
     //당기기 전
@@ -240,13 +258,13 @@ public class PlayManager : MonoBehaviour,ISubject
 
 
                 //플레이어 스크립트에서 보내기
-                CurPlayer.GoForward(targetPos, Power);
+                CurPlayer.MySkill.GoForward(targetPos, Power);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
                 Arrow.transform.localScale = new Vector3(LimitPower.x / DivideArrowSize, LimitPower.x / DivideArrowSize, 0.0f);
                 PlayerCount--;
                 //End 상태로 체인지
-                ChangeState(GameState.End);
+                ChangeState(GameState.Move);
             }
         }
     }
@@ -265,12 +283,15 @@ public class PlayManager : MonoBehaviour,ISubject
         CurPlayer.transform.position = BaseCamp.position;
         CurPlayer.gameObject.SetActive(true);
 
+        Check_SkillExist(GameState.Ready);
 
         CurPlayerIcon = Obj;
+
+        /*
         //액티브가 켜져 있다면
         if (IsActive)
             ingameUI.ChangeAcitveBtn();
-        
+        */
     }
 
     public void RegisterObserver(IObserver O)

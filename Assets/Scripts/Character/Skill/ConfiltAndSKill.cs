@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface CheckRoutine
+{
+
+}
+
 public enum Skill_Type
 {
     Active,Passive
@@ -22,6 +27,33 @@ public class ConfiltAndSKill : MonoBehaviour, IObserver
 
     public delegate void SkillDeligate();
     public SkillDeligate skillDeligate;
+
+    private Rigidbody2D _MyRigid;
+    public Rigidbody2D MyRigid
+    {
+        get
+        {
+            if (_MyRigid == null)
+                _MyRigid = this.GetComponent<Rigidbody2D>();
+
+            return _MyRigid;
+        }
+
+    }
+
+    public virtual void GoForward(Vector2 Dir, float Power)
+    {
+        MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
+    }
+
+
+
+    public virtual void CheckSKill(GameState SkillState)
+    {
+        if (SkillState != this.SkillState || skillDeligate == null) return;
+
+        skillDeligate();
+    }
 
 
 

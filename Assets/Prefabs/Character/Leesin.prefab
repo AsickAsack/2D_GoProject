@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4314214917462345104}
   - component: {fileID: -420281431393452653}
   - component: {fileID: 5073325397444789612}
+  - component: {fileID: 3767497296832865039}
   m_Layer: 8
   m_Name: Leesin
   m_TagString: PlayerBall
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 14919ff4f6bad6f46aba7d0bba298fcc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -289,12 +290,30 @@ MonoBehaviour:
     Passive_probability: 0
     Passive_Range: 0
     Story: 
-  MySkill: {fileID: 0}
+  MySkill: {fileID: 3767497296832865039}
   OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
   Index: 0
+--- !u!114 &3767497296832865039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314214917462345070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecba863016ecc7848aa416893299f89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill_index: 0
+  OnBoard: 0
+  SkillState: 0
+  mySkill_Type: 0
+  mySkill_Condition: 0
+  CloudBackGround: {fileID: 4519046244437407255, guid: 13e31a327a7a1444d90b33ae04be217d, type: 3}
 --- !u!1 &4531649790286814310
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +470,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: de1b5109325125e4db64480e966293c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

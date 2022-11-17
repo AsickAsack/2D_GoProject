@@ -8,9 +8,10 @@ public class LazySkill : ConfiltAndSKill
     {
         if (collision.gameObject.CompareTag("EnemyBall") || collision.gameObject.CompareTag("PlayerBall"))
         {
+            //보드 위에 말이라면..
             if(OnBoard)
             {
-
+                
 
             }
         }

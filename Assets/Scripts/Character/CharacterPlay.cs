@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+public interface ComparePassive
+{
+    public int PassivePriority { get; set; }
+    public bool IsPassive { get; set; }
+    public bool GetPassivePriority(ComparePassive other);
+
+}
+
 public interface Confilct
 {
     public bool CheckConfilct();
@@ -37,16 +45,13 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
         InGame_Sprite = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
     
-
-  
-    
     public virtual void ChangeONBorad()
     {
         if(this != null)
-        { 
-           // PlayManager.Instance.OnBoardPlayer.Add(this);
-            PassiveRangeObj.SetActive(true);
-            OnBoard = true;
+        {
+            //PlayManager.Instance.OnBoardPlayer.Add(this);
+            //PassiveRangeObj.SetActive(true);
+            MySkill.OnBoard = true;
         }
     }
 
