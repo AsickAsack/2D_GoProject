@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillerSkill : ConfiltAndSKill, ComparePassive
+public class KillerSkill : ConfiltAndSKill, CompareSkill
 {
     public int PassivePriority {get; set;}
     public bool IsPassive { get; set; } = false;
@@ -10,7 +10,7 @@ public class KillerSkill : ConfiltAndSKill, ComparePassive
     int MurDerCount = 0;
 
 
-    public bool GetPassivePriority(ComparePassive other)
+    public bool GetPassivePriority(CompareSkill other)
     {
         if (PassivePriority > other.PassivePriority)
             return true;
@@ -25,7 +25,7 @@ public class KillerSkill : ConfiltAndSKill, ComparePassive
             if (OnBoard)
             {
                 IsPassive = true;
-                ComparePassive temp = collision.transform.GetComponent<ComparePassive>();
+                CompareSkill temp = collision.transform.GetComponent<CompareSkill>();
 
                 //상대가 패시브가 있다면
                 if (temp != null)

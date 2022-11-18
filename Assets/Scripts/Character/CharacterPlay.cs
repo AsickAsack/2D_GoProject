@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public interface ComparePassive
+public interface CompareSkill
 {
     public int PassivePriority { get; set; }
     public bool IsPassive { get; set; }
-    public bool GetPassivePriority(ComparePassive other);
+    public bool GetPassivePriority(CompareSkill other);
 
 }
 

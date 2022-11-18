@@ -8,7 +8,10 @@ public class CandyItem : MonoBehaviour
     {
         if(collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
+            if (collision.GetComponent<Collider2D>().isTrigger) return;
+
             Rigidbody2D tempRigid = collision.GetComponent<Rigidbody2D>();
+
             tempRigid.velocity *= 2.0f;
 
             this.gameObject.SetActive(false);
