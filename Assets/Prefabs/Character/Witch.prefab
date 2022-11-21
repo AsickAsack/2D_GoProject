@@ -309,12 +309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill_index: 0
+  _SkillPriority: 1
   OnBoard: 0
   SkillState: 0
   mySkill_Type: 0
   mySkill_Condition: 0
   Candy: {fileID: 2947330653388242085, guid: 7a17f9c6fa947d248a7e82fb978482a0, type: 3}
   CandyCount: 3
+  CandyRadius: 0
   mycoll: {fileID: 0}
 --- !u!1 &6134260428480012705
 GameObject:

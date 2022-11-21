@@ -2,24 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WitchSkill : ConfiltAndSKill, CompareSkill
+public class WitchSkill : ConflictAndSKill
 {
     public GameObject Candy;
     public int CandyCount;
     public float CandyRadius;
     public CircleCollider2D mycoll;
 
-    public int PassivePriority { get; set; }
-    public bool IsPassive { get; set ; }
-
     private void Awake()
     {
-        
         mycoll = this.GetComponent<CircleCollider2D>();
         CandyRadius = Candy.GetComponent<CircleCollider2D>().radius;
-        
+    }
 
-
+    private void OnEnable()
+    {
+        this.transform.localScale = new Vector2(0.2f, 0.2f);
     }
 
     public override void CheckSKill(GameState SkillState)
@@ -32,24 +30,32 @@ public class WitchSkill : ConfiltAndSKill, CompareSkill
                 break;
 
             case GameState.Move:
-                StartCoroutine(GoFly(MyRigid.velocity.magnitude));
+                StartCoroutine(GoFly(MyRigid.velocity.magnitude * 0.8f));
                 break;
         }
     }
 
-    public override void GoForward(Vector2 Dir, float Power)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        MyRigid.AddForce(Dir * (Power/1.5f), ForceMode2D.Impulse); //늘어난 크기만큼 날아가는 파워를 줄임..-> 변수화 고민
-
+        if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
+        {
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+        }
+        
     }
 
+
+    public override void GoForward(Vector2 Dir, float Power)
+    {
+        MyRigid.AddForce(Dir * (Power/1.5f), ForceMode2D.Impulse); //늘어난 크기만큼 날아가는 파워를 줄임..-> 변f수화 고민
+    }
 
 
 
     IEnumerator GoFly(float StartMagunitude)
     {
 
-        IsPassive = true;
+        IsSKill = true;
         mycoll.isTrigger = true;
         float ThrowCandyDistance = StartMagunitude * 0.4f;
         float LastThrowY = -2.5f;
@@ -57,50 +63,36 @@ public class WitchSkill : ConfiltAndSKill, CompareSkill
         //MyRigid.simulated = false;
         while (true)
         {
-            float x = this.transform.localScale.x + (Time.deltaTime * 2.0f);
-            x = Mathf.Clamp(x,0.2f, 0.4f);
-            this.transform.localScale = new Vector2(x, x);
-
-
-            if (MyRigid.velocity.magnitude < 1.0f)
-                break;
-
-
-
-            if (MyRigid.velocity.magnitude < StartMagunitude && MyRigid.velocity.magnitude > StartMagunitude - ThrowCandyDistance && mycoll.bounds.min.y > LastThrowY)
+            if (MyRigid.velocity.magnitude > 1.0f)
             {
-                Debug.Log("현재 벨로시티" + MyRigid.velocity.magnitude);
-                Debug.Log("시작" + StartMagunitude);
+                float x = this.transform.localScale.x + (Time.deltaTime * 2.0f);
+                x = Mathf.Clamp(x, 0.2f, 0.4f);
+                this.transform.localScale = new Vector2(x, x);
+            }
+            else
+            {  
+                    float x = this.transform.localScale.x - (Time.deltaTime * 1.0f);
+                    x = Mathf.Clamp(x, 0.2f, 0.4f);
+                    this.transform.localScale = new Vector2(x, x);
+
+                    if (Mathf.Approximately(x, 0.2f))
+                    {
+                        //mycoll.isTrigger = false;
+                        break;
+                    }
+                 
+            }
+
+            if (MyRigid.velocity.magnitude < StartMagunitude && MyRigid.velocity.magnitude > StartMagunitude - ThrowCandyDistance /*&& mycoll.bounds.min.y > LastThrowY*/)
+            {
                 Instantiate(Candy, GetCandyPos(this.transform, LastThrowY), Quaternion.identity);
                 StartMagunitude -= ThrowCandyDistance;
                 LastThrowY = mycoll.bounds.max.y;
-                Debug.Log("끝" + StartMagunitude);
-
-            }
-
-           
-
-            
-
-            yield return null;
-        }
-
-        
-
-        while (true)
-        {
-            float x = this.transform.localScale.x - (Time.deltaTime * 1.0f);
-            x = Mathf.Clamp(x, 0.2f, 0.4f);
-            this.transform.localScale = new Vector2(x, x);
-
-            if(Mathf.Approximately(x,0.2f))
-            {
-                //mycoll.isTrigger = false;
-                break;
             }
 
             yield return null;
         }
+
 
         Collider2D[] tempcoll = Physics2D.OverlapCircleAll(this.transform.position, 1.0f);
 
@@ -113,6 +105,7 @@ public class WitchSkill : ConfiltAndSKill, CompareSkill
             }
         }
 
+        IsSKill = false;
         mycoll.isTrigger = false;
     }
 
@@ -146,16 +139,8 @@ public class WitchSkill : ConfiltAndSKill, CompareSkill
 
         //여기 코드 수정하자..
 
-
         return testpos;
     }
 
-    
-    public bool GetPassivePriority(CompareSkill other)
-    {
-        if (PassivePriority > other.PassivePriority)
-            return true;
-        else
-            return false;
-    }
+   
 }

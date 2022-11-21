@@ -48,11 +48,13 @@ public class PlayManager : MonoBehaviour,ISubject
     public Vector2 LimitPower;
     public float DividePower;
     public float DivideArrowSize;
+    public float MultiplyPower = 1.0f;
 
 
     //오브젝트
     public CharacterPlay CurPlayer;
     GameObject CurPlayerIcon;
+    public GameObject[] CharacterIcons;
     public GameObject Arrow;
     Quaternion ArrowOriginAngle;
 
@@ -61,6 +63,39 @@ public class PlayManager : MonoBehaviour,ISubject
     //판정
     public int EnemyCount;
     public int PlayerCount;
+
+    //한턴에 얼마나 잡았는지 알 수 있는 멀티킬
+    int _CurMultiKill;    
+    public int CurMultiKill
+    {
+        get => _CurMultiKill;
+        set
+        {
+            _CurMultiKill = value;
+            if (_CurMultiKill != 0)
+            {
+                //ingameUI.SetTextPhase(_CurMultiKill + " 킬!");
+                Debug.Log(_CurMultiKill + " 킬!");
+            }
+            
+        }
+    }
+    public int MultiKill;
+    
+
+    // 콤보 
+    int _CurKillstreaks;
+    public int CurKillStreaks
+    {
+        get => _CurKillstreaks;
+        set
+        {
+            _CurKillstreaks = value;
+        }
+    }
+    public int KillStreaks;
+   
+
 
     public List<IObserver> OnBoardPlayer = new List<IObserver>();
 
@@ -97,6 +132,20 @@ public class PlayManager : MonoBehaviour,ISubject
                 CurPlayer = null;
                 ingameUI.SetTextPhase("Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
+
+                if(CurMultiKill > MultiKill)
+                {
+                    MultiKill = CurMultiKill;
+                }
+                CurMultiKill = 0;
+
+                if(CurKillStreaks > KillStreaks)
+                {
+                    KillStreaks = CurKillStreaks;
+                }
+                
+
+
                 //오른쪽 UI클릭해서 말 터치하기 -> 
                 break;
 
@@ -146,6 +195,7 @@ public class PlayManager : MonoBehaviour,ISubject
 
     public void MoveLoop()
     {
+
         if (CurPlayer == null || CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
         {
             ChangeState(GameState.End);
@@ -195,7 +245,7 @@ public class PlayManager : MonoBehaviour,ISubject
                 Arrow.transform.rotation = ArrowOriginAngle;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
-                LimitPower.y = CurPlayer.character.Max_Power;
+                LimitPower.y = CurPlayer.character.Max_Power * MultiplyPower;
                 //GameObject obj = Instantiate(effectManager.EffectPrefaps[0],CurPlayer.transform);
                 //obj.transform.position = CurPlayer.transform.position;
 

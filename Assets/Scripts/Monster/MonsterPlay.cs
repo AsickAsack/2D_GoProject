@@ -7,7 +7,7 @@ public interface DeathProcess
     public void Death();
 }
 
-public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
+public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, CompareSkill
 {
 
     private Rigidbody2D _myRigid;
@@ -19,6 +19,9 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
             return _myRigid;
         }
     }
+
+    public int SkillPriority { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public bool IsSKill { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public Monster monster;
     public float Power;
@@ -48,48 +51,39 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
     public void CountProcess()
     {
         PlayManager.Instance.EnemyCount--;
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        PlayManager.Instance.CurMultiKill++;
+        PlayManager.Instance.CurKillStreaks++;
     }
 
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        PlayerConflicRoutine(collision);
-
-        BasicConflictMonster(collision);
+        ConflictPlayer(collision);
 
 
 
     }
+    public void ConflictProcess_Myself(Collision2D collision, float Power)
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        Rigidbody2D TempRigid = collision.gameObject.GetComponent<Rigidbody2D>();
+        myRigid.AddForce(((Vector2)this.transform.position - collision.GetContact(0).point).normalized * Power, ForceMode2D.Impulse);
+    }
 
 
-
-    public void BasicConflictPlayer(Collision2D collision)
+    public void ConflictPlayer(Collision2D collision)
     {
         //서있는 흰돌 맞았을때도 생각
-        if (collision.transform.CompareTag("PlayerBall"))
+        if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-            Debug.Log("나는 몬스터인데 플레이어와 충돌함");
 
-            CharacterPlay Enemy = collision.transform.GetComponent<CharacterPlay>();
+            CompareSkill CK = collision.transform.GetComponent<CompareSkill>();
 
-            Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
 
         }
-    }
-
-    public void BasicConflictMonster(Collision2D collision)
-    {
-        //몬스터가 몬스터에 맞았을때
-        if (collision.transform.CompareTag("EnemyBall"))
-        {
-            MonsterPlay Enemy = collision.transform.GetComponent<MonsterPlay>();
-
-           // Enemy.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
-
-        }
-
     }
 
 
@@ -106,5 +100,10 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct
     public bool CheckConfilct()
     {
         return IsConflict;
+    }
+
+    public bool GetSkillPriority(CompareSkill other)
+    {
+        return true;
     }
 }

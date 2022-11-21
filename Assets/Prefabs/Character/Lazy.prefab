@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4314214917462345104}
   - component: {fileID: 1626053693059830772}
   - component: {fileID: 5635703100718696875}
+  - component: {fileID: -4346105756975933055}
   m_Layer: 8
   m_Name: Lazy
   m_TagString: PlayerBall
@@ -289,12 +290,30 @@ MonoBehaviour:
     Passive_probability: 0
     Passive_Range: 0
     Story: 
-  MySkill: {fileID: 0}
+  MySkill: {fileID: -4346105756975933055}
   OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
   Index: 0
+--- !u!114 &-4346105756975933055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314214917462345070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445d90ff94dbad04c946cce362a0f15f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill_index: 0
+  _SkillPriority: 3
+  OnBoard: 0
+  SkillState: 0
+  mySkill_Type: 0
+  mySkill_Condition: 0
 --- !u!1 &4717380342204496831
 GameObject:
   m_ObjectHideFlags: 0

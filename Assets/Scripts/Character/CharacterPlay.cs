@@ -4,13 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public interface CompareSkill
-{
-    public int PassivePriority { get; set; }
-    public bool IsPassive { get; set; }
-    public bool GetPassivePriority(CompareSkill other);
 
-}
 
 public interface Confilct
 {
@@ -26,7 +20,7 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
 {
 
     public Character character;
-    public ConfiltAndSKill MySkill;
+    public ConflictAndSKill MySkill;
     public bool OnBoard =false;
     
     public GameObject PassiveRangeObj;
@@ -44,18 +38,22 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
     {
         InGame_Sprite = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
+
+    public virtual void Rebirth()
+    {
+        OnBoard = false;
+    }
     
     public virtual void ChangeONBorad()
     {
         if(this != null)
         {
             //PlayManager.Instance.OnBoardPlayer.Add(this);
-            //PassiveRangeObj.SetActive(true);
+            if(PassiveRangeObj != null)
+            PassiveRangeObj.SetActive(true);
             MySkill.OnBoard = true;
         }
     }
-
-
 
     public void GoForward(Vector2 Dir, float Power)
     {
@@ -65,7 +63,7 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
 
     public void Death()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     public void ExitGame()
@@ -76,6 +74,6 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
     }
 
 
-
+  
 }
 

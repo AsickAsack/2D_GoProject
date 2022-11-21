@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBallSkill : ConfiltAndSKill
+public class BaseBallSkill : ConflictAndSKill
 {
     public GameObject BaseBall_Bat;
     Coroutine mySkillCo;
@@ -16,12 +16,14 @@ public class BaseBallSkill : ConfiltAndSKill
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("EnemyBall"))
+        if(collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
             if(mySkillCo != null)
             {
                 StopCoroutine(mySkillCo);
             }
+
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
 
@@ -65,6 +67,5 @@ public class BaseBallSkill : ConfiltAndSKill
 
         BaseBall_Bat.SetActive(false);
     }
-
 
 }

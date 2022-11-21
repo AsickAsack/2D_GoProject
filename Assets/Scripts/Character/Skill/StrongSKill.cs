@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StrongSKill : ConfiltAndSKill
+public class StrongSKill : ConflictAndSKill
 {
 
     private void OnCollisionEnter2D(Collision2D collision)

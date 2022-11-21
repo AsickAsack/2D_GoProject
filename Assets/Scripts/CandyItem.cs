@@ -12,7 +12,7 @@ public class CandyItem : MonoBehaviour
 
             Rigidbody2D tempRigid = collision.GetComponent<Rigidbody2D>();
 
-            tempRigid.velocity *= 2.0f;
+            tempRigid.velocity *= 1.1f;
 
             this.gameObject.SetActive(false);
         }

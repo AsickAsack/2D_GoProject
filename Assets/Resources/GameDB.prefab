@@ -52,6 +52,10 @@ MonoBehaviour:
   - {fileID: 4314214917462345070, guid: 90173205e32467e4bb3d72e9d88defaf, type: 3}
   - {fileID: 4314214917462345070, guid: f9762e052b26ff44d8d047e34eb2c3c9, type: 3}
   - {fileID: 4314214917462345070, guid: 9380cb1fab9f16b4b9b9f8858bd4707a, type: 3}
+  - {fileID: 4314214917462345070, guid: 62d99e7ec2987ad4996f5a7ae1f2dc6e, type: 3}
+  - {fileID: 4314214917462345070, guid: 03bed6b20202d394ca410b0dd5a6af60, type: 3}
+  - {fileID: 4314214917462345070, guid: c78d46d2d4973a74f958bc109d385479, type: 3}
+  - {fileID: 4314214917462345070, guid: e5a3e8c3cd668624f9f28917afa86a9d, type: 3}
   Monsters:
   - {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
   - {fileID: 241363113802261835, guid: f9ad87daf125f394789cb8b27bd38598, type: 3}
@@ -69,6 +73,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1af371af7bad7b94e8e6dac81e997804, type: 3}
   - {fileID: 21300000, guid: 0a101e9ebea6b5f48b6c0ab1c1b372db, type: 3}
   - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
+  - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
   CharacterIcon:
   - {fileID: 21300000, guid: a6a01d1016a5a9c48959a5a649487e0e, type: 3}
   - {fileID: 21300000, guid: 78a534e611c78554e9128193197f27c7, type: 3}
@@ -77,3 +85,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1af371af7bad7b94e8e6dac81e997804, type: 3}
   - {fileID: 21300000, guid: 0a101e9ebea6b5f48b6c0ab1c1b372db, type: 3}
   - {fileID: 21300000, guid: 590406bba3b41ff418c072db8a264068, type: 3}
+  - {fileID: 21300000, guid: 929c81fe577a5b6478c7f0f2c20c1675, type: 3}
+  - {fileID: 21300000, guid: 13e19300b0e5b4b4cbca6844ef451512, type: 3}
+  - {fileID: 21300000, guid: 81b759e81f5c3334ab52b94f6fd3b865, type: 3}
+  - {fileID: 21300000, guid: 49ebcf8b7dc05694cb9db9a9160244f5, type: 3}

@@ -19,7 +19,7 @@ public class BaseBallBat : MonoBehaviour
 
         if (collision.transform.CompareTag("PlayerBall"))
         {
-            ConfiltAndSKill Enemy = collision.GetComponent<ConfiltAndSKill>();
+            ConflictAndSKill Enemy = collision.GetComponent<ConflictAndSKill>();
 
             Enemy.GoForward(collision.transform.position - this.transform.position.normalized, 20.0f);
 

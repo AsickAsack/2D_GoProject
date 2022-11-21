@@ -393,6 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill_index: 0
+  _SkillPriority: 1
   OnBoard: 0
   SkillState: 2
   mySkill_Type: 0

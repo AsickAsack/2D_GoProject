@@ -17,7 +17,7 @@ public class CommonMonster : MonsterPlay
 
     public override void PlayerConflicRoutine(Collision2D collision)
     {
-        BasicConflictPlayer(collision);
+        ConflictPlayer(collision);
     }
 
     public override void Skill()

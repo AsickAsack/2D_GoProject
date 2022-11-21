@@ -21,7 +21,7 @@ public enum MonsterStat
 
 public enum CharacterName
 {
-    Strong=1001,lazy,mad,Killer,Witch,BaseBall,Leesin
+    Strong=1001,lazy,mad,Killer,Witch,BaseBall,Leesin,Rebirth, brainwash,Avoid, bulldozer
 }
 
 public enum CharacterStat

@@ -10,6 +10,7 @@ TagManager:
   - PlayerBall
   - EnemyBall
   - CharacterUI
+  - Obstacle
   layers:
   - Default
   - TransparentFX
