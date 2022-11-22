@@ -7,6 +7,7 @@ public class BossMonster : MonsterPlay
 
     //생성할 몬스터 프리펩
     public GameObject MonsterPrefab;
+    public int CreateMonsterCount;
     
     //생성할 가로세로 랜덤위치 제한
     public Vector2 RangeOfcreate;
@@ -28,19 +29,15 @@ public class BossMonster : MonsterPlay
 
     public override void Skill()
     {
-        Debug.Log(this.transform.position);
 
-        GameObject Obj = Instantiate(MonsterPrefab,
-            this.transform.position, Quaternion.identity);
+        for (int i = 0; i < CreateMonsterCount; i++)
+        {
+            GameObject Obj = Instantiate(MonsterPrefab,this.transform.position, Quaternion.identity);
+            Obj.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
+            StageManager.instance.CurMonsters.Add(Obj.GetComponent<MonsterPlay>());
+        }
 
-        Obj.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
-
-        GameObject Obj1 = Instantiate(MonsterPrefab,
-            this.transform.position, Quaternion.identity);
-
-        Obj1.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
-
-        PlayManager.Instance.EnemyCount += 2;
+        PlayManager.Instance.EnemyCount += CreateMonsterCount;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,9 +47,4 @@ public class BossMonster : MonsterPlay
             Skill();
         }
     }
-
-
-
-
-
 }

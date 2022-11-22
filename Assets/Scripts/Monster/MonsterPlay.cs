@@ -53,7 +53,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
         PlayManager.Instance.EnemyCount--;
         this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
-        PlayManager.Instance.CurKillStreaks++;
+        
     }
 
     
@@ -73,7 +73,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
     }
 
 
-    public void ConflictPlayer(Collision2D collision)
+    public virtual void ConflictPlayer(Collision2D collision)
     {
         //서있는 흰돌 맞았을때도 생각
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
@@ -90,11 +90,9 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
 
 
 
-    public void GoForward(Vector2 Dir, float temp)
+    public virtual void GoForward(Vector2 Dir, float temp)
     {
-        //this.Power = Power;
         myRigid.AddForce(Dir * temp, ForceMode2D.Impulse);
-        Debug.Log("들어온 파워" + this.Power);
     }
 
     public bool CheckConfilct()

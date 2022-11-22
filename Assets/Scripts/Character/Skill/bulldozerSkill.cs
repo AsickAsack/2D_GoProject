@@ -6,9 +6,6 @@ public class bulldozerSkill : ConflictAndSKill
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.transform);
-
-     
 
         if(collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall"))
         {

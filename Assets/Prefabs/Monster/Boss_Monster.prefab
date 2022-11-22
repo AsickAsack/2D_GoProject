@@ -228,5 +228,7 @@ MonoBehaviour:
     Mass: 0
     Size: 0
   Power: 0
+  IsConflict: 1
   MonsterPrefab: {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
+  CreateMonsterCount: 2
   RangeOfcreate: {x: -0.2, y: 0.2}

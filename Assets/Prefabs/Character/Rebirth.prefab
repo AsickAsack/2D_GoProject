@@ -292,7 +292,7 @@ MonoBehaviour:
     Story: 
   MySkill: {fileID: -5848887542517131878}
   OnBoard: 0
-  PassiveRangeObj: {fileID: 0}
+  PassiveRangeObj: {fileID: 8873808867456415848}
   InGame_Sprite: {fileID: 0}
   Power: 0
   Index: 0
@@ -311,9 +311,8 @@ MonoBehaviour:
   Skill_index: 0
   _SkillPriority: 0
   OnBoard: 0
-  SkillState: 0
-  mySkill_Type: 0
-  mySkill_Condition: 0
+  mySkill_Condition: 2
+  ReBirthRange: 1
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0

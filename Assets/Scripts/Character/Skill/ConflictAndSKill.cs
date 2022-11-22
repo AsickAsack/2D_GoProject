@@ -11,14 +11,10 @@ public interface CompareSkill
     public void GoForward(Vector2 Dir, float Power);
 
 }
-public enum Skill_Type
-{
-    Active,Passive
-}
 
 public enum Skill_Condition
 {
-    Ready,Shot,Confilct
+   None,Confilct,Death
 }
 
 public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
@@ -27,12 +23,8 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     [SerializeField]
     int _SkillPriority;
     public bool OnBoard;
-    public GameState SkillState;
-    public Skill_Type mySkill_Type;
     public Skill_Condition mySkill_Condition;
 
-    public delegate void SkillDeligate();
-    public SkillDeligate skillDeligate;
 
     private Rigidbody2D _MyRigid;
     public Rigidbody2D MyRigid
@@ -79,29 +71,17 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     //스킬 체크(상황에 맞는 스킬이 있는지)
     public virtual void CheckSKill(GameState SkillState)
     {
-        if (SkillState != this.SkillState || skillDeligate == null) return;
+        return;
 
-        skillDeligate();
+        
     }
 
 
 
     //옵저버 메소드
-    public void ListenToSubeject(Skill_Type Skill_Type, Skill_Condition Skill_Condition)
+    public virtual void ListenToSubeject(Skill_Condition Skill_Condition, Transform tr)
     {
-        if (this.mySkill_Type == Skill_Type && mySkill_Condition == Skill_Condition)
-        {
-            //스킬을 받아야 할때
-
-            if (this.mySkill_Type == Skill_Type)//범위 검색
-            {
-
-            }
-            else
-                return; //범위에 없을시
-        }
-        else
-            return;
+        return;
     }
 
 
@@ -162,4 +142,5 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
            return false;
     }
 
+    
 }

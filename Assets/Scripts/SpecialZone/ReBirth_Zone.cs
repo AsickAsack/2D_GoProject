@@ -10,10 +10,7 @@ public class ReBirth_Zone : Special_Zone
         if(collision.transform.CompareTag("PlayerBall"))
         {
             //링 효과 후 캐릭터 복커
-            int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == collision.transform.GetComponent<CharacterPlay>().character);
-            PlayManager.Instance.objectPool.GetEffect(7, this.transform.position, Quaternion.identity);
-            PlayManager.Instance.CharacterIcons[index].SetActive(true);
-            
+            PlayManager.Instance.ReBirthRoutine(collision.transform);
 
         }
     }

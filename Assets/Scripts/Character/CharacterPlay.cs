@@ -48,7 +48,8 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
     {
         if(this != null)
         {
-            //PlayManager.Instance.OnBoardPlayer.Add(this);
+            PlayManager.Instance.OnBoardPlayer.Add(this.gameObject);
+            Debug.Log(PlayManager.Instance.OnBoardPlayer[^1]);
             if(PassiveRangeObj != null)
             PassiveRangeObj.SetActive(true);
             MySkill.OnBoard = true;
@@ -63,7 +64,15 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
 
     public void Death()
     {
+       if(PlayManager.Instance.OnBoardPlayer.Find(x=>x.gameObject == this.gameObject))
+        {
+            PlayManager.Instance.RemoveObserver(this.gameObject);
+        }
+        PlayManager.Instance.NotifyToObserver(Skill_Condition.Death, this.transform);
+
+        PlayManager.Instance.Kill_Sprite = GameDB.Instance.GetCharacterIcon(this.character);
         this.gameObject.SetActive(false);
+
     }
 
     public void ExitGame()

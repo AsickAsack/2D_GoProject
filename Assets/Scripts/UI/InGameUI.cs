@@ -39,6 +39,23 @@ public class InGameUI : MonoBehaviour
 
     public GameObject ActiveObj;
 
+    [Header("[¾×Æ¼ºê UI]")]
+
+    public Animator Kill_UI;
+    public Image CharacterIcon;
+    public TMPro.TMP_Text Kill_Text;
+
+   
+
+    public void SetKillUi()
+    {
+
+        Kill_UI.gameObject.SetActive(true);
+        Kill_Text.text = PlayManager.Instance.CurMultiKill.ToString() + "Kill";
+        Kill_UI.SetTrigger("MoveUI");
+
+    }
+
 
     public void OnActive()
     {

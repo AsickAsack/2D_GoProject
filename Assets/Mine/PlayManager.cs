@@ -6,15 +6,15 @@ using UnityEngine.Events;
 
 public interface ISubject
 {
-    public void RegisterObserver(IObserver O);
-    public void RemoveObserver(IObserver O);
-    public void NotifyToObserver();
+    public void RegisterObserver(GameObject O);
+    public void RemoveObserver(GameObject O);
+    public void NotifyToObserver(Skill_Condition Skill_Condition, Transform tr);
 
 }
 
 public interface IObserver
 {
-    public void ListenToSubeject(Skill_Type Skill_Type,Skill_Condition Skill_Condition);
+    public void ListenToSubeject(Skill_Condition Skill_Condition,Transform tr);
 }
 
 
@@ -59,6 +59,10 @@ public class PlayManager : MonoBehaviour,ISubject
     Quaternion ArrowOriginAngle;
 
     //효과
+    public delegate void KillEffectDele();
+    public KillEffectDele MultiKill_Dele;
+    //public KillEffectDele KillStreaks_Dele;
+    public Sprite Kill_Sprite;
 
     //판정
     public int EnemyCount;
@@ -74,30 +78,18 @@ public class PlayManager : MonoBehaviour,ISubject
             _CurMultiKill = value;
             if (_CurMultiKill != 0)
             {
-                //ingameUI.SetTextPhase(_CurMultiKill + " 킬!");
-                Debug.Log(_CurMultiKill + " 킬!");
+                MultiKill_Dele();
             }
             
         }
     }
     public int MultiKill;
-    
-
-    // 콤보 
-    int _CurKillstreaks;
-    public int CurKillStreaks
-    {
-        get => _CurKillstreaks;
-        set
-        {
-            _CurKillstreaks = value;
-        }
-    }
+   
     public int KillStreaks;
    
 
 
-    public List<IObserver> OnBoardPlayer = new List<IObserver>();
+    public List<GameObject> OnBoardPlayer = new List<GameObject>();
 
     private void Awake()
     {
@@ -107,6 +99,7 @@ public class PlayManager : MonoBehaviour,ISubject
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
         EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].Object_Information.MyMonster.Length;
         PlayerCount = StageManager.instance.CurCharacters.Count;
+        PlayManager.Instance.MultiKill_Dele = ingameUI.SetKillUi;
     }
 
     public GameState gameState = GameState.Ready;
@@ -132,18 +125,7 @@ public class PlayManager : MonoBehaviour,ISubject
                 CurPlayer = null;
                 ingameUI.SetTextPhase("Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
-
-                if(CurMultiKill > MultiKill)
-                {
-                    MultiKill = CurMultiKill;
-                }
-                CurMultiKill = 0;
-
-                if(CurKillStreaks > KillStreaks)
-                {
-                    KillStreaks = CurKillStreaks;
-                }
-                
+                CountRoutine();
 
 
                 //오른쪽 UI클릭해서 말 터치하기 -> 
@@ -193,9 +175,29 @@ public class PlayManager : MonoBehaviour,ISubject
         }
     }
 
-    public void MoveLoop()
+    public void CountRoutine()
     {
 
+        if (CurMultiKill != 0)
+        {
+            KillStreaks++;
+            Debug.Log("킬스트릭 " + KillStreaks);
+        }
+        else
+        {
+            KillStreaks = 0;
+            Debug.Log("킬스트릭 초기화");
+        }
+        //KillStreaks_Dele();
+
+        if (CurMultiKill > MultiKill)
+        {
+            MultiKill = CurMultiKill;
+        }
+        CurMultiKill = 0;
+    }
+    public void MoveLoop()
+    {
         if (CurPlayer == null || CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
         {
             ChangeState(GameState.End);
@@ -344,21 +346,31 @@ public class PlayManager : MonoBehaviour,ISubject
         */
     }
 
-    public void RegisterObserver(IObserver O)
+    public void RegisterObserver(GameObject O)
     {
         OnBoardPlayer.Add(O);
     }
 
-    public void RemoveObserver(IObserver O)
+    public void RemoveObserver(GameObject O)
     {
         OnBoardPlayer.Remove(O);
     }
 
-    public void NotifyToObserver()
+    public void NotifyToObserver(Skill_Condition Skill_Condition,Transform tr)
     {
         for (int i = 0; i < OnBoardPlayer.Count; i++)
         {
-            //OnBoardPlayer[i].ListenToSubeject(Skill_Type Skill_Type, Skill_Condition Skill_Condition);
+            OnBoardPlayer[i].GetComponent<IObserver>()?.ListenToSubeject(Skill_Condition, tr);
         }
+    }
+
+
+    //환생 루틴
+    public void ReBirthRoutine(Transform tr)
+    {
+        int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == tr.GetComponent<CharacterPlay>().character);
+        PlayerCount++;
+        objectPool.GetEffect(7, this.transform.position, Quaternion.identity);
+        CharacterIcons[index].SetActive(true);
     }
 }

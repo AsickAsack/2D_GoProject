@@ -52,6 +52,7 @@ MonoBehaviour:
   stage:
   - subStage:
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.63, y: 4.1}
@@ -67,6 +68,7 @@ MonoBehaviour:
           Monster_Pos: {x: 1.14, y: 1.27}
         MyObstacle: []
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.25, y: 4.91}
@@ -86,6 +88,7 @@ MonoBehaviour:
           obstacle_Pos: {x: 2.18, y: 0.78}
           Angle: -40.8
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.45, y: 4.91}
@@ -95,13 +98,14 @@ MonoBehaviour:
           Monster_Pos: {x: 1.28, y: 3.98}
         - monster_name: 2001
           Monster_Pos: {x: -1.8, y: 1.1}
-        - monster_name: 2002
+        - monster_name: 2006
           Monster_Pos: {x: 1.29, y: 2.86}
-        - monster_name: 2002
+        - monster_name: 2006
           Monster_Pos: {x: -0.3, y: 3.16}
         MyObstacle: []
   - subStage:
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.63, y: 4.1}
@@ -115,6 +119,7 @@ MonoBehaviour:
           Monster_Pos: {x: 0, y: 1.75}
         MyObstacle: []
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.25, y: 4.91}
@@ -131,6 +136,7 @@ MonoBehaviour:
           obstacle_Pos: {x: -1.5, y: 3.16}
           Angle: 30
     - Object_Information:
+        NeedCharacter: 0
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.45, y: 4.91}
