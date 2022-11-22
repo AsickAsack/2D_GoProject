@@ -61,12 +61,13 @@ public class PlayManager : MonoBehaviour,ISubject
     //효과
     public delegate void KillEffectDele();
     public KillEffectDele MultiKill_Dele;
-    //public KillEffectDele KillStreaks_Dele;
+    public KillEffectDele KillStreaks_Dele;
     public Sprite Kill_Sprite;
 
     //판정
     public int EnemyCount;
     public int PlayerCount;
+    public int UserSkillPoint = 0;
 
     //한턴에 얼마나 잡았는지 알 수 있는 멀티킬
     int _CurMultiKill;    
@@ -79,6 +80,7 @@ public class PlayManager : MonoBehaviour,ISubject
             if (_CurMultiKill != 0)
             {
                 MultiKill_Dele();
+                UserSkillPoint++;
             }
             
         }

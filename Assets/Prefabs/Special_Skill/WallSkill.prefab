@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3803422693436291962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3803422693436291963}
+  - component: {fileID: 2537726406413894852}
+  m_Layer: 0
+  m_Name: WallSkill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3803422693436291963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803422693436291962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2537726406413894852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3803422693436291962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856350fef9463224f92fa28952cce0cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserskillName: "\uBCBD \uC2A4\uD0AC"
+  UserSkillDes: "\uC6D0\uD558\uB294 \uC704\uCE58\uC5D0 \uBCBD\uC744 \uC0DD\uC131\uD55C\uB2E4.\n\uC0DD\uC131\uB41C
+    \uBCBD\uC740 \uB2FF\uC740 \uC720\uB2DB\uC744 \uBC18\uB300\uB85C \n\uD295\uACA8\uB0B8\uB2E4."
+  SkillPoint: 2

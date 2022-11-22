@@ -65,6 +65,11 @@ MonoBehaviour:
   - {fileID: 241363113802261835, guid: 6f49b9c2e4f71504a8a219b2ce2936da, type: 3}
   Obstacles:
   - {fileID: 3849774495288422949, guid: 2659a9fbf30f7a0418372897dc7d8050, type: 3}
+  UserSkills:
+  - {fileID: 3803422693436291940, guid: f3f3354dd4898fb4cbfd04785b9c0022, type: 3}
+  - {fileID: 7584223975199734802, guid: 0db17c64ca0a7804baaae3122ce99f81, type: 3}
+  - {fileID: 2537726406413894852, guid: 6e911d6884fa8ea40b1e35579ef7a13f, type: 3}
+  - {fileID: 5440606211030228329, guid: 16729a7afb9dd3e418dc02b3a91e5d52, type: 3}
   CharacterImage:
   - {fileID: 21300000, guid: 23169ddedd921424c81c13ee700743a7, type: 3}
   - {fileID: 21300000, guid: 78fb1efb1927b354ca48193c648f3ebf, type: 3}

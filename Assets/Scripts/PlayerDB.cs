@@ -34,6 +34,8 @@ public class PlayerDB : MonoBehaviour
 
     public List<Character> MyCharacters = new List<Character>();
     public bool CutScene = true;
+
+    public UserSkill myUserSkill;
     public int Gold { get; set; }
     public bool IsFirst = true;
     //유저 스킬도 있음
