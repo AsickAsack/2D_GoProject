@@ -14,5 +14,14 @@ public class UserSkill : MonoBehaviour
         PlayerDB.Instance.myUserSkill = this;
     }
 
+    public virtual void Skill(Vector2 pos)
+    {
+
+    }
+
+    public void SetSkillPoint()
+    {
+        PlayManager.Instance.UserSkillPoint -= this.SkillPoint;
+    }
 
 }

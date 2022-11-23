@@ -30,7 +30,7 @@ public class LeesinSkill : ConflictAndSKill
         switch(SkillState)
         {
             case GameState.Ready:
-                Set_MassAndSkillPower(OrgMass * 2.0f, 4.0f);
+                Set_MassAndSkillPower(OrgMass * 2.0f, 2.0f);
 
                 CloudObj.SetActive(true);
                 break;

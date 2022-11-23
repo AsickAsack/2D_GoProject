@@ -52,7 +52,7 @@ public class BombMonster : MonsterPlay
 
     public override void Death()
     {
-        
+        CountProcess();
     }
 
     public override void PlayerConflicRoutine(Collision2D collision)

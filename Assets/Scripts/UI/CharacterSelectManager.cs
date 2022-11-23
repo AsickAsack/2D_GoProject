@@ -126,6 +126,13 @@ public class CharacterSelectManager : MonoBehaviour
             return;
         }
 
+        if(PlayerDB.Instance.myUserSkill == null)
+        {
+            PopUpManager.Instance.OpenPopup(0, "안내", "유저 스킬을 선택 해주세요.", null);
+            return;
+
+        }
+
         for(int i=0;i < TempSelect_Char.Length;i++)
         {
             StageManager.instance.SelectCharacters.Add(TempSelect_Char[i]);

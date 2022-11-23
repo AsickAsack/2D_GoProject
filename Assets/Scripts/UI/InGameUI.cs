@@ -39,13 +39,54 @@ public class InGameUI : MonoBehaviour
 
     public GameObject ActiveObj;
 
-    [Header("[액티브 UI]")]
+    [Header("[킬 UI]")]
 
     public Animator Kill_UI;
     public Image CharacterIcon;
     public TMPro.TMP_Text Kill_Text;
 
-   
+    [Header("[유저 스킬 UI]")]
+
+    public Slider UserPointSlider;
+    public GameObject UserSKillBtn;
+
+    [Header("[결과창 UI]")]
+
+    public Canvas ResultCanvas;
+    public TMPro.TMP_Text Result_Text;
+
+    public void SetResultCanavs(string result)
+    {
+        ResultCanvas.enabled = true;
+        Result_Text.text = result;
+    }
+
+
+    public void GoUserSkill()
+    {
+        if (PlayManager.Instance.gameState != GameState.UserSkill)
+        {
+            if (PlayManager.Instance.UserSkillPoint >= PlayerDB.Instance.myUserSkill.SkillPoint)
+            {
+                PlayManager.Instance.ChangeState(GameState.UserSkill);
+            }else
+            {
+                Debug.Log("포인트 부족ㅋㅋ");
+            }
+        }
+        else
+        {
+            PlayManager.Instance.gameState = GameState.Ready;
+        }
+        
+    }
+
+
+    public void SetUserSkillPoint(int index)
+    {
+        UserPointSlider.value = index;
+    }
+
 
     public void SetKillUi()
     {

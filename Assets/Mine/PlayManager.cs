@@ -24,7 +24,8 @@ public enum GameState
     Ready, //게임 시작 후 알 선택 단계
     Shot, //알 발사를 위해 드래그 하는 단계
     Move,// 알이 움직이고 있는 단계
-    End // 끝나고 종료 조건 계산 단계
+    End, // 끝나고 종료 조건 계산 단계
+    UserSkill
 }
 
 public class PlayManager : MonoBehaviour,ISubject
@@ -81,6 +82,7 @@ public class PlayManager : MonoBehaviour,ISubject
             {
                 MultiKill_Dele();
                 UserSkillPoint++;
+                ingameUI.SetUserSkillPoint(UserSkillPoint);
             }
             
         }
@@ -123,17 +125,21 @@ public class PlayManager : MonoBehaviour,ISubject
         switch (s)
         {
             case GameState.Ready:
+                ingameUI.UserSKillBtn.SetActive(true);
                 CurPlayer.ChangeONBorad();
                 CurPlayer = null;
                 ingameUI.SetTextPhase("Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
                 CountRoutine();
 
-
                 //오른쪽 UI클릭해서 말 터치하기 -> 
                 break;
 
+            case GameState.UserSkill:
+                break;
+
             case GameState.Shot:
+                ingameUI.UserSKillBtn.SetActive(false);
                 ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
                 CurPlayerIcon.SetActive(false);
@@ -146,7 +152,6 @@ public class PlayManager : MonoBehaviour,ISubject
 
             case GameState.End:
                 
-
                 //판정 하고 넘어가기
                 break;
         }
@@ -172,7 +177,10 @@ public class PlayManager : MonoBehaviour,ISubject
 
             case GameState.End:
                 Check_MoveStop();
+                break;
 
+            case GameState.UserSkill:
+                UserSkillLoop();
                 break;
         }
     }
@@ -210,12 +218,11 @@ public class PlayManager : MonoBehaviour,ISubject
     {
         if (EnemyCount == 0)
         {
-            Debug.Log("플레이어 승리 ㅋ");
-            //SceneLoader.Instance.Loading_LoadScene(0);
+            ingameUI.SetResultCanavs("승리!");
         }
         else if (PlayerCount == 0)
         {
-            Debug.Log("알파고 승리 ㅋ");
+            ingameUI.SetResultCanavs("패배..ㅠ");
         }
         else
         {
@@ -347,6 +354,21 @@ public class PlayManager : MonoBehaviour,ISubject
             ingameUI.ChangeAcitveBtn();
         */
     }
+
+    public void UserSkillLoop()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << LayerMask.NameToLayer("Board"));
+
+            if (MyRayCast)
+            {
+                PlayerDB.Instance.myUserSkill.Skill(MyRayCast.point);
+                gameState = GameState.Ready;
+            }
+        }
+    }
+
 
     public void RegisterObserver(GameObject O)
     {
