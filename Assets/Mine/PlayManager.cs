@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+    ////////////////////
+    //  옵저버 패턴   //
+    ////////////////////
 public interface ISubject
 {
     public void RegisterObserver(GameObject O);
     public void RemoveObserver(GameObject O);
     public void NotifyToObserver(Skill_Condition Skill_Condition, Transform tr);
-
 }
 
 public interface IObserver
@@ -18,14 +20,14 @@ public interface IObserver
 }
 
 
-
+// 현재 진행되는 게임의 상태 열거자
 public enum GameState
 {
     Ready, //게임 시작 후 알 선택 단계
     Shot, //알 발사를 위해 드래그 하는 단계
     Move,// 알이 움직이고 있는 단계
     End, // 끝나고 종료 조건 계산 단계
-    UserSkill
+    UserSkill // 유저 스킬 단계
 }
 
 public class PlayManager : MonoBehaviour,ISubject
@@ -36,7 +38,9 @@ public class PlayManager : MonoBehaviour,ISubject
     public CharacterManager CharManager;
     public ObjectPool objectPool;
 
-    public bool IsActive;
+
+    //public bool IsActive;
+    
     public bool IsHit = false;
     public Transform BaseCamp;
     Vector2 StartPos;
@@ -70,6 +74,7 @@ public class PlayManager : MonoBehaviour,ISubject
     public int PlayerCount;
     public int UserSkillPoint = 0;
 
+    public int CurTurn = 1;
     //한턴에 얼마나 잡았는지 알 수 있는 멀티킬
     int _CurMultiKill;    
     public int CurMultiKill
@@ -88,10 +93,7 @@ public class PlayManager : MonoBehaviour,ISubject
         }
     }
     public int MultiKill;
-   
     public int KillStreaks;
-   
-
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
 
@@ -125,6 +127,7 @@ public class PlayManager : MonoBehaviour,ISubject
         switch (s)
         {
             case GameState.Ready:
+                CurTurn++;
                 ingameUI.UserSKillBtn.SetActive(true);
                 CurPlayer.ChangeONBorad();
                 CurPlayer = null;
@@ -257,10 +260,6 @@ public class PlayManager : MonoBehaviour,ISubject
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
                 LimitPower.y = CurPlayer.character.Max_Power * MultiplyPower;
-                //GameObject obj = Instantiate(effectManager.EffectPrefaps[0],CurPlayer.transform);
-                //obj.transform.position = CurPlayer.transform.position;
-
-               
 
                 //발사 페이즈 진입
                 ChangeState(GameState.Shot);
@@ -278,6 +277,7 @@ public class PlayManager : MonoBehaviour,ISubject
 
         if (Input.GetMouseButton(0))
         {
+            //퍼스펙티브 아닐때
             //MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
             MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << LayerMask.NameToLayer("Raycaster"));
 
@@ -348,7 +348,8 @@ public class PlayManager : MonoBehaviour,ISubject
 
         CurPlayerIcon = Obj;
 
-        /*
+        /* 원래는 액티브가 선택식으로 바뀐다면 사용할 함수
+         
         //액티브가 켜져 있다면
         if (IsActive)
             ingameUI.ChangeAcitveBtn();
@@ -394,7 +395,7 @@ public class PlayManager : MonoBehaviour,ISubject
     {
         int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == tr.GetComponent<CharacterPlay>().character);
         PlayerCount++;
-        objectPool.GetEffect(7, this.transform.position, Quaternion.identity);
+        objectPool.GetEffect(7, tr.position, Quaternion.identity);
         CharacterIcons[index].SetActive(true);
     }
 }

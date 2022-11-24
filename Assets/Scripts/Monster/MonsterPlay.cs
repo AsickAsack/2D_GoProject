@@ -11,7 +11,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
 {
 
     private Rigidbody2D _myRigid;
-    public Rigidbody2D myRigid
+    public Rigidbody2D MyRigid
     {
         get 
         {
@@ -20,18 +20,19 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
         }
     }
 
-    public int SkillPriority { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public bool IsSKill { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int SkillPriority { get; set; }
+    public bool IsSKill { get; set; }
 
     public Monster monster;
     public float Power;
     public bool IsConflict = true;
-
+    public Vector2 MyVelocity { get; set; }
     public abstract void Initialize();
     public abstract void Skill();
 
-    public abstract void PlayerConflicRoutine(Collision2D collision);
 
+
+    public abstract void Death();
 
     private void Start()
     {
@@ -41,35 +42,37 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
     //모든 몬스터들이 필요한 초기화(질량,크기)
     public void Basic_init()
     {
-        myRigid.mass = monster.Mass;
+        MyRigid.mass = monster.Mass;
         this.transform.localScale = new Vector2(monster.Size, monster.Size);
         Initialize();
     }
 
-    public abstract void Death();
-
-    public void CountProcess()
+    private void Update()
     {
+        //프레임마다 벨로시티 값 저장(장애물들 충돌 처리 때문에)
+        MyVelocity = MyRigid.velocity;
+    }
+
+    
+
+    public virtual void CountProcess()
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         PlayManager.Instance.EnemyCount--;
         this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
         
     }
 
-    
+
+    public Rigidbody2D GetRigidBody()
+    {
+        return MyRigid;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         ConflictPlayer(collision);
-
-
-
-    }
-    public void ConflictProcess_Myself(Collision2D collision, float Power)
-    {
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
-        Rigidbody2D TempRigid = collision.gameObject.GetComponent<Rigidbody2D>();
-        myRigid.AddForce(((Vector2)this.transform.position - collision.GetContact(0).point).normalized * Power, ForceMode2D.Impulse);
     }
 
 
@@ -81,19 +84,19 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
 
             CompareSkill CK = collision.transform.GetComponent<CompareSkill>();
 
-            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, this.GetComponent<Rigidbody2D>().velocity.magnitude);
+            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
 
         }
     }
 
 
-
-
-
-    public virtual void GoForward(Vector2 Dir, float temp)
+    public virtual void GoForward(Vector2 Dir, float Power)
     {
-        myRigid.AddForce(Dir * temp, ForceMode2D.Impulse);
+        MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
     }
+
+
+
 
     public bool CheckConfilct()
     {

@@ -135,7 +135,7 @@ public class InGameUI : MonoBehaviour
     {
         ActiveOnBtn.SetActive(!ActiveOnBtn.activeSelf);
         ActiveOffBtn.SetActive(!ActiveOffBtn.activeSelf);
-        PlayManager.Instance.IsActive = ActiveOnBtn.activeSelf;
+        //PlayManager.Instance.IsActive = ActiveOnBtn.activeSelf;
         Debug.Log(ActiveOnBtn.activeSelf);
     }
 

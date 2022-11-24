@@ -10,15 +10,14 @@ public class Wall : Obstacle
     {
         mypos = this.transform.position;
     }
-    public override void Skill(Transform tr)
+    public override void Skill(Collision2D collision)
     {
-        if (tr.CompareTag("PlayerBall") || tr.CompareTag("EnemyBall"))
+        if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-           
-            Rigidbody2D TempRigid = tr.GetComponent<Rigidbody2D>();
 
-            TempRigid.velocity = Vector2.Reflect(TempRigid.velocity, this.transform.up);
-            this.transform.position = mypos;
+            CompareSkill Obj = collision.transform.GetComponent<CompareSkill>();
+            Obj.GetRigidBody().velocity = Vector2.Reflect(Obj.MyVelocity, -collision.GetContact(0).normal);
+
         }
     }
 

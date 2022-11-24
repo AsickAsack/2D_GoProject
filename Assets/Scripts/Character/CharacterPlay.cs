@@ -21,8 +21,7 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
 
     public Character character;
     public ConflictAndSKill MySkill;
-    public bool OnBoard =false;
-    
+    public bool OnBoard =false;    
     public GameObject PassiveRangeObj;
 
     public SpriteRenderer InGame_Sprite;
@@ -49,7 +48,6 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
         if(this != null)
         {
             PlayManager.Instance.OnBoardPlayer.Add(this.gameObject);
-            Debug.Log(PlayManager.Instance.OnBoardPlayer[^1]);
             if(PassiveRangeObj != null)
             PassiveRangeObj.SetActive(true);
             MySkill.OnBoard = true;
@@ -64,7 +62,9 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
 
     public void Death()
     {
-       if(PlayManager.Instance.OnBoardPlayer.Find(x=>x.gameObject == this.gameObject))
+
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
+        if (PlayManager.Instance.OnBoardPlayer.Find(x=>x.gameObject == this.gameObject))
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }

@@ -11,13 +11,7 @@ public class CommonMonster : MonsterPlay
 
     public override void Initialize()
     {
-       
         //기본 스텟으로 초기화
-    }
-
-    public override void PlayerConflicRoutine(Collision2D collision)
-    {
-        ConflictPlayer(collision);
     }
 
     public override void Skill()

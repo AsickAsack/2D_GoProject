@@ -24,7 +24,6 @@ public class ConflictCollider : MonoBehaviour
         {
             if (CheckPos(collision.transform))
             {
-                PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, collision.transform.position, Quaternion.identity);
                 collision.GetComponent<DeathProcess>()?.Death();
             }
         }
@@ -33,7 +32,6 @@ public class ConflictCollider : MonoBehaviour
         {
             if (CheckPos(collision.transform))
             {
-                PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, collision.transform.position, Quaternion.identity);
                 collision.GetComponent<DeathProcess>()?.Death();
             }
         }

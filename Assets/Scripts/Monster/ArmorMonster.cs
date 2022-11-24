@@ -43,27 +43,21 @@ public class ArmorMonster : MonsterPlay
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
             CompareSkill CK = collision.transform.GetComponent<CompareSkill>();
-            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, myRigid.velocity.magnitude);
-
-            if (IsHelmet)
-            {
-                StartCoroutine(TakeOff_Helmet(((Vector2)this.transform.position-collision.GetContact(0).point).normalized));
-                
-            }
-
+            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
         }
     }
     public override void GoForward(Vector2 Dir, float temp)
     {
         if (IsHelmet)
         {
-            myRigid.velocity = Vector2.zero;
+            StartCoroutine(TakeOff_Helmet(Dir));
+            MyRigid.velocity = Vector2.zero;
             IsHelmet = false;
             return;
         }
 
 
-        myRigid.AddForce(Dir * temp, ForceMode2D.Impulse);
+        MyRigid.AddForce(Dir * temp, ForceMode2D.Impulse);
     }
 
     public override void Initialize()
@@ -81,11 +75,4 @@ public class ArmorMonster : MonsterPlay
         }
     }
     
-    public override void PlayerConflicRoutine(Collision2D collision)
-    {
-        if(collision.transform.CompareTag("PlayerBall"))
-        {
-
-        }
-    }
 }

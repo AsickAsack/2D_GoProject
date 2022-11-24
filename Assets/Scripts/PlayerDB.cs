@@ -39,7 +39,11 @@ public class PlayerDB : MonoBehaviour
     public int Gold { get; set; }
     public bool IsFirst = true;
     //유저 스킬도 있음
-    
+
+    private void Awake()
+    {
+        myUserSkill = GameDB.Instance.UserSkills[0];
+    }
 
 
     public void addCharacter(Character newCharacter)

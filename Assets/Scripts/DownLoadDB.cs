@@ -28,7 +28,7 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Leesin));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Rebirth));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.brainwash));
-        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Avoid));
+        //PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Avoid));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.bulldozer));
 
 

@@ -67,7 +67,6 @@ public class MadSkill : ConflictAndSKill
         {
             if (temp[i].CompareTag("EnemyBall") || temp[i].CompareTag("PlayerBall") && temp[i].transform != this.transform)
             {
-                PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, temp[i].transform.position, Quaternion.identity);
                 temp[i].GetComponent<DeathProcess>()?.Death();
             }
         }

@@ -15,8 +15,24 @@ public class Bus : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    public void StartMove()
     {
-        this.transform.position = this.transform.position + Vector3.up * Time.deltaTime * 20.0f;
+        StartCoroutine(BusMove());
     }
+
+
+
+    IEnumerator BusMove()
+    {
+        while(Camera.main.WorldToViewportPoint(this.transform.position).y < 1.0f)
+        {
+            this.transform.position = this.transform.position + Vector3.up * Time.deltaTime * 20.0f;
+            yield return null;
+        }
+
+        this.gameObject.SetActive(false);
+    }
+
+
 }

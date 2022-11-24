@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//스킬 우선순위 비교 & 충돌 인터페이스
 public interface CompareSkill
 {
+    //벨로시티값을 저장할 프로퍼티
+    public Vector2 MyVelocity { get; set; }
+
+    //스킬 우선순위
     public int SkillPriority { get; set; }
+
+    //스킬 발동 조건인지?
     public bool IsSKill { get; set; }
+
+    //상대와 나의 우선순위를 비교하는 함수
     public bool GetSkillPriority(CompareSkill other);
+
+    //모든 충돌 처리는 이 함수로 시작함
     public void GoForward(Vector2 Dir, float Power);
+
+    //리지드바디 리턴 함수
+    public Rigidbody2D GetRigidBody();
 
 }
 
+//스킬이 어떤 조건에 반응하는지에 대한 열거자
 public enum Skill_Condition
 {
    None,Confilct,Death
@@ -19,11 +34,15 @@ public enum Skill_Condition
 
 public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
 {
-    public int Skill_index;
+    
     [SerializeField]
     int _SkillPriority;
+    public int Skill_index;
     public bool OnBoard;
+    public bool IgnoreObstacle;
     public Skill_Condition mySkill_Condition;
+
+    public Vector2 MyVelocity { get; set; }
 
 
     private Rigidbody2D _MyRigid;
@@ -60,6 +79,11 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
         IsSKill = false;
     }
 
+    private void Update()
+    {
+        MyVelocity = MyRigid.velocity;
+    }
+
     //앞으로 가는 함수
     public virtual void GoForward(Vector2 Dir, float Power)
     {
@@ -67,7 +91,6 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     }
 
 
-    
     //스킬 체크(상황에 맞는 스킬이 있는지)
     public virtual void CheckSKill(GameState SkillState)
     {
@@ -85,7 +108,10 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     }
 
 
-
+    public Rigidbody2D GetRigidBody()
+    {
+        return MyRigid;
+    }
 
 
     //충돌시 루틴
@@ -96,12 +122,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
         CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
     }
 
-    public void ConflictProcess_Myself(Collision2D collision, float Power)
-    {
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
-        Rigidbody2D TempRigid = collision.gameObject.GetComponent<Rigidbody2D>();
-        MyRigid.AddForce(((Vector2)this.transform.position - collision.GetContact(0).point).normalized * Power, ForceMode2D.Impulse);
-    }
+
     public bool GetSkillPriority(CompareSkill other)
     {
         // 상대 우선 순위가 더 높으면 true를 리턴해줌
@@ -142,5 +163,5 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
            return false;
     }
 
-    
+  
 }

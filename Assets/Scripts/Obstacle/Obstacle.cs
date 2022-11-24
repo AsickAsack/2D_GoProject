@@ -4,21 +4,16 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
-    public abstract void Skill(Transform tr);
+    public abstract void Skill(Collision2D collision);
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GetComponent<bulldozerSkill>() != null) return;
-
-        Skill(collision.transform);
-    }
-
-
+ 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.GetComponent<bulldozerSkill>() != null) return;
+        if (collision.transform.CompareTag("PlayerBall"))
+            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
 
-        Skill(collision.transform);
+        Skill(collision);
     }
+
 
 }

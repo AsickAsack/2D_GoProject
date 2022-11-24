@@ -14,10 +14,6 @@ public class SilenceMonster : MonsterPlay
         
     }
 
-    public override void PlayerConflicRoutine(Collision2D collision)
-    {
-        
-    }
 
     public override void Skill()
     {

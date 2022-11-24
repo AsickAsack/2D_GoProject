@@ -24,7 +24,7 @@ public class HeartSkill : UserSkill
             {
             
                 if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
-                    StageManager.instance.CurMonsters[i].GetComponent<MonsterPlay>().myRigid.AddForce((pos - (Vector2)StageManager.instance.CurCharacters[i].transform.position).normalized * 20.0f, ForceMode2D.Force);
+                    StageManager.instance.CurMonsters[i].GetComponent<MonsterPlay>().MyRigid.AddForce((pos - (Vector2)StageManager.instance.CurCharacters[i].transform.position).normalized * 20.0f, ForceMode2D.Force);
             }
         }
         catch(System.ArgumentOutOfRangeException e)

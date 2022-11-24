@@ -1,33 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BombMonster : MonsterPlay
 {
-    //public GameObject BombEffect;
-    int LimitCount;
+    //오브젝트 풀에서 빌려올 이펙트 인덱스
+    public int BombEffectIndex;
+    //터질 범위
     public float BombRange;
-    //public GameObject Circle;
+    //터져야 하는 턴
+    public int BombTurn;
+    //자동으로 정해질 최소 최대 폭발 턴
+    public Vector2 Bombturn_Range;
 
+    public TMPro.TMP_Text TurnText;
+    
 
     public override void Initialize()
     {
-        
-    }
-
-  
-    private void Update()
-    {
-        //Circle.transform.position = this.transform.position;
-        //Circle.transform.localScale = new Vector2(BombRange*2, BombRange*2);
-        
+        BombTurn = Random.Range((int)Bombturn_Range.x, (int)Bombturn_Range.y + 1);
+        TurnText.text = BombTurn.ToString();
     }
 
 
     public override void Skill()
     {
-        GameObject obj = Instantiate(Resources.Load("Bomb") as GameObject, transform.position,Quaternion.identity);
-        obj.transform.localScale = new Vector2(BombRange, BombRange);
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
 
         Collider2D[] MyCollider = Physics2D.OverlapCircleAll((Vector2)this.transform.position, BombRange);
 
@@ -36,7 +35,9 @@ public class BombMonster : MonsterPlay
             for(int i=0;i<MyCollider.Length;i++)
             {
                 if(MyCollider[i].CompareTag("PlayerBall")|| MyCollider[i].CompareTag("EnemyBall"))
-                Destroy(MyCollider[i].gameObject);
+                {
+                    MyCollider[i].GetComponent<DeathProcess>().Death();
+                }
             }
         }
 
@@ -44,19 +45,29 @@ public class BombMonster : MonsterPlay
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("PlayerBall"))
+        if (PlayManager.Instance.CurTurn != BombTurn) return;
+
+        if(collision.transform.CompareTag("EnemyBall"))
         {
             Skill();
         }
     }
 
+    public override void CountProcess()
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
+        PlayManager.Instance.EnemyCount--;
+        this.gameObject.SetActive(false);
+        //PlayManager.Instance.CurMultiKill++;
+
+    }
+
+
     public override void Death()
     {
+
         CountProcess();
     }
 
-    public override void PlayerConflicRoutine(Collision2D collision)
-    {
-        
-    }
+
 }

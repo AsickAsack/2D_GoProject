@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class BaseBallBat : MonoBehaviour
 {
-   
+    [SerializeField]
+    Collider2D myColl;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("EnemyBall"))
+        if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
-            Debug.Log(collision.transform.name);
-            
-            MonsterPlay Enemy = collision.GetComponent<MonsterPlay>();
+            Debug.Log("트리거엔터" + collision.transform);
+            CompareSkill Enemy = collision.transform.GetComponent<CompareSkill>();
 
-            Enemy.GoForward(collision.transform.position-this.transform.position.normalized,20.0f);
-
+            Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f);
         }
-
-        if (collision.transform.CompareTag("PlayerBall"))
-        {
-            ConflictAndSKill Enemy = collision.GetComponent<ConflictAndSKill>();
-
-            Enemy.GoForward(collision.transform.position - this.transform.position.normalized, 20.0f);
-
-        }
-
     }
+
 
 }

@@ -22,10 +22,6 @@ public class BossMonster : MonsterPlay
         //몬스터 프리펩, 기본 스텟, 레인지까지
     }
 
-    public override void PlayerConflicRoutine(Collision2D collision)
-    {
-        
-    }
 
     public override void Skill()
     {
@@ -40,11 +36,9 @@ public class BossMonster : MonsterPlay
         PlayManager.Instance.EnemyCount += CreateMonsterCount;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void GoForward(Vector2 Dir, float Power)
     {
-        if(collision.transform.CompareTag("PlayerBall"))
-        {
-            Skill();
-        }
+        //Skill();
+        MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
     }
 }

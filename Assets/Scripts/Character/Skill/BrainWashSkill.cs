@@ -12,11 +12,13 @@ public class BrainWashSkill : ConflictAndSKill
 
             case GameState.End:
 
+                if (!this.gameObject.activeSelf) return;
+
                 for(int i=0;i< StageManager.instance.CurMonsters.Count;i++)
                 {
                     if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
                     {
-                        StageManager.instance.CurMonsters[i].myRigid.AddForce((this.transform.position - StageManager.instance.CurMonsters[i].transform.position).normalized * 2.0f, ForceMode2D.Impulse);
+                        StageManager.instance.CurMonsters[i].MyRigid.AddForce((this.transform.position - StageManager.instance.CurMonsters[i].transform.position).normalized * 2.0f, ForceMode2D.Impulse);
                     }
 
                 }

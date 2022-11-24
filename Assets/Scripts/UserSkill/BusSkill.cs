@@ -9,9 +9,10 @@ public class BusSkill : UserSkill
 
     public override void Skill(Vector2 pos)
     {
-        GameObject obj = Instantiate(Bus, pos, Bus.transform.rotation);
+        Bus obj = Instantiate(Bus, pos, Bus.transform.rotation).GetComponent<Bus>();
+        obj.StartMove();
         SetSkillPoint();
-        //obj.GetComponent<Bus>().GetComponent/
+        
     }
 
       

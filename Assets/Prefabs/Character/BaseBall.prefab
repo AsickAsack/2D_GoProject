@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f387b45ab79a08743bea740bbf4e3707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColl: {fileID: 5522887394412257104}
 --- !u!1 &4314214917462345070
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ Rigidbody2D:
   m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: db968a66ce7c31a4f98940eea7ca1ce6, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -382,9 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skill_index: 0
+  _SkillPriority: 0
+  IgnoreObstacle: 0
   OnBoard: 0
-  SkillState: 0
-  mySkill_Type: 0
   mySkill_Condition: 0
   BaseBall_Bat: {fileID: 396600473975881224}
 --- !u!1 &6134260428480012705

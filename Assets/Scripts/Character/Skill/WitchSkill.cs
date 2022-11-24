@@ -57,6 +57,7 @@ public class WitchSkill : ConflictAndSKill
 
         IsSKill = true;
         mycoll.isTrigger = true;
+        IgnoreObstacle = true;
         float ThrowCandyDistance = StartMagunitude * 0.4f;
         float LastThrowY = -2.5f;
 
@@ -93,6 +94,7 @@ public class WitchSkill : ConflictAndSKill
             yield return null;
         }
 
+        PlayManager.Instance.objectPool.GetActiveEffects(8, this.transform.position);
 
         Collider2D[] tempcoll = Physics2D.OverlapCircleAll(this.transform.position, 1.0f);
 
@@ -100,13 +102,14 @@ public class WitchSkill : ConflictAndSKill
         {
             if (tempcoll[i].transform.CompareTag("EnemyBall") || tempcoll[i].transform.CompareTag("PlayerBall") && tempcoll[i].transform != this.transform)
             {
-                Rigidbody2D temprigid = tempcoll[i].GetComponent<Rigidbody2D>();
-                temprigid.AddForce((tempcoll[i].transform.position - this.transform.position).normalized * 5.0f, ForceMode2D.Impulse);
+                CompareSkill temprigid = tempcoll[i].GetComponent<CompareSkill>();
+                temprigid.GoForward((tempcoll[i].transform.position - this.transform.position).normalized,5.0f);
             }
         }
 
         IsSKill = false;
         mycoll.isTrigger = false;
+        IgnoreObstacle = false;
     }
 
 
