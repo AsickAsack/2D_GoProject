@@ -102,7 +102,7 @@ public class WitchSkill : ConflictAndSKill
         {
             if (tempcoll[i].transform.CompareTag("EnemyBall") || tempcoll[i].transform.CompareTag("PlayerBall") && tempcoll[i].transform != this.transform)
             {
-                CompareSkill temprigid = tempcoll[i].GetComponent<CompareSkill>();
+                ICompareSkill temprigid = tempcoll[i].GetComponent<ICompareSkill>();
                 temprigid.GoForward((tempcoll[i].transform.position - this.transform.position).normalized,5.0f);
             }
         }

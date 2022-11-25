@@ -392,11 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5271197c3967641adf792ca2b7e9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill_index: 1
   _SkillPriority: 2
-  IgnoreObstacle: 0
+  Skill_index: 9
   OnBoard: 0
+  IgnoreObstacle: 0
   mySkill_Condition: 0
+  MurDerLimit: 2
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0

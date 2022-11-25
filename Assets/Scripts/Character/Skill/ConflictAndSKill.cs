@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 //스킬 우선순위 비교 & 충돌 인터페이스
-public interface CompareSkill
+public interface ICompareSkill
 {
     //벨로시티값을 저장할 프로퍼티
     public Vector2 MyVelocity { get; set; }
@@ -16,7 +16,7 @@ public interface CompareSkill
     public bool IsSKill { get; set; }
 
     //상대와 나의 우선순위를 비교하는 함수
-    public bool GetSkillPriority(CompareSkill other);
+    public bool GetSkillPriority(ICompareSkill other);
 
     //모든 충돌 처리는 이 함수로 시작함
     public void GoForward(Vector2 Dir, float Power);
@@ -32,7 +32,7 @@ public enum Skill_Condition
    None,Confilct,Death
 }
 
-public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
+public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
 {
     
     [SerializeField]
@@ -102,7 +102,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
 
 
     //옵저버 메소드
-    public virtual void ListenToSubeject(Skill_Condition Skill_Condition, Transform tr)
+    public virtual void ListenToEvent(Skill_Condition Skill_Condition, Transform tr)
     {
         return;
     }
@@ -118,12 +118,12 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     public void ConflictProcess(Collision2D collision, float Power)
     {
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
-        CompareSkill CK = collision.gameObject.GetComponent<CompareSkill>();
+        ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
         CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
     }
 
 
-    public bool GetSkillPriority(CompareSkill other)
+    public bool GetSkillPriority(ICompareSkill other)
     {
         // 상대 우선 순위가 더 높으면 true를 리턴해줌
         if (other.SkillPriority < this.SkillPriority)
@@ -144,7 +144,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
     }
 
 
-    public bool CompareRoutine(CompareSkill other)
+    public bool CompareRoutine(ICompareSkill other)
     {
         if (other == null) return false;
 
@@ -163,5 +163,8 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, CompareSkill
            return false;
     }
 
-  
+    public virtual void ListenToGameState(GameState state)
+    {
+        //
+    }
 }

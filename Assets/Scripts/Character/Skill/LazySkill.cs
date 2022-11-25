@@ -12,7 +12,7 @@ public class LazySkill : ConflictAndSKill
             if(OnBoard)
             {
                 IsSKill = true;
-                CompareSkill temp = collision.transform.GetComponent<CompareSkill>();
+                ICompareSkill temp = collision.transform.GetComponent<ICompareSkill>();
 
                 if (temp == null)
                 {

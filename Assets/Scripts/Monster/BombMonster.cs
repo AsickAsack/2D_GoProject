@@ -27,7 +27,6 @@ public class BombMonster : MonsterPlay
     public override void Skill()
     {
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
-
         Collider2D[] MyCollider = Physics2D.OverlapCircleAll((Vector2)this.transform.position, BombRange);
 
         if(MyCollider.Length > 0)
@@ -36,7 +35,7 @@ public class BombMonster : MonsterPlay
             {
                 if(MyCollider[i].CompareTag("PlayerBall")|| MyCollider[i].CompareTag("EnemyBall"))
                 {
-                    MyCollider[i].GetComponent<DeathProcess>().Death();
+                    MyCollider[i].GetComponent<IDeathProcess>().Death();
                 }
             }
         }
@@ -45,11 +44,12 @@ public class BombMonster : MonsterPlay
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (PlayManager.Instance.CurTurn != BombTurn) return;
 
-        if(collision.transform.CompareTag("EnemyBall"))
+        if(collision.transform.CompareTag("PlayerBall"))
         {
-            Skill();
+            if (PlayManager.Instance.CurTurn == BombTurn)
+                Skill();
+
         }
     }
 
@@ -58,7 +58,7 @@ public class BombMonster : MonsterPlay
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         PlayManager.Instance.EnemyCount--;
         this.gameObject.SetActive(false);
-        //PlayManager.Instance.CurMultiKill++;
+        PlayManager.Instance.CurMultiKill++;
 
     }
 

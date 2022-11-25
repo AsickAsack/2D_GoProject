@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class KillerSkill : ConflictAndSKill
 {
-
+    [SerializeField]
+    int MurDerLimit;
+    [SerializeField]
     int MurDerCount = 0;
 
     private void OnEnable()
@@ -12,7 +14,19 @@ public class KillerSkill : ConflictAndSKill
         MurDerCount = 0;
     }
 
-    public bool GetPassivePriority(CompareSkill other)
+    public override void ListenToGameState(GameState state)
+    {
+        switch(state)
+        {
+            case GameState.Ready:
+
+                MurDerCount = 0;
+                break;
+        }
+    }
+
+
+    public bool GetPassivePriority(ICompareSkill other)
     {
         if (SkillPriority > other.SkillPriority)
             return true;
@@ -27,20 +41,21 @@ public class KillerSkill : ConflictAndSKill
             if (OnBoard)
             {
                 IsSKill = true;
-                CompareSkill temp = collision.transform.GetComponent<CompareSkill>();
+                ICompareSkill temp = collision.transform.GetComponent<ICompareSkill>();
 
                 if (temp == null)
                 {
-                        //실행
-                        MurderSkill(collision);
+                    //실행
+                    if (!MurderSkill(collision))
+                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                 }
-                //상대가 패시브가 있다면
                 else
                 {
                     if (temp.GetSkillPriority(this))
                     {
                         //실행
-                        MurderSkill(collision);
+                        if(!MurderSkill(collision))
+                            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                     else
                     {
@@ -59,13 +74,16 @@ public class KillerSkill : ConflictAndSKill
     }
 
 
-    public void MurderSkill(Collision2D Other)
+    public bool MurderSkill(Collision2D Other)
     {
+        if (MurDerCount == MurDerLimit) return false;
+
         MurDerCount++;
         MyRigid.velocity = Vector2.zero;
         PlayManager.Instance.objectPool.GetActiveEffects(Skill_index, Other.transform.position);
-        Other.transform.GetComponent<DeathProcess>()?.Death();
+        Other.transform.GetComponent<IDeathProcess>()?.Death();
         IsSKill = false;
+        return true;
     }
 
 

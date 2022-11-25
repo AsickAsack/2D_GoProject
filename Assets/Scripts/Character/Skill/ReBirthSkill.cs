@@ -8,7 +8,7 @@ public class ReBirthSkill : ConflictAndSKill
     bool Rebirth = false;
     public float ReBirthRange;
 
-    public override void ListenToSubeject(Skill_Condition Skill_Condition,Transform tr)
+    public override void ListenToEvent(Skill_Condition Skill_Condition,Transform tr)
     {
         if (mySkill_Condition == Skill_Condition)
         {

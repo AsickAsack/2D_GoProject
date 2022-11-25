@@ -25,7 +25,7 @@ public class MadSkill : ConflictAndSKill
                 if (ConflictCount == 3)
                 {
                     IsSKill = true;
-                    CompareSkill temp = collision.transform.GetComponent<CompareSkill>();
+                    ICompareSkill temp = collision.transform.GetComponent<ICompareSkill>();
 
                     if (temp == null)
                     {
@@ -67,7 +67,7 @@ public class MadSkill : ConflictAndSKill
         {
             if (temp[i].CompareTag("EnemyBall") || temp[i].CompareTag("PlayerBall") && temp[i].transform != this.transform)
             {
-                temp[i].GetComponent<DeathProcess>()?.Death();
+                temp[i].GetComponent<IDeathProcess>()?.Death();
             }
         }
 

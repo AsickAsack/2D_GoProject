@@ -39,11 +39,17 @@ public class InGameUI : MonoBehaviour
 
     public GameObject ActiveObj;
 
-    [Header("[킬 UI]")]
+    [Header("[기본 UI]")]
+
+    public TMPro.TMP_Text CurTurn_Text;
+
+    [Header("[연속킬 & 킬스트릭 UI]")]
 
     public Animator Kill_UI;
     public Image CharacterIcon;
     public TMPro.TMP_Text Kill_Text;
+    public TMPro.TMP_Text KillStreak_Text;
+
 
     [Header("[유저 스킬 UI]")]
 
@@ -55,13 +61,14 @@ public class InGameUI : MonoBehaviour
     public Canvas ResultCanvas;
     public TMPro.TMP_Text Result_Text;
 
+    //결과 창 띄우는 함수
     public void SetResultCanavs(string result)
     {
         ResultCanvas.enabled = true;
         Result_Text.text = result;
     }
 
-
+    //유저 스킬 버튼 함수
     public void GoUserSkill()
     {
         if (PlayManager.Instance.gameState != GameState.UserSkill)
@@ -81,28 +88,31 @@ public class InGameUI : MonoBehaviour
         
     }
 
-
+    //스킬 포인트 세팅 함수
     public void SetUserSkillPoint(int index)
     {
         UserPointSlider.value = index;
     }
 
-
-    public void SetKillUi()
+    //킬 UI 설정 함수
+    public void SetKillUi(int index)
     {
-
+        Kill_UI.ResetTrigger("MoveUI");
         Kill_UI.gameObject.SetActive(true);
-        Kill_Text.text = PlayManager.Instance.CurMultiKill.ToString() + "Kill";
+        Kill_Text.text = index.ToString() + " Kill";
         Kill_UI.SetTrigger("MoveUI");
 
     }
 
+    #region 액티브 함수
 
+    //액티브 재생 함수(액티브 기능이 없어져서 사용X)
     public void OnActive()
     {
         StartCoroutine(ActiveCo());
     }
 
+    //액티브 재생 코루틴(액티브 기능이 없어져서 사용X)
     IEnumerator ActiveCo()
     {
         ActiveObj.SetActive(true);
@@ -114,9 +124,10 @@ public class InGameUI : MonoBehaviour
         ActiveObj.SetActive(false);
     }
 
+    #endregion
 
 
-
+    //컷씬 나오는함수(액티브 사용이 없어져서 바꿔야함)
     public void CutScene(int index)
     {
         if (PlayManager.Instance.CurPlayer == null || PlayManager.Instance.gameState != GameState.Ready) return;
@@ -131,6 +142,7 @@ public class InGameUI : MonoBehaviour
         ChangeAcitveBtn();
     }
 
+
     public void ChangeAcitveBtn()
     {
         ActiveOnBtn.SetActive(!ActiveOnBtn.activeSelf);
@@ -143,45 +155,22 @@ public class InGameUI : MonoBehaviour
 
     #region 텍스트기능
 
+    //페이즈 알려주는 함수
     public void SetTextPhase(string Text)
     {
 
         Phase_Text.text = Text;
         PhaseAnim.SetTrigger("PhaseChange");
-        /*
-        if(PTextCo != null)
-        StopCoroutine(PTextCo);
-
-        PTextCo = StartCoroutine(PhaseText(Text));
-        */
-    }
-
-    /* 이거 쓸지 안쓸지 모르겠다ㅎㅎ
-     
-    IEnumerator PhaseText(string Text)
-    {
-        Phase_Text.gameObject.SetActive(true);
-        PhaseAnim.SetTrigger("PhaseChange");
-        Phase_Text.fontSize = LimitTextSize.x;
-        Phase_Text.text = Text;
-
-        while(Phase_Text.fontSize < LimitTextSize.y)
-        {
-            Phase_Text.fontSize += Time.deltaTime * TextSpeed;
-
-            yield return null;
-        }
-
-        Phase_Text.gameObject.SetActive(false);
 
     }
-    */
+
 
     #endregion
 
 
     #region 캐릭터 선택 팝업
 
+    //인게임 캐릭터 선택창 세팅 함수
     public void SetCharacterPopUP(bool Check)
     {
         if(Check)
@@ -189,8 +178,6 @@ public class InGameUI : MonoBehaviour
         else
             PopupAnim.SetTrigger("GoRight");
     }
-
-   
 
     #endregion
 

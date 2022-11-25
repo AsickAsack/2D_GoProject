@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface DeathProcess
+public interface IDeathProcess
 {
     public void Death();
 }
 
-public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, CompareSkill
+public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill
 {
 
     private Rigidbody2D _myRigid;
@@ -82,7 +82,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
 
-            CompareSkill CK = collision.transform.GetComponent<CompareSkill>();
+            ICompareSkill CK = collision.transform.GetComponent<ICompareSkill>();
 
             CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
 
@@ -103,7 +103,7 @@ public abstract class MonsterPlay : MonoBehaviour, DeathProcess, Confilct, Compa
         return IsConflict;
     }
 
-    public bool GetSkillPriority(CompareSkill other)
+    public bool GetSkillPriority(ICompareSkill other)
     {
         return true;
     }

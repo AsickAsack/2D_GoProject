@@ -65,8 +65,11 @@ public class LeesinSkill : ConflictAndSKill
 
     private void OnDisable()
     {
-        Set_MassAndSkillPower(OrgMass, 1.0f);
-        CloudObj.SetActive(false);
+        if (this.gameObject != null)
+        {
+            Set_MassAndSkillPower(OrgMass, 1.0f);
+            CloudObj.SetActive(false);
+        }
     }
 
     

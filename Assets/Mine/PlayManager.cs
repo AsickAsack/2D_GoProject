@@ -11,12 +11,14 @@ public interface ISubject
 {
     public void RegisterObserver(GameObject O);
     public void RemoveObserver(GameObject O);
-    public void NotifyToObserver(Skill_Condition Skill_Condition, Transform tr);
+    public void NotifyEventToObservers(Skill_Condition Skill_Condition, Transform tr);
+    public void NotifyGameStateToObservers(GameState state);
 }
 
 public interface IObserver
 {
-    public void ListenToSubeject(Skill_Condition Skill_Condition,Transform tr);
+    public void ListenToEvent(Skill_Condition Skill_Condition,Transform tr);
+    public void ListenToGameState(GameState state);
 }
 
 
@@ -64,7 +66,7 @@ public class PlayManager : MonoBehaviour,ISubject
     Quaternion ArrowOriginAngle;
 
     //효과
-    public delegate void KillEffectDele();
+    public delegate void KillEffectDele(int index);
     public KillEffectDele MultiKill_Dele;
     public KillEffectDele KillStreaks_Dele;
     public Sprite Kill_Sprite;
@@ -85,7 +87,7 @@ public class PlayManager : MonoBehaviour,ISubject
             _CurMultiKill = value;
             if (_CurMultiKill != 0)
             {
-                MultiKill_Dele();
+                MultiKill_Dele(_CurMultiKill);
                 UserSkillPoint++;
                 ingameUI.SetUserSkillPoint(UserSkillPoint);
             }
@@ -160,6 +162,7 @@ public class PlayManager : MonoBehaviour,ISubject
         }
 
         Check_SkillExist(s);
+        NotifyGameStateToObservers(s);
     }
 
     public void GameLoop()
@@ -381,11 +384,11 @@ public class PlayManager : MonoBehaviour,ISubject
         OnBoardPlayer.Remove(O);
     }
 
-    public void NotifyToObserver(Skill_Condition Skill_Condition,Transform tr)
+    public void NotifyEventToObservers(Skill_Condition Skill_Condition,Transform tr)
     {
         for (int i = 0; i < OnBoardPlayer.Count; i++)
         {
-            OnBoardPlayer[i].GetComponent<IObserver>()?.ListenToSubeject(Skill_Condition, tr);
+            OnBoardPlayer[i].GetComponent<IObserver>()?.ListenToEvent(Skill_Condition, tr);
         }
     }
 
@@ -397,5 +400,14 @@ public class PlayManager : MonoBehaviour,ISubject
         PlayerCount++;
         objectPool.GetEffect(7, tr.position, Quaternion.identity);
         CharacterIcons[index].SetActive(true);
+    }
+
+    //올라와있는 말들에게 게임 상태 알려주기
+    public void NotifyGameStateToObservers(GameState State)
+    {
+        for (int i = 0; i < OnBoardPlayer.Count; i++)
+        {
+            OnBoardPlayer[i].GetComponent<IObserver>()?.ListenToGameState(State);
+        }
     }
 }

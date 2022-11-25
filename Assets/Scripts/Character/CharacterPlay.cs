@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 
-public interface Confilct
+public interface IConfilct
 {
     public bool CheckConfilct();
 }
@@ -16,7 +16,7 @@ public enum PassiveType
 }
 
 
-public class CharacterPlay : MonoBehaviour, DeathProcess
+public class CharacterPlay : MonoBehaviour, IDeathProcess
 {
 
     public Character character;
@@ -68,7 +68,7 @@ public class CharacterPlay : MonoBehaviour, DeathProcess
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }
-        PlayManager.Instance.NotifyToObserver(Skill_Condition.Death, this.transform);
+        PlayManager.Instance.NotifyEventToObservers(Skill_Condition.Death, this.transform);
 
         PlayManager.Instance.Kill_Sprite = GameDB.Instance.GetCharacterIcon(this.character);
         this.gameObject.SetActive(false);

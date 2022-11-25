@@ -13,7 +13,7 @@ public class BaseBallBat : MonoBehaviour
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
             Debug.Log("트리거엔터" + collision.transform);
-            CompareSkill Enemy = collision.transform.GetComponent<CompareSkill>();
+            ICompareSkill Enemy = collision.transform.GetComponent<ICompareSkill>();
 
             Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f);
         }

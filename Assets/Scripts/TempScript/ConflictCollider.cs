@@ -24,7 +24,7 @@ public class ConflictCollider : MonoBehaviour
         {
             if (CheckPos(collision.transform))
             {
-                collision.GetComponent<DeathProcess>()?.Death();
+                collision.GetComponent<IDeathProcess>()?.Death();
             }
         }
 
@@ -32,7 +32,7 @@ public class ConflictCollider : MonoBehaviour
         {
             if (CheckPos(collision.transform))
             {
-                collision.GetComponent<DeathProcess>()?.Death();
+                collision.GetComponent<IDeathProcess>()?.Death();
             }
         }
     }
