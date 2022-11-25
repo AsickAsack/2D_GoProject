@@ -56,7 +56,7 @@ public class LeesinSkill : ConflictAndSKill
     }
 
 
-    public override void GoForward(Vector2 Dir, float Power)
+    public override void GoForward(Vector2 Dir, float Power, Transform tr)
     {
         Debug.Log(SkillPower);
         MyRigid.AddForce(Dir * (Power * SkillPower), ForceMode2D.Impulse);

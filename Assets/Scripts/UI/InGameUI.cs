@@ -45,11 +45,12 @@ public class InGameUI : MonoBehaviour
 
     [Header("[연속킬 & 킬스트릭 UI]")]
 
-    public Animator Kill_UI;
+    public Animator Kill_UI_Animator;
     public Image CharacterIcon;
     public TMPro.TMP_Text Kill_Text;
     public TMPro.TMP_Text KillStreak_Text;
 
+    public TMPro.TMP_Text MostKill_Text;
 
     [Header("[유저 스킬 UI]")]
 
@@ -88,6 +89,21 @@ public class InGameUI : MonoBehaviour
         
     }
 
+
+    //텍스트 수정 함수
+    public void SetTextUI(TMPro.TMP_Text Text,int index,string AnotherMessage)
+    {
+        Text.gameObject.SetActive(true);
+        Text.text = index.ToString() + AnotherMessage;
+    }
+
+    //최대 킬 UI 설정 함수
+    public void SetMostKillUI(int index)
+    {
+        SetTextUI(MostKill_Text, index, "");
+    }
+
+
     //스킬 포인트 세팅 함수
     public void SetUserSkillPoint(int index)
     {
@@ -97,10 +113,12 @@ public class InGameUI : MonoBehaviour
     //킬 UI 설정 함수
     public void SetKillUi(int index)
     {
-        Kill_UI.ResetTrigger("MoveUI");
-        Kill_UI.gameObject.SetActive(true);
-        Kill_Text.text = index.ToString() + " Kill";
-        Kill_UI.SetTrigger("MoveUI");
+        Debug.Log(index + "호출");
+        Kill_UI_Animator.ResetTrigger("MoveUI");
+        SetTextUI(Kill_Text, index, " Kill");
+
+        if(!Kill_UI_Animator.GetBool("IsActive"))
+            Kill_UI_Animator.SetTrigger("MoveUI");
 
     }
 

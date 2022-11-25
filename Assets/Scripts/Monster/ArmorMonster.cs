@@ -43,10 +43,10 @@ public class ArmorMonster : MonsterPlay
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
             ICompareSkill CK = collision.transform.GetComponent<ICompareSkill>();
-            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
+            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude,this.transform);
         }
     }
-    public override void GoForward(Vector2 Dir, float temp)
+    public override void GoForward(Vector2 Dir, float temp, Transform tr)
     {
         if (IsHelmet)
         {

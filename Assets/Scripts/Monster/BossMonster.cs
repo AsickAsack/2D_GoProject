@@ -36,7 +36,7 @@ public class BossMonster : MonsterPlay
         PlayManager.Instance.EnemyCount += CreateMonsterCount;
     }
 
-    public override void GoForward(Vector2 Dir, float Power)
+    public override void GoForward(Vector2 Dir, float Power, Transform tr)
     {
         //Skill();
         MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);

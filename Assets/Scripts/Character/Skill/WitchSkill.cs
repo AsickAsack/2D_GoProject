@@ -8,11 +8,13 @@ public class WitchSkill : ConflictAndSKill
     public int CandyCount;
     public float CandyRadius;
     public CircleCollider2D mycoll;
+    float OrgColliderRadius;
 
     private void Awake()
     {
         mycoll = this.GetComponent<CircleCollider2D>();
         CandyRadius = Candy.GetComponent<CircleCollider2D>().radius;
+        OrgColliderRadius = mycoll.radius;
     }
 
     private void OnEnable()
@@ -45,7 +47,7 @@ public class WitchSkill : ConflictAndSKill
     }
 
 
-    public override void GoForward(Vector2 Dir, float Power)
+    public override void GoForward(Vector2 Dir, float Power, Transform tr)
     {
         MyRigid.AddForce(Dir * (Power/1.5f), ForceMode2D.Impulse); //늘어난 크기만큼 날아가는 파워를 줄임..-> 변f수화 고민
     }
@@ -56,6 +58,7 @@ public class WitchSkill : ConflictAndSKill
     {
 
         IsSKill = true;
+        mycoll.radius = 0.0f;
         mycoll.isTrigger = true;
         IgnoreObstacle = true;
         float ThrowCandyDistance = StartMagunitude * 0.4f;
@@ -103,12 +106,13 @@ public class WitchSkill : ConflictAndSKill
             if (tempcoll[i].transform.CompareTag("EnemyBall") || tempcoll[i].transform.CompareTag("PlayerBall") && tempcoll[i].transform != this.transform)
             {
                 ICompareSkill temprigid = tempcoll[i].GetComponent<ICompareSkill>();
-                temprigid.GoForward((tempcoll[i].transform.position - this.transform.position).normalized,5.0f);
+                temprigid.GoForward((tempcoll[i].transform.position - this.transform.position).normalized,5.0f,this.transform);
             }
         }
 
         IsSKill = false;
         mycoll.isTrigger = false;
+        mycoll.radius = OrgColliderRadius;
         IgnoreObstacle = false;
     }
 

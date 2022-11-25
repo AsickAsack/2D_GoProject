@@ -15,7 +15,7 @@ public class BaseBallBat : MonoBehaviour
             Debug.Log("트리거엔터" + collision.transform);
             ICompareSkill Enemy = collision.transform.GetComponent<ICompareSkill>();
 
-            Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f);
+            Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f,this.transform);
         }
     }
 

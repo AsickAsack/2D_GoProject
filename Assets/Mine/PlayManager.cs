@@ -25,6 +25,7 @@ public interface IObserver
 // 현재 진행되는 게임의 상태 열거자
 public enum GameState
 {
+    None,
     Ready, //게임 시작 후 알 선택 단계
     Shot, //알 발사를 위해 드래그 하는 단계
     Move,// 알이 움직이고 있는 단계
@@ -66,9 +67,6 @@ public class PlayManager : MonoBehaviour,ISubject
     Quaternion ArrowOriginAngle;
 
     //효과
-    public delegate void KillEffectDele(int index);
-    public KillEffectDele MultiKill_Dele;
-    public KillEffectDele KillStreaks_Dele;
     public Sprite Kill_Sprite;
 
     //판정
@@ -76,7 +74,7 @@ public class PlayManager : MonoBehaviour,ISubject
     public int PlayerCount;
     public int UserSkillPoint = 0;
 
-    public int CurTurn = 1;
+    public int CurTurn = 0;
     //한턴에 얼마나 잡았는지 알 수 있는 멀티킬
     int _CurMultiKill;    
     public int CurMultiKill
@@ -85,17 +83,30 @@ public class PlayManager : MonoBehaviour,ISubject
         set
         {
             _CurMultiKill = value;
-            if (_CurMultiKill != 0)
+            if (CurMultiKill != 0)
             {
-                MultiKill_Dele(_CurMultiKill);
+                ingameUI.SetKillUi(_CurMultiKill);
                 UserSkillPoint++;
                 ingameUI.SetUserSkillPoint(UserSkillPoint);
+
+                if (CurMultiKill > MultiKill)
+                {
+                    MultiKill = CurMultiKill;
+                    ingameUI.SetMostKillUI(MultiKill);
+                }
             }
             
         }
     }
     public int MultiKill;
-    public int KillStreaks;
+
+    public int _KillStreaks;
+    public int KillStreaks
+    {
+        get { return _KillStreaks; }
+        set { _KillStreaks = value; }
+    }
+
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
 
@@ -107,10 +118,14 @@ public class PlayManager : MonoBehaviour,ISubject
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
         EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].Object_Information.MyMonster.Length;
         PlayerCount = StageManager.instance.CurCharacters.Count;
-        PlayManager.Instance.MultiKill_Dele = ingameUI.SetKillUi;
     }
 
-    public GameState gameState = GameState.Ready;
+    private void Start()
+    {
+        ChangeState(GameState.Ready);
+    }
+
+    public GameState gameState = GameState.None;
 
     void Update()
     {
@@ -129,15 +144,18 @@ public class PlayManager : MonoBehaviour,ISubject
         switch (s)
         {
             case GameState.Ready:
+
                 CurTurn++;
                 ingameUI.UserSKillBtn.SetActive(true);
+
+                if(CurPlayer != null)
                 CurPlayer.ChangeONBorad();
                 CurPlayer = null;
-                ingameUI.SetTextPhase("Choice Phase");
+
+                ingameUI.SetTextPhase(CurTurn +"턴! Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
                 CountRoutine();
 
-                //오른쪽 UI클릭해서 말 터치하기 -> 
                 break;
 
             case GameState.UserSkill:
@@ -204,12 +222,7 @@ public class PlayManager : MonoBehaviour,ISubject
             KillStreaks = 0;
             Debug.Log("킬스트릭 초기화");
         }
-        //KillStreaks_Dele();
 
-        if (CurMultiKill > MultiKill)
-        {
-            MultiKill = CurMultiKill;
-        }
         CurMultiKill = 0;
     }
     public void MoveLoop()
@@ -322,7 +335,7 @@ public class PlayManager : MonoBehaviour,ISubject
 
 
                 //플레이어 스크립트에서 보내기
-                CurPlayer.MySkill.GoForward(targetPos, Power);
+                CurPlayer.MySkill.GoForward(targetPos, Power,null);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
                 Arrow.transform.localScale = new Vector3(LimitPower.x / DivideArrowSize, LimitPower.x / DivideArrowSize, 0.0f);

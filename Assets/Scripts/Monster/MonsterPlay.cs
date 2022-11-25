@@ -84,13 +84,13 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
             ICompareSkill CK = collision.transform.GetComponent<ICompareSkill>();
 
-            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
+            CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude,this.transform);
 
         }
     }
 
 
-    public virtual void GoForward(Vector2 Dir, float Power)
+    public virtual void GoForward(Vector2 Dir, float Power, Transform tr)
     {
         MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
     }

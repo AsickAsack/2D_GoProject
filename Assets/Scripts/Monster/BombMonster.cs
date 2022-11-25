@@ -42,15 +42,13 @@ public class BombMonster : MonsterPlay
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    public override void GoForward(Vector2 Dir, float Power, Transform tr)
     {
-
-        if(collision.transform.CompareTag("PlayerBall"))
-        {
-            if (PlayManager.Instance.CurTurn == BombTurn)
-                Skill();
-
-        }
+        if(tr.CompareTag("PlayerBall")&& PlayManager.Instance.CurTurn == BombTurn)
+            Skill();
+        else
+        MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
     }
 
     public override void CountProcess()

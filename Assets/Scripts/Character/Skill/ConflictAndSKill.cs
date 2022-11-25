@@ -19,7 +19,7 @@ public interface ICompareSkill
     public bool GetSkillPriority(ICompareSkill other);
 
     //모든 충돌 처리는 이 함수로 시작함
-    public void GoForward(Vector2 Dir, float Power);
+    public void GoForward(Vector2 Dir, float Power,Transform tr);
 
     //리지드바디 리턴 함수
     public Rigidbody2D GetRigidBody();
@@ -85,7 +85,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
     }
 
     //앞으로 가는 함수
-    public virtual void GoForward(Vector2 Dir, float Power)
+    public virtual void GoForward(Vector2 Dir, float Power,Transform tr)
     {
         MyRigid.AddForce(Dir * Power, ForceMode2D.Impulse);
     }
@@ -119,7 +119,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
     {
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
         ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
-        CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude);
+        CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude,this.transform);
     }
 
 
