@@ -40,7 +40,7 @@ public class PlayManager : MonoBehaviour,ISubject
     public InGameUI ingameUI;
     public CharacterManager CharManager;
     public ObjectPool objectPool;
-
+   
 
     //public bool IsActive;
     
@@ -70,7 +70,20 @@ public class PlayManager : MonoBehaviour,ISubject
     public Sprite Kill_Sprite;
 
     //판정
-    public int EnemyCount;
+    
+    public int _EnemyCount;
+    public int EnemyCount
+    {
+        get => _EnemyCount;
+        set {
+            _EnemyCount = value;
+            if(EnemyCount == 0)
+            {
+                StartCoroutine(SetResult(ingameUI.SetResultCanavs,"승리!"));
+                //ingameUI.SetResultCanavs("승리!");
+            }
+        }
+    }
     public int PlayerCount;
     public int UserSkillPoint = 0;
 
@@ -93,6 +106,15 @@ public class PlayManager : MonoBehaviour,ISubject
                 {
                     MultiKill = CurMultiKill;
                     ingameUI.SetMostKillUI(MultiKill);
+
+                    if(MultiKill > 1)
+                    ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.MostKill), $"최다 킬 {MultiKill} 킬 달성! ");
+                }
+
+                if(!KillStreakCheck)
+                {
+                    KillStreaks++;
+                    KillStreakCheck = true;
                 }
             }
             
@@ -100,12 +122,22 @@ public class PlayManager : MonoBehaviour,ISubject
     }
     public int MultiKill;
 
+    public bool KillStreakCheck = false;
     public int _KillStreaks;
     public int KillStreaks
     {
-        get { return _KillStreaks; }
-        set { _KillStreaks = value; }
+        get => _KillStreaks;
+        set 
+        { 
+            _KillStreaks = value;
+            if(_KillStreaks != 0)
+            {
+                //킬 스트릭 알림
+                ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.Killstreak), $"{CurTurn} Combo!");
+            }
+        }
     }
+
 
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
@@ -122,24 +154,27 @@ public class PlayManager : MonoBehaviour,ISubject
 
     private void Start()
     {
-        ChangeState(GameState.Ready);
+        //ChangeState(GameState.Ready);
+        
     }
 
-    public GameState gameState = GameState.None;
+    public GameState gameState = GameState.Ready;
 
     void Update()
     {
         GameLoop();
     }
-
+    
+    public void Init()
+    {
+        ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
+    }
 
     public void ChangeState(GameState s)
     {
         if (s == gameState) return;
 
         gameState = s;
-
-        
 
         switch (s)
         {
@@ -150,11 +185,12 @@ public class PlayManager : MonoBehaviour,ISubject
 
                 if(CurPlayer != null)
                 CurPlayer.ChangeONBorad();
+
                 CurPlayer = null;
 
                 ingameUI.SetTextPhase(CurTurn +"턴! Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
-                CountRoutine();
+                
 
                 break;
 
@@ -175,7 +211,6 @@ public class PlayManager : MonoBehaviour,ISubject
 
             case GameState.End:
                 
-                //판정 하고 넘어가기
                 break;
         }
 
@@ -212,22 +247,19 @@ public class PlayManager : MonoBehaviour,ISubject
     public void CountRoutine()
     {
 
-        if (CurMultiKill != 0)
+        if (!KillStreakCheck && KillStreaks != 0)
         {
-            KillStreaks++;
-            Debug.Log("킬스트릭 " + KillStreaks);
+            ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.Killstreak_Fail), "Combo 초기화");
+            KillStreaks = 0;
         }
         else
-        {
-            KillStreaks = 0;
-            Debug.Log("킬스트릭 초기화");
-        }
+            KillStreakCheck = false;
 
         CurMultiKill = 0;
     }
     public void MoveLoop()
     {
-        if (CurPlayer == null || CurPlayer.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+        if (CurPlayer == null || CurPlayer.MyRigid.velocity == Vector2.zero)
         {
             ChangeState(GameState.End);
         }
@@ -245,6 +277,7 @@ public class PlayManager : MonoBehaviour,ISubject
         }
         else
         {
+            CountRoutine();
             ChangeState(GameState.Ready);
         }
     }
@@ -351,7 +384,7 @@ public class PlayManager : MonoBehaviour,ISubject
     //옆에 돌 눌렀을 때
     public void ChangeCurPlayer(int index,GameObject Obj)
     {
-        if (StageManager.instance.CurCharacters[index].OnBoard) return;
+        if (StageManager.instance.CurCharacters[index].MySkill.OnBoard) return;
 
         if (CurPlayer != null)
             CurPlayer.gameObject.SetActive(false);
@@ -395,6 +428,7 @@ public class PlayManager : MonoBehaviour,ISubject
     public void RemoveObserver(GameObject O)
     {
         OnBoardPlayer.Remove(O);
+        
     }
 
     public void NotifyEventToObservers(Skill_Condition Skill_Condition,Transform tr)
@@ -405,12 +439,16 @@ public class PlayManager : MonoBehaviour,ISubject
         }
     }
 
-
     //환생 루틴
     public void ReBirthRoutine(Transform tr)
     {
-        int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == tr.GetComponent<CharacterPlay>().character);
+        CharacterPlay character = tr.GetComponent<CharacterPlay>();
+        if (character == CurPlayer) CurPlayer = null;
+
+        ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.ReBirth), $"{character.name} 환생!");
+        int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == character.character);
         PlayerCount++;
+        character.MySkill.OnBoard = false;
         objectPool.GetEffect(7, tr.position, Quaternion.identity);
         CharacterIcons[index].SetActive(true);
     }
@@ -422,5 +460,11 @@ public class PlayManager : MonoBehaviour,ISubject
         {
             OnBoardPlayer[i].GetComponent<IObserver>()?.ListenToGameState(State);
         }
+    }
+
+    IEnumerator SetResult(UnityAction<string> unityAction,string s)
+    {
+        yield return new WaitForSeconds(2.0f);
+        unityAction(s);
     }
 }

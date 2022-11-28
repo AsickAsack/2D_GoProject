@@ -10,7 +10,7 @@ public class ReBirthSkill : ConflictAndSKill
 
     public override void ListenToEvent(Skill_Condition Skill_Condition,Transform tr)
     {
-        if (mySkill_Condition == Skill_Condition)
+        if (mySkill_Condition == Skill_Condition && this.gameObject.activeSelf)
         {
             if (!Rebirth)
             {

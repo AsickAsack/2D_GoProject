@@ -6,12 +6,7 @@ public class bulldozerSkill : ConflictAndSKill
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            MyRigid.velocity = MyVelocity * 0.7f;
-            PlayManager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);
-            collision.gameObject.SetActive(false);
-        }
+        ObstacleSkill(collision.gameObject);
 
         if (collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall"))
         {
@@ -19,4 +14,18 @@ public class bulldozerSkill : ConflictAndSKill
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ObstacleSkill(collision.gameObject);
+    }
+
+    public void ObstacleSkill(GameObject collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            MyRigid.velocity = MyVelocity * 0.7f;
+            PlayManager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);
+            collision.gameObject.SetActive(false);
+        }
+    }
 }

@@ -43,14 +43,20 @@ public class InGameUI : MonoBehaviour
 
     public TMPro.TMP_Text CurTurn_Text;
 
-    [Header("[연속킬 & 킬스트릭 UI]")]
+    [Header("[연속킬 & 킬스트릭 UI & 알림]")]
 
     public Animator Kill_UI_Animator;
     public Image CharacterIcon;
     public TMPro.TMP_Text Kill_Text;
     public TMPro.TMP_Text KillStreak_Text;
-
     public TMPro.TMP_Text MostKill_Text;
+
+    public Queue<string> Notify = new Queue<string>();
+    public Queue<Sprite> NotifySprite = new Queue<Sprite>();
+    public TMPro.TMP_Text NotifyText;
+    public GameObject NotifyOBJ;
+    public Image NotifyImage;
+    Coroutine CoNotify;
 
     [Header("[유저 스킬 UI]")]
 
@@ -61,6 +67,34 @@ public class InGameUI : MonoBehaviour
 
     public Canvas ResultCanvas;
     public TMPro.TMP_Text Result_Text;
+
+    //알림 기능
+    public void SetNotify(Sprite sprite,string s)
+    {
+        Notify.Enqueue(s);
+        NotifySprite.Enqueue(sprite);
+        
+        if (CoNotify == null)
+        {
+            CoNotify = StartCoroutine(NotifyRoutine(1.0f));
+        }
+    }
+    
+    IEnumerator NotifyRoutine(float time)
+    {
+        while(Notify.Count > 0)
+        {
+            NotifyText.text = Notify.Dequeue();
+            NotifyImage.sprite = NotifySprite.Dequeue();
+            NotifyOBJ.SetActive(true);
+
+            yield return new WaitForSeconds(time);
+            NotifyOBJ.SetActive(false);
+           
+        }
+
+        CoNotify = null;
+    }
 
     //결과 창 띄우는 함수
     public void SetResultCanavs(string result)
@@ -77,7 +111,7 @@ public class InGameUI : MonoBehaviour
             if (PlayManager.Instance.UserSkillPoint >= PlayerDB.Instance.myUserSkill.SkillPoint)
             {
                 PlayManager.Instance.ChangeState(GameState.UserSkill);
-            }else
+            } else
             {
                 Debug.Log("포인트 부족ㅋㅋ");
             }
@@ -86,10 +120,10 @@ public class InGameUI : MonoBehaviour
         {
             PlayManager.Instance.gameState = GameState.Ready;
         }
-        
+
     }
 
-
+    
     //텍스트 수정 함수
     public void SetTextUI(TMPro.TMP_Text Text,int index,string AnotherMessage)
     {
@@ -113,7 +147,6 @@ public class InGameUI : MonoBehaviour
     //킬 UI 설정 함수
     public void SetKillUi(int index)
     {
-        Debug.Log(index + "호출");
         Kill_UI_Animator.ResetTrigger("MoveUI");
         SetTextUI(Kill_Text, index, " Kill");
 

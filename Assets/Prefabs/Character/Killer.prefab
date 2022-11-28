@@ -253,7 +253,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -375,7 +375,6 @@ MonoBehaviour:
     Passive_Range: 0
     Story: 
   MySkill: {fileID: 6471225873302806971}
-  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -398,6 +397,7 @@ MonoBehaviour:
   IgnoreObstacle: 0
   mySkill_Condition: 0
   MurDerLimit: 2
+  MurDerCount: 0
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0

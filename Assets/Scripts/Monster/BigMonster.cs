@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class BigMonster : MonsterPlay
 {
-    public override void Death()
-    {
-        CountProcess();
-    }
-
-    public override void Initialize()
+     public override void Initialize()
     {
         //질량 높게 
     }

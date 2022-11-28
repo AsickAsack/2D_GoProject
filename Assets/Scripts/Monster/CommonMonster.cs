@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CommonMonster : MonsterPlay
 {
-    public override void Death()
-    {
-        CountProcess();
-    }
 
     public override void Initialize()
     {

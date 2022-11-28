@@ -21,14 +21,14 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess
 
     public Character character;
     public ConflictAndSKill MySkill;
-    public bool OnBoard =false;    
+    //public bool OnBoard =false;    
     public GameObject PassiveRangeObj;
 
     public SpriteRenderer InGame_Sprite;
     public float Power;
     public int Index;
 
-    protected Rigidbody2D MyRigid
+    public Rigidbody2D MyRigid
     {
         get => this.GetComponent<Rigidbody2D>();
     }
@@ -37,12 +37,12 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess
     {
         InGame_Sprite = this.transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
-
+    /*
     public virtual void Rebirth()
     {
         OnBoard = false;
     }
-    
+    */
     public virtual void ChangeONBorad()
     {
         if(this != null)
@@ -62,15 +62,15 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess
 
     public void Death()
     {
+        if (!this.gameObject.activeSelf) return;
 
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
-        if (PlayManager.Instance.OnBoardPlayer.Find(x=>x.gameObject == this.gameObject))
+        if(MySkill.OnBoard)
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }
+        MySkill.OnBoard = false;
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);        
         PlayManager.Instance.NotifyEventToObservers(Skill_Condition.Death, this.transform);
-
-        PlayManager.Instance.Kill_Sprite = GameDB.Instance.GetCharacterIcon(this.character);
         this.gameObject.SetActive(false);
 
     }

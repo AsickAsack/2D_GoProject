@@ -7,16 +7,6 @@ public class ArmorMonster : MonsterPlay
     public GameObject Helmet;
     public bool IsHelmet = true;
 
-    private void Awake()
-    {
-        
-    }
-
-    public override void Death()
-    {
-       CountProcess();
-    }
-
     IEnumerator TakeOff_Helmet(Vector2 dir)
     {
         float time = 5.0f;

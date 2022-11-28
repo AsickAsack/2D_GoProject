@@ -61,11 +61,4 @@ public class BombMonster : MonsterPlay
     }
 
 
-    public override void Death()
-    {
-
-        CountProcess();
-    }
-
-
 }

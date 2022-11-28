@@ -32,7 +32,10 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
 
 
-    public abstract void Death();
+    public virtual void Death()
+    {
+        CountProcess();
+    }
 
     private void Start()
     {
@@ -57,8 +60,11 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
     public virtual void CountProcess()
     {
+        if (!this.gameObject.activeSelf) return;
+
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         PlayManager.Instance.EnemyCount--;
+        Debug.Log(PlayManager.Instance.EnemyCount + this.transform.name);
         this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
         

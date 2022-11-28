@@ -169,7 +169,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -291,7 +291,6 @@ MonoBehaviour:
     Passive_Range: 0
     Story: 
   MySkill: {fileID: 8236081329054046929}
-  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -308,10 +307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd424038ba6e03b439d7aa14be23ab42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill_index: 0
   _SkillPriority: 1
-  IgnoreObstacle: 0
+  Skill_index: 0
   OnBoard: 0
+  IgnoreObstacle: 0
   mySkill_Condition: 0
   Candy: {fileID: 2947330653388242085, guid: 7a17f9c6fa947d248a7e82fb978482a0, type: 3}
   CandyCount: 3

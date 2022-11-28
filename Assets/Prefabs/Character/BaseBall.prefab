@@ -243,7 +243,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -365,7 +365,6 @@ MonoBehaviour:
     Passive_Range: 0
     Story: 
   MySkill: {fileID: 4735903989471041995}
-  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -382,10 +381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90824d7fb84d7ee4fb262bbd73276a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill_index: 0
   _SkillPriority: 0
-  IgnoreObstacle: 0
+  Skill_index: 0
   OnBoard: 0
+  IgnoreObstacle: 0
   mySkill_Condition: 0
   BaseBall_Bat: {fileID: 396600473975881224}
 --- !u!1 &6134260428480012705

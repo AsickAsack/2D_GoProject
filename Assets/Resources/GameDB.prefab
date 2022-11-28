@@ -65,6 +65,8 @@ MonoBehaviour:
   - {fileID: 241363113802261835, guid: 6f49b9c2e4f71504a8a219b2ce2936da, type: 3}
   Obstacles:
   - {fileID: 3849774495288422949, guid: 2659a9fbf30f7a0418372897dc7d8050, type: 3}
+  - {fileID: 216341342427387488, guid: baac4cddb9f1dc544825b84f30788427, type: 3}
+  - {fileID: 3892100724588494865, guid: c8811625ae60041459559c9e343865c3, type: 3}
   UserSkills:
   - {fileID: 3803422693436291940, guid: f3f3354dd4898fb4cbfd04785b9c0022, type: 3}
   - {fileID: 7584223975199734802, guid: 0db17c64ca0a7804baaae3122ce99f81, type: 3}
@@ -94,3 +96,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 13e19300b0e5b4b4cbca6844ef451512, type: 3}
   - {fileID: 21300000, guid: 81b759e81f5c3334ab52b94f6fd3b865, type: 3}
   - {fileID: 21300000, guid: 49ebcf8b7dc05694cb9db9a9160244f5, type: 3}
+  NotifySprite:
+  - {fileID: 21300000, guid: 1c24f369d947a734da34910c8a162024, type: 3}
+  - {fileID: 21300000, guid: 3ded476d6d2ea6b4ab7cc57998373825, type: 3}
+  - {fileID: 21300000, guid: 0a2d0bb669833401daab037dc03e1e83, type: 3}
+  - {fileID: 21300000, guid: 34fc39eeda35b4aa6a09a4b4aed954cd, type: 3}
+  - {fileID: 21300000, guid: 71cc684e10cb440a580673e0f58a7ee6, type: 3}

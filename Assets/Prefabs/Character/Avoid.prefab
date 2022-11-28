@@ -168,7 +168,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -290,7 +290,6 @@ MonoBehaviour:
     Passive_Range: 0
     Story: 
   MySkill: {fileID: 4650410011381776753}
-  OnBoard: 0
   PassiveRangeObj: {fileID: 8873808867456415848}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -477,10 +476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d30ad5ad66d5f44a93dc158f7c01eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill_index: 0
   _SkillPriority: 3
-  IgnoreObstacle: 0
+  Skill_index: 0
   OnBoard: 0
+  IgnoreObstacle: 0
   mySkill_Condition: 0
 --- !u!58 &3212556007880475752
 CircleCollider2D:

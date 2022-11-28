@@ -21,5 +21,8 @@ public class Wall : Obstacle
         }
     }
 
-  
+    public override void Skill(Collider2D collision)
+    {
+        //Æ®¸®°Å
+    }
 }
