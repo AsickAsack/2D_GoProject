@@ -24,4 +24,16 @@ public class UserSkill : MonoBehaviour
         PlayManager.Instance.UserSkillPoint -= this.SkillPoint;
     }
 
+    public void End_Skill()
+    {
+        StartCoroutine(DelaySkill());
+    }
+
+    IEnumerator DelaySkill()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        this.gameObject.SetActive(false);
+
+    }
 }

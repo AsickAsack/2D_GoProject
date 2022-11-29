@@ -21,11 +21,6 @@ public abstract class Obstacle : MonoBehaviour
         if (collision.transform.CompareTag("PlayerBall"))
             if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
 
-        
         Skill(collision);
-        
     }
-
-    
-
 }

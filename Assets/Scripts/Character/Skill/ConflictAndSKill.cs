@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IMoveCheck
+{
+    //정지 했는지 확인하는 bool값
+    public bool IsUserSKill { get; set; }
+
+    //정지 했는지 리턴해주는 함수
+    public bool GetIsStop();
+}
+
 
 //스킬 우선순위 비교 & 충돌 인터페이스
 public interface ICompareSkill
@@ -95,8 +104,6 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
     public virtual void CheckSKill(GameState SkillState)
     {
         return;
-
-        
     }
 
 

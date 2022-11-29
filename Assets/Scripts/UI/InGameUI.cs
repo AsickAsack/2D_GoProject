@@ -63,10 +63,22 @@ public class InGameUI : MonoBehaviour
     public Slider UserPointSlider;
     public GameObject UserSKillBtn;
 
+    [Header("[팝업 UI]")]
+
+    public Canvas PopUpCanvas;
+    public TMPro.TMP_Text PopUptext;
+    public GameObject UserSkillBox;
+
     [Header("[결과창 UI]")]
 
     public Canvas ResultCanvas;
     public TMPro.TMP_Text Result_Text;
+
+    public void SetPopup(string s)
+    {
+        PopUpCanvas.enabled = true;
+        PopUptext.text = s;
+    }
 
     //알림 기능
     public void SetNotify(Sprite sprite,string s)
@@ -106,19 +118,23 @@ public class InGameUI : MonoBehaviour
     //유저 스킬 버튼 함수
     public void GoUserSkill()
     {
-        if (PlayManager.Instance.gameState != GameState.UserSkill)
+        if (PlayManager.Instance.gameState != GameState.UserSkillSelect)
         {
             if (PlayManager.Instance.UserSkillPoint >= PlayerDB.Instance.myUserSkill.SkillPoint)
             {
-                PlayManager.Instance.ChangeState(GameState.UserSkill);
-            } else
+                PlayManager.Instance.ChangeState(GameState.UserSkillSelect);
+            } 
+            else
             {
-                Debug.Log("포인트 부족ㅋㅋ");
+                SetPopup("포인트가 부족합니다!");
             }
         }
         else
         {
             PlayManager.Instance.gameState = GameState.Ready;
+            
+            SetTextPhase(PlayManager.Instance.CurTurn + "턴! Choice Phase");
+            SetCharacterPopUP(true);
         }
 
     }

@@ -16,7 +16,7 @@ public enum PassiveType
 }
 
 
-public class CharacterPlay : MonoBehaviour, IDeathProcess
+public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
 {
 
     public Character character;
@@ -32,6 +32,7 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess
     {
         get => this.GetComponent<Rigidbody2D>();
     }
+    public bool IsUserSKill { get; set; }
 
     private void Awake()
     {
@@ -82,7 +83,12 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess
         
     }
 
-
-  
+    public bool GetIsStop()
+    {
+        if (MyRigid.velocity == Vector2.zero)
+            return true;
+        else
+            return false;
+    }
 }
 

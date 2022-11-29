@@ -22,7 +22,6 @@ public class LazySkill : ConflictAndSKill
                 {
                     if (temp.GetSkillPriority(this))
                     {
-                        Debug.Log("레이지 스킬");
                         this.MyRigid.velocity = Vector2.zero;
                         collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0.2f, 0.2f);
                         IsSKill = false;

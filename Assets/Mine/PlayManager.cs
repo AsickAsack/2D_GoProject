@@ -30,7 +30,8 @@ public enum GameState
     Shot, //알 발사를 위해 드래그 하는 단계
     Move,// 알이 움직이고 있는 단계
     End, // 끝나고 종료 조건 계산 단계
-    UserSkill // 유저 스킬 단계
+    UserSkillSelect, // 유저 스킬 선택 단계
+    UserSKill
 }
 
 public class PlayManager : MonoBehaviour,ISubject
@@ -65,12 +66,13 @@ public class PlayManager : MonoBehaviour,ISubject
     public GameObject[] CharacterIcons;
     public GameObject Arrow;
     Quaternion ArrowOriginAngle;
+    public UserSkill UserSkillObj;
 
     //효과
     public Sprite Kill_Sprite;
 
     //판정
-    
+
     public int _EnemyCount;
     public int EnemyCount
     {
@@ -133,7 +135,7 @@ public class PlayManager : MonoBehaviour,ISubject
             if(_KillStreaks != 0)
             {
                 //킬 스트릭 알림
-                ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.Killstreak), $"{CurTurn} Combo!");
+                ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.Killstreak), $"{_KillStreaks} Combo!");
             }
         }
     }
@@ -194,7 +196,20 @@ public class PlayManager : MonoBehaviour,ISubject
 
                 break;
 
-            case GameState.UserSkill:
+            case GameState.UserSkillSelect:
+                //cur플레이어 숨김, 캐릭터 선택창 닫기, 선택 ui
+
+                ingameUI.UserSkillBox.SetActive(true);
+                ingameUI.SetCharacterPopUP(false);
+                if (CurPlayer != null)
+                {
+                    CurPlayer.gameObject.SetActive(false);
+                    CurPlayer = null;
+                }
+                break;
+
+            case GameState.UserSKill:
+                ingameUI.UserSkillBox.SetActive(false);
                 break;
 
             case GameState.Shot:
@@ -238,7 +253,11 @@ public class PlayManager : MonoBehaviour,ISubject
                 Check_MoveStop();
                 break;
 
-            case GameState.UserSkill:
+            case GameState.UserSkillSelect:
+                UserSkillSelectLoop();
+                break;
+
+            case GameState.UserSKill:
                 UserSkillLoop();
                 break;
         }
@@ -259,10 +278,8 @@ public class PlayManager : MonoBehaviour,ISubject
     }
     public void MoveLoop()
     {
-        if (CurPlayer == null || CurPlayer.MyRigid.velocity == Vector2.zero)
-        {
+        if(CheckMove())
             ChangeState(GameState.End);
-        }
     }
 
     public void Check_MoveStop()
@@ -273,7 +290,7 @@ public class PlayManager : MonoBehaviour,ISubject
         }
         else if (PlayerCount == 0)
         {
-            ingameUI.SetResultCanavs("패배..ㅠ");
+            ingameUI.SetResultCanavs("패배ㅋ");
         }
         else
         {
@@ -405,7 +422,7 @@ public class PlayManager : MonoBehaviour,ISubject
         */
     }
 
-    public void UserSkillLoop()
+    public void UserSkillSelectLoop()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -414,11 +431,27 @@ public class PlayManager : MonoBehaviour,ISubject
             if (MyRayCast)
             {
                 PlayerDB.Instance.myUserSkill.Skill(MyRayCast.point);
-                gameState = GameState.Ready;
+                ingameUI.SetUserSkillPoint(UserSkillPoint);
+                ingameUI.UserSKillBtn.SetActive(false);
+                ChangeState(GameState.UserSKill);
             }
         }
     }
 
+    public void UserSkillLoop()
+    {
+        if(CheckMove())
+        {
+            gameState = GameState.Ready;
+            ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
+            ingameUI.UserSKillBtn.SetActive(true);
+            ingameUI.SetCharacterPopUP(true);
+            if(UserSkillObj != null)
+            {
+                UserSkillObj.End_Skill();
+            }
+        }
+    }
 
     public void RegisterObserver(GameObject O)
     {
@@ -466,5 +499,30 @@ public class PlayManager : MonoBehaviour,ISubject
     {
         yield return new WaitForSeconds(2.0f);
         unityAction(s);
+    }
+
+
+    public bool CheckMove()
+    {
+        
+        if(CurPlayer == null || CurPlayer.GetIsStop())
+        {
+            for(int i=0;i < StageManager.instance.CurMonsters.Count;i++)
+            {
+                if (!StageManager.instance.CurMonsters[i].GetComponent<IMoveCheck>().GetIsStop())
+                    return false;
+            }
+
+            for (int i = 0; i < OnBoardPlayer.Count; i++)
+            {
+                if (!OnBoardPlayer[i].GetComponent<IMoveCheck>().GetIsStop())
+                    return false;
+            }
+
+            return true;
+        }
+
+        return false;
+        
     }
 }

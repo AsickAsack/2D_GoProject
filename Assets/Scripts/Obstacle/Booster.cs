@@ -56,6 +56,15 @@ public class Booster : Obstacle
         Skill(collision);
     }
     */
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("PlayerBall"))
+            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
+
+        Skill(collision);
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))

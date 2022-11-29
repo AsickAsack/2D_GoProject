@@ -7,7 +7,7 @@ public interface IDeathProcess
     public void Death();
 }
 
-public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill
+public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill,IMoveCheck
 {
 
     private Rigidbody2D _myRigid;
@@ -27,6 +27,8 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public float Power;
     public bool IsConflict = true;
     public Vector2 MyVelocity { get; set; }
+    public bool IsUserSKill { get; set; }
+
     public abstract void Initialize();
     public abstract void Skill();
 
@@ -64,7 +66,6 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         PlayManager.Instance.EnemyCount--;
-        Debug.Log(PlayManager.Instance.EnemyCount + this.transform.name);
         this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
         
@@ -112,5 +113,13 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public bool GetSkillPriority(ICompareSkill other)
     {
         return true;
+    }
+
+    public bool GetIsStop()
+    {
+        if (MyRigid.velocity == Vector2.zero)
+            return true;
+        else
+            return false;
     }
 }
