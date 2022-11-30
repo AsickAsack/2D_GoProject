@@ -66,7 +66,6 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
         }
 
     }
-
     public int SkillPriority
     {
         get
@@ -80,8 +79,14 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
         }
     }
 
-
     public bool IsSKill { get; set; } = false;
+
+    public Character character;
+
+    private void Awake()
+    {
+        character = this.GetComponent<CharacterPlay>().character;
+    }
 
     private void OnEnable()
     {

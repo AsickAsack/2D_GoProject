@@ -20,7 +20,7 @@ public class DownLoadDB : MonoBehaviour
         GameDB.Instance.InputDB(GameDB.Instance.DownLoad_DB(www2), GameDB.MonsterDB);
 
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
-        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.lazy));
+        PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Olaf));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Killer));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Witch));

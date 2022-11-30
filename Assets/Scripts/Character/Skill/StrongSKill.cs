@@ -11,7 +11,7 @@ public class StrongSKill : ConflictAndSKill
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
             Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity *= 2;
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity *= character.Skill_Figure;
             ConflictProcess(collision, this.GetComponent<Rigidbody2D>().velocity.magnitude * 2.0f);
         }
 

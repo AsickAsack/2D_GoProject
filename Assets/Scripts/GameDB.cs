@@ -21,14 +21,14 @@ public enum MonsterStat
 
 public enum CharacterName
 {
-    Strong=1001,lazy,mad,Killer,Witch,BaseBall,Leesin,Rebirth, brainwash,Avoid, bulldozer
+    Strong=1001,Olaf,mad,Killer,Witch,BaseBall,Leesin,Rebirth, brainwash,Avoid, bulldozer
 }
 
 public enum CharacterStat
 {
     Name=1,Character_Des,Min_Power,Max_Power,Mass,Drag,
-    Active_Des,Active_Target,Active_Figure,
-    Passive_Des, Passive_probability, Passive_Range, Character_Story
+    Skill_Des,Skill_Target,Skill_Type,
+    Skill_probability,Skill_Range,Story
 }
 
 public enum ActiveTarget
@@ -123,9 +123,19 @@ public class GameDB : MonoBehaviour
 
         for (int i = 1; i < tempDB.Length; i++)
         {
-            string[] tempDB2 = tempDB[i].Split(',');
-            dic.Add(int.Parse(tempDB2[0]), tempDB2);
+
+                string[] tempDB2 = tempDB[i].Split(',');
+                dic.Add(int.Parse(tempDB2[0]), tempDB2);
+
         }
+    }
+
+    public string ChangeFigure(Character character,string s)
+    {
+        if (s.Contains('n'))
+            s = s.Replace("n", character.Skill_Figure.ToString());
+
+        return s;
     }
 
 }

@@ -18,13 +18,13 @@ public class Character
         Max_Power = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Mass = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Drag = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
-        Active_Des = GameDB.CharacterDB[(int)name][temp++];
+        Skill_Des = RePlaceString(GameDB.CharacterDB[(int)name][temp++]);
         active_target = (ActiveTarget)int.Parse(GameDB.CharacterDB[(int)name][temp++]);
-        Active_Figure = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
-        Passive_Des = GameDB.CharacterDB[(int)name][temp++];
-        Passive_probability = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
-        Passive_Range = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
-        Story = GetStory(GameDB.CharacterDB[(int)name][temp++]);
+        Skill_Figure = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Skill_Type = int.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Skill_probability = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Skill_Range = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Story = RePlaceString(GameDB.CharacterDB[(int)name][temp++]);
         GetTime = DateTime.Now;
     }
 
@@ -48,12 +48,12 @@ public class Character
     public float Max_Power;
     public float Mass;
     public float Drag;
-    public string Active_Des;
+    public string Skill_Des;
     public ActiveTarget active_target;
-    public float Active_Figure;
-    public string Passive_Des;
-    public float Passive_probability;
-    public float Passive_Range;
+    public float Skill_Figure;
+    public int Skill_Type;
+    public float Skill_probability;
+    public float Skill_Range;
     public string Story;
 
     //스킬 강화효과  
@@ -61,7 +61,7 @@ public class Character
     //이미지 
 
 
-    string GetStory(string story)
+    string RePlaceString(string story)
     {
         story = story.Replace("`","\n");
         story = story.Replace("~",",");
