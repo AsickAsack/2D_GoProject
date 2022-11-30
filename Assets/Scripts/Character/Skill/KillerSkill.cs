@@ -4,25 +4,12 @@ using UnityEngine;
 
 public class KillerSkill : ConflictAndSKill
 {
-    [SerializeField]
-    int MurDerLimit;
-    [SerializeField]
-    int MurDerCount = 0;
+
+    bool IsMurder = false;
 
     private void OnEnable()
     {
-        MurDerCount = 0;
-    }
-
-    public override void ListenToGameState(GameState state)
-    {
-        switch(state)
-        {
-            case GameState.Ready:
-
-                MurDerCount = 0;
-                break;
-        }
+        IsMurder = false;
     }
 
 
@@ -61,10 +48,7 @@ public class KillerSkill : ConflictAndSKill
                     {
                         ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
-                    
                 }
-
-                
             }
             else
             {
@@ -76,14 +60,17 @@ public class KillerSkill : ConflictAndSKill
 
     public bool MurderSkill(Collision2D Other)
     {
-        if (MurDerCount == MurDerLimit) return false;
-
-        MurDerCount++;
-        MyRigid.velocity = Vector2.zero;
-        PlayManager.Instance.objectPool.GetActiveEffects(Skill_index, Other.transform.position);
-        Other.transform.GetComponent<IDeathProcess>()?.Death();
-        IsSKill = false;
-        return true;
+        if (!IsMurder)
+        {
+            IsMurder = true;
+            MyRigid.velocity = Vector2.zero;
+            PlayManager.Instance.objectPool.GetActiveEffects(Skill_index, Other.transform.position);
+            Other.transform.GetComponent<IDeathProcess>()?.Death();
+            IsSKill = false;
+            return true;
+        }
+        else
+            return false;
     }
 
 

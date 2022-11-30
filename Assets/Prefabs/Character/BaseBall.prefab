@@ -357,12 +357,12 @@ MonoBehaviour:
     Max_Power: 0
     Mass: 0
     Drag: 0
-    Active_Des: 
+    Skill_Des: 
     active_target: 0
-    Active_Figure: 0
-    Passive_Des: 
-    Passive_probability: 0
-    Passive_Range: 0
+    Skill_Figure: 0
+    Skill_Type: 0
+    Skill_probability: 0
+    Skill_Range: 0
     Story: 
   MySkill: {fileID: 4735903989471041995}
   PassiveRangeObj: {fileID: 0}
@@ -386,6 +386,21 @@ MonoBehaviour:
   OnBoard: 0
   IgnoreObstacle: 0
   mySkill_Condition: 0
+  character:
+    MyCharacter: 0
+    Name: 
+    Character_Des: 
+    Min_Power: 0
+    Max_Power: 0
+    Mass: 0
+    Drag: 0
+    Skill_Des: 
+    active_target: 0
+    Skill_Figure: 0
+    Skill_Type: 0
+    Skill_probability: 0
+    Skill_Range: 0
+    Story: 
   BaseBall_Bat: {fileID: 396600473975881224}
 --- !u!1 &6134260428480012705
 GameObject:
@@ -543,7 +558,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 9f77626a686e1af4891e5c9a465ebb99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

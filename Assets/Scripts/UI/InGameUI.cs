@@ -74,6 +74,40 @@ public class InGameUI : MonoBehaviour
     public Canvas ResultCanvas;
     public TMPro.TMP_Text Result_Text;
 
+    [Header("[캐릭터 정보 UI]")]
+
+    public Canvas SkillDescriptionCanavs;
+    public TMPro.TMP_Text SkillLabel;
+    public TMPro.TMP_Text SkillDescriptionText;
+    public GameObject InfoIcon;
+
+    public void SetCharacterSkill_UI()
+    {
+        if(SkillDescriptionCanavs.enabled)
+        {
+            //이미 창이 켜져있을때
+            SetCharacterSkill_UI(false);
+        }
+        else
+        {
+            if(PlayManager.Instance.CurPlayer != null)
+            SetCharacterSkill_UI(true, PlayManager.Instance.CurPlayer.character);
+        }
+    }
+
+
+    public void SetCharacterSkill_UI(bool check,Character character = null)
+    {
+        if (!check)
+        {
+            SkillDescriptionCanavs.enabled = false;
+            return;
+        }
+
+        SkillDescriptionCanavs.enabled = true;
+        SkillLabel.text = character.Skill_Type == 1 ? character.Name + "- 액티브 스킬" : character.Name + "- 패시브 스킬";
+        SkillDescriptionText.text = GameDB.Instance.ChangeFigure(character, character.Skill_Des);
+    }
     public void SetPopup(string s)
     {
         PopUpCanvas.enabled = true;
@@ -240,10 +274,14 @@ public class InGameUI : MonoBehaviour
     //인게임 캐릭터 선택창 세팅 함수
     public void SetCharacterPopUP(bool Check)
     {
-        if(Check)
+        InfoIcon.SetActive(Check);
+
+        if (Check)
             PopupAnim.SetTrigger("GoLeft");
         else
             PopupAnim.SetTrigger("GoRight");
+
+            
     }
 
     #endregion

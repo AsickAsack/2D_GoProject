@@ -4,21 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InGameIcon : MonoBehaviour, IPointerClickHandler
+public class InGameIcon : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
 
     public int Myindex;
     private Image Icon;
-
-    //클릭했을때
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        //여기 코드 예쁘게 수정 해야됨 
-        //Ready페이즈일때 누르면 소환 , 아무것도 없으면 교환
-
-        PlayManager.Instance.ChangeCurPlayer(Myindex,this.gameObject);
-        
-    }
+    private Coroutine CharacterUICo;
 
     private void Awake()
     {
@@ -31,5 +22,35 @@ public class InGameIcon : MonoBehaviour, IPointerClickHandler
         Icon.sprite = GameDB.Instance.GetCharacterIcon(StageManager.instance.SelectCharacters[Myindex]);
     }
 
-    
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        //여기 코드 예쁘게 수정 해야됨 
+        //Ready페이즈일때 누르면 소환 , 아무것도 없으면 교환
+
+        PlayManager.Instance.ChangeCurPlayer(Myindex, this.gameObject);
+       
+        if (CharacterUICo == null)
+            CharacterUICo = StartCoroutine(UIRoutine());
+        else
+        {
+            StopCoroutine(CharacterUICo);
+            CharacterUICo = StartCoroutine(UIRoutine());
+        }
+    }
+
+    IEnumerator UIRoutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        //ui 세팅
+        PlayManager.Instance.ingameUI.SetCharacterSkill_UI(true,StageManager.instance.CurCharacters[Myindex].character);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (CharacterUICo != null)
+            StopCoroutine(CharacterUICo);
+
+        //UI끄기;
+        PlayManager.Instance.ingameUI.SetCharacterSkill_UI(false);
+    }
 }

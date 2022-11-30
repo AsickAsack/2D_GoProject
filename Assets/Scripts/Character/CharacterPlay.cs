@@ -76,6 +76,10 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
 
     }
 
+    public void Death(int EffectIndex)
+    {
+
+    }
     public void ExitGame()
     {
         //구멍에 빠졌을때

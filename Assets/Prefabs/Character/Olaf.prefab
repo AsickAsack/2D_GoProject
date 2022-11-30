@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 445d90ff94dbad04c946cce362a0f15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SkillPriority: 3
+  _SkillPriority: 1
   Skill_index: 0
   OnBoard: 0
   IgnoreObstacle: 0
@@ -327,6 +327,7 @@ MonoBehaviour:
     Skill_probability: 0
     Skill_Range: 0
     Story: 
+  IceObj: {fileID: 2054167498793277691, guid: 5f8df4135306c3643a9f39ad8eb31b8e, type: 3}
 --- !u!1 &4717380342204496831
 GameObject:
   m_ObjectHideFlags: 0

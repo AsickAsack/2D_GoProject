@@ -83,7 +83,7 @@ MonoBehaviour:
         MyObstacle:
         - obstacle_name: 2
           obstacle_Pos: {x: -1.5, y: 3.16}
-          Angle: 0
+          Angle: 30
         - obstacle_name: 0
           obstacle_Pos: {x: 2.18, y: 0.78}
           Angle: -40.8

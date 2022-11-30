@@ -20,6 +20,7 @@ public class Character
         Drag = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Skill_Des = RePlaceString(GameDB.CharacterDB[(int)name][temp++]);
         active_target = (ActiveTarget)int.Parse(GameDB.CharacterDB[(int)name][temp++]);
+        Skill_UIFigure = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Skill_Figure = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Skill_Type = int.Parse(GameDB.CharacterDB[(int)name][temp++]);
         Skill_probability = float.Parse(GameDB.CharacterDB[(int)name][temp++]);
@@ -50,6 +51,7 @@ public class Character
     public float Drag;
     public string Skill_Des;
     public ActiveTarget active_target;
+    public float Skill_UIFigure;
     public float Skill_Figure;
     public int Skill_Type;
     public float Skill_probability;

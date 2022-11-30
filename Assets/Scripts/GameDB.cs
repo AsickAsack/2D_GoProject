@@ -130,10 +130,11 @@ public class GameDB : MonoBehaviour
         }
     }
 
+    //캐릭터 수치 바꾸는 함수
     public string ChangeFigure(Character character,string s)
     {
         if (s.Contains('n'))
-            s = s.Replace("n", character.Skill_Figure.ToString());
+            s = s.Replace("n", character.Skill_UIFigure.ToString());
 
         return s;
     }

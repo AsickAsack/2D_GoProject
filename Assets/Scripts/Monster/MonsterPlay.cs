@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IDeathProcess
 {
     public void Death();
+    public void Death(int EffectIndex);
 }
 
 public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill,IMoveCheck
@@ -38,6 +39,16 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     {
         CountProcess();
     }
+    public void Death(int EffectIndex)
+    {
+        if (!this.gameObject.activeSelf) return;
+
+        PlayManager.Instance.objectPool.GetActiveEffects(EffectIndex, this.transform.position);
+        PlayManager.Instance.EnemyCount--;
+        this.gameObject.SetActive(false);
+        PlayManager.Instance.CurMultiKill++;
+    }
+
 
     private void Start()
     {

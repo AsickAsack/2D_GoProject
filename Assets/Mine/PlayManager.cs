@@ -478,7 +478,7 @@ public class PlayManager : MonoBehaviour,ISubject
         CharacterPlay character = tr.GetComponent<CharacterPlay>();
         if (character == CurPlayer) CurPlayer = null;
 
-        ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.ReBirth), $"{character.name} 発持!");
+        ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.ReBirth), $"{character.character.Name} 発持!");
         int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == character.character);
         PlayerCount++;
         character.MySkill.OnBoard = false;
