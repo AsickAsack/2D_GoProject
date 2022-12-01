@@ -35,7 +35,7 @@ public class BaseBallSkill : ConflictAndSKill
 
 
             case GameState.Move:
-                mySkillCo = StartCoroutine(Bat_Skill(MyRigid.velocity.magnitude * this.character.Skill_Figure));
+                mySkillCo = StartCoroutine(Bat_Skill(MyRigid.velocity.magnitude * this.characterplay.character.Skill_Figure));
                 
                 break;
 

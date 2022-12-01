@@ -81,11 +81,11 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
 
     public bool IsSKill { get; set; } = false;
 
-    public Character character;
+    public CharacterPlay characterplay;
 
     private void Awake()
     {
-        character = this.GetComponent<CharacterPlay>().character;
+        characterplay = this.transform.GetComponent<CharacterPlay>();
     }
 
     private void OnEnable()

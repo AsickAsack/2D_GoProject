@@ -18,6 +18,4 @@ public class BaseBallBat : MonoBehaviour
             Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f,this.transform);
         }
     }
-
-
 }

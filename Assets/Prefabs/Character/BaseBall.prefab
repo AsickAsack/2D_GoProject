@@ -359,6 +359,7 @@ MonoBehaviour:
     Drag: 0
     Skill_Des: 
     active_target: 0
+    Skill_UIFigure: 0
     Skill_Figure: 0
     Skill_Type: 0
     Skill_probability: 0
@@ -386,21 +387,7 @@ MonoBehaviour:
   OnBoard: 0
   IgnoreObstacle: 0
   mySkill_Condition: 0
-  character:
-    MyCharacter: 0
-    Name: 
-    Character_Des: 
-    Min_Power: 0
-    Max_Power: 0
-    Mass: 0
-    Drag: 0
-    Skill_Des: 
-    active_target: 0
-    Skill_Figure: 0
-    Skill_Type: 0
-    Skill_probability: 0
-    Skill_Range: 0
-    Story: 
+  characterplay: {fileID: 1345029846616968283}
   BaseBall_Bat: {fileID: 396600473975881224}
 --- !u!1 &6134260428480012705
 GameObject:

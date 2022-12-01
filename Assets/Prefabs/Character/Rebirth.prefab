@@ -283,12 +283,13 @@ MonoBehaviour:
     Max_Power: 0
     Mass: 0
     Drag: 0
-    Active_Des: 
+    Skill_Des: 
     active_target: 0
-    Active_Figure: 0
-    Passive_Des: 
-    Passive_probability: 0
-    Passive_Range: 0
+    Skill_UIFigure: 0
+    Skill_Figure: 0
+    Skill_Type: 0
+    Skill_probability: 0
+    Skill_Range: 0
     Story: 
   MySkill: {fileID: -5848887542517131878}
   PassiveRangeObj: {fileID: 8873808867456415848}
@@ -312,6 +313,7 @@ MonoBehaviour:
   OnBoard: 0
   IgnoreObstacle: 0
   mySkill_Condition: 2
+  characterplay: {fileID: 7122061088711591524}
   ReBirthRange: 1
 --- !u!1 &6134260428480012705
 GameObject:
