@@ -20,7 +20,6 @@ public struct ObstacleSetting
 [System.Serializable]
 public struct StageSetting
 {
-    public int NeedCharacter;
     public MonsterSetting[] MyMonster;
     public ObstacleSetting[] MyObstacle;
 }
@@ -28,6 +27,7 @@ public struct StageSetting
 [System.Serializable]
 public struct SubStage
 {
+    public int NeedCharacter;
     public StageSetting Object_Information;
 }
 
@@ -73,6 +73,14 @@ public class StageManager : MonoBehaviour
     public Vector2 CurStage;
     public Stage[] stage;
 
+    //스테이지에 필요한 캐릭터 카운트 리턴
+    public int GetNeedCharacterCount()
+    {
+        if (stage[(int)CurStage.x - 1].subStage[(int)CurStage.y - 1].NeedCharacter > 5)
+            return 5;
+        else
+            return stage[(int)CurStage.x-1].subStage[(int)CurStage.y-1].NeedCharacter;
+    }
 
     public void SetStage(int Stage,int SubStage)
     {
@@ -86,11 +94,10 @@ public class StageManager : MonoBehaviour
 
     public void SetCharacter()
     {
-        for (int i = 0; i < SelectCharacters.Count;i++)
+        for (int i = 0; i < GetNeedCharacterCount();i++)
         {
             CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero,Quaternion.identity).GetComponent<CharacterPlay>();
 
-            
             CurCharacters.Add(obj);
             CurCharacters[i].character = SelectCharacters[i];
             CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);

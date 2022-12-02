@@ -40,7 +40,7 @@ public class CharacterSelectListUI : MonoBehaviour, IPointerDownHandler
         }
         else //선택 안된 캐릭터를 눌렀을때
         {
-            if (CharacterSelectManager.Instance.Count == 5)
+            if (CharacterSelectManager.Instance.Count == StageManager.instance.GetNeedCharacterCount())
             {
                 PopUpManager.Instance.OpenPopup(0, "안내", "캐릭터를 전부 선택했습니다.", null);
                 return;

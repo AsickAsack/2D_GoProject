@@ -213,9 +213,11 @@ public class PlayManager : MonoBehaviour,ISubject
                 break;
 
             case GameState.Shot:
+
                 ingameUI.UserSKillBtn.SetActive(false);
                 ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
+                ingameUI.CharacterPopup.SetPanelSize(false);
                 CurPlayerIcon.SetActive(false);
 
                 break;
@@ -483,6 +485,7 @@ public class PlayManager : MonoBehaviour,ISubject
         PlayerCount++;
         character.MySkill.OnBoard = false;
         objectPool.GetEffect(7, tr.position, Quaternion.identity);
+        ingameUI.CharacterPopup.SetPanelSize(true);
         CharacterIcons[index].SetActive(true);
     }
 

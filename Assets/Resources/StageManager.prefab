@@ -51,8 +51,8 @@ MonoBehaviour:
   CurStage: {x: 1, y: 1}
   stage:
   - subStage:
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 3
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.63, y: 4.1}
@@ -67,8 +67,8 @@ MonoBehaviour:
         - monster_name: 2005
           Monster_Pos: {x: 1.14, y: 1.27}
         MyObstacle: []
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 4
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.25, y: 4.91}
@@ -87,8 +87,8 @@ MonoBehaviour:
         - obstacle_name: 0
           obstacle_Pos: {x: 2.18, y: 0.78}
           Angle: -40.8
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 5
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.45, y: 4.91}
@@ -104,8 +104,8 @@ MonoBehaviour:
           Monster_Pos: {x: -0.3, y: 3.16}
         MyObstacle: []
   - subStage:
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 0
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.63, y: 4.1}
@@ -118,8 +118,8 @@ MonoBehaviour:
         - monster_name: 2004
           Monster_Pos: {x: 0, y: 1.75}
         MyObstacle: []
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 0
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.25, y: 4.91}
@@ -135,8 +135,8 @@ MonoBehaviour:
         - obstacle_name: 0
           obstacle_Pos: {x: -1.5, y: 3.16}
           Angle: 30
-    - Object_Information:
-        NeedCharacter: 0
+    - NeedCharacter: 0
+      Object_Information:
         MyMonster:
         - monster_name: 2001
           Monster_Pos: {x: -1.45, y: 4.91}

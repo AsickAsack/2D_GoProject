@@ -11,7 +11,7 @@ public class InGameUI : MonoBehaviour
 
     [Header("[캐릭터 선택 팝업]")]
 
-    public GameObject CharacterPopup;
+    public IngameIconPanel CharacterPopup;
     public Animator PopupAnim;
 
 

@@ -9,11 +9,13 @@ public class CharacterSelectUI : MonoBehaviour
     public Image Icon;
     public int CurIndex;
     public bool IsSelected = false;
+    public RectTransform myRect;
 
     public void ResetBtn()
     {
         Icon.gameObject.SetActive(false);
         IsSelected = false;
+        this.gameObject.SetActive(false);
     }
 
     public void SetBtn(int Index,Sprite CharSprite)

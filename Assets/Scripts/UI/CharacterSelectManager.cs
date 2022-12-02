@@ -13,6 +13,8 @@ public class CharacterSelectManager : MonoBehaviour
 
     public CharacterSelectListUI[] MySelectList;
     public CharacterSelectUI[] MySelected_Char;
+    public float basicSize;
+    public float MinusSize;
 
     public int Count = 0;
     public TMPro.TMP_Text Select_CountTX;
@@ -37,7 +39,10 @@ public class CharacterSelectManager : MonoBehaviour
 
         for (int i = 0; i < MySelected_Char.Length; i++)
         {
-            MySelected_Char[i].ResetBtn();
+            if (MySelected_Char[i].gameObject.activeSelf)
+                MySelected_Char[i].ResetBtn();
+            else
+                break;
         }
 
     }
@@ -63,20 +68,21 @@ public class CharacterSelectManager : MonoBehaviour
 
         StageCanvas.enabled = true;
 
-            Set_CountText(0);
-        
+        Set_CountText(0);
+        AcitveCharacterBox();
+
         for (int i = 0; i < PlayerDB.Instance.MyCharacters.Count;i++)
         {
             //보유 캐릭터 수만큼 켜지고 아이콘 까지 세팅
             MySelectList[i].SetBtn(PlayerDB.Instance.MyCharacters[i]);
         }
+
+        
     }
 
     //선택할때마다 카운트 텍스트 바꾸어주는 함수
     public void Set_CharacterIcon(Character myChar,int index)
     {
-
-        
 
         //텍스트 표시해주고 아이콘 표시, 널이라면 지워줘야함
         if (myChar == null)
@@ -100,7 +106,7 @@ public class CharacterSelectManager : MonoBehaviour
     public void Set_CountText(int Count)
     {
         this.Count = Count;
-        Select_CountTX.text = this.Count + " / 5";
+        Select_CountTX.text = this.Count + " / " + StageManager.instance.GetNeedCharacterCount();
     }
 
     public int GetPointer()
@@ -116,11 +122,23 @@ public class CharacterSelectManager : MonoBehaviour
         return -1;
     }
 
+    //필요한 캐릭터 수만큼 UI사이즈 설정하고 액티브 시키기
+    public void AcitveCharacterBox()
+    {
+        float size = basicSize - (MinusSize * (StageManager.instance.GetNeedCharacterCount() - 1));
+
+        for (int i = 0; i < StageManager.instance.GetNeedCharacterCount(); i++)
+        {
+            MySelected_Char[i].gameObject.SetActive(true);
+            MySelected_Char[i].myRect.sizeDelta = new Vector2(size,size);
+        }
+    }
+
 
     //확인을 누르면 List에 Add후에 씬 이동
     public void Confirm_StageCharacter()
     {
-        if(Count != 5)
+        if(Count != StageManager.instance.GetNeedCharacterCount())
         {
             PopUpManager.Instance.OpenPopup(0, "안내", "캐릭터를 다 선택 해주세요.", null);
             return;
