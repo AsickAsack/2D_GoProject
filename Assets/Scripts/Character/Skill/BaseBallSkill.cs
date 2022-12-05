@@ -6,14 +6,7 @@ public class BaseBallSkill : ConflictAndSKill
 {
     public GameObject BaseBall_Bat;
     Coroutine mySkillCo;
-    
-
-    private void Awake()
-    {
-        
-    }
-
-
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
@@ -21,6 +14,7 @@ public class BaseBallSkill : ConflictAndSKill
             if(mySkillCo != null)
             {
                 StopCoroutine(mySkillCo);
+                BaseBall_Bat.SetActive(false);
             }
 
             ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);

@@ -29,6 +29,28 @@ public class Character
         GetTime = DateTime.Now;
     }
 
+    public Character(Character character)
+    {
+
+        this.MyCharacter = character.MyCharacter;
+        this.Name = character.Name;
+        this.Character_Des = character.Character_Des;
+        this.Min_Power = character.Min_Power;
+        this.Max_Power = character.Max_Power;
+        this.Mass = character.Mass;
+        this.Drag = character.Drag;
+        this.Skill_Des = character.Skill_Des;
+        this.active_target = character.active_target;
+        this.Skill_UIFigure = character.Skill_UIFigure;
+        this.Skill_Figure = character.Skill_Figure;
+        this.Skill_Type = character.Skill_Type;
+        this.Skill_probability = character.Skill_probability;
+        this.Skill_Range = character.Skill_Range;
+        this.Story = character.Story;
+        this.GetTime = DateTime.Now;
+
+    }
+
 
     public CharacterName MyCharacter;
 
@@ -39,7 +61,7 @@ public class Character
     
     float EXP;
     float Max_EXP;
-    DateTime GetTime;
+    public DateTime GetTime;
     //맞을때, 때릴때, 스킬, 패시브 생각
     int SkillEffectindex;
 

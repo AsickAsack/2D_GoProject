@@ -36,7 +36,18 @@ public class PlayerDB : MonoBehaviour
     public bool CutScene = true;
 
     public UserSkill myUserSkill;
-    public int Gold { get; set; }
+    private int _Gold;
+    public int Gold
+    {
+        get => _Gold;
+        set 
+        {
+            _Gold = value;
+            UIManager.Instance.SetGold_Text();
+        }
+
+    }
+
     public bool IsFirst = true;
     //유저 스킬도 있음
 

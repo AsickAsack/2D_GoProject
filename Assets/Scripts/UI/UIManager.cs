@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-   
+    public static UIManager Instance;
+
     public PopUpManager popupManager;
     public OptionUI optionUI;
     public ScreenSwtich screen_swtich;
@@ -15,6 +16,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         PlayerDB.Instance.Gold += 50000;
         SetGold_Text();
     }
@@ -31,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     public void QuitGame(int index)
     {
-        popupManager.OpenPopup(index, "종료하기", "정말 종료 하시겠습니까?",()=> Debug.Log("널"));
+        popupManager.OpenPopup(index, "종료하기", "정말 종료 하시겠습니까?",null);
 
     }
 

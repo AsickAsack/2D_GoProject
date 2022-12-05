@@ -13,6 +13,8 @@ public class PopUp : MonoBehaviour
     [SerializeField]
     Button[] Buttons;
 
+    UnityAction HaveAction;
+
 
     public void SetAndOpenPopup(string title,string detail)
     {
@@ -26,8 +28,19 @@ public class PopUp : MonoBehaviour
     {
         if (Buttons.Length == 0) return;
 
-        Buttons[index].onClick.RemoveAllListeners();
+        if(HaveAction != null)
+            Buttons[index].onClick.RemoveListener(HaveAction);
+
+        HaveAction = PopupAction;
         Buttons[index].onClick.AddListener(PopupAction);
+    }
+
+    public void RemoveAction(int index)
+    {
+        if (Buttons.Length == 0) return;
+
+        if (HaveAction != null)
+            Buttons[index].onClick.RemoveListener(HaveAction);
     }
     
 

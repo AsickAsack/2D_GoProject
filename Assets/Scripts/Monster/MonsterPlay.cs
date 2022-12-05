@@ -8,7 +8,7 @@ public interface IDeathProcess
     public void Death(int EffectIndex);
 }
 
-public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill,IMoveCheck
+public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICompareSkill,IMoveCheck, IHomeRun
 {
 
     private Rigidbody2D _myRigid;
@@ -29,6 +29,7 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public bool IsConflict = true;
     public Vector2 MyVelocity { get; set; }
     public bool IsUserSKill { get; set; }
+    public bool IsHomeRun { get; set; } = false;
 
     public abstract void Initialize();
     public abstract void Skill();
@@ -126,11 +127,34 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         return true;
     }
 
+    //턴마다 초기화해야되는
+    public virtual void InitForTurn()
+    {
+        //
+    }
+
     public bool GetIsStop()
     {
         if (MyRigid.velocity == Vector2.zero)
+        {
+            InitForTurn();
             return true;
+        }
         else
             return false;
+    }
+
+    public void HomeRun()
+    {
+        IsHomeRun = true;
+    }
+
+    public void HomeRunRoutine(Transform tr)
+    {
+        if (IsHomeRun)
+        {
+            PlayManager.Instance.ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.HomeRun), "홈런!");
+            PlayManager.Instance.objectPool.GetActiveEffects(12,tr.position);
+        }
     }
 }

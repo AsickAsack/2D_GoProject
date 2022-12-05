@@ -38,7 +38,7 @@ public enum ActiveTarget
 
 public enum NotifyIcon : int
 {
-    Killstreak=0,Killstreak_Fail,MostKill,PowerUp,ReBirth
+    Killstreak=0,Killstreak_Fail,MostKill,PowerUp,ReBirth,HomeRun
 }
 
 public class GameDB : MonoBehaviour
@@ -69,6 +69,7 @@ public class GameDB : MonoBehaviour
 
     public static Dictionary<int, string[]> CharacterDB = new Dictionary<int, string[]>();
     public static Dictionary<int, string[]> MonsterDB = new Dictionary<int, string[]>();
+
 
     public GameObject[] Characters;
     public GameObject[] Monsters;

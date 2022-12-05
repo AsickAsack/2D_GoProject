@@ -1714,7 +1714,7 @@ GameObject:
   - component: {fileID: 281158175}
   - component: {fileID: 281158177}
   - component: {fileID: 281158178}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoxcolliderDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2648,7 +2648,7 @@ GameObject:
   - component: {fileID: 539738109}
   - component: {fileID: 539738111}
   - component: {fileID: 539738112}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoxcolliderUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13597,7 +13597,7 @@ GameObject:
   - component: {fileID: 897744527}
   - component: {fileID: 897744529}
   - component: {fileID: 897744530}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoxcolliderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14653,6 +14653,7 @@ MonoBehaviour:
   - {fileID: 1280141305896002, guid: e473029e4c70ad543a6879b82a732f4f, type: 3}
   - {fileID: 1462327970484030, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
   - {fileID: 100000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
+  - {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
   PoolEffectPrefab:
   - {fileID: 2955623459812423943, guid: 8178aff3134c34646a965e698728f05e, type: 3}
   - {fileID: 8460667080445658512, guid: a4d29c6244db25e45a0613de7a27d13a, type: 3}
@@ -15187,7 +15188,7 @@ GameObject:
   - component: {fileID: 1503226739}
   - component: {fileID: 1503226738}
   - component: {fileID: 1503226737}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BoxcolliderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
