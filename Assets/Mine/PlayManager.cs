@@ -34,17 +34,17 @@ public enum GameState
     UserSKill
 }
 
-public class PlayManager : MonoBehaviour,ISubject
+public class PlayManager : MonoBehaviour, ISubject
 {
     public static PlayManager Instance;
 
     public InGameUI ingameUI;
     public CharacterManager CharManager;
     public ObjectPool objectPool;
-   
+
 
     //public bool IsActive;
-    
+
     public bool IsHit = false;
     public Transform BaseCamp;
     Vector2 StartPos;
@@ -65,8 +65,11 @@ public class PlayManager : MonoBehaviour,ISubject
     GameObject CurPlayerIcon;
     public GameObject[] CharacterIcons;
     public GameObject Arrow;
+    public MeterScript PowerOBJ;
+    Vector2 PowerOBJPos;
     Quaternion ArrowOriginAngle;
     public UserSkill UserSkillObj;
+
 
     //효과
     public Sprite Kill_Sprite;
@@ -79,9 +82,9 @@ public class PlayManager : MonoBehaviour,ISubject
         get => _EnemyCount;
         set {
             _EnemyCount = value;
-            if(EnemyCount == 0)
+            if (EnemyCount == 0)
             {
-                StartCoroutine(SetResult(ingameUI.SetResultCanavs,"승리!"));
+                StartCoroutine(SetResult(ingameUI.SetResultCanavs, "승리!"));
                 //ingameUI.SetResultCanavs("승리!");
             }
         }
@@ -91,7 +94,7 @@ public class PlayManager : MonoBehaviour,ISubject
 
     public int CurTurn = 0;
     //한턴에 얼마나 잡았는지 알 수 있는 멀티킬
-    int _CurMultiKill;    
+    int _CurMultiKill;
     public int CurMultiKill
     {
         get => _CurMultiKill;
@@ -107,19 +110,19 @@ public class PlayManager : MonoBehaviour,ISubject
                 if (CurMultiKill > MultiKill)
                 {
                     MultiKill = CurMultiKill;
-                    ingameUI.SetMostKillUI(MultiKill);
+                    //ingameUI.SetMostKillUI(MultiKill);
 
-                    if(MultiKill > 1)
-                    ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.MostKill), $"최다 킬 {MultiKill} 킬 달성! ");
+                    if (MultiKill > 1)
+                        ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.MostKill), $"최다 킬 {MultiKill} 킬 달성! ");
                 }
 
-                if(!KillStreakCheck)
+                if (!KillStreakCheck)
                 {
                     KillStreaks++;
                     KillStreakCheck = true;
                 }
             }
-            
+
         }
     }
     public int MultiKill;
@@ -129,10 +132,10 @@ public class PlayManager : MonoBehaviour,ISubject
     public int KillStreaks
     {
         get => _KillStreaks;
-        set 
-        { 
+        set
+        {
             _KillStreaks = value;
-            if(_KillStreaks != 0)
+            if (_KillStreaks != 0)
             {
                 //킬 스트릭 알림
                 ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.Killstreak), $"{_KillStreaks} Combo!");
@@ -150,14 +153,15 @@ public class PlayManager : MonoBehaviour,ISubject
         ArrowOriginAngle = Arrow.transform.rotation;
         //게임 세팅
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
-        EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].Object_Information.MyMonster.Length;
+        EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].Object_Information.MyMonster.Length;
         PlayerCount = StageManager.instance.CurCharacters.Count;
+        PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
     }
 
     private void Start()
     {
         //ChangeState(GameState.Ready);
-        
+
     }
 
     public GameState gameState = GameState.Ready;
@@ -166,7 +170,7 @@ public class PlayManager : MonoBehaviour,ISubject
     {
         GameLoop();
     }
-    
+
     public void Init()
     {
         ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
@@ -185,14 +189,14 @@ public class PlayManager : MonoBehaviour,ISubject
                 CurTurn++;
                 ingameUI.UserSKillBtn.SetActive(true);
 
-                if(CurPlayer != null)
-                CurPlayer.ChangeONBorad();
+                if (CurPlayer != null)
+                    CurPlayer.ChangeONBorad();
 
                 CurPlayer = null;
 
-                ingameUI.SetTextPhase(CurTurn +"턴! Choice Phase");
+                ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
-                
+
 
                 break;
 
@@ -223,11 +227,11 @@ public class PlayManager : MonoBehaviour,ISubject
                 break;
 
             case GameState.Move:
-                
+
                 break;
 
             case GameState.End:
-                
+
                 break;
         }
 
@@ -280,7 +284,7 @@ public class PlayManager : MonoBehaviour,ISubject
     }
     public void MoveLoop()
     {
-        if(CheckMove())
+        if (CheckMove())
             ChangeState(GameState.End);
     }
 
@@ -316,18 +320,20 @@ public class PlayManager : MonoBehaviour,ISubject
         {
             //Perspective 아닐때
             //MyRayCast = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward, float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
-            
-            MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition),float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
+
+            MyRayCast = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition), float.MaxValue, 1 << LayerMask.NameToLayer("BaseCamp"));
 
             StartPos = Input.mousePosition;
 
             if (MyRayCast && CurPlayer != null)
             {
                 ingameUI.CameraMovePanel.raycastTarget = false;
+                PowerOBJ.gameObject.SetActive(true);
                 Arrow.transform.rotation = ArrowOriginAngle;
                 Arrow.gameObject.SetActive(true);
                 IsHit = true;
                 LimitPower.y = CurPlayer.character.Max_Power * MultiplyPower;
+                PowerOBJ.slider.maxValue = LimitPower.y;
 
                 //발사 페이즈 진입
                 ChangeState(GameState.Shot);
@@ -351,7 +357,7 @@ public class PlayManager : MonoBehaviour,ISubject
 
             if (IsHit)
             {
-
+             
 
                 targetPos = -(MyRayCast.point - (Vector2)CurPlayer.transform.position).normalized;
 
@@ -366,16 +372,20 @@ public class PlayManager : MonoBehaviour,ISubject
                 Arrow.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, temp));
 
 
+                PowerOBJ.transform.position = Camera.main.WorldToScreenPoint(PowerOBJPos);
+
 
                 //적당한 파워를 위해 나눔
                 Power = Vector2.Distance(StartPos, Input.mousePosition) / DividePower;
                 Power = Mathf.Clamp(Power, LimitPower.x, LimitPower.y);
 
-               
-                Arrow.transform.localScale = new Vector3(Power / DivideArrowSize, Power / DivideArrowSize, 0.0f);
+                PowerOBJ.SetHealth(Power);
+
+                //Arrow.transform.localScale = new Vector3(Power / DivideArrowSize, Power / DivideArrowSize, 0.0f);
 
             }
         }
+
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -384,13 +394,13 @@ public class PlayManager : MonoBehaviour,ISubject
             {
                 EndPos = Input.mousePosition;
                 Arrow.gameObject.SetActive(false);
-
+                PowerOBJ.gameObject.SetActive(false);
 
                 //플레이어 스크립트에서 보내기
-                CurPlayer.MySkill.GoForward(targetPos, Power,null);
+                CurPlayer.MySkill.GoForward(targetPos, Power, null);
                 IsHit = false;
                 ingameUI.CameraMovePanel.raycastTarget = true;
-                Arrow.transform.localScale = new Vector3(LimitPower.x / DivideArrowSize, LimitPower.x / DivideArrowSize, 0.0f);
+                //Arrow.transform.localScale = new Vector3(LimitPower.x / DivideArrowSize, LimitPower.x / DivideArrowSize, 0.0f);
                 PlayerCount--;
                 //End 상태로 체인지
                 ChangeState(GameState.Move);

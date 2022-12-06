@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public OptionUI optionUI;
     public ScreenSwtich screen_swtich;
     public CharacterUI characterUI;
-
+    public MetaScreen metaScreen;
 
     public TMPro.TMP_Text Gold_Text;
 

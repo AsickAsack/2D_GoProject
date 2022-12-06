@@ -31,29 +31,12 @@ public class IngameIconPanel : MonoBehaviour
     public void SetPanelSize(bool check)
     {
         if (check)
-            StartCoroutine(StartSetPanelSize(myRect.sizeDelta.y + myHeight, PanelChangeSpeed));
+            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myRect.sizeDelta.y + myHeight);
         else
-            StartCoroutine(StartSetPanelSize(myRect.sizeDelta.y - myHeight, -PanelChangeSpeed));
+            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myRect.sizeDelta.y - myHeight);
     }
 
-    IEnumerator StartSetPanelSize(float size,float cir)
-    {
-        while(true)
-        {
-            float y = myRect.sizeDelta.y + (Time.deltaTime * cir);
-            Mathf.Clamp(y, size, myRect.sizeDelta.y);
-            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, y);
-
-            if ((int)y == (int)myRect.sizeDelta.y)
-                break;
-
-            yield return null;
-        }
-
-        Debug.Log("코루틴 끝");
-
-    }
-
+ 
 
 
 }
