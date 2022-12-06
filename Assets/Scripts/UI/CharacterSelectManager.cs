@@ -49,21 +49,27 @@ public class CharacterSelectManager : MonoBehaviour
 
 
     //캐릭터 선택 UI열기
-    public void OpenCharacterSelectUI()
+    public void OpenCharacterSelectUI(int x, int y)
     {
 
-        if (StageManager.instance.stage.Length < (int)StageManager.instance.CurStage.x)
+        if (StageManager.instance.stage.Length < x)
         {
                 PopUpManager.Instance.OpenPopup(0, "안내", "아직 구현되지 않은 \n스테이지 입니다.", null);
                 return;
         }
         else
         {
-            if (StageManager.instance.stage[((int)StageManager.instance.CurStage.x) - 1].subStage.Length < (int)StageManager.instance.CurStage.y)
+            if (StageManager.instance.stage[x - 1].subStage.Length < y)
             {
                 PopUpManager.Instance.OpenPopup(0, "안내", "아직 구현되지 않은 \n스테이지 입니다.", null);
                 return;
             }
+        }
+
+        if (PlayerDB.Instance.MyCharacters.Count < StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter)
+        {
+            PopUpManager.Instance.OpenPopup(0, "알림", $"이 스테이지에 필요한\n 캐릭터의 수가 부족합니다.\n\n {x}-{y} 스테이지 \n필요 캐릭터 수 : {StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter}", null);
+            return;
         }
 
         StageCanvas.enabled = true;

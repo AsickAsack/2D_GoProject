@@ -9,7 +9,12 @@ public class DownLoadDB : MonoBehaviour
 
     public IEnumerator Start()
     {
-        if (!PlayerDB.Instance.IsFirst) yield break;
+        if (!PlayerDB.Instance.IsFirst)
+        {
+            storeManager.CheckStore();
+            yield break;
+        }
+            
 
         UnityWebRequest www = UnityWebRequest.Get(GameDB.Char_URL);
         yield return www.SendWebRequest();
@@ -21,7 +26,7 @@ public class DownLoadDB : MonoBehaviour
 
         GameDB.Instance.InputDB(GameDB.Instance.DownLoad_DB(www2), GameDB.MonsterDB);
 
-        /*
+        
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Strong));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Olaf));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.mad));
@@ -33,7 +38,7 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.brainwash));
         //PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Avoid));
         PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.bulldozer));
-        */
+        
 
         storeManager.CheckStore();
 

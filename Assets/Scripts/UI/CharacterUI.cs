@@ -19,7 +19,10 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     public Image CharacterIcon;
     public Charcter_DetailUI detail;
 
-     public void OnPointerDown(PointerEventData eventData)
+    public GameObject HaveCharOBJ;
+    public GameObject No_HaveCharOBJ;
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         StartPos = eventData.position;
     }

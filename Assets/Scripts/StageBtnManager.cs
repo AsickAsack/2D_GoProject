@@ -75,7 +75,7 @@ public class StageBtnManager : MonoBehaviour
                 StageManager.instance.CurStage.x = Stage + 1;
                 StageManager.instance.CurStage.y = temp + 1;
 
-                CharacterSelectManager.Instance.OpenCharacterSelectUI();
+                CharacterSelectManager.Instance.OpenCharacterSelectUI(Stage+1,temp+1);
 
             });
 

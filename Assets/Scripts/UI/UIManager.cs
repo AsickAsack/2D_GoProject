@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public ScreenSwtich screen_swtich;
     public CharacterUI characterUI;
 
+
     public TMPro.TMP_Text Gold_Text;
 
     private void Awake()
@@ -44,7 +45,18 @@ public class UIManager : MonoBehaviour
 
    public void OpenCharacterUI()
     {
-        characterUI.SetCharacterUI();
+        //이거 나중에 처음에 접속할때 변경하는걸로 -> json불러올때
+
+        if (PlayerDB.Instance.MyCharacters.Count == 0) return;
+        else
+        {
+            characterUI.No_HaveCharOBJ.SetActive(false);
+            characterUI.HaveCharOBJ.SetActive(true);
+            characterUI.SetCharacterUI();
+        }
+        
+
+
     }
 
 

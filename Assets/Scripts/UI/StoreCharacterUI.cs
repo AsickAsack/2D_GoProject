@@ -11,6 +11,7 @@ public class StoreCharacterUI : MonoBehaviour
 
     public Character myChar;
     public Image CharacterIcon;
+    public TMPro.TMP_Text IndexText;
     public TMPro.TMP_Text CharNameText;
     public TMPro.TMP_Text CharacterPriceText;
 
@@ -23,6 +24,7 @@ public class StoreCharacterUI : MonoBehaviour
     {
         myChar = new Character(index);
         CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(myChar);
+        IndexText.text = (index - (int)CharacterName.Strong + 1).ToString();
         CharNameText.text = myChar.Name;
         CharacterPriceText.text = CharacterPrice.ToString("N0");
         this.gameObject.SetActive(true);
