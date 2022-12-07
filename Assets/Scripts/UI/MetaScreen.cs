@@ -51,6 +51,7 @@ public class MetaScreen : MonoBehaviour
     private void Awake()
     {
         SetScreen(DateTime.Now.Hour);
+        
     }
 
     public void ClickMeta()
