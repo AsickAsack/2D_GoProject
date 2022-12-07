@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MadSkill : ConflictAndSKill
+public class MadSkill : CharacterSkill
 {
     int ConflictCount = 0;
 
@@ -18,7 +18,7 @@ public class MadSkill : ConflictAndSKill
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
             //서있는 말이 아니라면
-            if (!OnBoard)
+            if (!characterplay.OnBoard)
             {
                 ConflictCount++;
 
@@ -29,7 +29,7 @@ public class MadSkill : ConflictAndSKill
 
                     if (temp == null)
                     {
-                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                     else
                     {
@@ -40,19 +40,19 @@ public class MadSkill : ConflictAndSKill
                         }
                         else
                         {
-                            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                         }
                     }
                 }
                 else
                 {
-                    ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                    characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                 }
                 
             }
             else
             {
-                ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
             }
         }
     }

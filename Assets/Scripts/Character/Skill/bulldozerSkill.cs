@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulldozerSkill : ConflictAndSKill
+public class bulldozerSkill : CharacterSkill
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -10,7 +10,7 @@ public class bulldozerSkill : ConflictAndSKill
 
         if (collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall"))
         {
-            ConflictProcess(collision, 0.0f);
+            characterplay.ConflictProcess(collision, 0.0f);
         }
     }
 
@@ -21,7 +21,7 @@ public class bulldozerSkill : ConflictAndSKill
 
     public void ObstacleSkill(GameObject collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") && !IsSilence)
         {
             MyRigid.velocity = MyVelocity * 0.7f;
             PlayManager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);

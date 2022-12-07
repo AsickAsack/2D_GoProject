@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OlafSkill : ConflictAndSKill
+public class OlafSkill : CharacterSkill
 {
     public GameObject IceObj;
     bool FirstHit = false;
@@ -17,18 +17,21 @@ public class OlafSkill : ConflictAndSKill
         if (collision.gameObject.CompareTag("EnemyBall") || collision.gameObject.CompareTag("PlayerBall"))
         {
             //보드 위에 말이라면..
-            if(!OnBoard && !FirstHit)
+            if(!characterplay.OnBoard && !FirstHit)
             {
                 IsSKill = true;
                 FirstHit = true;
 
-                Ice ice = Instantiate(IceObj).GetComponent<Ice>();
-                ice.SetIce(collision.gameObject);
+                if (GetSkillPriority(collision.gameObject.GetComponent<ICompareSkill>()))
+                {
+                    Ice ice = Instantiate(IceObj).GetComponent<Ice>();
+                    ice.SetIce(collision.gameObject);
+                }
 
                 IsSKill = false;
             }
-               
-            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+
+            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
 
         }
        

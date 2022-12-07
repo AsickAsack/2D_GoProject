@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeesinSkill : ConflictAndSKill
+public class LeesinSkill : CharacterSkill
 {
 
     public GameObject CloudBackGround;
@@ -51,7 +51,7 @@ public class LeesinSkill : ConflictAndSKill
     {
         if(collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
 
@@ -71,7 +71,5 @@ public class LeesinSkill : ConflictAndSKill
             CloudObj.SetActive(false);
         }
     }
-
-    
 
 }

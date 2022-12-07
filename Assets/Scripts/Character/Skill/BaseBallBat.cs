@@ -20,7 +20,7 @@ public class BaseBallBat : MonoBehaviour
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
             ICompareSkill Enemy = collision.transform.GetComponent<ICompareSkill>();
-            Enemy.GoForward((collision.transform.position-myColl.bounds.center).normalized, 20.0f,this.transform);
+            Enemy.GoForward((collision.transform.position - myColl.bounds.center).normalized, 20.0f,this.transform);
 
             //IHomerun인터페이스가 null이 아니라면 홈런함수 실행
             collision.GetComponent<IHomeRun>()?.HomeRun();

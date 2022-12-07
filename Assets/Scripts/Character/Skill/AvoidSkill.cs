@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvoidSkill : ConflictAndSKill
+public class AvoidSkill : CharacterSkill
 {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(CompareCollisionTag(collision.transform))
         {
-            if(OnBoard)
+            if(characterplay.OnBoard)
             {
                 IsSKill = true;
 
@@ -20,12 +20,12 @@ public class AvoidSkill : ConflictAndSKill
                 }
                 else
                 {
-                    ConflictProcess(collision, 0.0f);
+                    characterplay.ConflictProcess(collision, 0.0f);
                 }
             }
             else
             {
-                ConflictProcess(collision, 0.0f);
+                characterplay.ConflictProcess(collision, 0.0f);
             }
 
             IsSKill = false;
@@ -36,7 +36,7 @@ public class AvoidSkill : ConflictAndSKill
     {
         if (CompareCollisionTag(collision.transform))
         {
-            if (OnBoard)
+            if (characterplay.OnBoard)
             {
                 IsSKill = true;
 

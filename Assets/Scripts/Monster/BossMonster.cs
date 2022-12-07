@@ -28,7 +28,7 @@ public class BossMonster : MonsterPlay
     }
 
 
-    public override void Skill()
+    public void Skill()
     {
         IsCreate = true;
 

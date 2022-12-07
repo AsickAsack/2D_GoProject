@@ -21,7 +21,14 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         }
     }
 
-    public int SkillPriority { get; set; }
+    [SerializeField]
+    int _SkillPriority;
+
+    public int SkillPriority
+    {
+        get => _SkillPriority;
+        set => _SkillPriority = value;  
+    }
     public bool IsSKill { get; set; }
 
     public Monster monster;
@@ -32,9 +39,6 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public bool IsHomeRun { get; set; } = false;
 
     public abstract void Initialize();
-    public abstract void Skill();
-
-
 
     public virtual void Death()
     {
@@ -83,7 +87,6 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         
     }
 
-
     public Rigidbody2D GetRigidBody()
     {
         return MyRigid;
@@ -124,7 +127,31 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
     public bool GetSkillPriority(ICompareSkill other)
     {
-        return true;
+        // 상대 우선 순위가 더 높으면 true를 리턴해줌
+        if (other.SkillPriority < this.SkillPriority)
+        {
+            if (other.IsSKill)
+                return true;
+
+            else
+                return false;
+        }
+        else
+        {
+            if (this.IsSKill)
+                return false;
+            else
+                return true;
+        }
+    }
+    public bool CompareRoutine(ICompareSkill other)
+    {
+        if (other == null) return false;
+
+        if (GetSkillPriority(other))
+            return true;
+        else
+            return false;
     }
 
     //턴마다 초기화해야되는

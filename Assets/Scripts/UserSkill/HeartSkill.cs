@@ -20,7 +20,7 @@ public class HeartSkill : UserSkill
             for (int i = 0; i < PlayManager.Instance.OnBoardPlayer.Count; i++)
             {
                 if (PlayManager.Instance.OnBoardPlayer[i].gameObject.activeSelf)
-                    PlayManager.Instance.OnBoardPlayer[i].GetComponent<ConflictAndSKill>().MyRigid.AddForce((pos - (Vector2)PlayManager.Instance.OnBoardPlayer[i].transform.position).normalized * Power, ForceMode2D.Force);
+                    PlayManager.Instance.OnBoardPlayer[i].GetComponent<CharacterSkill>().MyRigid.AddForce((pos - (Vector2)PlayManager.Instance.OnBoardPlayer[i].transform.position).normalized * Power, ForceMode2D.Force);
             }
 
             for (int i = 0; i < StageManager.instance.CurMonsters.Count; i++)

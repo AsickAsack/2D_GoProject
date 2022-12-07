@@ -9,6 +9,8 @@ public class StartUIProcess : MonoBehaviour
     public GameObject GameStartPanel;
     public GameObject DownDbPanel;
 
+    public GameObject Gorani;
+
     public TMPro.TMP_Text WaitDownDBText;
     string[] LoadingString;
 
@@ -48,6 +50,8 @@ public class StartUIProcess : MonoBehaviour
         }
 
         DownDbPanel.SetActive(false);
+        Gorani.SetActive(true);
+
     }
 
 

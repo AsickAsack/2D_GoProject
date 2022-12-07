@@ -10,8 +10,4 @@ public class CommonMonster : MonsterPlay
         //기본 스텟으로 초기화
     }
 
-    public override void Skill()
-    {
-       //스킬 없음
-    }
 }

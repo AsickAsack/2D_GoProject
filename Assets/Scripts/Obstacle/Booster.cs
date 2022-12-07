@@ -12,7 +12,7 @@ public class Booster : Obstacle
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
-            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
+            if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
         Skill(collision);
     }
@@ -20,7 +20,7 @@ public class Booster : Obstacle
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
-            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
+            if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
         Skill(collision);
     }

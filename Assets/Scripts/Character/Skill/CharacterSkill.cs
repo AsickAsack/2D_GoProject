@@ -41,14 +41,14 @@ public enum Skill_Condition
    None,Confilct,Death
 }
 
-public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
+public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
 {
     
     [SerializeField]
     int _SkillPriority;
     public int Skill_index;
-    public bool OnBoard;
     public bool IgnoreObstacle;
+    public bool IsSilence;
     public Skill_Condition mySkill_Condition;
 
     public Vector2 MyVelocity { get; set; }
@@ -126,17 +126,10 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
     }
 
 
-    //충돌시 루틴
-    public void ConflictProcess(Collision2D collision, float Power)
-    {
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
-        ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
-        CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude,this.transform);
-    }
-
-
     public bool GetSkillPriority(ICompareSkill other)
     {
+        if (IsSilence) return false;
+
         // 상대 우선 순위가 더 높으면 true를 리턴해줌
         if (other.SkillPriority < this.SkillPriority)
         {
@@ -169,6 +162,7 @@ public class ConflictAndSKill : MonoBehaviour, IObserver, ICompareSkill
 
     public bool CompareCollisionTag(Transform tr)
     {
+
         if (tr.CompareTag("EnemyBall") || tr.CompareTag("PlayerBall"))
             return true;
         else

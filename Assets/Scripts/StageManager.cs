@@ -28,6 +28,9 @@ public struct StageSetting
 public struct SubStage
 {
     public int NeedCharacter;
+    public int NeedTicket;
+    public int Point;
+    public bool IsClear;
     public StageSetting Object_Information;
 }
 

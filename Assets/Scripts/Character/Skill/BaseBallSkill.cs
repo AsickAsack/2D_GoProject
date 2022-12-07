@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBallSkill : ConflictAndSKill
+public class BaseBallSkill : CharacterSkill
 {
     public GameObject BaseBall_Bat;
     Coroutine mySkillCo;
@@ -17,7 +17,7 @@ public class BaseBallSkill : ConflictAndSKill
                 BaseBall_Bat.SetActive(false);
             }
 
-            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
 

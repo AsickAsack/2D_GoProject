@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReBirthSkill : ConflictAndSKill
+public class ReBirthSkill : CharacterSkill
 {
 
     bool Rebirth = false;
@@ -12,7 +12,7 @@ public class ReBirthSkill : ConflictAndSKill
     {
         if (mySkill_Condition == Skill_Condition && this.gameObject.activeSelf)
         {
-            if (!Rebirth)
+            if (!Rebirth&&!IsSilence)
             {
                 Collider2D[] coll = Physics2D.OverlapCircleAll(this.transform.position, ReBirthRange, 1 << LayerMask.NameToLayer("PlayerBall"));
 
@@ -23,6 +23,7 @@ public class ReBirthSkill : ConflictAndSKill
                         Debug.Log("È¯»ý!");
                         Rebirth = true;
                         PlayManager.Instance.ReBirthRoutine(tr);
+                        characterplay.PassiveRangeObj.SetActive(false);
                         break;
                     }
                 }
@@ -39,7 +40,7 @@ public class ReBirthSkill : ConflictAndSKill
     {
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
-            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
 
     }

@@ -11,7 +11,7 @@ public abstract class Obstacle : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
-            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
+            if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
         Skill(collision);
     }
@@ -19,7 +19,7 @@ public abstract class Obstacle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
-            if (collision.transform.GetComponent<ConflictAndSKill>().IgnoreObstacle) return;
+            if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
         Skill(collision);
     }

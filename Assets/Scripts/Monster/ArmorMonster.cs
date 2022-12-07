@@ -56,13 +56,4 @@ public class ArmorMonster : MonsterPlay
     }
 
     
-    public override void Skill()
-    {
-        if (IsHelmet)
-        {
-            //Çï¸ä ³¯¾Æ°¡±â
-    //        StartCoroutine(TakeOff_Helmet());
-        }
-    }
-    
 }

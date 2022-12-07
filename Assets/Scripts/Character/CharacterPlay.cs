@@ -20,8 +20,8 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
 {
 
     public Character character;
-    public ConflictAndSKill MySkill;
-    //public bool OnBoard =false;    
+    public CharacterSkill MySkill;
+    public bool OnBoard;
     public GameObject PassiveRangeObj;
 
     public SpriteRenderer InGame_Sprite;
@@ -33,6 +33,11 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
         get => this.GetComponent<Rigidbody2D>();
     }
     public bool IsUserSKill { get; set; }
+
+    private void OnEnable()
+    {
+        MySkill.enabled = true;
+    }
 
     private void Awake()
     {
@@ -51,7 +56,7 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
             PlayManager.Instance.OnBoardPlayer.Add(this.gameObject);
             if(PassiveRangeObj != null)
             PassiveRangeObj.SetActive(true);
-            MySkill.OnBoard = true;
+            OnBoard = true;
         }
     }
 
@@ -65,15 +70,31 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
     {
         if (!this.gameObject.activeSelf) return;
 
-        if(MySkill.OnBoard)
+        if(OnBoard)
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }
-        MySkill.OnBoard = false;
+        OnBoard = false;
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);        
         PlayManager.Instance.NotifyEventToObservers(Skill_Condition.Death, this.transform);
         this.gameObject.SetActive(false);
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(!MySkill.enabled && collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
+        {
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+        }
+    }
+
+    //충돌시 루틴
+    public void ConflictProcess(Collision2D collision, float Power)
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
+        CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude, this.transform);
     }
 
     public void Death(int EffectIndex)

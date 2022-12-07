@@ -24,7 +24,7 @@ public class BombMonster : MonsterPlay
     }
 
 
-    public override void Skill()
+    public void Skill()
     {
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         Collider2D[] MyCollider = Physics2D.OverlapCircleAll((Vector2)this.transform.position, BombRange);

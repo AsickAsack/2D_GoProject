@@ -413,7 +413,7 @@ public class PlayManager : MonoBehaviour, ISubject
     //¿·¿¡ µ¹ ´­·¶À» ¶§
     public void ChangeCurPlayer(int index,GameObject Obj)
     {
-        if (StageManager.instance.CurCharacters[index].MySkill.OnBoard) return;
+        if (StageManager.instance.CurCharacters[index].OnBoard) return;
 
         if (CurPlayer != null)
             CurPlayer.gameObject.SetActive(false);
@@ -493,7 +493,7 @@ public class PlayManager : MonoBehaviour, ISubject
         ingameUI.SetNotify(GameDB.Instance.GetNotifySpirte(NotifyIcon.ReBirth), $"{character.character.Name} È¯»ý!");
         int index = StageManager.instance.CurCharacters.FindIndex(x => x.character == character.character);
         PlayerCount++;
-        character.MySkill.OnBoard = false;
+        character.OnBoard = false;
         objectPool.GetEffect(7, tr.position, Quaternion.identity);
         ingameUI.CharacterPopup.SetPanelSize(true);
         CharacterIcons[index].SetActive(true);

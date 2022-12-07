@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrainWashSkill : ConflictAndSKill
+public class BrainWashSkill : CharacterSkill
 {
 
     public override void CheckSKill(GameState SkillState)
@@ -12,7 +12,7 @@ public class BrainWashSkill : ConflictAndSKill
 
             case GameState.End:
 
-                if (!this.gameObject.activeSelf) return;
+                if (!this.gameObject.activeSelf || IsSilence) return;
 
                 for(int i=0;i< StageManager.instance.CurMonsters.Count;i++)
                 {
@@ -20,9 +20,7 @@ public class BrainWashSkill : ConflictAndSKill
                     {
                         StageManager.instance.CurMonsters[i].MyRigid.AddForce((this.transform.position - StageManager.instance.CurMonsters[i].transform.position).normalized * 2.0f, ForceMode2D.Impulse);
                     }
-
                 }
-
                 break;
         }
     }
@@ -33,7 +31,7 @@ public class BrainWashSkill : ConflictAndSKill
 
         if (collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall"))
         {
-            ConflictProcess(collision, 0.0f);
+            characterplay.ConflictProcess(collision, 0.0f);
         }
     }
 

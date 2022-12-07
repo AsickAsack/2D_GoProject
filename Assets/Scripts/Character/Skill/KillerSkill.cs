@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillerSkill : ConflictAndSKill
+public class KillerSkill : CharacterSkill
 {
 
     bool IsMurder = false;
@@ -25,7 +25,7 @@ public class KillerSkill : ConflictAndSKill
     {
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-            if (OnBoard)
+            if (characterplay.OnBoard)
             {
                 IsSKill = true;
                 ICompareSkill temp = collision.transform.GetComponent<ICompareSkill>();
@@ -34,29 +34,28 @@ public class KillerSkill : ConflictAndSKill
                 {
                     //실행
                     if (!MurderSkill(collision))
-                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                 }
                 else
                 {
-                    if (temp.GetSkillPriority(this))
+                    if (GetSkillPriority(temp))
                     {
                         //실행
                         if(!MurderSkill(collision))
-                            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                     else
                     {
-                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                 }
             }
             else
             {
-                ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
             }
         }
     }
-
 
     public bool MurderSkill(Collision2D Other)
     {

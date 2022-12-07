@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WitchSkill : ConflictAndSKill
+public class WitchSkill : CharacterSkill
 {
     public GameObject Candy;
     public int CandyCount;
@@ -41,7 +41,7 @@ public class WitchSkill : ConflictAndSKill
     {
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
-            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
         
     }
