@@ -44,7 +44,7 @@ public class StageBtnManager : MonoBehaviour
         SetBtnListeners(index);
     }
 
-    // # 여기 코드 예쁘게 좀....;;;
+    //여기 코드 예쁘게 좀....;;;
     public void SetButtonText(int index)
     {
         for(int i = 0; i < StageDownBtns.Length; i++)

@@ -10,6 +10,24 @@ public struct MonsterSetting
 }
 
 [System.Serializable]
+public struct ToggleSetting
+{
+    public Vector2 Toggle_Pos;
+    public float Angle;
+    public ToggleObstacleSetting[] ToggleObstacles;
+}
+
+[System.Serializable]
+public struct ToggleObstacleSetting
+{
+    public bool IsActive;
+    public ObstacleName obstacle_name;
+    public Vector2 obstacle_Pos;
+    public float Angle;
+}
+
+
+[System.Serializable]
 public struct ObstacleSetting
 {
     public ObstacleName obstacle_name;
@@ -22,6 +40,7 @@ public struct StageSetting
 {
     public MonsterSetting[] MyMonster;
     public ObstacleSetting[] MyObstacle;
+    public ToggleSetting[] MyToggle;
 }
 
 [System.Serializable]
@@ -93,6 +112,7 @@ public class StageManager : MonoBehaviour
         SetCharacter();
         SetMonster(Stage,SubStage);
         SetObstacle(Stage,SubStage);
+        SetToggle(Stage, SubStage);
     }
 
     public void SetCharacter()
@@ -138,6 +158,27 @@ public class StageManager : MonoBehaviour
 
             //종류에 따라 다르게..MonsterClass가 필요할까?
         }
+    }
 
+    public void SetToggle(int Stage, int SubStage)
+    {
+        for (int i = 0; i < stage[Stage].subStage[SubStage].Object_Information.MyToggle.Length; i++)
+        {
+            ObToggle mytoggle = Instantiate(GameDB.Instance.GetObstacle(ObstacleName.Toggle),
+                stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].Toggle_Pos,
+                Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].Angle)).GetComponent<ObToggle>();
+
+            for (int j = 0; j < stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles.Length; j++)
+            {
+                Obstacle obj = Instantiate(GameDB.Instance.GetObstacle(stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].obstacle_name),
+                stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].obstacle_Pos,
+                Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].Angle)).GetComponent<Obstacle>();
+
+                obj.gameObject.SetActive(stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].IsActive);
+
+                mytoggle.SetConnect(obj);
+            }
+            
+        }
     }
 }

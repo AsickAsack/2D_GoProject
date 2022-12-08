@@ -64,7 +64,7 @@ public class PlayManager : MonoBehaviour, ISubject
     public CharacterPlay CurPlayer;
     GameObject CurPlayerIcon;
     public GameObject[] CharacterIcons;
-    public GameObject Arrow;
+    public InGameArrow Arrow;
     public MeterScript PowerOBJ;
     Vector2 PowerOBJPos;
     Quaternion ArrowOriginAngle;
@@ -218,6 +218,7 @@ public class PlayManager : MonoBehaviour, ISubject
 
             case GameState.Shot:
 
+                Arrow.InitArrow((int)LimitPower.x,(int)LimitPower.y);
                 ingameUI.UserSKillBtn.SetActive(false);
                 ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
@@ -369,7 +370,7 @@ public class PlayManager : MonoBehaviour, ISubject
                 else
                     temp = 180 - Vector2.Angle(Vector2.up, targetPos);
 
-                Arrow.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, temp));
+                Arrow.MyArrow.transform.rotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, temp));
 
 
                 PowerOBJ.transform.position = Camera.main.WorldToScreenPoint(PowerOBJPos);
@@ -379,6 +380,7 @@ public class PlayManager : MonoBehaviour, ISubject
                 Power = Vector2.Distance(StartPos, Input.mousePosition) / DividePower;
                 Power = Mathf.Clamp(Power, LimitPower.x, LimitPower.y);
 
+                Arrow.SetArrow((int)Power);
                 PowerOBJ.SetHealth(Power);
 
                 //Arrow.transform.localScale = new Vector3(Power / DivideArrowSize, Power / DivideArrowSize, 0.0f);
@@ -393,7 +395,7 @@ public class PlayManager : MonoBehaviour, ISubject
             if (IsHit)
             {
                 EndPos = Input.mousePosition;
-                Arrow.gameObject.SetActive(false);
+                Arrow.EndArrow();
                 PowerOBJ.gameObject.SetActive(false);
 
                 //플레이어 스크립트에서 보내기
@@ -422,8 +424,8 @@ public class PlayManager : MonoBehaviour, ISubject
         CurPlayer.transform.position = BaseCamp.position;
         CurPlayer.gameObject.SetActive(true);
 
-        Check_SkillExist(GameState.Ready);
 
+        Check_SkillExist(GameState.Ready);
         CurPlayerIcon = Obj;
 
         /* 원래는 액티브가 선택식으로 바뀐다면 사용할 함수

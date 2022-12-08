@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public enum ObstacleName
 {
-    Wall,Stop,Booster
+    Wall,Stop,Booster,Toggle
 }
 
 public enum MonsterName
