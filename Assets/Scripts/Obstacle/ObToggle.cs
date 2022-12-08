@@ -10,7 +10,7 @@ public class ObToggle : Obstacle
 
     private void OnEnable()
     {
-        IsToggle = false;   
+        ResetToggle();
     }
 
     private void Awake()

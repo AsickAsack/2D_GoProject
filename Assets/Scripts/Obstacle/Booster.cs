@@ -7,8 +7,8 @@ using UnityEngine;
 public class Booster : Obstacle
 {
     public float Power;
-
-
+    public float DelayTime;
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
@@ -16,17 +16,19 @@ public class Booster : Obstacle
 
         Skill(collision);
     }
-
+    */
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
             if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
+        Skill(collision);
+        /*
         Rigidbody2D myRigid = collision.transform.GetComponent<Rigidbody2D>();
         myRigid.velocity = Vector2.zero;
         myRigid.AddForce(this.transform.position + this.transform.right * Power, ForceMode2D.Impulse);
+        */
 
-        
     }
 
     public override void Skill(Collider2D collision)
@@ -45,7 +47,7 @@ public class Booster : Obstacle
 
     IEnumerator DelaySkill(Rigidbody2D rigid)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(DelayTime);
 
         rigid.velocity = Vector2.zero;
         rigid.AddForce(this.transform.position + this.transform.right * Power, ForceMode2D.Impulse);
