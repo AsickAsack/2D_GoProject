@@ -232,13 +232,15 @@ public class PlayManager : MonoBehaviour, ISubject
                 break;
 
             case GameState.End:
-
+                ResetToggle();
                 break;
         }
 
         Check_SkillExist(s);
         NotifyGameStateToObservers(s);
     }
+
+    
 
     public void GameLoop()
     {
@@ -539,5 +541,14 @@ public class PlayManager : MonoBehaviour, ISubject
 
         return false;
         
+    }
+
+    public void ResetToggle()
+    {
+        for(int i=0;i< StageManager.instance.CurToggle.Count;i++)
+        {
+            StageManager.instance.CurToggle[i].ResetToggle();
+        }
+
     }
 }

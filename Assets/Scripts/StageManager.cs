@@ -91,6 +91,7 @@ public class StageManager : MonoBehaviour
     public List<CharacterPlay> CurCharacters = new List<CharacterPlay>();
     public List<MonsterPlay> CurMonsters = new List<MonsterPlay>();
     public List<Obstacle> CurObstacle = new List<Obstacle>();
+    public List<ObToggle> CurToggle = new List<ObToggle>();
 
     public Vector2 CurStage;
     public Stage[] stage;
@@ -168,6 +169,8 @@ public class StageManager : MonoBehaviour
                 stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].Toggle_Pos,
                 Quaternion.Euler(0, 0, stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].Angle)).GetComponent<ObToggle>();
 
+            CurToggle.Add(mytoggle);
+
             for (int j = 0; j < stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles.Length; j++)
             {
                 Obstacle obj = Instantiate(GameDB.Instance.GetObstacle(stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].obstacle_name),
@@ -177,6 +180,8 @@ public class StageManager : MonoBehaviour
                 obj.gameObject.SetActive(stage[Stage].subStage[SubStage].Object_Information.MyToggle[i].ToggleObstacles[j].IsActive);
 
                 mytoggle.SetConnect(obj);
+
+                CurObstacle.Add(obj);
             }
             
         }
