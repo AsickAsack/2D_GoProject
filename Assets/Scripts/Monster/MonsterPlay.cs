@@ -71,10 +71,14 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     private void Update()
     {
         //프레임마다 벨로시티 값 저장(장애물들 충돌 처리 때문에)
-        MyVelocity = MyRigid.velocity;
+        //MyVelocity = MyRigid.velocity;
     }
 
-    
+    private void FixedUpdate()
+    {
+        //프레임마다 벨로시티 값 저장(장애물들 충돌 처리 때문에)
+        MyVelocity = MyRigid.velocity;
+    }
 
     public virtual void CountProcess()
     {

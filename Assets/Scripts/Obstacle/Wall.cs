@@ -16,6 +16,8 @@ public class Wall : Obstacle
         {
 
             ICompareSkill Obj = collision.transform.GetComponent<ICompareSkill>();
+            Debug.Log(collision.transform);
+            Debug.Log(Obj.MyVelocity);
             Obj.GetRigidBody().velocity = Vector2.Reflect(Obj.MyVelocity, -collision.GetContact(0).normal);
 
         }

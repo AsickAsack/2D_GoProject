@@ -37,8 +37,9 @@ public class ObToggle : Obstacle
     //장애물들의 활성화 상태를 반대로 바꿔줌
     public override void Skill(Collider2D collision)
     {
+        if (IsToggle) return;
 
-        if ((collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall")) && !IsToggle)
+        if ((collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall")))
         {
 
             for (int i = 0; i < ToggleObj.Length; i++)
@@ -55,5 +56,26 @@ public class ObToggle : Obstacle
         }
     }
 
-    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (IsToggle) return;
+
+        if ((collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall")))
+        {
+
+            for (int i = 0; i < ToggleObj.Length; i++)
+            {
+                ToggleObj[i].SetActive(!ToggleObj[i].activeSelf);
+            }
+
+            for (int i = 0; i < ConnectObstacle.Count; i++)
+            {
+                ConnectObstacle[i].gameObject.SetActive(!ConnectObstacle[i].gameObject.activeSelf);
+            }
+
+            IsToggle = true;
+        }
+    }
+
+
 }

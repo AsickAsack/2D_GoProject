@@ -210,4 +210,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Power: 20
-  DelayTime: 0.3
+  DelayTime: 0.2

@@ -83,7 +83,7 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!MySkill.enabled && collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
+        if(collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
             ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }

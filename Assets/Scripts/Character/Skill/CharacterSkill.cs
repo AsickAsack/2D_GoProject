@@ -95,6 +95,11 @@ public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
 
     private void Update()
     {
+        //MyVelocity = MyRigid.velocity;
+    }
+
+    private void FixedUpdate()
+    {
         MyVelocity = MyRigid.velocity;
     }
 
