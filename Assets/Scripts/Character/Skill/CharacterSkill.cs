@@ -131,6 +131,22 @@ public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
     }
 
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
+        {
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+        }
+    }
+
+    //충돌시 루틴
+    public void ConflictProcess(Collision2D collision, float Power)
+    {
+        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
+        CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude, this.transform);
+    }
+
     public bool GetSkillPriority(ICompareSkill other)
     {
         if (IsSilence) return false;

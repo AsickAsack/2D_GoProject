@@ -16,7 +16,7 @@ public class StrongSKill : CharacterSkill
             {
                 Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity *= characterplay.character.Skill_Figure;
-                characterplay.ConflictProcess(collision, this.GetComponent<Rigidbody2D>().velocity.magnitude * 2.0f);
+                ConflictProcess(collision, this.GetComponent<Rigidbody2D>().velocity.magnitude * 2.0f);
             }
 
             IsSKill = false;

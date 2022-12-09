@@ -10,7 +10,7 @@ public class bulldozerSkill : CharacterSkill
 
         if (collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall"))
         {
-            characterplay.ConflictProcess(collision, 0.0f);
+            ConflictProcess(collision, 0.0f);
         }
     }
 

@@ -51,7 +51,7 @@ public class LeesinSkill : CharacterSkill
     {
         if(collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
 
@@ -67,7 +67,6 @@ public class LeesinSkill : CharacterSkill
     {
         if (this.gameObject != null)
         {
-            Set_MassAndSkillPower(OrgMass, 1.0f);
             CloudObj.SetActive(false);
         }
     }

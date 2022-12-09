@@ -40,7 +40,7 @@ public class InGameIcon : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 
     IEnumerator UIRoutine()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         //ui ¼¼ÆÃ
         PlayManager.Instance.ingameUI.SetCharacterSkill_UI(true,StageManager.instance.CurCharacters[Myindex].character);
     }

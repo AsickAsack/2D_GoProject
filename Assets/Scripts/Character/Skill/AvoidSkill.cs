@@ -20,12 +20,12 @@ public class AvoidSkill : CharacterSkill
                 }
                 else
                 {
-                    characterplay.ConflictProcess(collision, 0.0f);
+                    ConflictProcess(collision, 0.0f);
                 }
             }
             else
             {
-                characterplay.ConflictProcess(collision, 0.0f);
+                ConflictProcess(collision, 0.0f);
             }
 
             IsSKill = false;

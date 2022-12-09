@@ -31,7 +31,7 @@ public class OlafSkill : CharacterSkill
                 IsSKill = false;
             }
 
-            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
 
         }
        

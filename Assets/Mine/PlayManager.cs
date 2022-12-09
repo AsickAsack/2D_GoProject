@@ -81,15 +81,22 @@ public class PlayManager : MonoBehaviour, ISubject
     {
         get => _EnemyCount;
         set {
+
             _EnemyCount = value;
+
+            if(MaxMonsterCount < _EnemyCount)
+            {
+                MaxMonsterCount = _EnemyCount;
+            }
+
             if (EnemyCount == 0)
             {
-                StartCoroutine(SetResult(ingameUI.SetResultCanavs, "승리!"));
-                //ingameUI.SetResultCanavs("승리!");
+                StartCoroutine(SetResult(ingameUI.SetResultCanavs,true));
             }
         }
     }
     public int PlayerCount;
+    public int MaxMonsterCount;
     public int UserSkillPoint = 0;
 
     public int CurTurn = 0;
@@ -153,7 +160,7 @@ public class PlayManager : MonoBehaviour, ISubject
         ArrowOriginAngle = Arrow.transform.rotation;
         //게임 세팅
         StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
-        EnemyCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].Object_Information.MyMonster.Length;
+        EnemyCount = MaxMonsterCount =  StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].Object_Information.MyMonster.Length;
         PlayerCount = StageManager.instance.CurCharacters.Count;
         PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
     }
@@ -232,7 +239,29 @@ public class PlayManager : MonoBehaviour, ISubject
                 break;
 
             case GameState.End:
-                ResetToggle();
+                {
+                    if (EnemyCount == 0)
+                    {
+                        StartCoroutine(SetResult(ingameUI.SetResultCanavs, true));
+                    }
+                    else if (PlayerCount == 0)
+                    {
+                        StartCoroutine(SetResult(ingameUI.SetResultCanavs, false));
+                    }
+                    else
+                    {
+                        ResetToggle();
+                        CountRoutine();
+
+                        //여기 수정 
+                        /*
+                        Check_SkillExist(s);
+                        NotifyGameStateToObservers(s);
+                        */
+                        ChangeState(GameState.Ready);
+                    }
+                }
+                
                 break;
         }
 
@@ -293,19 +322,7 @@ public class PlayManager : MonoBehaviour, ISubject
 
     public void Check_MoveStop()
     {
-        if (EnemyCount == 0)
-        {
-            ingameUI.SetResultCanavs("승리!");
-        }
-        else if (PlayerCount == 0)
-        {
-            ingameUI.SetResultCanavs("패배ㅋ");
-        }
-        else
-        {
-            CountRoutine();
-            ChangeState(GameState.Ready);
-        }
+       //
     }
 
     //발동 할 스킨이 있는지 확인
@@ -512,12 +529,11 @@ public class PlayManager : MonoBehaviour, ISubject
         }
     }
 
-    IEnumerator SetResult(UnityAction<string> unityAction,string s)
+    IEnumerator SetResult(UnityAction<bool> unityAction,bool IsClear)
     {
         yield return new WaitForSeconds(2.0f);
-        unityAction(s);
+        unityAction(IsClear);
     }
-
 
     public bool CheckMove()
     {

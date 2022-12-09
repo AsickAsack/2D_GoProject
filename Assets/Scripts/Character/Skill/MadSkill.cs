@@ -29,7 +29,7 @@ public class MadSkill : CharacterSkill
 
                     if (temp == null)
                     {
-                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                     else
                     {
@@ -40,19 +40,19 @@ public class MadSkill : CharacterSkill
                         }
                         else
                         {
-                            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                         }
                     }
                 }
                 else
                 {
-                    characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                    ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                 }
                 
             }
             else
             {
-                characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
             }
         }
     }

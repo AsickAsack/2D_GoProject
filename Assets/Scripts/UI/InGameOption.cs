@@ -30,6 +30,8 @@ public class InGameOption : MonoBehaviour
     //게임 재시작
     public void ReStartStage()
     {
+        //티켓 있는지 확인해야함
+
         StageManager.instance.CurCharacters.Clear();
         StageManager.instance.CurMonsters.Clear();
         PlayManager.Instance.OnBoardPlayer.Clear();

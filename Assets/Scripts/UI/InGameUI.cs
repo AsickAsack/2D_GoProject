@@ -71,7 +71,7 @@ public class InGameUI : MonoBehaviour
 
     [Header("[결과창 UI]")]
 
-    public Canvas ResultCanvas;
+    public ResultCanvas resultCanvas;
     public TMPro.TMP_Text Result_Text;
 
     [Header("[캐릭터 정보 UI]")]
@@ -143,10 +143,9 @@ public class InGameUI : MonoBehaviour
     }
 
     //결과 창 띄우는 함수
-    public void SetResultCanavs(string result)
+    public void SetResultCanavs(bool IsClear)
     {
-        ResultCanvas.enabled = true;
-        Result_Text.text = result;
+        resultCanvas.CheckGameResult(IsClear);
     }
 
     //유저 스킬 버튼 함수

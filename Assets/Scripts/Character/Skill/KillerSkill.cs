@@ -34,7 +34,7 @@ public class KillerSkill : CharacterSkill
                 {
                     //실행
                     if (!MurderSkill(collision))
-                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                 }
                 else
                 {
@@ -42,17 +42,17 @@ public class KillerSkill : CharacterSkill
                     {
                         //실행
                         if(!MurderSkill(collision))
-                            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                     else
                     {
-                        characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                        ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
                     }
                 }
             }
             else
             {
-                characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+                ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
             }
         }
     }

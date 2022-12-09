@@ -17,7 +17,7 @@ public class BaseBallSkill : CharacterSkill
                 BaseBall_Bat.SetActive(false);
             }
 
-            characterplay.ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
+            ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }
 
