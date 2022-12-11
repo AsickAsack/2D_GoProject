@@ -240,26 +240,7 @@ public class PlayManager : MonoBehaviour, ISubject
 
             case GameState.End:
                 {
-                    if (EnemyCount == 0)
-                    {
-                        StartCoroutine(SetResult(ingameUI.SetResultCanavs, true));
-                    }
-                    else if (PlayerCount == 0)
-                    {
-                        StartCoroutine(SetResult(ingameUI.SetResultCanavs, false));
-                    }
-                    else
-                    {
-                        ResetToggle();
-                        CountRoutine();
-
-                        //여기 수정 
-                        /*
-                        Check_SkillExist(s);
-                        NotifyGameStateToObservers(s);
-                        */
-                        ChangeState(GameState.Ready);
-                    }
+                    CheckEnd();
                 }
                 
                 break;
@@ -269,7 +250,25 @@ public class PlayManager : MonoBehaviour, ISubject
         NotifyGameStateToObservers(s);
     }
 
-    
+    public void CheckEnd()
+    {
+        if (EnemyCount == 0)
+        {
+            StartCoroutine(SetResult(ingameUI.SetResultCanavs, true));
+        }
+        else if (PlayerCount == 0)
+        {
+            StartCoroutine(SetResult(ingameUI.SetResultCanavs, false));
+        }
+        else
+        {
+            ResetToggle();
+            CountRoutine();
+            Check_SkillExist(GameState.End);
+            NotifyGameStateToObservers(GameState.End);
+            ChangeState(GameState.Ready);
+        }
+    }
 
     public void GameLoop()
     {
@@ -288,7 +287,6 @@ public class PlayManager : MonoBehaviour, ISubject
                 break;
 
             case GameState.End:
-                Check_MoveStop();
                 break;
 
             case GameState.UserSkillSelect:
@@ -320,10 +318,7 @@ public class PlayManager : MonoBehaviour, ISubject
             ChangeState(GameState.End);
     }
 
-    public void Check_MoveStop()
-    {
-       //
-    }
+  
 
     //발동 할 스킨이 있는지 확인
     public void Check_SkillExist(GameState gameState)

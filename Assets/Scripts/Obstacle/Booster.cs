@@ -9,6 +9,7 @@ public class Booster : Obstacle
     public float Power;
     public float DelayTime;
     
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
@@ -16,7 +17,8 @@ public class Booster : Obstacle
 
         Skill(collision);
     }
-    
+    */
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("PlayerBall"))
@@ -27,12 +29,12 @@ public class Booster : Obstacle
         Rigidbody2D myRigid = collision.transform.GetComponent<Rigidbody2D>();
         myRigid.velocity = Vector2.zero;
         myRigid.AddForce(this.transform.position + this.transform.right * Power, ForceMode2D.Impulse);
-        
 
     }
 
     public override void Skill(Collider2D collision)
     {
+        /*
         if (collision.transform.CompareTag("PlayerBall")|| collision.transform.CompareTag("EnemyBall"))
         {
             Rigidbody2D myRigid = collision.transform.GetComponent<Rigidbody2D>();
@@ -41,8 +43,10 @@ public class Booster : Obstacle
             /*
             myRigid.velocity = Vector2.zero;
             myRigid.AddForce(this.transform.position + this.transform.right * Power, ForceMode2D.Impulse);
-            */
+            
         }
+        */
+
     }
 
     IEnumerator DelaySkill(Rigidbody2D rigid)

@@ -29,7 +29,7 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         get => _SkillPriority;
         set => _SkillPriority = value;  
     }
-    public bool IsSKill { get; set; }
+    public bool IsSKill { get; set; } = false;
 
     public Monster monster;
     public float Power;

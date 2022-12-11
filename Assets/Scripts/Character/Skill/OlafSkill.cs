@@ -22,7 +22,7 @@ public class OlafSkill : CharacterSkill
                 IsSKill = true;
                 FirstHit = true;
 
-                if (GetSkillPriority(collision.gameObject.GetComponent<ICompareSkill>()))
+                if (collision.gameObject.GetComponent<ICompareSkill>().GetSkillPriority(this))
                 {
                     Ice ice = Instantiate(IceObj).GetComponent<Ice>();
                     ice.SetIce(collision.gameObject);
