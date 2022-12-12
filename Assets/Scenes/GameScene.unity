@@ -15709,6 +15709,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
   - {fileID: 100006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
   - {fileID: 100000, guid: aa3fed151f536ee49b583c6a3ac4a2e1, type: 3}
+  - {fileID: 100018, guid: a40b64bf23366dc42a892af2c6ff6140, type: 3}
   PoolEffectPrefab:
   - {fileID: 2955623459812423943, guid: 8178aff3134c34646a965e698728f05e, type: 3}
   - {fileID: 8460667080445658512, guid: a4d29c6244db25e45a0613de7a27d13a, type: 3}

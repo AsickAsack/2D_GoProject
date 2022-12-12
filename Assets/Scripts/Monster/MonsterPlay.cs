@@ -35,7 +35,7 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public float Power;
     public bool IsConflict = true;
     public Vector2 MyVelocity { get; set; }
-    public bool IsUserSKill { get; set; }
+    public bool IsUserSKill { get; set; } = false;
     public bool IsHomeRun { get; set; } = false;
 
     public abstract void Initialize();
@@ -50,8 +50,11 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
 
         PlayManager.Instance.objectPool.GetActiveEffects(EffectIndex, this.transform.position);
         PlayManager.Instance.EnemyCount--;
-        this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
+        PlayManager.Instance.ingameUI.SetUserSkillPoint(IsUserSKill);
+        this.gameObject.SetActive(false);
+        
+
     }
 
 
@@ -88,7 +91,8 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         PlayManager.Instance.EnemyCount--;
         this.gameObject.SetActive(false);
         PlayManager.Instance.CurMultiKill++;
-        
+        PlayManager.Instance.ingameUI.SetUserSkillPoint(IsUserSKill);
+
     }
 
     public Rigidbody2D GetRigidBody()

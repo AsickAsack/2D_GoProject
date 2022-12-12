@@ -36,6 +36,7 @@ public class BossMonster : MonsterPlay
         {
             GameObject Obj = Instantiate(MonsterPrefab, GetCreatePos(), Quaternion.identity);
             Obj.GetComponent<MonsterPlay>().monster = new Monster(MonsterName.Basic);
+            PlayManager.Instance.objectPool.GetActiveEffects(14, Obj.transform.position);
             StageManager.instance.CurMonsters.Add(Obj.GetComponent<MonsterPlay>());
         }
         

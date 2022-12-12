@@ -206,6 +206,13 @@ public class InGameUI : MonoBehaviour
     {
         UserPointSlider.value = index;
     }
+    public void SetUserSkillPoint(bool UserSkill_Kill)
+    {
+        if (UserSkill_Kill) return;
+
+        UserPointSlider.value = ++PlayManager.Instance.UserSkillPoint;
+    }
+
 
     //킬 UI 설정 함수
     public void SetKillUi(int index)

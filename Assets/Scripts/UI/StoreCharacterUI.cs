@@ -15,6 +15,8 @@ public class StoreCharacterUI : MonoBehaviour
     public TMPro.TMP_Text CharNameText;
     public TMPro.TMP_Text CharacterPriceText;
 
+    public Button MyInfoButton;
+
     [Header("[보유 이후 UI들]")]
 
     public GameObject GetAlreadyPanel;
@@ -24,12 +26,17 @@ public class StoreCharacterUI : MonoBehaviour
     {
         myChar = new Character(index);
         CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(myChar);
-        IndexText.text = (index - (int)CharacterName.Strong + 1).ToString();
+        //IndexText.text = (index - (int)CharacterName.Strong + 1).ToString();
         CharNameText.text = myChar.Name;
         CharacterPriceText.text = CharacterPrice.ToString("N0");
+        MyInfoButton.onClick.AddListener(()=> {
+            PopUpManager.Instance.OpenDesPopup(true, myChar.Name, GameDB.Instance.ChangeFigure(myChar, myChar.Skill_Des));
+        });
         this.gameObject.SetActive(true);
         Check_AlreadyHave();
     }
+
+    
 
     public void Alreadyhave(Character character)
     {

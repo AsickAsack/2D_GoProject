@@ -11,6 +11,8 @@ TagManager:
   - EnemyBall
   - CharacterUI
   - Obstacle
+  - Candy
+  - Bus
   layers:
   - Default
   - TransparentFX

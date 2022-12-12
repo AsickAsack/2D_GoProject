@@ -21,9 +21,10 @@ public class BlackHole : Obstacle
 
     public override void Skill(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerBall") || collision.CompareTag("EnemyBall"))
+        if (collision.CompareTag("PlayerBall") || collision.CompareTag("EnemyBall") || collision.CompareTag("Candy"))
         {
             collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0.01f, 0.01f);
+            collision.GetComponent<Collider2D>().enabled = false;
             StartCoroutine(RotatePlayer(collision.gameObject));
         }
     }

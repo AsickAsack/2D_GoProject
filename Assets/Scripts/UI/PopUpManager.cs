@@ -36,6 +36,13 @@ public class PopUpManager : MonoBehaviour
             MyPopups[index].SetBtnAction(i, PopupAction[i]);
         }
     }
+
+    public void OpenDesPopup(bool check, string Name, string Des)
+    {
+        Dont_TouchPanel.SetActive(true);
+        MyPopups[2].SetAndOpenPopup(Name, Des);
+
+    }
     
 
 

@@ -317,7 +317,7 @@ MonoBehaviour:
   characterplay: {fileID: 5635703100718696875}
   IceObj: {fileID: 2054167498793277691, guid: 5f8df4135306c3643a9f39ad8eb31b8e, type: 3}
   CurHitCount: 0
-  IceCount: 1
+  IceCount: 2
   IceRange: 2
 --- !u!1 &4717380342204496831
 GameObject:

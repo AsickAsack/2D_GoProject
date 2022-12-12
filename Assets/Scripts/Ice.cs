@@ -7,7 +7,7 @@ public class Ice : MonoBehaviour
    public GameObject IceObj;
    public CircleCollider2D myCollider;
    public int IceEffectIndex;
-
+  
     public Vector2 PlayerScale;
     public Vector2 MonsterScale;
 
@@ -25,8 +25,11 @@ public class Ice : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("PlayerBall")|| collision.transform.CompareTag("EnemyBall")|| collision.transform.CompareTag("Obstacle"))
+        if(collision.transform.CompareTag("PlayerBall")|| collision.transform.CompareTag("EnemyBall")|| collision.transform.CompareTag("Obstacle")|| collision.transform.CompareTag("Bus"))
         {
+            if (collision.transform.CompareTag("Bus") && IceObj.transform.CompareTag("EnemyBall")) 
+                IceObj.GetComponent<MonsterPlay>().IsUserSKill = true;
+
             this.gameObject.SetActive(false);
             IceObj.GetComponent<IDeathProcess>().Death(IceEffectIndex);
         }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8215078918491623054}
   - component: {fileID: 8215078918491623055}
   m_Layer: 0
-  m_Name: StageManager 1
+  m_Name: StageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
         MyObstacle:
         - obstacle_name: 4
           obstacle_Pos: {x: -1.5, y: 3.16}
-          Angle: 0
+          Angle: 30
         - obstacle_name: 0
           obstacle_Pos: {x: 2.18, y: 0.78}
           Angle: -40.8
@@ -174,14 +174,14 @@ MonoBehaviour:
           Monster_Pos: {x: 0, y: 1.75}
         MyObstacle: []
         MyToggle: []
-    - NeedCharacter: 0
+    - NeedCharacter: 5
       NeedTicket: 0
       Point: 0
       IsClear: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
-          Monster_Pos: {x: -1.25, y: 4.91}
+          Monster_Pos: {x: 1, y: 1}
         - monster_name: 2001
           Monster_Pos: {x: 0.34, y: 3.9}
         - monster_name: 2001
@@ -189,35 +189,72 @@ MonoBehaviour:
         - monster_name: 2001
           Monster_Pos: {x: -1.8, y: 1.1}
         - monster_name: 2002
-          Monster_Pos: {x: 1.76, y: 3.07}
-        MyObstacle:
-        - obstacle_name: 0
-          obstacle_Pos: {x: -1.5, y: 3.16}
-          Angle: 30
-        MyToggle: []
-    - NeedCharacter: 0
+          Monster_Pos: {x: 1.56, y: 1.56}
+        MyObstacle: []
+        MyToggle:
+        - Toggle_Pos: {x: 0.07, y: 0.15}
+          Angle: 0
+          ToggleObstacles:
+          - IsActive: 0
+            obstacle_name: 1
+            obstacle_Pos: {x: -1.63, y: 0.14}
+            Angle: 0
+          - IsActive: 1
+            obstacle_name: 1
+            obstacle_Pos: {x: 1.42, y: 0.18}
+            Angle: 0
+        - Toggle_Pos: {x: -1.42, y: 2.51}
+          Angle: 0
+          ToggleObstacles:
+          - IsActive: 1
+            obstacle_name: 0
+            obstacle_Pos: {x: -1.7, y: 1.6}
+            Angle: 0
+          - IsActive: 1
+            obstacle_name: 0
+            obstacle_Pos: {x: -0.05, y: 3.06}
+            Angle: -30
+          - IsActive: 1
+            obstacle_name: 0
+            obstacle_Pos: {x: 1.31, y: 2.54}
+            Angle: 0
+    - NeedCharacter: 5
       NeedTicket: 0
       Point: 0
       IsClear: 0
       Object_Information:
         MyMonster:
+        - monster_name: 2004
+          Monster_Pos: {x: 0.46, y: 0.88}
+        - monster_name: 2006
+          Monster_Pos: {x: 1.19, y: 4.09}
+        - monster_name: 2006
+          Monster_Pos: {x: -1.7, y: 4.63}
         - monster_name: 2001
-          Monster_Pos: {x: -1.45, y: 4.91}
-        - monster_name: 2001
-          Monster_Pos: {x: 0.34, y: 3.9}
-        - monster_name: 2001
-          Monster_Pos: {x: 1.26, y: 3.52}
-        - monster_name: 2001
-          Monster_Pos: {x: -1.8, y: 1.1}
-        - monster_name: 2002
-          Monster_Pos: {x: 1.76, y: 3.07}
-        - monster_name: 2002
-          Monster_Pos: {x: 0.5, y: 3.07}
-        MyObstacle:
-        - obstacle_name: 0
-          obstacle_Pos: {x: -1.5, y: 3.16}
-          Angle: 30
-        MyToggle: []
+          Monster_Pos: {x: -1.01, y: 1.54}
+        - monster_name: 2006
+          Monster_Pos: {x: 2, y: 2}
+        MyObstacle: []
+        MyToggle:
+        - Toggle_Pos: {x: -1.68, y: 3.68}
+          Angle: 0
+          ToggleObstacles:
+          - IsActive: 0
+            obstacle_name: 2
+            obstacle_Pos: {x: -1.18, y: 2.51}
+            Angle: 125
+          - IsActive: 0
+            obstacle_name: 2
+            obstacle_Pos: {x: 1.29, y: 2.54}
+            Angle: 60
+          - IsActive: 0
+            obstacle_name: 2
+            obstacle_Pos: {x: -1.32, y: -0.13}
+            Angle: 215
+          - IsActive: 0
+            obstacle_name: 2
+            obstacle_Pos: {x: 1.51, y: -0.02}
+            Angle: 320
     - NeedCharacter: 5
       NeedTicket: 0
       Point: 0

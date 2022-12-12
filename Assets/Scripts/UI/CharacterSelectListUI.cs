@@ -11,6 +11,7 @@ public class CharacterSelectListUI : MonoBehaviour, IPointerDownHandler
     public Character character;
     public Image Icon;
     public GameObject SelectObj;
+    public Button MyCharInfoBtn;
     bool IsSelect = false;
 
     public void SetBtn(Character Mychar)
@@ -18,6 +19,18 @@ public class CharacterSelectListUI : MonoBehaviour, IPointerDownHandler
         this.gameObject.SetActive(true);
         character = Mychar;
         Icon.sprite = GameDB.Instance.GetCharacterIcon(Mychar);
+        MyCharInfoBtn.onClick.RemoveAllListeners();
+
+        //인포 버튼 세팅
+        MyCharInfoBtn.onClick.AddListener(() => {
+
+            PopUpManager.Instance.OpenDesPopup(true,character.Name,GameDB.Instance.ChangeFigure(Mychar,Mychar.Skill_Des));
+        
+        });
+        
+
+        
+            
     }
 
     public void ResetBtn()

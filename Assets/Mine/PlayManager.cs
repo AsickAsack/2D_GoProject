@@ -111,8 +111,6 @@ public class PlayManager : MonoBehaviour, ISubject
             if (CurMultiKill != 0)
             {
                 ingameUI.SetKillUi(_CurMultiKill);
-                UserSkillPoint++;
-                ingameUI.SetUserSkillPoint(UserSkillPoint);
 
                 if (CurMultiKill > MultiKill)
                 {
