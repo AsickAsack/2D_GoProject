@@ -42,7 +42,7 @@ public class InGameIcon : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
     {
         yield return new WaitForSeconds(0.5f);
         //ui ¼¼ÆÃ
-        PlayManager.Instance.ingameUI.SetCharacterSkill_UI(true,StageManager.instance.CurCharacters[Myindex].character);
+        PlayManager.Instance.ingameUI.SetInfoPopup(true,StageManager.instance.CurCharacters[Myindex].character);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -51,6 +51,6 @@ public class InGameIcon : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
             StopCoroutine(CharacterUICo);
 
         //UI²ô±â;
-        PlayManager.Instance.ingameUI.SetCharacterSkill_UI(false);
+        PlayManager.Instance.ingameUI.SetInfoPopup(false);
     }
 }

@@ -68,6 +68,7 @@ MonoBehaviour:
   - {fileID: 216341342427387488, guid: baac4cddb9f1dc544825b84f30788427, type: 3}
   - {fileID: 3892100724588494865, guid: c8811625ae60041459559c9e343865c3, type: 3}
   - {fileID: 3892100724588494865, guid: 3906c286653294545b36648fdfff0a14, type: 3}
+  - {fileID: 4569645021447573687, guid: e4e654da113e3e745b2089cc692a80a8, type: 3}
   UserSkills:
   - {fileID: 3803422693436291940, guid: f3f3354dd4898fb4cbfd04785b9c0022, type: 3}
   - {fileID: 7584223975199734802, guid: 0db17c64ca0a7804baaae3122ce99f81, type: 3}
@@ -104,3 +105,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 34fc39eeda35b4aa6a09a4b4aed954cd, type: 3}
   - {fileID: 21300000, guid: 71cc684e10cb440a580673e0f58a7ee6, type: 3}
   - {fileID: 21300000, guid: 0ff60777254bb1c449ecc894c2c4cc00, type: 3}
+  UserSkillicon:
+  - {fileID: 21300000, guid: 67c3125106e40c343a0241c32ccb838d, type: 3}
+  - {fileID: 21300000, guid: 9395adfe2c1616d459931f1cedae2fe8, type: 3}
+  - {fileID: 21300000, guid: 4f647bd98c6657d42b73dd46dec92ad4, type: 3}
+  - {fileID: 21300000, guid: 8291a37b5a8926f4bbd251e676ff8fd2, type: 3}

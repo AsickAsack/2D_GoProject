@@ -49,6 +49,7 @@ MonoBehaviour:
     \uBAA8\uB4E0 \uC720\uB2DB\uC744 \uC720\uD639\uD558\uC5EC \uD558\uD2B8 \n\uC9C0\uC810\uC73C\uB85C
     \uC0B4\uC9DD \uC774\uB3D9\uC2DC\uD0A8\uB2E4.\n"
   SkillPoint: 3
+  myIcon: 3
   HeartObj: {fileID: 5430815090261514257, guid: f2ffe29740ec2c34e9a6fa98b9bc68ae, type: 3}
   Power: 100
   DelayTime: 1

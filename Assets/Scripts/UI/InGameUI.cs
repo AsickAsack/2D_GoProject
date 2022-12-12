@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
@@ -86,17 +87,16 @@ public class InGameUI : MonoBehaviour
         if(SkillDescriptionCanavs.enabled)
         {
             //이미 창이 켜져있을때
-            SetCharacterSkill_UI(false);
+            SetInfoPopup(false);
         }
         else
         {
             if(PlayManager.Instance.CurPlayer != null)
-            SetCharacterSkill_UI(true, PlayManager.Instance.CurPlayer.character);
+            SetInfoPopup(true, PlayManager.Instance.CurPlayer.character);
         }
     }
 
-
-    public void SetCharacterSkill_UI(bool check,Character character = null)
+    public void SetInfoPopup(bool check, Character character = null)
     {
         if (!check)
         {
@@ -108,6 +108,20 @@ public class InGameUI : MonoBehaviour
         SkillLabel.text = character.Skill_Type == 1 ? character.Name + "- 액티브 스킬" : character.Name + "- 패시브 스킬";
         SkillDescriptionText.text = GameDB.Instance.ChangeFigure(character, character.Skill_Des);
     }
+    
+    public void SetInfoPopup(bool check, UserSkill userSkill)
+    {
+        if (!check)
+        {
+            SkillDescriptionCanavs.enabled = false;
+            return;
+        }
+
+        SkillDescriptionCanavs.enabled = true;
+        SkillLabel.text = $"권능 - {userSkill.UserskillName}";
+        SkillDescriptionText.text = $"{userSkill.UserSkillDes}";
+    }
+    
     public void SetPopup(string s)
     {
         PopUpCanvas.enabled = true;
@@ -273,12 +287,14 @@ public class InGameUI : MonoBehaviour
     //인게임 캐릭터 선택창 세팅 함수
     public void SetCharacterPopUP(bool Check)
     {
-        InfoIcon.SetActive(Check);
 
         if (Check)
             PopupAnim.SetTrigger("GoLeft");
         else
+        {
             PopupAnim.SetTrigger("GoRight");
+            InfoIcon.SetActive(Check);
+        }
 
             
     }

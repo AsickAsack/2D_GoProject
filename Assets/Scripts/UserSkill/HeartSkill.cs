@@ -9,6 +9,11 @@ public class HeartSkill : UserSkill
     public float Power;
     public float DelayTime;
 
+    private void Awake()
+    {
+        myIcon = UserSkillicon.Heart;
+    }
+
     public override void Skill(Vector2 pos)
     {
         GameObject obj = Instantiate(HeartObj,pos,Quaternion.identity);

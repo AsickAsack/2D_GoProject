@@ -9,11 +9,14 @@ public class UserSkill : MonoBehaviour
     public string UserSkillDes;
     public int SkillPoint;
 
+    public UserSkillicon myIcon;
+
+    /*
     public void SetUserSkill()
     {
         PlayerDB.Instance.myUserSkill = this;
     }
-
+    */
     public virtual void Skill(Vector2 pos)
     {
 

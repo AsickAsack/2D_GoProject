@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public enum ObstacleName
 {
-    Wall,Stop,Booster,Toggle
+    Wall,Stop,Booster,Toggle,BlackHole
 }
 
 public enum MonsterName
@@ -39,6 +39,11 @@ public enum ActiveTarget
 public enum NotifyIcon : int
 {
     Killstreak=0,Killstreak_Fail,MostKill,PowerUp,ReBirth,HomeRun
+}
+
+public enum UserSkillicon
+{
+    Bus,Ice,Wall,Heart
 }
 
 public class GameDB : MonoBehaviour
@@ -79,10 +84,16 @@ public class GameDB : MonoBehaviour
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
     public Sprite[] NotifySprite;
+    public Sprite[] UserSkillicon;
 
     public Sprite GetNotifySpirte(NotifyIcon notifyicon)
     {
         return NotifySprite[(int)notifyicon];
+    }
+
+    public Sprite GetUserSkillicon(UserSkillicon userSkillicon)
+    {
+        return UserSkillicon[(int)userSkillicon];
     }
 
     public Sprite GetCharacterImage(Character Char)

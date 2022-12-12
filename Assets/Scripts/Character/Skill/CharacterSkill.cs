@@ -138,6 +138,7 @@ public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
     {
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
+            Debug.Log(collision.transform);
             ConflictProcess(collision, collision.transform.GetComponent<Rigidbody2D>().velocity.magnitude);
         }
     }

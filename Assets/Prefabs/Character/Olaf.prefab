@@ -292,6 +292,7 @@ MonoBehaviour:
     Skill_Range: 0
     Story: 
   MySkill: {fileID: -4346105756975933055}
+  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -310,11 +311,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SkillPriority: 1
   Skill_index: 0
-  OnBoard: 0
   IgnoreObstacle: 0
+  IsSilence: 0
   mySkill_Condition: 0
   characterplay: {fileID: 5635703100718696875}
   IceObj: {fileID: 2054167498793277691, guid: 5f8df4135306c3643a9f39ad8eb31b8e, type: 3}
+  CurHitCount: 0
+  IceCount: 1
+  IceRange: 2
 --- !u!1 &4717380342204496831
 GameObject:
   m_ObjectHideFlags: 0

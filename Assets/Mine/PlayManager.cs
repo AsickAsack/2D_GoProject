@@ -46,7 +46,7 @@ public class PlayManager : MonoBehaviour, ISubject
     //public bool IsActive;
 
     public bool IsHit = false;
-    public Transform BaseCamp;
+    public BaseCamp BaseCamp;
     Vector2 StartPos;
     Vector2 EndPos;
     Vector2 targetPos;
@@ -262,6 +262,7 @@ public class PlayManager : MonoBehaviour, ISubject
         }
         else
         {
+            this.BaseCamp.ClearBase();
             ResetToggle();
             CountRoutine();
             Check_SkillExist(GameState.End);
@@ -436,10 +437,11 @@ public class PlayManager : MonoBehaviour, ISubject
             CurPlayer.gameObject.SetActive(false);
             CurPlayer.MySkill.ChangeRoutine();
         }
-            
+
+        PlayManager.Instance.ingameUI.InfoIcon.SetActive(true);
 
         CurPlayer = StageManager.instance.CurCharacters[index];
-        CurPlayer.transform.position = BaseCamp.position;
+        CurPlayer.transform.position = BaseCamp.transform.position;
         CurPlayer.gameObject.SetActive(true);
 
 

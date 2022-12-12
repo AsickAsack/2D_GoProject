@@ -36,10 +36,11 @@ public class UserSkillUI : MonoBehaviour,IPointerClickHandler
 
     public void SetUIRoutine()
     {
-        userSKill.SetUserSkill();
+        PlayerDB.Instance.myUserSkill = userSKill;
         UserSkillTitle.text = userSKill.UserskillName;
         UserSkillDes.text = userSKill.UserSkillDes;
         SelectObj.transform.position = this.transform.position;
         SelectObj.SetActive(true);
+        userSKill = GameDB.Instance.UserSkills[index];
     }
 }

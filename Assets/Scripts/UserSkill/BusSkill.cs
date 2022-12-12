@@ -6,6 +6,10 @@ public class BusSkill : UserSkill
 {
     public GameObject Bus;
 
+    private void Awake()
+    {
+        myIcon = UserSkillicon.Bus;
+    }
 
     public override void Skill(Vector2 pos)
     {

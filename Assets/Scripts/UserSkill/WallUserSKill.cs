@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class WallUserSKill : UserSkill
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        myIcon = UserSkillicon.Wall;
     }
 }

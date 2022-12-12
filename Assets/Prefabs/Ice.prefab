@@ -101,6 +101,8 @@ MonoBehaviour:
   IceObj: {fileID: 0}
   myCollider: {fileID: 9196085668121396064}
   IceEffectIndex: 11
+  PlayerScale: {x: 0.3, y: 0.3}
+  MonsterScale: {x: 0.07, y: 0.07}
 --- !u!58 &9196085668121396064
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,6 +116,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.41572952, y: 0}
   serializedVersion: 2
-  m_Radius: 7.1
+  m_Radius: 8.809113
