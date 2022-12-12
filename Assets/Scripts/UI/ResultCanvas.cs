@@ -16,6 +16,7 @@ public class ResultCanvas : MonoBehaviour
     public GameObject VeryGoodGif;
 
     Animator MyAnim;
+    public float PlusSpeed;
 
     int[] CheckPoint;
     int[] ResultCount;
@@ -101,18 +102,18 @@ public class ResultCanvas : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            int temp = 0;
+            float temp = 0;
             ResultText[i].gameObject.SetActive(true);
 
-            while (temp != ResultPoint[i])
+            while ((int)temp < ResultPoint[i])
             {
-                temp += 10;
-
+                temp += Time.deltaTime * PlusSpeed;
+                ResultText[i].text = $"{ResultString[i]} x {ResultCount[i]}   :   {((int)temp).ToString()} Á¡";
                 
-                ResultText[i].text = $"{ResultString[i]} x {ResultCount[i]}   :   {temp.ToString()} Á¡";
                 yield return null;
             }
 
+            ResultText[i].text = $"{ResultString[i]} x {ResultCount[i]}   :   {ResultPoint[i].ToString()} Á¡";
             yield return null;
         }
 

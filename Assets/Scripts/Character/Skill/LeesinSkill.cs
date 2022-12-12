@@ -17,6 +17,11 @@ public class LeesinSkill : CharacterSkill
         CloudObj.SetActive(false);
     }
 
+    public override void ChangeRoutine()
+    {
+        CloudObj.SetActive(false);
+    }
+
     public void Set_MassAndSkillPower(float Mass, float SkillPower)
     {
         MyRigid.mass = Mass;
@@ -63,12 +68,6 @@ public class LeesinSkill : CharacterSkill
     }
 
 
-    private void OnDisable()
-    {
-        if (this.gameObject != null)
-        {
-            CloudObj.SetActive(false);
-        }
-    }
+  
 
 }

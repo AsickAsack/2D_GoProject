@@ -74,6 +74,7 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }
+
         OnBoard = false;
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);        
         PlayManager.Instance.NotifyEventToObservers(Skill_Condition.Death, this.transform);

@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ScreenSwtich : MonoBehaviour
 {
-    public GameObject TitleObj;
-    public UnityEngine.UI.Image ScreenSwitch_Imgae;
+    public Animator SwitchAnim;
 
-    public void StartSwitch(float f)
+    public void StartSwitch()
     {
-        StartCoroutine(SwtichImage(f));
+
+        SwitchAnim.SetTrigger("Switch");
+        //StartCoroutine(SwtichImage(f));
     }
 
+    /*
     IEnumerator SwtichImage(float f)
     {
         
@@ -40,4 +42,5 @@ public class ScreenSwtich : MonoBehaviour
 
 
     }
+    */
 }

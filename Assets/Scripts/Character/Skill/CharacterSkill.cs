@@ -116,7 +116,10 @@ public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
         return;
     }
 
+    public virtual void ChangeRoutine()
+    {
 
+    }
 
     //옵저버 메소드
     public virtual void ListenToEvent(Skill_Condition Skill_Condition, Transform tr)

@@ -38,7 +38,7 @@ public class KillerSkill : CharacterSkill
                 }
                 else
                 {
-                    if (GetSkillPriority(temp))
+                    if (temp.GetSkillPriority(this))
                     {
                         //½ÇÇà
                         if(!MurderSkill(collision))

@@ -96,6 +96,25 @@ public class StageManager : MonoBehaviour
     public Vector2 CurStage;
     public Stage[] stage;
 
+    public void InitStage(bool Restart)
+    {
+        CurCharacters.Clear();
+        CurMonsters.Clear();
+        CurObstacle.Clear();
+        CurToggle.Clear();
+
+        if (!Restart)
+        {
+            SelectCharacters.Clear();
+            SceneLoader.Instance.Loading_LoadScene(0);
+        }
+        else
+        {
+            SceneLoader.Instance.Loading_LoadScene(2);
+            
+        }
+    }
+
     //스테이지에 필요한 캐릭터 카운트 리턴
     public int GetNeedCharacterCount()
     {

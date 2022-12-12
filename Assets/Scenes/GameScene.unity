@@ -22760,6 +22760,7 @@ MonoBehaviour:
   - {fileID: 1250436440}
   - {fileID: 1438085363}
   VeryGoodGif: {fileID: 1569067115}
+  PlusSpeed: 500
 --- !u!95 &1900613936
 Animator:
   serializedVersion: 4

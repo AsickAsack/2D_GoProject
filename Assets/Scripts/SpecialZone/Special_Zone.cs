@@ -13,6 +13,11 @@ public abstract class Special_Zone : MonoBehaviour
             collision.transform.GetComponent<IHomeRun>()?.HomeRunRoutine(this.transform);
         }
 
+        if (collision.transform.CompareTag("PlayerBall"))
+        {
+            collision.transform.GetComponent<IDeathProcess>().Death();
+        }
+
         Skill(collision);
     }
 }

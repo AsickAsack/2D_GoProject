@@ -432,7 +432,11 @@ public class PlayManager : MonoBehaviour, ISubject
         if (StageManager.instance.CurCharacters[index].OnBoard) return;
 
         if (CurPlayer != null)
+        {
             CurPlayer.gameObject.SetActive(false);
+            CurPlayer.MySkill.ChangeRoutine();
+        }
+            
 
         CurPlayer = StageManager.instance.CurCharacters[index];
         CurPlayer.transform.position = BaseCamp.position;

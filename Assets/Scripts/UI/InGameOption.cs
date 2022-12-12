@@ -31,23 +31,13 @@ public class InGameOption : MonoBehaviour
     public void ReStartStage()
     {
         //티켓 있는지 확인해야함
-
-        StageManager.instance.CurCharacters.Clear();
-        StageManager.instance.CurMonsters.Clear();
-        PlayManager.Instance.OnBoardPlayer.Clear();
-
-        SceneLoader.Instance.Loading_LoadScene(2);
+        StageManager.instance.InitStage(true);
     }
 
     //메인 화면 이동
     public void GoMain()
     {
-        StageManager.instance.SelectCharacters.Clear();
-        StageManager.instance.CurCharacters.Clear();
-        StageManager.instance.CurMonsters.Clear();
-        PlayManager.Instance.OnBoardPlayer.Clear();
-
-        SceneLoader.Instance.Loading_LoadScene(0);
+        StageManager.instance.InitStage(false);
 
 
     }
