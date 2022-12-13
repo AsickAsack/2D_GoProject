@@ -12,10 +12,20 @@ public class StageBtn : MonoBehaviour
 
     public void SetStageBtn()
     {
-        //다시 세팅할때는 별 다 꺼야함
-        SubStageText.text = $"{((int)StageManager.instance.CurStage.x).ToString()}-{MyIndex}";
+        SubStageText.text = $"{((int)StageManager.instance.CurStage.x).ToString()}-{MyIndex + 1}";
+        InitializeBtn();
 
-        for(int i=0;i<StageManager.instance.stage[(int)StageManager.instance.CurStage.x].subStage[MyIndex].Stars;i++)
+        if (!StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[MyIndex].IsActive)
+        {
+            
+            return;
+        }
+
+        
+        MyBtn.interactable = true;
+
+
+        for (int i=0;i<StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[MyIndex].Stars;i++)
         {
             StarOBJ[i].SetActive(true);
         }
@@ -24,4 +34,11 @@ public class StageBtn : MonoBehaviour
         //앞뒤 확인
     }
 
+    public void InitializeBtn()
+    {
+        MyBtn.interactable = false;
+
+        for (int i=0;i < StarOBJ.Length;i++)
+            StarOBJ[i].SetActive(false);
+    }
 }

@@ -48,6 +48,17 @@ public class PlayerDB : MonoBehaviour
 
     }
 
+    private int _Ticket;
+    public int Ticket
+    {
+        get => _Ticket;
+        set
+        {
+            _Ticket = value;
+        }
+
+    }
+
     public bool IsFirst = true;
     //유저 스킬도 있음
 

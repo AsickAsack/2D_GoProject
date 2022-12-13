@@ -50,7 +50,7 @@ public struct SubStage
     public int NeedTicket;
     public int Stars;
     public int RewardGold;
-    public bool IsClear;
+    public bool IsActive;
     public StageSetting Object_Information;
 }
 

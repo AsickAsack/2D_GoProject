@@ -73,7 +73,7 @@ public class ResultCanvas : MonoBehaviour
 
 
         var CurStage = (x: (int)StageManager.instance.CurStage.x-1, y: (int)StageManager.instance.CurStage.y-1);
-        StageManager.instance.stage[CurStage.x].subStage[CurStage.y].IsClear = true;
+        StageManager.instance.stage[CurStage.x].subStage[CurStage.y].IsActive = true;
 
         Debug.Log(PlayManager.Instance.PlayerCount);
 

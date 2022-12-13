@@ -54,8 +54,9 @@ MonoBehaviour:
   - subStage:
     - NeedCharacter: 3
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 3
+      RewardGold: 0
+      IsActive: 1
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -74,8 +75,9 @@ MonoBehaviour:
         MyToggle: []
     - NeedCharacter: 4
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -98,8 +100,9 @@ MonoBehaviour:
         MyToggle: []
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -129,8 +132,38 @@ MonoBehaviour:
             Angle: 0
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2006
+          Monster_Pos: {x: -0.65, y: -0.404}
+        - monster_name: 2006
+          Monster_Pos: {x: 0.09, y: 0.8}
+        - monster_name: 2006
+          Monster_Pos: {x: 1.058, y: 0.401}
+        - monster_name: 2006
+          Monster_Pos: {x: 2, y: 2}
+        - monster_name: 2002
+          Monster_Pos: {x: -2.1, y: 2.991}
+        MyObstacle:
+        - obstacle_name: 0
+          obstacle_Pos: {x: -2.2, y: -1.17}
+          Angle: -76.42
+        MyToggle:
+        - Toggle_Pos: {x: -0.9, y: 1.61}
+          Angle: 0
+          ToggleObstacles:
+          - IsActive: 0
+            obstacle_name: 2
+            obstacle_Pos: {x: -1.8, y: 1.1}
+            Angle: 0
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2006
@@ -158,8 +191,9 @@ MonoBehaviour:
   - subStage:
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -176,8 +210,9 @@ MonoBehaviour:
         MyToggle: []
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -220,8 +255,9 @@ MonoBehaviour:
             Angle: 0
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2004
@@ -257,8 +293,9 @@ MonoBehaviour:
             Angle: 320
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2002
@@ -286,8 +323,9 @@ MonoBehaviour:
             Angle: -59
     - NeedCharacter: 0
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -310,8 +348,97 @@ MonoBehaviour:
   - subStage:
     - NeedCharacter: 5
       NeedTicket: 0
-      Point: 0
-      IsClear: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: 500, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 600, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 700, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 800, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 900, y: 0}
+        MyObstacle:
+        - obstacle_name: 1
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 0
+        MyToggle: []
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: 500, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 600, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 700, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 800, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 900, y: 0}
+        MyObstacle:
+        - obstacle_name: 1
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 0
+        MyToggle: []
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: 500, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 600, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 700, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 800, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 900, y: 0}
+        MyObstacle:
+        - obstacle_name: 1
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 0
+        MyToggle: []
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: 500, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 600, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 700, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 800, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 900, y: 0}
+        MyObstacle:
+        - obstacle_name: 1
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 0
+        MyToggle: []
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Stars: 0
+      RewardGold: 0
+      IsActive: 0
       Object_Information:
         MyMonster:
         - monster_name: 2001
