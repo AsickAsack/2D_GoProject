@@ -307,3 +307,25 @@ MonoBehaviour:
           obstacle_Pos: {x: -1.5, y: 3.16}
           Angle: 30
         MyToggle: []
+  - subStage:
+    - NeedCharacter: 5
+      NeedTicket: 0
+      Point: 0
+      IsClear: 0
+      Object_Information:
+        MyMonster:
+        - monster_name: 2001
+          Monster_Pos: {x: 500, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 600, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 700, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 800, y: 0}
+        - monster_name: 2001
+          Monster_Pos: {x: 900, y: 0}
+        MyObstacle:
+        - obstacle_name: 1
+          obstacle_Pos: {x: 0, y: 0}
+          Angle: 0
+        MyToggle: []

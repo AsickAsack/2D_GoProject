@@ -53,14 +53,16 @@ public class PlayerDB : MonoBehaviour
 
     private void Awake()
     {
-        myUserSkill = GameDB.Instance.UserSkills[0];
+        myUserSkill = myUserSkill ?? GameDB.Instance.UserSkills[0];
     }
 
-
+    object Reward;
     public void addCharacter(Character newCharacter)
     {
         MyCharacters.Add(newCharacter);
         //Debug.Log(newCharacter.name + "이 추가되었습니다.");
+
+        
     }
 
     public void SaveData()

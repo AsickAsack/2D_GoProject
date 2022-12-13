@@ -5,39 +5,23 @@ using UnityEngine.UI;
 
 public class StageBtn : MonoBehaviour
 {
-    [SerializeField]
-    private int stageIndex;
-    [SerializeField]
-    private Text StageText;
-    public Sprite Icon;
-    public float PaddingY;
+    public int MyIndex;
+    public TMPro.TMP_Text SubStageText;
+    public GameObject[] StarOBJ;
+    public Button MyBtn;
 
-
-    public RectTransform myRect;
-    Vector2 OrgPos = Vector2.zero;
-
-    private void Awake()
+    public void SetStageBtn()
     {
-        Initailize();
-        myRect = this.GetComponent<RectTransform>();
-        OrgPos = myRect.anchoredPosition;
-        
-    }
+        //다시 세팅할때는 별 다 꺼야함
+        SubStageText.text = $"{((int)StageManager.instance.CurStage.x).ToString()}-{MyIndex}";
 
-    public void Initailize()
-    {
-        StageText.text = "스테이지 " + (stageIndex+1);
-        this.transform.GetChild(0).GetComponent<Image>().sprite = Icon;
-    }
+        for(int i=0;i<StageManager.instance.stage[(int)StageManager.instance.CurStage.x].subStage[MyIndex].Stars;i++)
+        {
+            StarOBJ[i].SetActive(true);
+        }
 
-    public void GoDown(float y)
-    {
-        myRect.anchoredPosition = new Vector2(myRect.anchoredPosition.x, myRect.anchoredPosition.y - y);
-    }
-    public void ResetPosition()
-    {
-        myRect.anchoredPosition = OrgPos;
-
+        //아직 클리어 하지 않았으면 버튼 상호작용 꺼야함
+        //앞뒤 확인
     }
 
 }

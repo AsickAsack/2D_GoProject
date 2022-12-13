@@ -6,6 +6,12 @@ public class Stop : Obstacle
 {
 
     public int StopCount;
+    Vector2 MinusVector;
+
+    private void Awake()
+    {
+        MinusVector = new Vector2(10f, 10f);
+    }
 
     public override void Skill(Collision2D collision)
     {
@@ -25,13 +31,14 @@ public class Stop : Obstacle
 
     IEnumerator StopRoutine(Rigidbody2D rigidbody)
     {
-        Vector2 temp = rigidbody.velocity * 0.1f;
+        //Vector2 temp = rigidbody.velocity * 0.9f;
 
-        for (int i=0;i<StopCount;i++)
+        for(int i=0;i<10;i++)
         {
-            
-            rigidbody.velocity -= temp;
-            yield return null;
+
+            rigidbody.velocity *= 0.8f;
+
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

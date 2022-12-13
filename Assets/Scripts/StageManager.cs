@@ -48,7 +48,8 @@ public struct SubStage
 {
     public int NeedCharacter;
     public int NeedTicket;
-    public int Point;
+    public int Stars;
+    public int RewardGold;
     public bool IsClear;
     public StageSetting Object_Information;
 }
