@@ -45,4 +45,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BgmClips: []
-  EffectClips: []
+  EffectClips:
+  - {fileID: 8300000, guid: 283e9151d3c06d74f9ec8d7dd7558823, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 28886e244f3d83a43ba9082af52819c3, type: 3}
+  - {fileID: 8300000, guid: adfba852164e63545961535dd5015f5f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 21f232218c8edb048b5c478ece58e018, type: 3}
+  - {fileID: 8300000, guid: cbd9fccce77182143b0622ab2890360f, type: 3}
+  - {fileID: 8300000, guid: 53292efef4ea8b34f9c8c0d3de6e0fa9, type: 3}
+  - {fileID: 8300000, guid: 1e384ed63e971644696432e9cdaf15df, type: 3}
+  - {fileID: 8300000, guid: 49bd31220b8baa541bc2c323f0aad319, type: 3}
+  - {fileID: 8300000, guid: 488fc83beace8bf40a5ffe5e33d22f9e, type: 3}
+  - {fileID: 8300000, guid: 6f93592d85349424b80f2a95b4b9925f, type: 3}
+  - {fileID: 8300000, guid: d19ccea423c7fc149ae14c102ef30fcf, type: 3}
+  - {fileID: 8300000, guid: c73edab78245edb44b7b97f9e5bef6d8, type: 3}
+  - {fileID: 8300000, guid: 89935689406434842b231564e7bdc09a, type: 3}
+  - {fileID: 8300000, guid: 4f87ebcd9cbf3dc4b945531663f7d437, type: 3}
+  - {fileID: 8300000, guid: 916b395e70a421b419d9d1aeccd24c88, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: e39ad5b1f0fce5a4dba9a9b5e206314e, type: 3}
+  - {fileID: 8300000, guid: a47df0b8332f4454692de6e3d871d161, type: 3}
+  - {fileID: 8300000, guid: ffe82074e8382c44799e3734052a6761, type: 3}
+  - {fileID: 8300000, guid: 916b395e70a421b419d9d1aeccd24c88, type: 3}
+  - {fileID: 8300000, guid: d10d73483e8cb5b41a04e339a4e13545, type: 3}
+  - {fileID: 8300000, guid: 4f87ebcd9cbf3dc4b945531663f7d437, type: 3}
+  - {fileID: 8300000, guid: 6c0f8ed3d5d19594b9b68d9893e42e4e, type: 3}
+  - {fileID: 8300000, guid: 111544ec93380c340b2e87ff918c5c4d, type: 3}
+  - {fileID: 8300000, guid: c194d6e838809074294bd952cc780a35, type: 3}
+  - {fileID: 8300000, guid: 6a520dc4edae8f84a9edb330857a43b0, type: 3}

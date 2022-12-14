@@ -61,6 +61,9 @@ public class SceneLoader : MonoBehaviour
             }
             yield return null;
         }
+
+        //설정 그대로 끌고오기
+        SoundManager.Instance.SetVolumeNewScene();
     }
     #endregion
     /*

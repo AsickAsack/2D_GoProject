@@ -45,8 +45,9 @@ public class OlafSkill : CharacterSkill
         Collider2D[] myColl;
 
         myColl = Physics2D.OverlapCircleAll(this.transform.position, IceRange);
+        SoundManager.Instance.PlayEffect(27);
 
-        for(int i=0;i<myColl.Length;i++)
+        for (int i=0;i<myColl.Length;i++)
         {
             if((myColl[i].transform.CompareTag("PlayerBall")|| myColl[i].transform.CompareTag("EnemyBall")) && myColl[i].transform != this.transform)
             {

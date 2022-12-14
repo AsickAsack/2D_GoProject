@@ -21,17 +21,23 @@ public class StageBtn : MonoBehaviour
         SubStageText.text = $"{((int)StageManager.instance.CurStage.x).ToString()}-{MyIndex + 1}";
         InitializeBtn();
 
+        if (!PlayerDB.Instance.playerdata.MyStageData[(int)StageManager.instance.CurStage.x - 1].IsAcitve[MyIndex])
+        {
+
+            return;
+        }
+        /*
         if (!StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[MyIndex].IsActive)
         {
             
             return;
         }
+        */
 
-        
         MyBtn.interactable = true;
 
 
-        for (int i=0;i<StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[MyIndex].Stars;i++)
+        for (int i=0;i< PlayerDB.Instance.playerdata.MyStageData[(int)StageManager.instance.CurStage.x - 1].StageStar[MyIndex]; i++)
         {
             StarOBJ[i].SetActive(true);
         }

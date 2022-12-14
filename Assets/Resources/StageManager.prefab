@@ -72,7 +72,9 @@ MonoBehaviour:
         - monster_name: 2005
           Monster_Pos: {x: 1.14, y: 1.27}
         MyObstacle: []
-        MyToggle: []
+        MyToggle:
+        - Angle: 0
+          ToggleObstacles: []
     - NeedCharacter: 4
       NeedTicket: 3
       Stars: 0
@@ -119,8 +121,7 @@ MonoBehaviour:
           Monster_Pos: {x: -0.3, y: 3.16}
         MyObstacle: []
         MyToggle:
-        - Toggle_Pos: {x: 1.29, y: 2.86}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 0
             obstacle_name: 2
@@ -152,8 +153,7 @@ MonoBehaviour:
           obstacle_Pos: {x: -2.2, y: -1.17}
           Angle: -76.42
         MyToggle:
-        - Toggle_Pos: {x: -0.9, y: 1.61}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 0
             obstacle_name: 2
@@ -181,8 +181,7 @@ MonoBehaviour:
           obstacle_Pos: {x: -2.2, y: -1.17}
           Angle: -76.42
         MyToggle:
-        - Toggle_Pos: {x: -0.9, y: 1.61}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 0
             obstacle_name: 2
@@ -227,8 +226,7 @@ MonoBehaviour:
           Monster_Pos: {x: 1.56, y: 1.56}
         MyObstacle: []
         MyToggle:
-        - Toggle_Pos: {x: 0.07, y: 0.15}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 0
             obstacle_name: 1
@@ -238,8 +236,7 @@ MonoBehaviour:
             obstacle_name: 1
             obstacle_Pos: {x: 1.42, y: 0.18}
             Angle: 0
-        - Toggle_Pos: {x: -1.42, y: 2.51}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 1
             obstacle_name: 0
@@ -272,8 +269,7 @@ MonoBehaviour:
           Monster_Pos: {x: 2, y: 2}
         MyObstacle: []
         MyToggle:
-        - Toggle_Pos: {x: -1.68, y: 3.68}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 0
             obstacle_name: 2
@@ -310,8 +306,7 @@ MonoBehaviour:
           Monster_Pos: {x: 1.49, y: 2.42}
         MyObstacle: []
         MyToggle:
-        - Toggle_Pos: {x: -0.05, y: 1.76}
-          Angle: 0
+        - Angle: 0
           ToggleObstacles:
           - IsActive: 1
             obstacle_name: 2

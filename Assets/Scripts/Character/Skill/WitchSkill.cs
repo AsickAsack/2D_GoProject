@@ -64,6 +64,8 @@ public class WitchSkill : CharacterSkill
         float ThrowCandyDistance = StartMagunitude * 0.4f;
         float LastThrowY = -2.5f;
 
+        SoundManager.Instance.PlayEffect(20);
+
         //MyRigid.simulated = false;
         while (true)
         {
@@ -97,6 +99,7 @@ public class WitchSkill : CharacterSkill
             yield return null;
         }
 
+        SoundManager.Instance.PlayEffect(21);
         PlayManager.Instance.objectPool.GetActiveEffects(8, this.transform.position);
 
         Collider2D[] tempcoll = Physics2D.OverlapCircleAll(this.transform.position, 1.0f);

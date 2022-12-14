@@ -69,7 +69,7 @@ public class ResultCanvas : MonoBehaviour
                 Star_Text[i].text = CheckPoint[i-1].ToString("N0");
             
         }
-
+        
 
 
         var CurStage = (x: (int)StageManager.instance.CurStage.x-1, y: (int)StageManager.instance.CurStage.y-1);
@@ -80,18 +80,14 @@ public class ResultCanvas : MonoBehaviour
         {
             //서브 스테이지가 없다면?
             if (StageManager.instance.stage.Length <= CurStage.x + 1)
-            {
                 return;
-            }
             else
-            {
-                StageManager.instance.stage[CurStage.x+1].subStage[0].IsActive = true;
-            }
+                PlayerDB.Instance.playerdata.MyStageData[CurStage.x + 1].IsAcitve[0] = true;
+                //StageManager.instance.stage[CurStage.x+1].subStage[0].IsActive = true;
         }
         else
-        {
-            StageManager.instance.stage[CurStage.x].subStage[CurStage.y+1].IsActive = true;
-        }
+            PlayerDB.Instance.playerdata.MyStageData[CurStage.x].IsAcitve[CurStage.y + 1] = true;
+        //StageManager.instance.stage[CurStage.x].subStage[CurStage.y+1].IsActive = true;
         
 
         int starCount = 0;
@@ -106,7 +102,13 @@ public class ResultCanvas : MonoBehaviour
             starCount = 3;
         }
 
-        StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars = starCount;
+        if (PlayerDB.Instance.playerdata.MyStageData[CurStage.x].StageStar[CurStage.y] < starCount)
+            PlayerDB.Instance.playerdata.MyStageData[CurStage.x].StageStar[CurStage.y] = starCount;
+        /*
+        //현재 받은 별이 이미 받은별보다 높다면
+        if (StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars < starCount)
+            StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars = starCount;
+        */
         MyAnim.SetInteger("Star", starCount);
 
 

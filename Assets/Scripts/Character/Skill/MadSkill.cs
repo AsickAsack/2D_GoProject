@@ -60,7 +60,7 @@ public class MadSkill : CharacterSkill
     public void Skill(Collision2D collision)
     {
         PlayManager.Instance.objectPool.GetActiveEffects(Skill_index, collision.GetContact(0).point);
-
+        SoundManager.Instance.PlayEffect(22);
         Collider2D[] temp = Physics2D.OverlapCircleAll(this.transform.position, 2.0f);
 
         for (int i = 0; i < temp.Length; i++)

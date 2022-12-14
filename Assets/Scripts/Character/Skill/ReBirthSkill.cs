@@ -20,7 +20,7 @@ public class ReBirthSkill : CharacterSkill
                 {
                     if (coll[i].transform == tr)
                     {
-                        Debug.Log("È¯»ý!");
+                        SoundManager.Instance.PlayEffect(24);
                         Rebirth = true;
                         PlayManager.Instance.ReBirthRoutine(tr);
                         characterplay.PassiveRangeObj.SetActive(false);

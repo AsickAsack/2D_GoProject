@@ -67,7 +67,7 @@ public class CharacterSelectManager : MonoBehaviour
             }
         }
 
-        if (PlayerDB.Instance.MyCharacters.Count < StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter)
+        if (PlayerDB.Instance.playerdata.MyCharacters.Count < StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter)
         {
             PopUpManager.Instance.OpenPopup(0, "알림", $"이 스테이지에 필요한\n 캐릭터의 수가 부족합니다.\n\n {x}-{y} 스테이지 \n필요 캐릭터 수 : {StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter}", null);
             return;
@@ -81,10 +81,10 @@ public class CharacterSelectManager : MonoBehaviour
         Set_CountText(0);
         AcitveCharacterBox();
 
-        for (int i = 0; i < PlayerDB.Instance.MyCharacters.Count;i++)
+        for (int i = 0; i < PlayerDB.Instance.playerdata.MyCharacters.Count;i++)
         {
             //보유 캐릭터 수만큼 켜지고 아이콘 까지 세팅
-            MySelectList[i].SetBtn(PlayerDB.Instance.MyCharacters[i]);
+            MySelectList[i].SetBtn(PlayerDB.Instance.playerdata.MyCharacters[i]);
         }
 
         
@@ -98,12 +98,14 @@ public class CharacterSelectManager : MonoBehaviour
         if (myChar == null)
         {
             //정해진 인덱스 지우기 , 포인터 그 인덱스로 
+            SoundManager.Instance.PlayEffect(5);
             TempSelect_Char[index] = myChar;
             MySelected_Char[index].SetBtn(index,null);
             Count--;
         }
         else
         {
+            SoundManager.Instance.PlayEffect(4);
             Pointer = GetPointer();
             TempSelect_Char[Pointer] = myChar;
             MySelected_Char[Pointer].SetBtn(index,GameDB.Instance.GetCharacterIcon(myChar));

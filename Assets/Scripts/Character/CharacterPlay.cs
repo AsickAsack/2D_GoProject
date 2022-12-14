@@ -70,7 +70,9 @@ public class CharacterPlay : MonoBehaviour, IDeathProcess, IMoveCheck
     {
         if (!this.gameObject.activeSelf) return;
 
-        if(OnBoard)
+        SoundManager.Instance.PlayEffect(12);
+
+        if (OnBoard)
         {
             PlayManager.Instance.RemoveObserver(this.gameObject);
         }

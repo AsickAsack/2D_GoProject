@@ -48,9 +48,9 @@ public struct SubStage
 {
     public int NeedCharacter;
     public int NeedTicket;
-    public int Stars;
+    //public int Stars;
     public int RewardGold;
-    public bool IsActive;
+    //public bool IsActive;
     public StageSetting Object_Information;
 }
 
@@ -134,6 +134,7 @@ public class StageManager : MonoBehaviour
         SetMonster(Stage,SubStage);
         SetObstacle(Stage,SubStage);
         SetToggle(Stage, SubStage);
+
     }
 
     public void SetCharacter()

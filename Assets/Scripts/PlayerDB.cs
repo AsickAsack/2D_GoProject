@@ -4,6 +4,41 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.IO;
 
+[System.Serializable]
+public class StageData
+{
+    public StageData()
+    {
+        StageStar = new int[5];
+        IsAcitve = new bool[5];
+    }
+
+    public int[] StageStar;
+    public bool[] IsAcitve;
+}
+
+[System.Serializable]
+public class PlayerData
+{
+
+    public readonly int _MaxTicket = 30;
+
+    public StageData[] MyStageData= new StageData[5];
+    public List<Character> MyCharacters = new List<Character>();
+    public bool CutScene = true;
+    public int UserSkill_Index = 0;
+
+    public string PlayerName = "김준우";
+    public int _Gold = 0;
+    public int _Ticket = 30;
+    public bool PlayFirst = true;
+
+
+
+}
+
+
+
 public class PlayerDB : MonoBehaviour
 {
     #region 싱글톤
@@ -31,75 +66,69 @@ public class PlayerDB : MonoBehaviour
 
     #endregion
 
-  
-
-    public List<Character> MyCharacters = new List<Character>();
-    public bool CutScene = true;
-
+    public PlayerData playerdata;
     public UserSkill myUserSkill;
-    private int _Gold;
+    public bool IsFirst = true;
+
     public int Gold
     {
-        get => _Gold;
+        get => playerdata._Gold;
         set
         {
-            _Gold = value;
+            playerdata._Gold = value;
             UIManager.Instance.SetGold_Text();
         }
 
     }
 
-
-    private int _MaxTicket = 30;
     public int MaxTicket
     {
-        get => _MaxTicket;
-        private set => _MaxTicket = value;
+        get => playerdata._MaxTicket; 
     }
 
-    private int _Ticket = 30;
     public int Ticket
     {
-        get => _Ticket;
+        get => playerdata._Ticket;
         set
         {
-            _Ticket = value;
+            playerdata._Ticket = value;
             UIManager.Instance.SetTicket_Text(MaxTicket);
         }
 
     }
 
-    public bool IsFirst = true;
+
     //유저 스킬도 있음
 
     private void Awake()
     {
-        myUserSkill = myUserSkill ?? GameDB.Instance.UserSkills[0];
-        
+        playerdata = new PlayerData();
+        myUserSkill = GameDB.Instance.UserSkills[playerdata.UserSkill_Index];
+        //playerdata.MyStageData = new StageData[5];
+        //playerdata.MyStageData[0].IsAcitve[0] = true;
     }
 
 
-    object Reward;
     public void addCharacter(Character newCharacter)
     {
-        MyCharacters.Add(newCharacter);
-        //Debug.Log(newCharacter.name + "이 추가되었습니다.");
-
-        
+        playerdata.MyCharacters.Add(newCharacter);
     }
 
     public void SaveData()
-    {
-        string data = JsonConvert.SerializeObject(MyCharacters);
+    {   playerdata.MyStageData[0].IsAcitve[0] = true;
+        GameSystem.Save<PlayerData>(ref playerdata, "/PlayerDB.json");
+        /*
+        string data = JsonConvert.SerializeObject(playerdata);
         File.WriteAllText(Application.dataPath+"/PlayerDB.json",data);
-
+        */
     }
 
     public void LoadData()
     {
-        string data = File.ReadAllText(Application.dataPath + "/PlayerDB.json");
-        MyCharacters = JsonConvert.DeserializeObject(data) as List<Character>;
-    }
+        GameSystem.Load<PlayerData>(ref playerdata, "/PlayerDB.json");
+        UIManager.Instance.SetGold_Text();
+        UIManager.Instance.SetTicket_Text(MaxTicket);
+    }   
 
     
 }

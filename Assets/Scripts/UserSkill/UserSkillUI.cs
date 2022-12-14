@@ -28,6 +28,8 @@ public class UserSkillUI : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        SoundManager.Instance.PlayEffect(1);
+
         if(userSKill != null)
         {
             SetUIRoutine();
@@ -36,6 +38,7 @@ public class UserSkillUI : MonoBehaviour,IPointerClickHandler
 
     public void SetUIRoutine()
     {
+        PlayerDB.Instance.playerdata.UserSkill_Index = index;
         PlayerDB.Instance.myUserSkill = userSKill;
         UserSkillTitle.text = userSKill.UserskillName;
         UserSkillDes.text = userSKill.UserSkillDes;

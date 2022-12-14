@@ -41,6 +41,8 @@ public class ObToggle : Obstacle
 
         if ((collision.gameObject.CompareTag("PlayerBall") || collision.gameObject.CompareTag("EnemyBall")))
         {
+            SoundManager.Instance.PlayEffect(18);
+
 
             for (int i = 0; i < ToggleObj.Length; i++)
             {

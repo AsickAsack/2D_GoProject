@@ -14,7 +14,9 @@ public class BrainWashSkill : CharacterSkill
 
                 if (!this.gameObject.activeSelf || IsSilence) return;
 
-                for(int i=0;i< StageManager.instance.CurMonsters.Count;i++)
+                SoundManager.Instance.PlayEffect(23);
+
+                for (int i=0;i< StageManager.instance.CurMonsters.Count;i++)
                 {
                     if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
                     {

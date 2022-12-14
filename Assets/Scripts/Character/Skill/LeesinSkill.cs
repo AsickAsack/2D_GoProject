@@ -36,7 +36,7 @@ public class LeesinSkill : CharacterSkill
         {
             case GameState.Ready:
                 Set_MassAndSkillPower(OrgMass * characterplay.character.Skill_Figure, characterplay.character.Skill_Figure);
-
+                SoundManager.Instance.PlayEffect(19);
                 CloudObj.SetActive(true);
                 break;
 

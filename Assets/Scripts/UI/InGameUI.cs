@@ -254,7 +254,7 @@ public class InGameUI : MonoBehaviour
         if (PlayManager.Instance.CurPlayer == null || PlayManager.Instance.gameState != GameState.Ready) return;
 
         //액티브 킬때
-        if(index == 1 && PlayerDB.Instance.CutScene)
+        if(index == 1 && PlayerDB.Instance.playerdata.CutScene)
         {
             CutSceneImage.sprite = GameDB.Instance.GetCharacterImage(PlayManager.Instance.CurPlayer.character);
             CutSceneAnim.SetTrigger("CutOn");

@@ -27,6 +27,10 @@ public class BossMonster : MonsterPlay
         //몬스터 프리펩, 기본 스텟, 레인지까지
     }
 
+    public override void PlayDeathSound()
+    {
+        SoundManager.Instance.PlayEffect(14); 
+    }
 
     public void Skill()
     {

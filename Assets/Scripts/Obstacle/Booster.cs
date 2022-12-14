@@ -25,7 +25,8 @@ public class Booster : Obstacle
             if (collision.transform.GetComponent<CharacterSkill>().IgnoreObstacle) return;
 
         //Skill(collision);
-        
+
+        SoundManager.Instance.PlayEffect(10);
         Rigidbody2D myRigid = collision.transform.GetComponent<Rigidbody2D>();
         myRigid.velocity = Vector2.zero;
         myRigid.AddForce(this.transform.position + this.transform.right * Power, ForceMode2D.Impulse);

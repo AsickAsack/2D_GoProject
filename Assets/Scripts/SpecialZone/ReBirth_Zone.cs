@@ -9,6 +9,7 @@ public class ReBirth_Zone : Special_Zone
         if (collision.transform.CompareTag("PlayerBall"))
         {
             //링 효과 후 캐릭터 복커
+            SoundManager.Instance.PlayEffect(16);
             PlayManager.Instance.ReBirthRoutine(collision.transform);
         }
     }

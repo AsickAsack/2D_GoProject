@@ -61,6 +61,7 @@ public class KillerSkill : CharacterSkill
     {
         if (!IsMurder)
         {
+            SoundManager.Instance.PlayEffect(26);
             IsMurder = true;
             MyRigid.velocity = Vector2.zero;
             PlayManager.Instance.objectPool.GetActiveEffects(Skill_index, Other.transform.position);

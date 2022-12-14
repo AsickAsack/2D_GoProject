@@ -14,7 +14,7 @@ public class Wall : Obstacle
     {
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-
+            SoundManager.Instance.PlayEffect(11);
             ICompareSkill Obj = collision.transform.GetComponent<ICompareSkill>();
             Obj.GetRigidBody().velocity = Vector2.Reflect(Obj.MyVelocity, -collision.GetContact(0).normal);
 

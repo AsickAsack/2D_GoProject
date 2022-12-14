@@ -46,7 +46,7 @@ public class StoreCharacterUI : MonoBehaviour
 
     public void Check_AlreadyHave()
     {
-        Character temp = PlayerDB.Instance.MyCharacters.Find(x => x.MyCharacter == myChar.MyCharacter);
+        Character temp = PlayerDB.Instance.playerdata.MyCharacters.Find(x => x.MyCharacter == myChar.MyCharacter);
 
         if (temp != null)
         {
@@ -69,9 +69,10 @@ public class StoreCharacterUI : MonoBehaviour
     public void confirmBuy()
     {
         PlayerDB.Instance.Gold -= CharacterPrice;
-        PlayerDB.Instance.MyCharacters.Add(new Character(myChar));
-        Alreadyhave(PlayerDB.Instance.MyCharacters[^1]);
+        PlayerDB.Instance.playerdata.MyCharacters.Add(new Character(myChar));
+        Alreadyhave(PlayerDB.Instance.playerdata.MyCharacters[^1]);
         PopUpManager.Instance.OpenPopup(0, "¾Ë¸²", $"{myChar.Name}¸¦(À») È¹µæÇß½À´Ï´Ù!", null);
+        SoundManager.Instance.PlayEffect(3);
     }
 
     

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchClass : MonoBehaviour
 {
-
+    /*
     float OldDistance = 0.0f;
     float NewDistance = 0.0f;
 
@@ -22,7 +22,7 @@ public class TouchClass : MonoBehaviour
         }
     }
 
-
+    */
 }
 
 

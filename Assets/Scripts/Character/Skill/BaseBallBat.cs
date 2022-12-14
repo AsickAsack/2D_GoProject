@@ -19,6 +19,7 @@ public class BaseBallBat : MonoBehaviour
     {
         if (collision.transform.CompareTag("EnemyBall") || collision.transform.CompareTag("PlayerBall"))
         {
+            SoundManager.Instance.PlayEffect(28);
             ICompareSkill Enemy = collision.transform.GetComponent<ICompareSkill>();
             Enemy.GoForward((collision.transform.position - myColl.bounds.center).normalized, 20.0f,this.transform);
 

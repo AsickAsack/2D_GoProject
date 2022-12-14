@@ -16,6 +16,7 @@ public class HeartSkill : UserSkill
 
     public override void Skill(Vector2 pos)
     {
+        SoundManager.Instance.PlayEffect(7);
         GameObject obj = Instantiate(HeartObj,pos,Quaternion.identity);
         PlayManager.Instance.UserSkillObj = obj.GetComponent<UserSkill>();
         SetSkillPoint();

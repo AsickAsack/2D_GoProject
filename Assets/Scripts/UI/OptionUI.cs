@@ -21,7 +21,8 @@ public class OptionUI : MonoBehaviour
 
     public void ChangeCutScene()
     {
-        PlayerDB.Instance.CutScene = CutScene.isOn;
+        PlayerDB.Instance.playerdata.MyStageData[0].IsAcitve[0] = true;
+        PlayerDB.Instance.playerdata.CutScene = CutScene.isOn;
     }
 
     public void SetBgmSlider()

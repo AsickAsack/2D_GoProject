@@ -26,6 +26,27 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    private float _BgmVolume;
+    public float BgmVolume
+    {
+        get => _BgmVolume;
+        set
+        {
+            _BgmVolume = value;
+        } 
+
+    }
+
+    private float _EffectVolume;
+    public float EffectVolume
+    {
+        get => _EffectVolume;
+        set
+        {
+            _EffectVolume = value;
+        }
+
+    }
 
     private AudioSource _BgmAudio;
     public AudioSource BgmAudio
@@ -51,7 +72,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] EffectClips;
 
     //bgm¹Ù²Ù±â 
-    public void ChangeBgm(int index, bool Loop = true)
+    public void SetBgm(int index, bool Loop = true)
     {
         BgmAudio.clip = BgmClips[index];
         BgmAudio.loop = Loop;
@@ -81,22 +102,28 @@ public class SoundManager : MonoBehaviour
     //ÀÌÆåÆ® Àç»ý
     public void PlayEffect(int index)
     {
-        BgmAudio.PlayOneShot(BgmClips[index]);
+        BgmAudio.PlayOneShot(EffectClips[index]);
     }
 
     //ÀÌÆåÆ® º¼·ý ¼öÁ¤
     public void ChangeEffectVolume(float v)
     {
         EffectAudio.volume = v;
+        EffectVolume = v;
     }
 
     //bgm º¼·ý ¼öÁ¤
     public void ChangeBgmVolume(float v)
     {
         BgmAudio.volume = v;
+        BgmVolume = v;
     }
 
-
+    public void SetVolumeNewScene()
+    {
+        ChangeBgmVolume(BgmVolume);
+        ChangeEffectVolume(EffectVolume);
+    }
 
 
 

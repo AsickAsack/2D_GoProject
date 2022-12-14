@@ -26,6 +26,7 @@ public class BombMonster : MonsterPlay
 
     public void Skill()
     {
+        SoundManager.Instance.PlayEffect(17);
         PlayManager.Instance.objectPool.GetPoolEffect(EffectName.MonsterFall, this.transform.position, Quaternion.identity);
         Collider2D[] MyCollider = Physics2D.OverlapCircleAll((Vector2)this.transform.position, BombRange);
 

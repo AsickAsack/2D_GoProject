@@ -407,6 +407,7 @@ public class PlayManager : MonoBehaviour, ISubject
 
             if (IsHit)
             {
+                SoundManager.Instance.PlayEffect(8);
                 EndPos = Input.mousePosition;
                 Arrow.EndArrow();
                 PowerOBJ.gameObject.SetActive(false);

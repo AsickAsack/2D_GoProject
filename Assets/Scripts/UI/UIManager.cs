@@ -21,7 +21,21 @@ public class UIManager : MonoBehaviour
         Instance = this;
         SetGold_Text();
         PlayerDB.Instance.Ticket = PlayerDB.Instance.Ticket;
+        
     }
+
+    //플레이 사운드
+    public void PlayEffectOnce(int index)
+    {
+        SoundManager.Instance.PlayEffect(index);
+    }
+
+    //BGM 사운드,
+    public void PlayBgm(int index)
+    {
+        SoundManager.Instance.SetBgm(index);
+    }
+
 
 
     public void SetGold_Text()
@@ -53,7 +67,7 @@ public class UIManager : MonoBehaviour
     {
         //이거 나중에 처음에 접속할때 변경하는걸로 -> json불러올때
 
-        if (PlayerDB.Instance.MyCharacters.Count == 0) return;
+        if (PlayerDB.Instance.playerdata.MyCharacters.Count == 0) return;
         else
         {
             characterUI.No_HaveCharOBJ.SetActive(false);

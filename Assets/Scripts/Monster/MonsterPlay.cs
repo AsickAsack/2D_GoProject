@@ -43,11 +43,20 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
     public virtual void Death()
     {
         CountProcess();
+        PlayDeathSound();
     }
+
+    public virtual void PlayDeathSound()
+    {
+        SoundManager.Instance.PlayEffect(13);
+    }
+
+    //아이스로 죽었을때임
     public void Death(int EffectIndex)
     {
         if (!this.gameObject.activeSelf) return;
 
+        PlayDeathSound();
         PlayManager.Instance.objectPool.GetActiveEffects(EffectIndex, this.transform.position);
         PlayManager.Instance.EnemyCount--;
         PlayManager.Instance.CurMultiKill++;

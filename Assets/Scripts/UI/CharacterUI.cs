@@ -41,34 +41,34 @@ public class CharacterUI : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
         {
             if(eventData.pointerCurrentRaycast.gameObject.CompareTag("CharacterUI"))
             {
-                detail.SetDetail(PlayerDB.Instance.MyCharacters[Charindex]);
+                detail.SetDetail(PlayerDB.Instance.playerdata.MyCharacters[Charindex]);
             }
         }
     }
 
     public void SetCharacterUI()
     {
-        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex]);
-        CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
+        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.playerdata.MyCharacters[Charindex]);
+        CharacterName_Text.text = PlayerDB.Instance.playerdata.MyCharacters[Charindex].Name;
     }
 
     public void SetCharacterUI(float f)
     {
-        
+        SoundManager.Instance.PlayEffect(2);
 
         if (f > 0.0f)
         {
-            Charindex = --Charindex % PlayerDB.Instance.MyCharacters.Count;
-            if (Charindex < 0) Charindex = PlayerDB.Instance.MyCharacters.Count - 1;
+            Charindex = --Charindex % PlayerDB.Instance.playerdata.MyCharacters.Count;
+            if (Charindex < 0) Charindex = PlayerDB.Instance.playerdata.MyCharacters.Count - 1;
             
         }
         else
-            Charindex = ++Charindex % PlayerDB.Instance.MyCharacters.Count;
+            Charindex = ++Charindex % PlayerDB.Instance.playerdata.MyCharacters.Count;
         
 
 
-        CharacterName_Text.text = PlayerDB.Instance.MyCharacters[Charindex].Name;
-        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.MyCharacters[Charindex]);
+        CharacterName_Text.text = PlayerDB.Instance.playerdata.MyCharacters[Charindex].Name;
+        CharacterIcon.sprite = GameDB.Instance.GetCharacterIcon(PlayerDB.Instance.playerdata.MyCharacters[Charindex]);
 
     }
 

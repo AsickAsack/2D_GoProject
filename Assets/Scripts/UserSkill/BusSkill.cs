@@ -13,6 +13,7 @@ public class BusSkill : UserSkill
 
     public override void Skill(Vector2 pos)
     {
+        SoundManager.Instance.PlayEffect(6);
         Bus obj = Instantiate(Bus, new Vector3(pos.x, Camera.main.ViewportToWorldPoint(Vector3.zero).y), Bus.transform.rotation).GetComponent<Bus>();
         obj.StartMove();
         SetSkillPoint();
