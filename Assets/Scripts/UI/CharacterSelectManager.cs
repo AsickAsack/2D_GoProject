@@ -8,6 +8,7 @@ public class CharacterSelectManager : MonoBehaviour
     public static CharacterSelectManager Instance;
 
     public Canvas StageCanvas;
+    public TMPro.TMP_Text TicketText;
     //캐릭터를 담을 변수
     public Character[] TempSelect_Char;
 
@@ -71,6 +72,9 @@ public class CharacterSelectManager : MonoBehaviour
             PopUpManager.Instance.OpenPopup(0, "알림", $"이 스테이지에 필요한\n 캐릭터의 수가 부족합니다.\n\n {x}-{y} 스테이지 \n필요 캐릭터 수 : {StageManager.instance.stage[x-1].subStage[y-1].NeedCharacter}", null);
             return;
         }
+
+        TicketText.text = $"x {StageManager.instance.stage[x - 1].subStage[y - 1].NeedTicket}";
+    
 
         StageCanvas.enabled = true;
 
@@ -144,7 +148,14 @@ public class CharacterSelectManager : MonoBehaviour
     //확인을 누르면 List에 Add후에 씬 이동
     public void Confirm_StageCharacter()
     {
-        if(Count != StageManager.instance.GetNeedCharacterCount())
+        if (PlayerDB.Instance.Ticket < StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].NeedTicket)
+        {
+            PopUpManager.Instance.OpenPopup(0, "안내", "티켓이 부족합니다.", null);
+            return;
+        }
+
+
+        if (Count != StageManager.instance.GetNeedCharacterCount())
         {
             PopUpManager.Instance.OpenPopup(0, "안내", "캐릭터를 다 선택 해주세요.", null);
             return;
@@ -157,7 +168,9 @@ public class CharacterSelectManager : MonoBehaviour
 
         }
 
-        for(int i=0;i < TempSelect_Char.Length;i++)
+        PlayerDB.Instance.Ticket -= StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].NeedTicket;
+
+        for (int i=0;i < TempSelect_Char.Length;i++)
         {
             StageManager.instance.SelectCharacters.Add(TempSelect_Char[i]);
         }

@@ -31,11 +31,6 @@ public class StageBtnManager : MonoBehaviour
             
         }
 
-        
-
-
-            StageText.text = $"스테이지{(int)StageManager.instance.CurStage.x}";
-
         for (int i = 0; i < stageBtn.Length; i++)
             stageBtn[i].SetStageBtn();
     }

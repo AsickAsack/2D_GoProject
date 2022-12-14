@@ -73,10 +73,26 @@ public class ResultCanvas : MonoBehaviour
 
 
         var CurStage = (x: (int)StageManager.instance.CurStage.x-1, y: (int)StageManager.instance.CurStage.y-1);
-        StageManager.instance.stage[CurStage.x].subStage[CurStage.y].IsActive = true;
 
-        Debug.Log(PlayManager.Instance.PlayerCount);
-
+        
+        //깬 스테이지의 다음 스테이지 isActive 시키기
+        if(StageManager.instance.stage[CurStage.x].subStage.Length <= CurStage.y+1)
+        {
+            //서브 스테이지가 없다면?
+            if (StageManager.instance.stage.Length <= CurStage.x + 1)
+            {
+                return;
+            }
+            else
+            {
+                StageManager.instance.stage[CurStage.x+1].subStage[0].IsActive = true;
+            }
+        }
+        else
+        {
+            StageManager.instance.stage[CurStage.x].subStage[CurStage.y+1].IsActive = true;
+        }
+        
 
         int starCount = 0;
 
@@ -90,10 +106,12 @@ public class ResultCanvas : MonoBehaviour
             starCount = 3;
         }
 
+        StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars = starCount;
         MyAnim.SetInteger("Star", starCount);
 
 
         StartCoroutine(ResultTextRoutine());
+        //리워드 주기
     }
 
     IEnumerator ResultTextRoutine()

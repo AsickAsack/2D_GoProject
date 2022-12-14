@@ -31,6 +31,7 @@ public class PlayerDB : MonoBehaviour
 
     #endregion
 
+  
 
     public List<Character> MyCharacters = new List<Character>();
     public bool CutScene = true;
@@ -40,7 +41,7 @@ public class PlayerDB : MonoBehaviour
     public int Gold
     {
         get => _Gold;
-        set 
+        set
         {
             _Gold = value;
             UIManager.Instance.SetGold_Text();
@@ -48,13 +49,22 @@ public class PlayerDB : MonoBehaviour
 
     }
 
-    private int _Ticket;
+
+    private int _MaxTicket = 30;
+    public int MaxTicket
+    {
+        get => _MaxTicket;
+        private set => _MaxTicket = value;
+    }
+
+    private int _Ticket = 30;
     public int Ticket
     {
         get => _Ticket;
         set
         {
             _Ticket = value;
+            UIManager.Instance.SetTicket_Text(MaxTicket);
         }
 
     }
@@ -65,7 +75,9 @@ public class PlayerDB : MonoBehaviour
     private void Awake()
     {
         myUserSkill = myUserSkill ?? GameDB.Instance.UserSkills[0];
+        
     }
+
 
     object Reward;
     public void addCharacter(Character newCharacter)

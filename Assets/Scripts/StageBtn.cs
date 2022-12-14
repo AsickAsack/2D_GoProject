@@ -10,6 +10,12 @@ public class StageBtn : MonoBehaviour
     public GameObject[] StarOBJ;
     public Button MyBtn;
 
+    public void OpenSelectUI()
+    {
+        StageManager.instance.CurStage.y = MyIndex + 1;
+        CharacterSelectManager.Instance.OpenCharacterSelectUI((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
+    }
+
     public void SetStageBtn()
     {
         SubStageText.text = $"{((int)StageManager.instance.CurStage.x).ToString()}-{MyIndex + 1}";

@@ -14,18 +14,24 @@ public class UIManager : MonoBehaviour
     public MetaScreen metaScreen;
 
     public TMPro.TMP_Text Gold_Text;
+    public TMPro.TMP_Text Ticekt_Text;
 
     private void Awake()
     {
         Instance = this;
-        PlayerDB.Instance.Gold += 50000;
         SetGold_Text();
+        PlayerDB.Instance.Ticket = PlayerDB.Instance.Ticket;
     }
 
 
     public void SetGold_Text()
     {
         Gold_Text.text = PlayerDB.Instance.Gold.ToString("N0") + " °ñµå";
+    }
+
+    public void SetTicket_Text(int MaxTicket)
+    {
+        Ticekt_Text.text = $"{PlayerDB.Instance.Ticket}/{MaxTicket}";
     }
 
 
