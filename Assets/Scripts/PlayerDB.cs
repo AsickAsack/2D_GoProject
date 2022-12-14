@@ -7,14 +7,8 @@ using System.IO;
 [System.Serializable]
 public class StageData
 {
-    public StageData()
-    {
-        StageStar = new int[5];
-        IsAcitve = new bool[5];
-    }
-
-    public int[] StageStar;
-    public bool[] IsAcitve;
+    public int[] StageStar = new int[5];
+    public bool[] IsAcitve = new bool[5] { false, false, false, false, false };
 }
 
 [System.Serializable]
@@ -104,10 +98,21 @@ public class PlayerDB : MonoBehaviour
     {
         playerdata = new PlayerData();
         myUserSkill = GameDB.Instance.UserSkills[playerdata.UserSkill_Index];
-        //playerdata.MyStageData = new StageData[5];
-        //playerdata.MyStageData[0].IsAcitve[0] = true;
+        SetStageArray();
+
     }
 
+    public void SetStageArray()
+    {
+        for(int i=0; i<5; i++)
+        {
+            playerdata.MyStageData[i] = new StageData();
+            for (int j=0;j<5;j++)
+                playerdata.MyStageData[i].IsAcitve = new bool[5];
+                playerdata.MyStageData[i].StageStar = new int[5];
+        }
+        playerdata.MyStageData[0].IsAcitve[0] = true;
+    }
 
     public void addCharacter(Character newCharacter)
     {
@@ -115,7 +120,7 @@ public class PlayerDB : MonoBehaviour
     }
 
     public void SaveData()
-    {   playerdata.MyStageData[0].IsAcitve[0] = true;
+    {   
         GameSystem.Save<PlayerData>(ref playerdata, "/PlayerDB.json");
         /*
         string data = JsonConvert.SerializeObject(playerdata);
