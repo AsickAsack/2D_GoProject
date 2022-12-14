@@ -13,13 +13,17 @@ public static class GameSystem
         File.WriteAllText(Application.dataPath + FilePath, data);
     }
 
-    public static void Load<T>(ref T LoadClass,string FilePath)
+    public static bool Load<T>(ref T LoadClass,string FilePath)
     {
         if (File.Exists(Application.dataPath + FilePath))
         {
             string data = File.ReadAllText(Application.dataPath + FilePath);
             LoadClass = JsonConvert.DeserializeObject<T>(data);
+
+            return true;
         }
+
+        return false;
     }
 
     public static void Save<T>(ref T[] SaveClass, string FilePath)

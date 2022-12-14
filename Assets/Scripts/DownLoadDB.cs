@@ -9,7 +9,7 @@ public class DownLoadDB : MonoBehaviour
 
     public IEnumerator Start()
     {
-        PlayerDB.Instance.LoadData();
+       // PlayerDB.Instance.LoadData();
 
         if (!PlayerDB.Instance.IsFirst)
         {

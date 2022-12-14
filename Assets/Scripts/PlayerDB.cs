@@ -99,7 +99,7 @@ public class PlayerDB : MonoBehaviour
         playerdata = new PlayerData();
         myUserSkill = GameDB.Instance.UserSkills[playerdata.UserSkill_Index];
         SetStageArray();
-
+       // LoadData();
     }
 
     public void SetStageArray()
@@ -107,11 +107,23 @@ public class PlayerDB : MonoBehaviour
         for(int i=0; i<5; i++)
         {
             playerdata.MyStageData[i] = new StageData();
-            for (int j=0;j<5;j++)
+            for (int j = 0; j < 5; j++)
+            {
                 playerdata.MyStageData[i].IsAcitve = new bool[5];
                 playerdata.MyStageData[i].StageStar = new int[5];
+                
+            }
+
+            playerdata.MyStageData[0].IsAcitve[0] = true;
+            //나중에 테스트 끝나면 지우면됨
+            /*
+            for(int k = 0;k<5;k++)
+            {
+                playerdata.MyStageData[i].IsAcitve[k] = true;
+            }
+            */
         }
-        playerdata.MyStageData[0].IsAcitve[0] = true;
+        
     }
 
     public void addCharacter(Character newCharacter)
@@ -130,9 +142,20 @@ public class PlayerDB : MonoBehaviour
 
     public void LoadData()
     {
-        GameSystem.Load<PlayerData>(ref playerdata, "/PlayerDB.json");
-        UIManager.Instance.SetGold_Text();
-        UIManager.Instance.SetTicket_Text(MaxTicket);
+        if (GameSystem.Load<PlayerData>(ref playerdata, "/PlayerDB.json"))
+        {
+            try
+            {
+                UIManager.Instance.SetGold_Text();
+                UIManager.Instance.SetTicket_Text(MaxTicket);
+            }
+            catch(System.Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+
+            
+        }
     }   
 
     
