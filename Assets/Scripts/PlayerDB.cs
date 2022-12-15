@@ -116,12 +116,12 @@ public class PlayerDB : MonoBehaviour
 
             playerdata.MyStageData[0].IsAcitve[0] = true;
             //나중에 테스트 끝나면 지우면됨
-            /*
+            
             for(int k = 0;k<5;k++)
             {
                 playerdata.MyStageData[i].IsAcitve[k] = true;
             }
-            */
+            
         }
         
     }

@@ -292,6 +292,7 @@ MonoBehaviour:
     Skill_Range: 0
     Story: 
   MySkill: {fileID: 3767497296832865039}
+  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -310,8 +311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SkillPriority: 0
   Skill_index: 0
-  OnBoard: 0
   IgnoreObstacle: 0
+  IsSilence: 0
   mySkill_Condition: 0
   characterplay: {fileID: 5073325397444789612}
   CloudBackGround: {fileID: 4519046244437407255, guid: 13e31a327a7a1444d90b33ae04be217d, type: 3}
@@ -424,8 +425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6134260428480012705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: -0.5, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4314214917462345109}
