@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class StageBtnManager : MonoBehaviour
 {
+    public Canvas StageSelectCanvas;
     public Text StageText;
     public StageBtn[] stageBtn;
+
+
 
     public void SetAllBtns_Main(int index)
     {
@@ -14,11 +17,9 @@ public class StageBtnManager : MonoBehaviour
         SetBtnRoutine((int)StageManager.instance.CurStage.x);
     }
 
-
     public void SetAllBtns_Select(float index)
     {
         StageManager.instance.CurStage.x = StageManager.instance.CurStage.x + index;
-        Debug.Log(StageManager.instance.CurStage.x);
         SetBtnRoutine((int)StageManager.instance.CurStage.x);
     }
 

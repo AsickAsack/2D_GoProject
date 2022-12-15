@@ -82,6 +82,7 @@ public class InGameUI : MonoBehaviour
     public TMPro.TMP_Text SkillDescriptionText;
     public GameObject InfoIcon;
 
+
     public void SetCharacterSkill_UI()
     {
         if(SkillDescriptionCanavs.enabled)

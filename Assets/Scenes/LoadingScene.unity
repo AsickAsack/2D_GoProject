@@ -236,7 +236,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: 800, y: 100}
+  m_SizeDelta: {x: 1050, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &873307260
 MonoBehaviour:
@@ -365,9 +365,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bbcf2a00ddefdc04db4b731a7d37d651, type: 3}
   Loading_ImageText: {fileID: 1876450722}
   Loading_ImageString:
-  - "\uAFC0\uD3011. \uD06C\uD06C\uD06C\uD06C\uD06C\uD06C"
-  - "\uAFC0\uD3012. \uCEAC\uCEAC\uCEAC\uCEAC\uCEAC\uCEAC"
-  - "\uAFC0\uD3013. \u314E\u314E\u314E\u314E\u314E\u314E"
+  - "\uAFC0\uD3011. \uBCF4\uC2A4 \uBAAC\uC2A4\uD130\uB294 \uCDA9\uB3CC\uC2DC \uAE30\uBCF8
+    \uBAAC\uC2A4\uD130 2\uB9C8\uB9AC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4."
+  - "\uAFC0\uD3012. \uBC30\uCE58\uB41C \uC7A5\uC560\uBB3C\uB4E4\uC744 \uC798 \uC774\uC6A9\uD574\uBCF4\uC138\uC694!"
+  - "\uAFC0\uD3013. '\uAD8C\uB2A5'\uC744 \uC798 \uC0AC\uC6A9\uD558\uBA74 \uC5B4\uB824\uC6B4
+    \uC0C1\uD669\uC744 \uADF9\uBCFC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4!"
 --- !u!4 &1229212887
 Transform:
   m_ObjectHideFlags: 0
@@ -543,7 +545,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD301 1."
+  m_text: "\uAFC0\uD3011. \uBCF4\uC2A4 \uBAAC\uC2A4\uD130\uB294 \uCDA9\uB3CC\uC2DC
+    \uAE30\uBCF8 \uBAAC\uC2A4\uD130 2\uB9C8\uB9AC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82288870baf2de8438c94d1ca8008757, type: 2}
   m_sharedMaterial: {fileID: 3479906381721433078, guid: 82288870baf2de8438c94d1ca8008757, type: 2}

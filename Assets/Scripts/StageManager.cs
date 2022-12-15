@@ -97,23 +97,66 @@ public class StageManager : MonoBehaviour
     public Vector2 CurStage;
     public Stage[] stage;
 
-    public void InitStage(bool Restart)
+    public UnityEngine.Events.UnityAction NextStageAction;
+    public bool NextSet = false;
+
+    /// <summary>
+    ///  1 - 메인화면 , 2 - 게임 재시작, 3 - 다음스테이지
+    /// </summary>
+    /// <param name="index"></param>
+    public void InitStage(int index)
     {
         CurCharacters.Clear();
         CurMonsters.Clear();
         CurObstacle.Clear();
         CurToggle.Clear();
+        Time.timeScale = 1;
 
-        if (!Restart)
+        switch (index)
         {
-            SelectCharacters.Clear();
-            SceneLoader.Instance.Loading_LoadScene(0);
+            case 1:
+                SelectCharacters.Clear();
+                SceneLoader.Instance.Loading_LoadScene(0);
+                break;
+            case 2:
+                SceneLoader.Instance.Loading_LoadScene(2);
+                break;
+            case 3:
+                if (SetNextStage())
+                {
+                    //다음 스테이지가 있다면
+                    SelectCharacters.Clear();
+                    SceneLoader.Instance.Loading_LoadScene(0);
+                    NextSet = true;
+                    //NextStageAction();
+                }
+                else
+                {
+                    PlayManager.Instance.ingameUI.SetPopup("다음 스테이지가 없습니다!");
+                }
+                break;
+        }
+    }
+
+    public bool SetNextStage()
+    {
+
+        if (stage[(int)CurStage.x - 1].subStage.Length <= CurStage.y)
+        {
+            if (stage.Length <= CurStage.x)
+                return false;
+            else
+            {
+                CurStage = new Vector2(CurStage.x + 1, 0);
+                return true;
+            }
         }
         else
         {
-            SceneLoader.Instance.Loading_LoadScene(2);
-            
+            CurStage.y++;
+            return true;
         }
+        
     }
 
     //스테이지에 필요한 캐릭터 카운트 리턴

@@ -15,6 +15,9 @@ public class ResultCanvas : MonoBehaviour
     public TMPro.TMP_Text[] ResultText;
     public GameObject VeryGoodGif;
 
+    public GameObject ReStartBtn;
+    public TMPro.TMP_Text TicketCountText;
+
     Animator MyAnim;
     public float PlusSpeed;
 
@@ -42,6 +45,8 @@ public class ResultCanvas : MonoBehaviour
         if (!IsClear)
         {
             FailPanel.gameObject.SetActive(true);
+            ReStartBtn.SetActive(true);
+            TicketCountText.text = $"x {StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].NeedTicket}";
             return;
         }
 

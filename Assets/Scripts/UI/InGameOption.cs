@@ -14,15 +14,34 @@ public class InGameOption : MonoBehaviour
     public TMPro.TMP_Text BgmVolumeTx;
     public TMPro.TMP_Text EffectVolumeTx;
 
+    public TMPro.TMP_Text TicektCount;
+
+    public TMPro.TMP_Text OptionGoldText;
+    public TMPro.TMP_Text OptionTicketText;
+
     private void Start()
+    {
+        InitOption();
+    }
+
+    public void InitOption()
     {
         SetBgmSlider();
         SetEffectSlider();
+        TicektCount.text = $"x {StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].NeedTicket}";
+        OptionGoldText.text = PlayerDB.Instance.Gold.ToString("N0");
+        OptionTicketText.text = $"{PlayerDB.Instance.Ticket}/{PlayerDB.Instance.MaxTicket}";
     }
+
     public void SetPanel(bool check)
     {
         OptionPanel.SetActive(check);
         DontTouch_Panel.SetActive(check);
+    }
+
+    public void SetTimeScale(float time)
+    {
+        Time.timeScale = time;
     }
 
     public void SetBgmSlider()
@@ -47,24 +66,31 @@ public class InGameOption : MonoBehaviour
     public void Pause_Game()
     {
         SetPanel(true);
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
 
     //게임 재시작
     public void ReStartStage()
     {
-        //티켓 있는지 확인해야함
-        StageManager.instance.InitStage(true);
+        
+        if(PlayerDB.Instance.Ticket < StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].NeedTicket)
+        {
+            PlayManager.Instance.ingameUI.SetPopup("티켓이 부족합니다!");
+            return;
+        }
+
+        PlayerDB.Instance.Ticket -= StageManager.instance.stage[(int)StageManager.instance.CurStage.x-1].subStage[(int)StageManager.instance.CurStage.y-1].NeedTicket;
+        StageManager.instance.InitStage(2);
     }
 
     public void NextStage()
     {
-        StageManager.instance.InitStage(true);
+        StageManager.instance.InitStage(3);
     }
     //메인 화면 이동
     public void GoMain()
     {
-        StageManager.instance.InitStage(false);
+        StageManager.instance.InitStage(1);
 
 
     }
