@@ -13,18 +13,27 @@ public class IngameIconPanel : MonoBehaviour
     private void Awake()
     {
         myHeight = MyIcon[0].GetComponent<RectTransform>().rect.height + RectSpace;
-        SetPanel();
+        SetPanel(PlayerDB.Instance.playerdata.PlayFirst);
 
     }
 
     //패널 사이즈 세팅
-    public void SetPanel()
+    public void SetPanel(bool IsTutorial)
     {
-        myRect.sizeDelta = new Vector2(myRect.sizeDelta.x,myHeight*StageManager.instance.GetNeedCharacterCount());
-
-        for(int i=0; i< StageManager.instance.GetNeedCharacterCount();i++)
+        if (IsTutorial)
         {
-            MyIcon[i].gameObject.SetActive(true);
+            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * 1);
+
+            MyIcon[0].gameObject.SetActive(true);
+        }
+        else
+        {
+            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * StageManager.instance.GetNeedCharacterCount());
+
+            for (int i = 0; i < StageManager.instance.GetNeedCharacterCount(); i++)
+            {
+                MyIcon[i].gameObject.SetActive(true);
+            }
         }
     }
 

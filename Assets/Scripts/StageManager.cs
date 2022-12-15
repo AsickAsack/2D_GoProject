@@ -180,6 +180,16 @@ public class StageManager : MonoBehaviour
 
     }
 
+    public void SetTutorialStage()
+    {
+        CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[0].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
+
+        CurCharacters.Add(obj);
+        CurCharacters[0].character = SelectCharacters[0];
+        CurCharacters[0].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[0].character);
+        CurCharacters[0].gameObject.SetActive(false);
+    }
+
     public void SetCharacter()
     {
         for (int i = 0; i < GetNeedCharacterCount();i++)

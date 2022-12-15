@@ -39,7 +39,6 @@ public class PlayManager : MonoBehaviour, ISubject
     public static PlayManager Instance;
 
     public InGameUI ingameUI;
-    public CharacterManager CharManager;
     public ObjectPool objectPool;
 
 
@@ -56,7 +55,6 @@ public class PlayManager : MonoBehaviour, ISubject
     public float Power;
     public Vector2 LimitPower;
     public float DividePower;
-    public float DivideArrowSize;
     public float MultiplyPower = 1.0f;
 
 
@@ -71,8 +69,6 @@ public class PlayManager : MonoBehaviour, ISubject
     public UserSkill UserSkillObj;
 
 
-    //효과
-    public Sprite Kill_Sprite;
 
     //판정
 

@@ -8900,7 +8900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraMoveSpeed: 0.1
   CameraMoveSmooth: 15
-  playManager: {fileID: 1733273276}
+  playManager: {fileID: 0}
 --- !u!114 &750070398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24106,30 +24106,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733273274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ccfa35fbf378f42982ba58d5c890ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f1caaf582fdba748b51ca332d82cf4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ingameUI: {fileID: 212797797}
-  CharManager: {fileID: 0}
   objectPool: {fileID: 1257044836}
   IsHit: 0
   BaseCamp: {fileID: 5837465260310402173}
   Power: 2
   LimitPower: {x: 5, y: 50}
   DividePower: 8.5
-  DivideArrowSize: 100
   MultiplyPower: 1
   CurPlayer: {fileID: 0}
-  CharacterIcons:
-  - {fileID: 1702731149}
-  - {fileID: 319056053}
-  - {fileID: 801631210}
-  - {fileID: 658877911}
-  - {fileID: 1101254386}
+  CharacterIcons: []
   Arrow: {fileID: 598865315}
   PowerOBJ: {fileID: 1344915022650851243}
   UserSkillObj: {fileID: 0}
-  Kill_Sprite: {fileID: 0}
   _EnemyCount: 0
   PlayerCount: 0
   MaxMonsterCount: 0
