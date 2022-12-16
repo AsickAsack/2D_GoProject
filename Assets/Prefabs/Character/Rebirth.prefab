@@ -292,6 +292,7 @@ MonoBehaviour:
     Skill_Range: 0
     Story: 
   MySkill: {fileID: -5848887542517131878}
+  OnBoard: 0
   PassiveRangeObj: {fileID: 8873808867456415848}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -310,11 +311,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SkillPriority: 0
   Skill_index: 0
-  OnBoard: 0
   IgnoreObstacle: 0
+  IsSilence: 0
   mySkill_Condition: 2
   characterplay: {fileID: 7122061088711591524}
-  ReBirthRange: 1
+  ReBirthRange: 2
 --- !u!1 &6134260428480012705
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 8873808867456415848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4314214917462345109}

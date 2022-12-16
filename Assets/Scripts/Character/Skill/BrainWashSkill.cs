@@ -20,7 +20,7 @@ public class BrainWashSkill : CharacterSkill
                 {
                     if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
                     {
-                        StageManager.instance.CurMonsters[i].MyRigid.AddForce((this.transform.position - StageManager.instance.CurMonsters[i].transform.position).normalized * 2.0f, ForceMode2D.Impulse);
+                        StageManager.instance.CurMonsters[i].MyRigid.AddForce((this.transform.position - StageManager.instance.CurMonsters[i].transform.position).normalized * 3.0f, ForceMode2D.Impulse);
                     }
                 }
                 break;

@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6639384, y: 2.8278217}
+  m_Size: {x: 0.6639384, y: 9}
   m_EdgeRadius: 0
 --- !u!114 &5565387316553450557
 MonoBehaviour:
@@ -366,6 +366,7 @@ MonoBehaviour:
     Skill_Range: 0
     Story: 
   MySkill: {fileID: 4735903989471041995}
+  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -384,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SkillPriority: 0
   Skill_index: 0
-  OnBoard: 0
   IgnoreObstacle: 0
+  IsSilence: 0
   mySkill_Condition: 0
   characterplay: {fileID: 1345029846616968283}
   BaseBall_Bat: {fileID: 396600473975881224}
@@ -498,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8664762893456316137}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 5.17, z: 0}
   m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.10000001}
   m_ConstrainProportionsScale: 0
   m_Children: []
