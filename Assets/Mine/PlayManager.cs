@@ -159,11 +159,7 @@ public class PlayManager : MonoBehaviour, ISubject
         PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
     }
 
-    private void Start()
-    {
-        //ChangeState(GameState.Ready);
-
-    }
+  
 
     public GameState gameState = GameState.Ready;
 

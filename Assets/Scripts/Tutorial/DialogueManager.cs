@@ -90,6 +90,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         EndArrow.SetActive(true);
+      
         DialogueCo = null;
     }
 

@@ -112,6 +112,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         }
     }
 
+    bool IsFail = false;
     string FailString;
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
@@ -129,6 +130,12 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
 
     public GameState gameState = GameState.Ready;
+
+    private void Start()
+    {
+        ChangeState(GameState.None);
+
+    }
 
     void Update()
     {
@@ -188,16 +195,32 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         }
     }
 
+    public void DeathInTutorial(GameObject obj)
+    {
+        obj.gameObject.SetActive(false);
+        Instantiate(GameDB.Instance.Tutorial_OBJ[1], obj.transform.position, Quaternion.identity);
+    }
+
     public void CheckEnd()
     {
         if(EnemyCount == 0)
         {
-            CurPlayer.Death();
+            IsFail = false;
+            DeathInTutorial(CurPlayer.gameObject);
             TutorialManager.instance.StartDialogue();
         }
         else
         {
-            CurPlayer.Death();
+            IsFail = true;
+            DeathInTutorial(CurPlayer.gameObject);
+            for(int i=0;i<StageManager.instance.CurMonsters.Count;i++)
+            {
+                if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
+                {
+                    DeathInTutorial(StageManager.instance.CurMonsters[i].gameObject);
+                }
+            }
+            SetPlayTutorial();
 
         }
 
@@ -360,6 +383,24 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
     public void SetTutorialCurPlayer()
     {
+
+        CurPlayer = StageManager.instance.CurCharacters[0];
+        CurPlayer.transform.position = BaseCamp.transform.position;
+        CurPlayer.gameObject.SetActive(true);
+
+        ingameUI.SetCharacterPopUP(false);
+        
+        TutorialManager.instance.StartDialogue();
+        //StartCoroutine(DelayCoroutine(1.0f, TutorialManager.instance.StartDialogue));
+    }
+
+    public void SetFailString(string FailMessage)
+    {
+        ChangeState(GameState.None);
+        TutorialManager.instance.MyManager.SetDialogue(FailMessage);
+    }
+    public void SetPlayTutorial()
+    {
         EnemyCount = 1;
         ChangeState(GameState.Ready);
 
@@ -367,18 +408,12 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         CurPlayer.transform.position = BaseCamp.transform.position;
         CurPlayer.gameObject.SetActive(true);
 
-        ingameUI.SetCharacterPopUP(false);
-
         StageManager.instance.CurMonsters[0].transform.position = Vector2.zero;
         StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
-        TutorialManager.instance.StartDialogue();
-
-        //StartCoroutine(DelayCoroutine(1.0f, TutorialManager.instance.StartDialogue));
-    }
-
-    public void SetPlayTutorial()
-    {
         
+        
+        if (IsFail)
+            SetFailString("다시 한번 잘 맞춰봐!");
     }
 
     //딜레이 시키는 코루틴
