@@ -13,18 +13,12 @@ public class ScreenSwtich : MonoBehaviour
 
             PopUpManager.Instance.OpenPopup(0, "튜토리얼 진행", "처음이시네요!\n 튜토리얼을 진행하겠습니다.", () =>
               {
-                  Character myCharacter = new Character((int)CharacterName.Strong);
+                  Character TutorialCharacter1 = new Character((int)CharacterName.Strong);
+                  Character TutorialCharacter2 = new Character((int)CharacterName.bulldozer);
 
-                  StageManager.instance.SelectCharacters.Add(myCharacter);
-                  
-                  /*
-                  CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(myCharacter.MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
+                  StageManager.instance.SelectCharacters.Add(TutorialCharacter1);
+                  StageManager.instance.SelectCharacters.Add(TutorialCharacter2);
 
-                  StageManager.instance.CurCharacters.Add(obj);
-                  StageManager.instance.CurCharacters[0].character = myCharacter;
-                  StageManager.instance.CurCharacters[0].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(myCharacter);
-                  StageManager.instance.CurCharacters[0].gameObject.SetActive(false);
-                  */
                   SceneLoader.Instance.Loading_LoadScene(3);
               });
         }

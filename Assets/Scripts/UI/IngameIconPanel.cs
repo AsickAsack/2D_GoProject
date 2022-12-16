@@ -17,6 +17,18 @@ public class IngameIconPanel : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        if(PlayerDB.Instance.playerdata.PlayFirst)
+            TutorialManager.instance.TutorialAction[0] = SetTestMethod;
+    }
+
+    public void SetTestMethod()
+    {
+        TutorialManager.instance.SetFocusOBJ(MyIcon[0].GetComponent<RectTransform>());
+    }
+
+
     //패널 사이즈 세팅
     public void SetPanel(bool IsTutorial)
     {
@@ -25,6 +37,7 @@ public class IngameIconPanel : MonoBehaviour
             myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * 1);
 
             MyIcon[0].gameObject.SetActive(true);
+            //MyIcon[1].gameObject.SetActive(true);
         }
         else
         {

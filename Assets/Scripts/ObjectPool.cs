@@ -15,7 +15,7 @@ public class ObjectPool : MonoBehaviour
 
     //많이 쓰이는 이펙트들 오브젝트 풀
     [SerializeField]
-    private GameObject[] PoolEffectPrefab;
+    public GameObject[] PoolEffectPrefab;
     private Dictionary<EffectName, Queue<GameObject>> objectPool = new Dictionary<EffectName, Queue<GameObject>>();
 
     [SerializeField]

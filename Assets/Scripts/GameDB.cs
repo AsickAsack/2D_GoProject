@@ -80,6 +80,7 @@ public class GameDB : MonoBehaviour
     public GameObject[] Monsters;
     public GameObject[] Obstacles;
     public UserSkill[] UserSkills;
+    public GameObject Tutorial_CommonMonster;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;

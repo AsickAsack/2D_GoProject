@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-
-
-
 public class TutorialPlaymanager : MonoBehaviour, ISubject
 {
     public static TutorialPlaymanager Instance;
@@ -18,7 +15,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     //public bool IsActive;
 
     public bool IsHit = false;
-    public BaseCamp BaseCamp;
+    public TutorialBaseCamp BaseCamp;
     Vector2 StartPos;
     Vector2 EndPos;
     Vector2 targetPos;
@@ -44,7 +41,6 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
 
     //판정
-
     public int _EnemyCount;
     public int EnemyCount
     {
@@ -61,10 +57,11 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
             if (EnemyCount == 0)
             {
-                StartCoroutine(SetResult(ingameUI.SetResultCanavs, true));
+                
             }
         }
     }
+
     public int PlayerCount;
     public int MaxMonsterCount;
     public int UserSkillPoint = 0;
@@ -118,7 +115,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         }
     }
 
-
+    string FailString;
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
 
@@ -129,13 +126,10 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         //게임 세팅
         StageManager.instance.SetTutorialStage();
         PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
+        TutorialManager.instance.TutorialClickAction[0] += SetTutorialCurPlayer;
+        TutorialManager.instance.TutorialAction[1] += SetPlayTutorial;
     }
 
-    private void Start()
-    {
-        //ChangeState(GameState.Ready);
-
-    }
 
     public GameState gameState = GameState.Ready;
 
@@ -159,25 +153,10 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         {
             case GameState.Ready:
 
-                CurTurn++;
-                ingameUI.UserSKillBtn.SetActive(true);
-
-                if (CurPlayer != null)
-                    CurPlayer.ChangeONBorad();
-
-                CurPlayer = null;
-
-                ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
-                ingameUI.SetCharacterPopUP(true);
-
-
                 break;
 
             case GameState.UserSkillSelect:
                 //cur플레이어 숨김, 캐릭터 선택창 닫기, 선택 ui
-
-                ingameUI.UserSkillBox.SetActive(true);
-                ingameUI.SetCharacterPopUP(false);
                 if (CurPlayer != null)
                 {
                     CurPlayer.gameObject.SetActive(false);
@@ -196,7 +175,6 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
                 ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
                 ingameUI.CharacterPopup.SetPanelSize(false);
-                CurPlayerIcon.SetActive(false);
 
                 break;
 
@@ -211,30 +189,24 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
                 break;
         }
-
-        Check_SkillExist(s);
-        NotifyGameStateToObservers(s);
     }
 
     public void CheckEnd()
     {
-        if (EnemyCount == 0)
+        if(EnemyCount == 0)
         {
-            StartCoroutine(SetResult(ingameUI.SetResultCanavs, true));
-        }
-        else if (PlayerCount == 0)
-        {
-            StartCoroutine(SetResult(ingameUI.SetResultCanavs, false));
+            //성공 ㅋㅋ
         }
         else
         {
-            this.BaseCamp.ClearBase();
-            ResetToggle();
-            CountRoutine();
-            Check_SkillExist(GameState.End);
-            NotifyGameStateToObservers(GameState.End);
-            ChangeState(GameState.Ready);
+            //실패
         }
+
+        /*
+            this.BaseCamp.ClearBase();
+            CountRoutine();
+            ChangeState(GameState.Ready);
+        */
     }
 
     public void GameLoop()
@@ -287,13 +259,6 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
 
 
-    //발동 할 스킨이 있는지 확인
-    public void Check_SkillExist(GameState gameState)
-    {
-        if (CurPlayer == null) return;
-
-        CurPlayer.MySkill.CheckSKill(gameState);
-    }
 
     //당기기 전
     public void Ready_Loop()
@@ -394,35 +359,38 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
     #endregion
 
-    //옆에 돌 눌렀을 때
-    public void ChangeCurPlayer(int index, GameObject Obj)
+    public void SetTutorialCurPlayer()
     {
-        if (StageManager.instance.CurCharacters[index].OnBoard) return;
-
-        if (CurPlayer != null)
-        {
-            CurPlayer.gameObject.SetActive(false);
-            CurPlayer.MySkill.ChangeRoutine();
-        }
-
-        PlayManager.Instance.ingameUI.InfoIcon.SetActive(true);
-
-        CurPlayer = StageManager.instance.CurCharacters[index];
+        EnemyCount = 1;
+        ChangeState(GameState.Ready);
+        CurPlayer = StageManager.instance.CurCharacters[0];
         CurPlayer.transform.position = BaseCamp.transform.position;
         CurPlayer.gameObject.SetActive(true);
 
+        ingameUI.SetCharacterPopUP(false);
 
-        Check_SkillExist(GameState.Ready);
-        CurPlayerIcon = Obj;
+        StageManager.instance.CurMonsters[0].transform.position = Vector2.zero;
+        StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
+        TutorialManager.instance.StartDialogue();
 
-        /* 원래는 액티브가 선택식으로 바뀐다면 사용할 함수
-         
-        //액티브가 켜져 있다면
-        if (IsActive)
-            ingameUI.ChangeAcitveBtn();
-        */
+        //StartCoroutine(DelayCoroutine(1.0f, TutorialManager.instance.StartDialogue));
     }
 
+    public void SetPlayTutorial()
+    {
+        
+    }
+
+    //딜레이 시키는 코루틴
+    IEnumerator DelayCoroutine(float time,UnityAction DelayAction)
+    {
+        yield return new WaitForSeconds(time);
+
+        DelayAction();
+    }
+
+
+  
     public void UserSkillSelectLoop()
     {
         if (Input.GetMouseButtonDown(0))
@@ -438,6 +406,8 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
             }
         }
     }
+
+   
 
     public void UserSkillLoop()
     {
@@ -497,11 +467,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         }
     }
 
-    IEnumerator SetResult(UnityAction<bool> unityAction, bool IsClear)
-    {
-        yield return new WaitForSeconds(2.0f);
-        unityAction(IsClear);
-    }
+
 
     public bool CheckMove()
     {
@@ -527,12 +493,5 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
     }
 
-    public void ResetToggle()
-    {
-        for (int i = 0; i < StageManager.instance.CurToggle.Count; i++)
-        {
-            StageManager.instance.CurToggle[i].ResetToggle();
-        }
 
-    }
 }

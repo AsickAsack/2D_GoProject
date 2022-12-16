@@ -14,10 +14,6 @@ public class ConflictCollider : MonoBehaviour
         XLimit.x = Board.position.x - Board.localScale.x * 10;
         XLimit.y = Board.position.x + Board.localScale.x * 10;
 
-        Debug.Log(Board.position.x);
-        Debug.Log(Board.localScale.x);
-        Debug.Log(XLimit.x);
-
         YLimit.x = Board.position.y - Board.localScale.y * 10;
         YLimit.y = Board.position.y + Board.localScale.y * 10;
     }

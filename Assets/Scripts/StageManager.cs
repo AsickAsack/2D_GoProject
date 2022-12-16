@@ -180,14 +180,31 @@ public class StageManager : MonoBehaviour
 
     }
 
+    //튜토리얼 스테이지 - 힘캐랑 불도저 생성
     public void SetTutorialStage()
     {
-        CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[0].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
+        for (int i = 0; i < SelectCharacters.Count; i++)
+        {
+            CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
 
-        CurCharacters.Add(obj);
-        CurCharacters[0].character = SelectCharacters[0];
-        CurCharacters[0].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[0].character);
-        CurCharacters[0].gameObject.SetActive(false);
+            CurCharacters.Add(obj);
+            CurCharacters[i].character = SelectCharacters[i];
+            CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);
+            CurCharacters[i].gameObject.SetActive(false);
+        }
+
+        //기본 몬스터 4마리 생성
+        for (int i = 0; i < 4; i++)
+        {
+            CurMonsters.Add(Instantiate(GameDB.Instance.Tutorial_CommonMonster,
+                Vector2.zero, Quaternion.identity).GetComponent<MonsterPlay>());
+
+            CurMonsters[^1].monster = new Monster(MonsterName.Basic);
+            CurMonsters[^1].Basic_init();
+
+            CurMonsters[^1].gameObject.SetActive(false);
+
+        }
     }
 
     public void SetCharacter()
