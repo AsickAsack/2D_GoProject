@@ -11,9 +11,6 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     public InGameUI ingameUI;
     public ObjectPool objectPool;
 
-
-    //public bool IsActive;
-
     public bool IsHit = false;
     public TutorialBaseCamp BaseCamp;
     Vector2 StartPos;
@@ -195,11 +192,13 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     {
         if(EnemyCount == 0)
         {
-            //성공 ㅋㅋ
+            CurPlayer.Death();
+            TutorialManager.instance.StartDialogue();
         }
         else
         {
-            //실패
+            CurPlayer.Death();
+
         }
 
         /*
@@ -363,6 +362,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     {
         EnemyCount = 1;
         ChangeState(GameState.Ready);
+
         CurPlayer = StageManager.instance.CurCharacters[0];
         CurPlayer.transform.position = BaseCamp.transform.position;
         CurPlayer.gameObject.SetActive(true);

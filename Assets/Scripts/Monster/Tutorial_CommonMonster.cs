@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tutorial_CommonMonster : MonsterPlay
 {
-    public GameObject Effect;
   
     public override void Initialize()
     {
@@ -15,7 +14,7 @@ public class Tutorial_CommonMonster : MonsterPlay
     {
         if (!this.gameObject.activeSelf) return;
 
-        Instantiate(Effect, this.transform.position, Quaternion.identity);
+        Instantiate(GameDB.Instance.Tutorial_OBJ[1], this.transform.position, Quaternion.identity);
         TutorialPlaymanager.Instance.EnemyCount--;
         this.gameObject.SetActive(false);
         TutorialPlaymanager.Instance.CurMultiKill++;

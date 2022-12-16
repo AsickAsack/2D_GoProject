@@ -74,7 +74,9 @@ MonoBehaviour:
   - {fileID: 7584223975199734802, guid: 0db17c64ca0a7804baaae3122ce99f81, type: 3}
   - {fileID: 2537726406413894852, guid: 6e911d6884fa8ea40b1e35579ef7a13f, type: 3}
   - {fileID: 5440606211030228329, guid: 16729a7afb9dd3e418dc02b3a91e5d52, type: 3}
-  Tutorial_CommonMonster: {fileID: 241363113802261835, guid: c77c179c2497e0c4f899973058b06bfa, type: 3}
+  Tutorial_OBJ:
+  - {fileID: 241363113802261835, guid: c77c179c2497e0c4f899973058b06bfa, type: 3}
+  - {fileID: 1845955007268882, guid: e016f099eca3f114e9c5fb827a75ca12, type: 3}
   CharacterImage:
   - {fileID: 21300000, guid: 23169ddedd921424c81c13ee700743a7, type: 3}
   - {fileID: 21300000, guid: 87141251d5364bc4db71006c1a14654b, type: 3}

@@ -196,7 +196,7 @@ public class StageManager : MonoBehaviour
         //기본 몬스터 4마리 생성
         for (int i = 0; i < 4; i++)
         {
-            CurMonsters.Add(Instantiate(GameDB.Instance.Tutorial_CommonMonster,
+            CurMonsters.Add(Instantiate(GameDB.Instance.Tutorial_OBJ[0],
                 Vector2.zero, Quaternion.identity).GetComponent<MonsterPlay>());
 
             CurMonsters[^1].monster = new Monster(MonsterName.Basic);

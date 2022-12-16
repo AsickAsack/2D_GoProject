@@ -68,7 +68,7 @@ public class TutorialManager : MonoBehaviour
 
 
 
-    //튜토리얼 포커스 함수
+    //튜토리얼 포커스 함수 + 손가락넣어얗암
     public void SetFocusOBJ(RectTransform TargetRect)
     {
         this.TargetRect = TargetRect;
