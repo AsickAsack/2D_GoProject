@@ -24,7 +24,7 @@ public class Ice : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {/*
+    {
         if(collision.transform.CompareTag("PlayerBall")|| collision.transform.CompareTag("EnemyBall")|| collision.transform.CompareTag("Obstacle")|| collision.transform.CompareTag("Bus"))
         {
             if (collision.transform.CompareTag("Bus") && IceObj.transform.CompareTag("EnemyBall")) 
@@ -33,7 +33,7 @@ public class Ice : MonoBehaviour
             this.gameObject.SetActive(false);
             IceObj.GetComponent<IDeathProcess>().Death(IceEffectIndex);
         }
-        */
+        
     }
 
     public void ActiveCollider()

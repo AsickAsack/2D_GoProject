@@ -25,7 +25,7 @@ public class KillerSkill : CharacterSkill
     {
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-            if (characterplay.OnBoard)
+            if (!characterplay.OnBoard)
             {
                 IsSKill = true;
                 ICompareSkill temp = collision.transform.GetComponent<ICompareSkill>();

@@ -146,7 +146,13 @@ public class CharacterSkill : MonoBehaviour, IObserver, ICompareSkill
     //충돌시 루틴
     public void ConflictProcess(Collision2D collision, float Power)
     {
-        PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        SoundManager.Instance.PlayEffect(9);
+
+        if(PlayerDB.Instance.playerdata.PlayFirst)
+            TutorialPlaymanager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        else
+            PlayManager.Instance.objectPool.GetPoolEffect(EffectName.StoneHit, collision.GetContact(0).point, Quaternion.identity);
+        
         ICompareSkill CK = collision.gameObject.GetComponent<ICompareSkill>();
         CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude, this.transform);
     }

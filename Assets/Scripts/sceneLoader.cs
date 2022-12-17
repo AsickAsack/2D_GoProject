@@ -32,6 +32,7 @@ public class SceneLoader : MonoBehaviour
     #region 로딩화면있는 로드씬(인덱스)
     public void Loading_LoadScene(int i)
     {
+        PlayerDB.Instance.SaveData();
         StartCoroutine(SceneLoading(i));
     }
 

@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
     public DialoguePanel dialoguePanel;
     public DialogueManager MyManager;
 
-    public int Tutorial_index = 0;
+    public int Action_Index = 0;
     public UnityAction[] TutorialAction;
 
     public int TutorialClick_index = 0;
@@ -22,8 +22,11 @@ public class TutorialManager : MonoBehaviour
     RectTransform TargetRect;
     public Transform OrgParent;
     public Transform FocusParent;
+    public GameObject FocusFinger;
+    public FocusClickOBJ ClickOBJ;
+    int OrgSibling;
 
-    public int Action_Index = 0;
+    public GameObject PowerUpZone;
 
 
     private void Awake()
@@ -39,6 +42,9 @@ public class TutorialManager : MonoBehaviour
         {
             TutorialClickAction[i] += ReturnTargetRect;
         }
+
+        TutorialAction[4] = LookAtZone;
+        TutorialAction[5] = LookAtOrg;
     }
 
     private void Start()
@@ -48,46 +54,57 @@ public class TutorialManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        if (MyManager.IsAction)
-        {
-            MyManager.IsAction = false;
-            MyManager.Panel_OnOff(false);
-            TutorialAction[Action_Index++]();
-        }
-        else
-        {
-            if (MyManager.SetDialogue(MyManager.Tutorial_Index))
-            {
-                MyManager.Tutorial_Index++;
-            }
-        }
+        MyManager.SetDialogue(MyManager.Tutorial_Index);
     }
 
 
+    public void FailRoutine()
+    {
+        MyManager.Tutorial_Index--;
+        //Action_Index--;
+        StartDialogue();
+    }
    
 
 
 
-    //튜토리얼 포커스 함수 + 손가락넣어얗암
-    public void SetFocusOBJ(RectTransform TargetRect)
+    //튜토리얼 포커스 함수
+    public void SetFocusOBJ(RectTransform TargetRect,bool FocusFinger)
     {
         this.TargetRect = TargetRect;
+        OrgSibling = TargetRect.transform.GetSiblingIndex();
         OrgParent = TargetRect.parent;
         FocusCanvas.enabled = true;
 
         FocusOBJ.transform.position = TargetRect.transform.position;
         FocusOBJ.sizeDelta = new Vector2(TargetRect.sizeDelta.x+35.0f, TargetRect.sizeDelta.y + 35.0f);
-        TargetRect.transform.SetParent(FocusParent); 
+        TargetRect.transform.SetParent(FocusParent);
+        this.FocusFinger.SetActive(FocusFinger);
 
     }
 
     public void ReturnTargetRect()
     {
         TargetRect.SetParent(OrgParent);
+        TargetRect.SetSiblingIndex(OrgSibling);
         FocusCanvas.enabled = false;
+        FocusFinger.SetActive(false);
 
     }
 
+
+    public void LookAtZone()
+    {
+        PowerUpZone.SetActive(true);
+        Camera.main.transform.position = new Vector3(PowerUpZone.transform.position.x, PowerUpZone.transform.position.y, Camera.main.transform.position.z);
+        Invoke("StartDialogue", 1.5f);
+    }
+
+    public void LookAtOrg()
+    {
+        Camera.main.transform.position = new Vector3(0, 1, Camera.main.transform.position.z);
+        StartDialogue();
+    }
 
 
 }

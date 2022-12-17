@@ -19,7 +19,10 @@ public class ParticleSet : MonoBehaviour
 
         if (Duration < 0.0f)
         {
-            ReturnToPool();
+            if(!PlayerDB.Instance.playerdata.PlayFirst)
+                ReturnToPool();
+            else
+                this.gameObject.SetActive(false);
         }
     }
     public void ReturnToPool()

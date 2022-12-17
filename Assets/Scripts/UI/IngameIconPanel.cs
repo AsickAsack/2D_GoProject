@@ -19,25 +19,57 @@ public class IngameIconPanel : MonoBehaviour
 
     private void Start()
     {
-        if(PlayerDB.Instance.playerdata.PlayFirst)
-            TutorialManager.instance.TutorialAction[0] = SetTestMethod;
+        if (PlayerDB.Instance.playerdata.PlayFirst)
+        {
+            TutorialManager.instance.TutorialAction[0] = FocusFirst;
+            TutorialManager.instance.TutorialAction[2] = FocusSecond;
+        }
     }
 
-    public void SetTestMethod()
+    public void FocusFirst()
     {
-        TutorialManager.instance.SetFocusOBJ(MyIcon[0].GetComponent<RectTransform>());
+        TutorialManager.instance.SetFocusOBJ(MyIcon[0].GetComponent<RectTransform>(),true);
     }
 
+    public void FocusSecond()
+    {
+        MyIcon[0].gameObject.SetActive(false);
+        SetPanelSize(false);
+        MyIcon[1].transform.position = MyIcon[0].transform.position;
+
+        TutorialManager.instance.ClickOBJ.IsIgnore = true;
+        TutorialPlaymanager.Instance.ingameUI.InfoIcon.SetActive(true);
+        TutorialPlaymanager.Instance.ingameUI.SetCharacterPopUP(true);
+        StartCoroutine(FocusTwice());
+    }
+
+    IEnumerator FocusTwice()
+    {
+        TutorialManager.instance.SetFocusOBJ(TutorialPlaymanager.Instance.ingameUI.InfoIcon.GetComponent<RectTransform>(), false);
+        
+
+        yield return new WaitForSeconds(1.5f);
+        TutorialManager.instance.ReturnTargetRect();
+        TutorialManager.instance.SetFocusOBJ(MyIcon[1].transform.GetComponent<RectTransform>(), false);
+        
+        yield return new WaitForSeconds(1.5f);
+        TutorialManager.instance.ReturnTargetRect();
+        TutorialPlaymanager.Instance.ingameUI.PopupAnim.SetTrigger("GoRight");
+
+        TutorialManager.instance.ClickOBJ.IsIgnore = false;
+        TutorialManager.instance.StartDialogue();
+        
+    }
 
     //패널 사이즈 세팅
     public void SetPanel(bool IsTutorial)
     {
         if (IsTutorial)
         {
-            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * 1);
+            myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * 2);
 
             MyIcon[0].gameObject.SetActive(true);
-            //MyIcon[1].gameObject.SetActive(true);
+            MyIcon[1].gameObject.SetActive(true);
         }
         else
         {

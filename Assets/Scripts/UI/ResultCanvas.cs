@@ -114,11 +114,19 @@ public class ResultCanvas : MonoBehaviour
         if (StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars < starCount)
             StageManager.instance.stage[CurStage.x].subStage[CurStage.y].Stars = starCount;
         */
-        MyAnim.SetInteger("Star", starCount);
+        //MyAnim.SetInteger("Star", starCount);
+
+        for(int i=0;i<starCount;i++)
+        {
+            Stars[i].SetActive(true);
+        }
 
 
         StartCoroutine(ResultTextRoutine());
-        //리워드 주기
+
+        //골드 주고 저장
+        PlayerDB.Instance.Gold += StageManager.instance.stage[CurStage.x].subStage[CurStage.y].RewardGold;
+        PlayerDB.Instance.SaveData();
     }
 
     IEnumerator ResultTextRoutine()
@@ -144,6 +152,7 @@ public class ResultCanvas : MonoBehaviour
 
         ResultText[3].gameObject.SetActive(true);
         ResultText[3].text = $"총 포인트 {ResultPoint[0]+ ResultPoint[1]+ ResultPoint[2]} 점!";
+        VeryGoodGif.gameObject.SetActive(true);
         yield return null;
 
     }

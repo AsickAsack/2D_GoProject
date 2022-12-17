@@ -376,6 +376,7 @@ MonoBehaviour:
     Skill_Range: 0
     Story: 
   MySkill: {fileID: 6471225873302806971}
+  OnBoard: 0
   PassiveRangeObj: {fileID: 0}
   InGame_Sprite: {fileID: 0}
   Power: 0
@@ -392,10 +393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5271197c3967641adf792ca2b7e9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SkillPriority: 2
+  _SkillPriority: 1
   Skill_index: 9
-  OnBoard: 0
   IgnoreObstacle: 0
+  IsSilence: 0
   mySkill_Condition: 0
   characterplay: {fileID: 769087477744146481}
 --- !u!1 &6134260428480012705

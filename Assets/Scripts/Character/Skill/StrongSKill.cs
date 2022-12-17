@@ -12,12 +12,18 @@ public class StrongSKill : CharacterSkill
         {
             IsSKill = true;
 
-            if (GetSkillPriority(collision.gameObject.GetComponent<ICompareSkill>()))
+            if (collision.gameObject.GetComponent<ICompareSkill>().GetSkillPriority(this))
             {
-                Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
+                if(!PlayerDB.Instance.playerdata.PlayFirst)
+                    Instantiate(PlayManager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
+                else
+                    Instantiate(TutorialPlaymanager.Instance.objectPool.GetActiveEffects(2, collision.GetContact(0).point));
+
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity *= characterplay.character.Skill_Figure;
                 ConflictProcess(collision, this.GetComponent<Rigidbody2D>().velocity.magnitude * 2.0f);
             }
+            else
+                ConflictProcess(collision, this.GetComponent<Rigidbody2D>().velocity.magnitude * 2.0f);
 
             IsSKill = false;
         }

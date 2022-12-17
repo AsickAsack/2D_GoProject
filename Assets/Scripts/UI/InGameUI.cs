@@ -92,8 +92,17 @@ public class InGameUI : MonoBehaviour
         }
         else
         {
-            if(PlayManager.Instance.CurPlayer != null)
-            SetInfoPopup(true, PlayManager.Instance.CurPlayer.character);
+            if(PlayerDB.Instance.playerdata.PlayFirst)
+            {
+                if (TutorialPlaymanager.Instance.CurPlayer != null)
+                    SetInfoPopup(true, TutorialPlaymanager.Instance.CurPlayer.character);
+            }
+            else
+            {
+                if (PlayManager.Instance.CurPlayer != null)
+                    SetInfoPopup(true, PlayManager.Instance.CurPlayer.character);
+            }
+            
         }
     }
 

@@ -28,7 +28,10 @@ public class InGameUserSkillUI : MonoBehaviour
 
     public void UserSkill_InfoPopup()
     {
-        PlayManager.Instance.ingameUI.SetInfoPopup(true, CurUserSkill);
+        if(!PlayerDB.Instance.playerdata.PlayFirst)
+            PlayManager.Instance.ingameUI.SetInfoPopup(true, CurUserSkill);
+        else
+            TutorialPlaymanager.Instance.ingameUI.SetInfoPopup(true, CurUserSkill);
 
     }
 

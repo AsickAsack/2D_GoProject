@@ -102,7 +102,7 @@ public class SoundManager : MonoBehaviour
     //이펙트 재생
     public void PlayEffect(int index)
     {
-        BgmAudio.PlayOneShot(EffectClips[index]);
+        EffectAudio.PlayOneShot(EffectClips[index]);
     }
 
     //이펙트 볼륨 수정

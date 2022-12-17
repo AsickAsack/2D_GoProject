@@ -35,6 +35,10 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     Quaternion ArrowOriginAngle;
     public UserSkill UserSkillObj;
 
+    public GameObject SlideFingerParent;
+    public GameObject SlideFinger;
+    public Animator SlideFingerAnim;
+
 
 
     //판정
@@ -54,7 +58,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
             if (EnemyCount == 0)
             {
-                
+
             }
         }
     }
@@ -112,7 +116,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         }
     }
 
-    bool IsFail = false;
+    public bool IsFail = false;
     string FailString;
 
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
@@ -125,8 +129,43 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         StageManager.instance.SetTutorialStage();
         PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
         TutorialManager.instance.TutorialClickAction[0] += SetTutorialCurPlayer;
-        TutorialManager.instance.TutorialAction[1] += SetPlayTutorial;
+        TutorialManager.instance.TutorialClickAction[1] += ActiveUserSkill;
+        TutorialManager.instance.TutorialAction[1] += SetTutorialFirst;
+        TutorialManager.instance.TutorialAction[3] += SetTutorialSecond;
+        TutorialManager.instance.TutorialAction[6] += LootAtSkillPoint;
+        TutorialManager.instance.TutorialAction[7] += FocusUserSkill;
+        TutorialManager.instance.TutorialAction[8] += ExitTutorial;
     }
+    public void ExitTutorial()
+    {
+        PlayerDB.Instance.playerdata._Gold = 25000;
+        PlayerDB.Instance.playerdata.PlayFirst = false;
+        PlayerDB.Instance.SaveData();
+        StageManager.instance.InitStage(1);
+    }
+
+    public void SetTutorialMonster(int index, float x, float y)
+    {
+        StageManager.instance.CurMonsters[index].transform.position = new Vector2(x, y);
+        StageManager.instance.CurMonsters[index].gameObject.SetActive(true);
+    }
+
+    public void FocusUserSkill()
+    {
+        SetTutorialMonster(0, -0.3f, -0.9f);
+        SetTutorialMonster(1, 0.6f, -0.1f);
+        SetTutorialMonster(2, -0.8f, 2.5f);
+        SetTutorialMonster(3, 0.0f, 4.7f);
+
+        ingameUI.UserSKillBtn.SetActive(true);
+        TutorialManager.instance.SetFocusOBJ(ingameUI.UserSKillBtn.GetComponent<RectTransform>(), true);
+    }
+
+    public void ActiveUserSkill()
+    {
+        ChangeState(GameState.UserSkillSelect);
+    }
+
 
 
     public GameState gameState = GameState.Ready;
@@ -155,6 +194,9 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
         switch (s)
         {
+            case GameState.None:
+                break;
+
             case GameState.Ready:
 
                 break;
@@ -166,6 +208,9 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
                     CurPlayer.gameObject.SetActive(false);
                     CurPlayer = null;
                 }
+                ingameUI.UserSkillBox.SetActive(true);
+                //Vector2 FingerPos = Camera.main.WorldToScreenPoint(BaseCamp.transform.position);
+                ActiveSliderFinger(BaseCamp.transform.position+(Vector3)Vector2.up*2.0f, 2);
                 break;
 
             case GameState.UserSKill:
@@ -177,8 +222,8 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
                 Arrow.InitArrow((int)LimitPower.x, (int)LimitPower.y);
                 ingameUI.UserSKillBtn.SetActive(false);
                 ingameUI.SetTextPhase("Shot Phase");
-                ingameUI.SetCharacterPopUP(false);
-                ingameUI.CharacterPopup.SetPanelSize(false);
+                ingameUI.InfoIcon.SetActive(false);
+                InActiveSliderFinger();
 
                 break;
 
@@ -197,13 +242,16 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
     public void DeathInTutorial(GameObject obj)
     {
-        obj.gameObject.SetActive(false);
-        Instantiate(GameDB.Instance.Tutorial_OBJ[1], obj.transform.position, Quaternion.identity);
+        if (obj.gameObject.activeSelf)
+        {
+            obj.gameObject.SetActive(false);
+            Instantiate(GameDB.Instance.Tutorial_OBJ[1], obj.transform.position, Quaternion.identity);
+        }
     }
 
     public void CheckEnd()
     {
-        if(EnemyCount == 0)
+        if (EnemyCount == 0)
         {
             IsFail = false;
             DeathInTutorial(CurPlayer.gameObject);
@@ -213,16 +261,19 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         {
             IsFail = true;
             DeathInTutorial(CurPlayer.gameObject);
-            for(int i=0;i<StageManager.instance.CurMonsters.Count;i++)
+            for (int i = 0; i < StageManager.instance.CurMonsters.Count; i++)
             {
-                if(StageManager.instance.CurMonsters[i].gameObject.activeSelf)
+                if (StageManager.instance.CurMonsters[i].gameObject.activeSelf)
                 {
                     DeathInTutorial(StageManager.instance.CurMonsters[i].gameObject);
                 }
             }
-            SetPlayTutorial();
+
+            TutorialManager.instance.TutorialAction[--TutorialManager.instance.Action_Index]();
+            //SetTutorialFirst();
 
         }
+
 
         /*
             this.BaseCamp.ClearBase();
@@ -235,6 +286,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     {
         switch (gameState)
         {
+
             case GameState.Ready:
                 Ready_Loop();
                 break;
@@ -380,6 +432,20 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     }
 
     #endregion
+        public void InActiveSliderFinger()
+    {
+        SlideFingerAnim.SetBool("IsMove", false);
+        SlideFinger.SetActive(false);
+    }
+
+    public void ActiveSliderFinger(Vector2 pos,int AnimationIndex)
+    {
+
+        SlideFingerParent.transform.position = Camera.main.WorldToScreenPoint(pos);
+        SlideFinger.SetActive(true);
+        SlideFingerAnim.SetInteger("FingerNum", AnimationIndex);
+
+    }
 
     public void SetTutorialCurPlayer()
     {
@@ -389,32 +455,59 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
         CurPlayer.gameObject.SetActive(true);
 
         ingameUI.SetCharacterPopUP(false);
-        
+
         TutorialManager.instance.StartDialogue();
-        //StartCoroutine(DelayCoroutine(1.0f, TutorialManager.instance.StartDialogue));
     }
 
-    public void SetFailString(string FailMessage)
+    public void SetTutorialSecond()
     {
-        ChangeState(GameState.None);
-        TutorialManager.instance.MyManager.SetDialogue(FailMessage);
+        SetTutorialRoutine(1, () =>
+        {
+            CurPlayer = StageManager.instance.CurCharacters[1];
+            CurPlayer.transform.position = BaseCamp.transform.position;
+            CurPlayer.gameObject.SetActive(true);
+
+            StageManager.instance.CurMonsters[0].transform.position = new Vector2(1.6f, -0.3f);
+            StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
+
+            StageManager.instance.CurObstacle[^1].gameObject.SetActive(true);
+
+            ActiveSliderFinger(BaseCamp.transform.position,1);
+        });
     }
-    public void SetPlayTutorial()
+
+    public void SetTutorialFirst()
     {
-        EnemyCount = 1;
+
+        SetTutorialRoutine(1, () =>
+        {
+            CurPlayer = StageManager.instance.CurCharacters[0];
+            CurPlayer.transform.position = BaseCamp.transform.position;
+            CurPlayer.gameObject.SetActive(true);
+
+            StageManager.instance.CurMonsters[0].transform.position = Vector2.zero;
+            StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
+
+            ActiveSliderFinger(BaseCamp.transform.position, 0);
+        });
+
+    }
+
+    public void SetTutorialRoutine(int EnemyCount,UnityAction MyAction)
+    {
+        this.EnemyCount = EnemyCount;
         ChangeState(GameState.Ready);
 
-        CurPlayer = StageManager.instance.CurCharacters[0];
-        CurPlayer.transform.position = BaseCamp.transform.position;
-        CurPlayer.gameObject.SetActive(true);
+        MyAction();
 
-        StageManager.instance.CurMonsters[0].transform.position = Vector2.zero;
-        StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
-        
-        
         if (IsFail)
-            SetFailString("다시 한번 잘 맞춰봐!");
+        {
+            IsFail = false;
+            ChangeState(GameState.None);
+            TutorialManager.instance.FailRoutine();
+        }
     }
+
 
     //딜레이 시키는 코루틴
     IEnumerator DelayCoroutine(float time,UnityAction DelayAction)
@@ -435,9 +528,15 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
             if (MyRayCast)
             {
                 PlayerDB.Instance.myUserSkill.Skill(MyRayCast.point);
-                ingameUI.SetUserSkillPoint(UserSkillPoint);
+                ingameUI.SetUserSkillPoint(0);
+                //TutorialPlaymanager.Instance.UserSkillPoint -= PlayerDB.Instance.myUserSkill.SkillPoint;
                 ingameUI.UserSKillBtn.SetActive(false);
-                ChangeState(GameState.UserSKill);
+                ingameUI.UserSkillBox.SetActive(false);
+                InActiveSliderFinger();
+                ChangeState(GameState.None);
+                StartCoroutine(DelayCoroutine(1.5f, () => {
+                    TutorialManager.instance.StartDialogue();
+                }));
             }
         }
     }
@@ -448,14 +547,7 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
     {
         if (CheckMove())
         {
-            gameState = GameState.Ready;
-            ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
-            ingameUI.UserSKillBtn.SetActive(true);
-            ingameUI.SetCharacterPopUP(true);
-            if (UserSkillObj != null)
-            {
-                UserSkillObj.End_Skill();
-            }
+            
         }
     }
 
@@ -528,5 +620,22 @@ public class TutorialPlaymanager : MonoBehaviour, ISubject
 
     }
 
+    public void LootAtSkillPoint()
+    {
+        StartCoroutine(LookSkillPointCo());
+    }
+
+    IEnumerator LookSkillPointCo()
+    {
+        ingameUI.UserPointSlider.gameObject.SetActive(true);
+        ingameUI.SetUserSkillPoint(UserSkillPoint);
+
+        TutorialManager.instance.SetFocusOBJ(ingameUI.UserPointSlider.GetComponent<RectTransform>(), false);
+
+        yield return new WaitForSeconds(1.5f);
+        TutorialManager.instance.ReturnTargetRect();
+
+        TutorialManager.instance.StartDialogue();
+    }
 
 }

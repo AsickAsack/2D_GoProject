@@ -24,8 +24,8 @@ public class PlayerData
 
     public string PlayerName = "±èÁØ¿ì";
     public int _Gold = 0;
-    public int _Ticket = 30;
-    public bool PlayFirst = false;
+    public int _Ticket = 1000;
+    public bool PlayFirst = true;
 
 
 

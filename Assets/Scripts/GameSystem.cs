@@ -10,14 +10,14 @@ public static class GameSystem
     public static void Save<T>(ref T SaveClass,string FilePath)
     {
         string data = JsonConvert.SerializeObject(SaveClass);
-        File.WriteAllText(Application.dataPath + FilePath, data);
+        File.WriteAllText(Application.persistentDataPath + FilePath, data);
     }
 
     public static bool Load<T>(ref T LoadClass,string FilePath)
     {
-        if (File.Exists(Application.dataPath + FilePath))
+        if (File.Exists(Application.persistentDataPath + FilePath))
         {
-            string data = File.ReadAllText(Application.dataPath + FilePath);
+            string data = File.ReadAllText(Application.persistentDataPath + FilePath);
             LoadClass = JsonConvert.DeserializeObject<T>(data);
 
             return true;
@@ -29,14 +29,14 @@ public static class GameSystem
     public static void Save<T>(ref T[] SaveClass, string FilePath)
     {
         string data = JsonConvert.SerializeObject(SaveClass);
-        File.WriteAllText(Application.dataPath + FilePath, data);
+        File.WriteAllText(Application.persistentDataPath + FilePath, data);
     }
 
     public static void Load<T>(ref T[] LoadClass, string FilePath)
     {
-        if (File.Exists(Application.dataPath + FilePath))
+        if (File.Exists(Application.persistentDataPath + FilePath))
         {
-            string data = File.ReadAllText(Application.dataPath + FilePath);
+            string data = File.ReadAllText(Application.persistentDataPath + FilePath);
             LoadClass = JsonConvert.DeserializeObject<T[]>(data);
         }
     }

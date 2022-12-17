@@ -73,6 +73,7 @@ public class StoreCharacterUI : MonoBehaviour
         Alreadyhave(PlayerDB.Instance.playerdata.MyCharacters[^1]);
         PopUpManager.Instance.OpenPopup(0, "¾Ë¸²", $"{myChar.Name}¸¦(À») È¹µæÇß½À´Ï´Ù!", null);
         SoundManager.Instance.PlayEffect(3);
+        PlayerDB.Instance.SaveData();
     }
 
     

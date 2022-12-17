@@ -9,7 +9,7 @@ public class DownLoadDB : MonoBehaviour
 
     public IEnumerator Start()
     {
-       // PlayerDB.Instance.LoadData();
+        PlayerDB.Instance.LoadData();
 
         if (!PlayerDB.Instance.IsFirst)
         {
@@ -28,7 +28,7 @@ public class DownLoadDB : MonoBehaviour
 
         GameDB.Instance.InputDB(GameDB.Instance.DownLoad_DB(www2), GameDB.MonsterDB);
 
-        
+        /*
         PlayerDB.Instance.playerdata.MyCharacters.Add(new Character((int)CharacterName.Strong));
         PlayerDB.Instance.playerdata.MyCharacters.Add(new Character((int)CharacterName.Olaf));
         PlayerDB.Instance.playerdata.MyCharacters.Add(new Character((int)CharacterName.mad));
@@ -40,7 +40,7 @@ public class DownLoadDB : MonoBehaviour
         PlayerDB.Instance.playerdata.MyCharacters.Add(new Character((int)CharacterName.brainwash));
         //PlayerDB.Instance.MyCharacters.Add(new Character((int)CharacterName.Avoid));
         PlayerDB.Instance.playerdata.MyCharacters.Add(new Character((int)CharacterName.bulldozer));
-        
+        */
 
         storeManager.CheckStore();
 

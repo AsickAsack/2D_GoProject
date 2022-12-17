@@ -120,7 +120,7 @@ public abstract class MonsterPlay : MonoBehaviour, IDeathProcess, IConfilct, ICo
         //서있는 흰돌 맞았을때도 생각
         if (collision.transform.CompareTag("PlayerBall") || collision.transform.CompareTag("EnemyBall"))
         {
-
+            SoundManager.Instance.PlayEffect(9);
             ICompareSkill CK = collision.transform.GetComponent<ICompareSkill>();
 
             CK.GoForward((collision.GetContact(0).point - (Vector2)this.transform.position).normalized, MyRigid.velocity.magnitude,this.transform);

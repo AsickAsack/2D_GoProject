@@ -205,6 +205,13 @@ public class StageManager : MonoBehaviour
             CurMonsters[^1].gameObject.SetActive(false);
 
         }
+
+        GameObject Wall = Instantiate(GameDB.Instance.GetObstacle(ObstacleName.Wall),
+               new Vector2(1.1f,-1f),Quaternion.Euler(0, 0, -30f));
+
+        CurObstacle.Add(Wall.GetComponent<Wall>());
+
+        Wall.SetActive(false);
     }
 
     public void SetCharacter()

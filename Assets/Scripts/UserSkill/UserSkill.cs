@@ -25,7 +25,10 @@ public class UserSkill : MonoBehaviour
 
     public void SetSkillPoint()
     {
-        PlayManager.Instance.UserSkillPoint -= this.SkillPoint;
+        if(!PlayerDB.Instance.playerdata.PlayFirst)
+            PlayManager.Instance.UserSkillPoint -= this.SkillPoint;
+        else
+            TutorialPlaymanager.Instance.UserSkillPoint -= this.SkillPoint;
     }
 
     public void End_Skill()

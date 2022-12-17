@@ -25,7 +25,14 @@ public class bulldozerSkill : CharacterSkill
         {
             SoundManager.Instance.PlayEffect(25);
             MyRigid.velocity = MyVelocity * 0.7f;
-            PlayManager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);
+            if (PlayerDB.Instance.playerdata.PlayFirst)
+            {
+                TutorialPlaymanager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);
+            }
+            else
+            {
+                PlayManager.Instance.objectPool.GetActiveEffects(2, collision.transform.position);
+            };
             collision.gameObject.SetActive(false);
         }
     }
