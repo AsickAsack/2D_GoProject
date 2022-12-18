@@ -24,6 +24,7 @@ public class StageTutorialPanel : MonoBehaviour, IPointerClickHandler
             MyManager.ExplainCanvas.gameObject.SetActive(false);
             PlayManager.Instance.gameState = GameState.Ready;
             Camera.main.transform.position = MyManager.CameraOrgPos;
+            MyManager.MovePanel.SetActive(true);
         }
     }
 }

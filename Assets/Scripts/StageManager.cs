@@ -109,6 +109,8 @@ public struct NewTutorial
         public UnityEngine.Events.UnityAction NextStageAction;
         public bool NextSet = false;
 
+    public bool IsMorphing = false;
+
         /// <summary>
         ///  1 - 메인화면 , 2 - 게임 재시작, 3 - 다음스테이지
         /// </summary>
@@ -124,8 +126,11 @@ public struct NewTutorial
             switch (index)
             {
                 case 1:
+                {
+                    IsMorphing = false;
                     SelectCharacters.Clear();
                     SceneLoader.Instance.Loading_LoadScene(0);
+                }
                     break;
                 case 2:
                     SceneLoader.Instance.Loading_LoadScene(2);
@@ -189,39 +194,60 @@ public struct NewTutorial
 
         }
 
-        //튜토리얼 스테이지 - 힘캐랑 불도저 생성
-        public void SetTutorialStage()
+    public void SetMorphingScene()
+    {
+        for (int i = 0; i < SelectCharacters.Count; i++)
         {
-            for (int i = 0; i < SelectCharacters.Count; i++)
-            {
-                CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
+            CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
 
-                CurCharacters.Add(obj);
-                CurCharacters[i].character = SelectCharacters[i];
-                CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);
-                CurCharacters[i].gameObject.SetActive(false);
-            }
-
-            //기본 몬스터 4마리 생성
-            for (int i = 0; i < 4; i++)
-            {
-                CurMonsters.Add(Instantiate(GameDB.Instance.Tutorial_OBJ[0],
-                    Vector2.zero, Quaternion.identity).GetComponent<MonsterPlay>());
-
-                CurMonsters[^1].monster = new Monster(MonsterName.Basic);
-                CurMonsters[^1].Basic_init();
-
-                CurMonsters[^1].gameObject.SetActive(false);
-
-            }
-
-            GameObject Wall = Instantiate(GameDB.Instance.GetObstacle(ObstacleName.Wall),
-                   new Vector2(1.1f, -1f), Quaternion.Euler(0, 0, -30f));
-
-            CurObstacle.Add(Wall.GetComponent<Wall>());
-
-            Wall.SetActive(false);
+            CurCharacters.Add(obj);
+            CurCharacters[i].character = SelectCharacters[i];
+            CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);
+            CurCharacters[i].gameObject.SetActive(false);
         }
+
+
+            CurMonsters.Add(Instantiate(GameDB.Instance.GetMonster(MonsterName.Morphing),
+                Vector2.zero, Quaternion.identity).GetComponent<MonsterPlay>());
+
+            CurMonsters[^1].monster = new Monster(MonsterName.Morphing);
+            CurMonsters[^1].Basic_init();
+
+    }
+
+    //튜토리얼 스테이지 - 힘캐랑 불도저 생성
+    public void SetTutorialStage()
+    {
+        for (int i = 0; i < SelectCharacters.Count; i++)
+        {
+            CharacterPlay obj = Instantiate(GameDB.Instance.GetCharacter(SelectCharacters[i].MyCharacter), Vector2.zero, Quaternion.identity).GetComponent<CharacterPlay>();
+
+            CurCharacters.Add(obj);
+            CurCharacters[i].character = SelectCharacters[i];
+            CurCharacters[i].InGame_Sprite.sprite = GameDB.Instance.GetCharacterIcon(CurCharacters[i].character);
+            CurCharacters[i].gameObject.SetActive(false);
+        }
+
+        //기본 몬스터 4마리 생성
+        for (int i = 0; i < 4; i++)
+        {
+            CurMonsters.Add(Instantiate(GameDB.Instance.Tutorial_OBJ[0],
+                Vector2.zero, Quaternion.identity).GetComponent<MonsterPlay>());
+
+            CurMonsters[^1].monster = new Monster(MonsterName.Basic);
+            CurMonsters[^1].Basic_init();
+
+            CurMonsters[^1].gameObject.SetActive(false);
+
+        }
+
+        GameObject Wall = Instantiate(GameDB.Instance.GetObstacle(ObstacleName.Wall),
+                new Vector2(1.1f, -1f), Quaternion.Euler(0, 0, -30f));
+
+        CurObstacle.Add(Wall.GetComponent<Wall>());
+
+        Wall.SetActive(false);
+    }
 
         public void SetCharacter()
         {

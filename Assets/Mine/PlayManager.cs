@@ -151,9 +151,20 @@ public class PlayManager : MonoBehaviour, ISubject
         Instance = this;
         ArrowOriginAngle = Arrow.transform.rotation;
         //게임 세팅
-        StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
-        EnemyCount = MaxMonsterCount =  StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].Object_Information.MyMonster.Length;
-        PlayerCount = StageManager.instance.CurCharacters.Count;
+        if (StageManager.instance.IsMorphing)
+        {
+            StageManager.instance.SetMorphingScene();
+            ingameUI.CameraMovePanel.gameObject.SetActive(false);
+            EnemyCount = MaxMonsterCount = 1000;
+            PlayerCount = 1000;
+        }
+        else
+        {
+            StageManager.instance.SetStage((int)StageManager.instance.CurStage.x, (int)StageManager.instance.CurStage.y);
+            EnemyCount = MaxMonsterCount = StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].Object_Information.MyMonster.Length;
+            PlayerCount = StageManager.instance.CurCharacters.Count;
+        }
+        
         PowerOBJPos = Camera.main.ScreenToWorldPoint(PowerOBJ.transform.position);
     }
 
@@ -183,14 +194,26 @@ public class PlayManager : MonoBehaviour, ISubject
 
                 CurTurn++;
                 ingameUI.UserSKillBtn.SetActive(true);
-
-                if (CurPlayer != null)
-                    CurPlayer.ChangeONBorad();
-
-                CurPlayer = null;
-
-                ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
                 ingameUI.SetCharacterPopUP(true);
+
+
+                if (!StageManager.instance.IsMorphing)
+                {
+                    ingameUI.SetTextPhase(CurTurn + "턴! Choice Phase");
+                    if (CurPlayer != null)
+                        CurPlayer.ChangeONBorad();
+
+                    CurPlayer = null;
+                }
+                else
+                {
+                    CurPlayer.transform.position = BaseCamp.transform.position;
+                    CurPlayer.gameObject.SetActive(true);
+
+                    StageManager.instance.CurMonsters[0].transform.position = Vector2.zero;
+                    StageManager.instance.CurMonsters[0].gameObject.SetActive(true);
+                }
+                
 
 
                 break;
@@ -213,12 +236,16 @@ public class PlayManager : MonoBehaviour, ISubject
 
             case GameState.Shot:
 
-                Arrow.InitArrow((int)LimitPower.x,(int)LimitPower.y);
+                Arrow.InitArrow((int)LimitPower.x, (int)LimitPower.y);
                 ingameUI.UserSKillBtn.SetActive(false);
-                ingameUI.SetTextPhase("Shot Phase");
                 ingameUI.SetCharacterPopUP(false);
-                ingameUI.CharacterPopup.SetPanelSize(false);
-                CurPlayerIcon.SetActive(false);
+
+                if (!StageManager.instance.IsMorphing)
+                {
+                    ingameUI.SetTextPhase("Shot Phase");
+                    ingameUI.CharacterPopup.SetPanelSize(false);
+                    CurPlayerIcon.SetActive(false);
+                } 
 
                 break;
 

@@ -53,8 +53,6 @@ public class BlackHole : Obstacle
 
             Player.transform.localScale = Player.transform.localScale - ((Vector3)BlackHoleVector * Time.deltaTime * Speed);
 
-            Debug.Log(Speed);
-
             yield return null;
         }
 

@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour
     //플레이 사운드
     public void PlayEffectOnce(int index)
     {
-        PlayerDB.Instance.SaveData();
         SoundManager.Instance.PlayEffect(index);
     }
 

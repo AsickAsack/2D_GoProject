@@ -73,6 +73,13 @@ public class IngameIconPanel : MonoBehaviour
         }
         else
         {
+            if(StageManager.instance.IsMorphing)
+            {
+                myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight);
+                MyIcon[0].gameObject.SetActive(true);
+                return;
+            }
+
             myRect.sizeDelta = new Vector2(myRect.sizeDelta.x, myHeight * StageManager.instance.GetNeedCharacterCount());
 
             for (int i = 0; i < StageManager.instance.GetNeedCharacterCount(); i++)

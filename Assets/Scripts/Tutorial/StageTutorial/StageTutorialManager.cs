@@ -16,7 +16,7 @@ public class StageTutorialManager : MonoBehaviour
     public TMPro.TMP_Text ExPlainText;
 
     public GameObject ActiveObj;
-
+    public GameObject MovePanel;
     public Vector3 CameraOrgPos;
 
     int x;
@@ -86,6 +86,7 @@ public class StageTutorialManager : MonoBehaviour
         
         if(ExplainQueue.Count > 0)
         {
+            MovePanel.SetActive(false);
             StartCoroutine(DelayExplain());
         }
 

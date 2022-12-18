@@ -11,7 +11,7 @@ public enum ObstacleName
 
 public enum MonsterName
 { 
-    Basic=2001,Big,Silence,Boss,Bomb,Armor, cushion // 반복이동,순서
+    Basic=2001,Big,Silence,Boss,Bomb,Armor,Morphing // 반복이동,순서
 }
 
 public enum MonsterStat
