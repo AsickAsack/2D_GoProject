@@ -31,6 +31,7 @@ public class StoreCharacterUI : MonoBehaviour
         CharacterPriceText.text = CharacterPrice.ToString("N0");
         MyInfoButton.onClick.AddListener(()=> {
             PopUpManager.Instance.OpenDesPopup(true, myChar.Name, GameDB.Instance.ChangeFigure(myChar, myChar.Skill_Des));
+            UIManager.Instance.MySkillPlayer.clip = GameDB.Instance.Skill_Video[(int)myChar.MyCharacter-(int)CharacterName.Strong];
         });
         this.gameObject.SetActive(true);
         Check_AlreadyHave();

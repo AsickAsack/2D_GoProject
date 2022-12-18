@@ -23,6 +23,8 @@ public class bulldozerSkill : CharacterSkill
     {
         if (collision.gameObject.CompareTag("Obstacle") && !IsSilence)
         {
+            if (collision.GetComponent<ObToggle>() != null) return;
+
             SoundManager.Instance.PlayEffect(25);
             MyRigid.velocity = MyVelocity * 0.7f;
             if (PlayerDB.Instance.playerdata.PlayFirst)

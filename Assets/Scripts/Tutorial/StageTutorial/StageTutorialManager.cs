@@ -122,7 +122,7 @@ public class StageTutorialManager : MonoBehaviour
         y = (int)StageManager.instance.CurStage.y - 1;
 
 
-        if (PlayerDB.Instance.playerdata.MyStageData[x].StageStar[y] > 0 || !StageManager.instance.stage[x].subStage[y].NewTutorial.IsTutorial) 
+        if (PlayerDB.Instance.playerdata.MyStageData[x].StageStar[y] > 0 || !StageManager.instance.stage[x].subStage[y].NewTutorial.IsTutorial || StageManager.instance.IsMorphing) 
             return;
 
             InitDic();

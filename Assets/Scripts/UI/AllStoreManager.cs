@@ -18,7 +18,7 @@ public class AllStoreManager : MonoBehaviour
 
     public void GiveTicket()
     {
-        if (PlayerDB.Instance.Ticket == PlayerDB.Instance.MaxTicket)
+        if (PlayerDB.Instance.Ticket >= PlayerDB.Instance.MaxTicket)
         {
             PopUpManager.Instance.OpenPopup(0, "알림", "이미 티켓이 최대치 입니다.",null);
             return;

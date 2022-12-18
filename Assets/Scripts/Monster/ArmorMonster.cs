@@ -9,6 +9,7 @@ public class ArmorMonster : MonsterPlay
 
     IEnumerator TakeOff_Helmet(Vector2 dir)
     {
+        Helmet.transform.SetParent(null);
         float time = 5.0f;
         while (0.0 < time)
         {

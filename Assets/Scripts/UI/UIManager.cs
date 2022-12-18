@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     public TMPro.TMP_Text Gold_Text;
     public TMPro.TMP_Text Ticekt_Text;
 
+    public UnityEngine.Video.VideoPlayer MySkillPlayer;
+
     private void Awake()
     {
         Instance = this;

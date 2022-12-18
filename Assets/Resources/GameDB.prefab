@@ -54,7 +54,6 @@ MonoBehaviour:
   - {fileID: 4314214917462345070, guid: 9380cb1fab9f16b4b9b9f8858bd4707a, type: 3}
   - {fileID: 4314214917462345070, guid: 62d99e7ec2987ad4996f5a7ae1f2dc6e, type: 3}
   - {fileID: 4314214917462345070, guid: 03bed6b20202d394ca410b0dd5a6af60, type: 3}
-  - {fileID: 4314214917462345070, guid: c78d46d2d4973a74f958bc109d385479, type: 3}
   - {fileID: 4314214917462345070, guid: e5a3e8c3cd668624f9f28917afa86a9d, type: 3}
   Monsters:
   - {fileID: 241363113802261835, guid: aa6348305876bc34698595b18fe11525, type: 3}
@@ -78,6 +77,17 @@ MonoBehaviour:
   Tutorial_OBJ:
   - {fileID: 241363113802261835, guid: c77c179c2497e0c4f899973058b06bfa, type: 3}
   - {fileID: 1845955007268882, guid: e016f099eca3f114e9c5fb827a75ca12, type: 3}
+  Skill_Video:
+  - {fileID: 32900000, guid: c2f6a39c2ff5fe343812f367b5079679, type: 3}
+  - {fileID: 32900000, guid: 9d671313d2d20e74fadc42c5450fc930, type: 3}
+  - {fileID: 32900000, guid: 66287bbe4103092448568b2bf7a321d2, type: 3}
+  - {fileID: 32900000, guid: 962e8e00788c97b4cba685e8304d996c, type: 3}
+  - {fileID: 32900000, guid: 5cdb5f2de59f47b42bb6b78b9f579970, type: 3}
+  - {fileID: 32900000, guid: c46f86f68568b3c4fb53e7b3060587cf, type: 3}
+  - {fileID: 32900000, guid: c2b622fef5ffae148a1c1a7e0afde592, type: 3}
+  - {fileID: 32900000, guid: a2730e03c16ced548b81755ff16b47a8, type: 3}
+  - {fileID: 32900000, guid: d9cfd70675bb4de4c95b389fe5f25d89, type: 3}
+  - {fileID: 32900000, guid: 569ed6c0695f6f54aa5f28a870034dfc, type: 3}
   CharacterImage:
   - {fileID: 21300000, guid: 23169ddedd921424c81c13ee700743a7, type: 3}
   - {fileID: 21300000, guid: 87141251d5364bc4db71006c1a14654b, type: 3}
@@ -88,7 +98,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dfc849341dfdc7344818319867891f1e, type: 3}
   - {fileID: 21300000, guid: 323cfae88ebd74b4b99e50caba0bbe76, type: 3}
   - {fileID: 21300000, guid: 68589bd03f05d4a429fb824b8b6cf94f, type: 3}
-  - {fileID: 21300000, guid: 6d9566611ad81484ca300d46685ddd4a, type: 3}
   - {fileID: 21300000, guid: c63cc472297f2f24fad31897affb0103, type: 3}
   CharacterIcon:
   - {fileID: 21300000, guid: a6a01d1016a5a9c48959a5a649487e0e, type: 3}
@@ -100,7 +109,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: aa43a755d3615de4f82c25c440ecf640, type: 3}
   - {fileID: 21300000, guid: 929c81fe577a5b6478c7f0f2c20c1675, type: 3}
   - {fileID: 21300000, guid: 4e08a261995ff134181fb525e05cdf50, type: 3}
-  - {fileID: 21300000, guid: 81b759e81f5c3334ab52b94f6fd3b865, type: 3}
   - {fileID: 21300000, guid: 133f173501ed3ae4fa2c36cabdf83b7c, type: 3}
   NotifySprite:
   - {fileID: 21300000, guid: 1c24f369d947a734da34910c8a162024, type: 3}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 using UnityEngine.Networking;
 
 public enum ObstacleName
@@ -21,7 +22,7 @@ public enum MonsterStat
 
 public enum CharacterName
 {
-    Strong=1001,Olaf,mad,Killer,Witch,BaseBall,Leesin,Rebirth, brainwash,Avoid, bulldozer
+    Strong=1001,Olaf,mad,Killer,Witch,BaseBall,Leesin,Rebirth, brainwash, bulldozer
 }
 
 public enum CharacterStat
@@ -81,11 +82,14 @@ public class GameDB : MonoBehaviour
     public GameObject[] Obstacles;
     public UserSkill[] UserSkills;
     public GameObject[] Tutorial_OBJ;
+    public VideoClip[] Skill_Video;
 
     public Sprite[] CharacterImage;
     public Sprite[] CharacterIcon;
     public Sprite[] NotifySprite;
     public Sprite[] UserSkillicon;
+
+    
 
     public Sprite GetNotifySpirte(NotifyIcon notifyicon)
     {

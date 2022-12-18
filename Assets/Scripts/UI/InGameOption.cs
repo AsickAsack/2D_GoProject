@@ -19,6 +19,14 @@ public class InGameOption : MonoBehaviour
     public TMPro.TMP_Text OptionGoldText;
     public TMPro.TMP_Text OptionTicketText;
 
+    public GameObject RestartButton;
+
+    private void Awake()
+    {
+        if(StageManager.instance.IsMorphing)
+            RestartButton.SetActive(false);
+    }
+
     private void Start()
     {
         InitOption();

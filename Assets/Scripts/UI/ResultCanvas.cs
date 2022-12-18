@@ -44,6 +44,7 @@ public class ResultCanvas : MonoBehaviour
 
         if (!IsClear)
         {
+            SoundManager.Instance.PlayEffect(29);
             FailPanel.gameObject.SetActive(true);
             ReStartBtn.SetActive(true);
             TicketCountText.text = $"x {StageManager.instance.stage[(int)StageManager.instance.CurStage.x - 1].subStage[(int)StageManager.instance.CurStage.y - 1].NeedTicket}";
@@ -121,6 +122,7 @@ public class ResultCanvas : MonoBehaviour
             Stars[i].SetActive(true);
         }
 
+        SoundManager.Instance.PlayEffect(29 + starCount);
 
         StartCoroutine(ResultTextRoutine());
 
