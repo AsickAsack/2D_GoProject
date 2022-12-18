@@ -1,0 +1,144 @@
+skeleton.png
+	size: 3514, 3333
+	filter: Linear, Linear
+	pma: true
+가슴
+	bounds: 2698, 2004, 741, 528
+눈동자
+	bounds: 310, 3249, 82, 105
+	rotate: 90
+눈두덩
+	bounds: 559, 3230, 177, 101
+눈위
+	bounds: 117, 3260, 191, 71
+뒷머리2
+	bounds: 1776, 764, 1149, 621
+머리
+	bounds: 2697, 1387, 615, 815
+	rotate: 90
+머리띠
+	bounds: 1553, 3142, 651, 189
+	offsets: 0, 0, 663, 195
+머리띠장식
+	bounds: 2206, 3119, 228, 212
+	offsets: 0, 1, 228, 213
+목
+	bounds: 2, 2952, 403, 295
+목장식
+	bounds: 1138, 2742, 676, 398
+앞머리
+	bounds: 1816, 2717, 400, 530
+	rotate: 90
+앞머리2
+	bounds: 2723, 3066, 265, 308
+	rotate: 90
+오른눈2
+	bounds: 2436, 3099, 232, 285
+	rotate: 90
+오른어깨
+	bounds: 2, 385, 925, 777
+오른엄지
+	bounds: 1087, 3176, 283, 155
+왼날개
+	bounds: 1698, 2199, 998, 437
+왼날개_위
+	bounds: 929, 2, 1893, 760
+왼어깨1
+	bounds: 1089, 1619, 578, 966
+	rotate: 90
+왼어깨2
+	bounds: 2840, 2534, 504, 576
+	rotate: 90
+왼엄지
+	bounds: 738, 3215, 347, 116
+왼옆머리
+	bounds: 2, 1821, 496, 1085
+	rotate: 90
+왼팔1
+	bounds: 2, 1164, 928, 655
+왼팔2
+	bounds: 932, 843, 842, 774
+우관
+	bounds: 2348, 2638, 426, 490
+	rotate: 90
+윗머리
+	bounds: 2057, 1447, 638, 750
+입1
+	bounds: 417, 3237, 140, 94
+입2
+	bounds: 2, 3297, 113, 34
+치마뒤
+	bounds: 2, 2436, 899, 413
+치마뒤_우
+	bounds: 903, 2319, 793, 421
+태슬
+	bounds: 3033, 3040, 291, 332
+	rotate: 90
+허리장식
+	bounds: 1372, 3173, 179, 158
+	offsets: 0, 2, 179, 160
+허리장식2
+	bounds: 758, 2851, 378, 323
+휘장
+	bounds: 407, 2897, 316, 349
+	rotate: 90
+
+skeleton_2.png
+	size: 3027, 2847
+	filter: Linear, Linear
+	pma: true
+뒷머리5
+	bounds: 2, 1044, 2942, 1801
+오른다리
+	bounds: 2, 2, 1040, 3023
+	rotate: 90
+
+skeleton_3.png
+	size: 3349, 3508
+	filter: Linear, Linear
+	pma: true
+극색조몸통
+	bounds: 1971, 1641, 1865, 1135
+	offsets: 0, 8, 1865, 1143
+	rotate: 90
+뒷머리3
+	bounds: 1740, 331, 1607, 1153
+뒷머리4
+	bounds: 2, 2, 1482, 1736
+	rotate: 90
+몸통
+	bounds: 2, 1486, 1967, 2020
+
+skeleton_4.png
+	size: 3419, 3442
+	filter: Linear, Linear
+	pma: true
+망토뒤
+	bounds: 1741, 896, 1469, 942
+	offsets: 0, 0, 1473, 942
+오른날개
+	bounds: 2, 2, 1662, 985
+	offsets: 0, 7, 1662, 992
+오른날개2
+	bounds: 2, 989, 1737, 863
+	offsets: 0, 0, 1751, 863
+오른옆머리
+	bounds: 1009, 1854, 1038, 832
+오른팔
+	bounds: 2049, 1840, 846, 1069
+	rotate: 90
+왼다리
+	bounds: 2, 2688, 752, 3415
+	rotate: 90
+치마뒤_좌
+	bounds: 2, 1880, 806, 1005
+	rotate: 90
+
+skeleton_5.png
+	size: 3328, 1155
+	filter: Linear, Linear
+	pma: true
+뒷머리1
+	bounds: 1954, 2, 1372, 1151
+왼날개_아래
+	bounds: 2, 194, 1950, 959

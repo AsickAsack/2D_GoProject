@@ -114,4 +114,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba14b3f2bab0648921e9695196911a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyObstacleName: 1
   StopCount: 7

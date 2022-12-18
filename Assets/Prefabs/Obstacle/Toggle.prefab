@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67793a4a7302564d846673342f60057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyObstacleName: 3
   ToggleObj:
   - {fileID: 2188656445883137453}
   - {fileID: 4913033826574742331}

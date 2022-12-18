@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
+    public ObstacleName MyObstacleName;
+
     public abstract void Skill(Collision2D collision);
     public abstract void Skill(Collider2D collision);
 

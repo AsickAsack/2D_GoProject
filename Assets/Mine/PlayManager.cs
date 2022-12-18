@@ -144,8 +144,6 @@ public class PlayManager : MonoBehaviour, ISubject
         }
     }
 
-
-
     public List<GameObject> OnBoardPlayer = new List<GameObject>();
 
     private void Awake()
@@ -556,6 +554,7 @@ public class PlayManager : MonoBehaviour, ISubject
         for(int i=0;i< StageManager.instance.CurToggle.Count;i++)
         {
             StageManager.instance.CurToggle[i].ResetToggle();
+            
         }
 
     }

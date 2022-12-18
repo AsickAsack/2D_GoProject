@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf38cf30a1aabec42b1885b6739d4f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyObstacleName: 4
   Pivot: {fileID: 4569645022430183163}
-  ScaleSppeed: 10
+  ScaleSpeed: 15
   LerpSpeed: 20
 --- !u!1 &4569645022430183163
 GameObject:

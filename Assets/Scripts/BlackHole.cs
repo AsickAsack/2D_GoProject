@@ -6,7 +6,7 @@ public class BlackHole : Obstacle
 {
     public GameObject Pivot;
     Vector2 BlackHoleVector;
-    public float ScaleSppeed;
+    public float ScaleSpeed;
     public float LerpSpeed;
 
     private void Awake()
@@ -23,6 +23,8 @@ public class BlackHole : Obstacle
     {
         if (collision.CompareTag("PlayerBall") || collision.CompareTag("EnemyBall") || collision.CompareTag("Candy"))
         {
+
+
             collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0.01f, 0.01f);
             collision.GetComponent<Collider2D>().enabled = false;
             StartCoroutine(RotatePlayer(collision.gameObject));
@@ -42,13 +44,16 @@ public class BlackHole : Obstacle
             yield return null;
         }
 
+        float Speed = Player.transform.localScale.x * 100.0f;
 
         while(Player.transform.localScale.x > 0.0f)
         {
             temprigid.velocity = BlackHoleVector;
             Player.transform.Rotate(Vector3.forward * Time.deltaTime * 720.0f);
 
-            Player.transform.localScale = Player.transform.localScale - ((Vector3)BlackHoleVector * Time.deltaTime * ScaleSppeed);
+            Player.transform.localScale = Player.transform.localScale - ((Vector3)BlackHoleVector * Time.deltaTime * Speed);
+
+            Debug.Log(Speed);
 
             yield return null;
         }
