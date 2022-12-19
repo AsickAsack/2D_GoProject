@@ -54,7 +54,7 @@ MonoBehaviour:
   - subStage:
     - NeedCharacter: 5
       NeedTicket: 3
-      RewardGold: 0
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -77,7 +77,7 @@ MonoBehaviour:
         Tutorial_obstacle_name: 
     - NeedCharacter: 5
       NeedTicket: 3
-      RewardGold: 0
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -103,8 +103,8 @@ MonoBehaviour:
         Tutorial_MonsterName: 
         Tutorial_obstacle_name: 0400000000000000
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2004
@@ -179,8 +179,8 @@ MonoBehaviour:
         Tutorial_MonsterName: d4070000
         Tutorial_obstacle_name: 03000000
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2002
@@ -210,8 +210,8 @@ MonoBehaviour:
         Tutorial_MonsterName: d6070000
         Tutorial_obstacle_name: 02000000
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -243,8 +243,8 @@ MonoBehaviour:
         Tutorial_obstacle_name: 
   - subStage:
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2003
@@ -271,7 +271,7 @@ MonoBehaviour:
         Tutorial_obstacle_name: 
     - NeedCharacter: 5
       NeedTicket: 3
-      RewardGold: 0
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2001
@@ -317,8 +317,8 @@ MonoBehaviour:
         Tutorial_MonsterName: 
         Tutorial_obstacle_name: 01000000
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2004
@@ -357,8 +357,8 @@ MonoBehaviour:
         Tutorial_MonsterName: 
         Tutorial_obstacle_name: 
     - NeedCharacter: 5
-      NeedTicket: 0
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2002
@@ -389,8 +389,8 @@ MonoBehaviour:
         Tutorial_MonsterName: 
         Tutorial_obstacle_name: 
     - NeedCharacter: 5
-      NeedTicket: 1
-      RewardGold: 0
+      NeedTicket: 3
+      RewardGold: 5000
       Object_Information:
         MyMonster:
         - monster_name: 2004
@@ -548,3 +548,4 @@ MonoBehaviour:
         Tutorial_MonsterName: 
         Tutorial_obstacle_name: 
   NextSet: 0
+  IsMorphing: 0

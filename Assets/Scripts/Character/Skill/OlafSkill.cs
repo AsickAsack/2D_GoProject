@@ -51,7 +51,6 @@ public class OlafSkill : CharacterSkill
         {
             if((myColl[i].transform.CompareTag("PlayerBall")|| myColl[i].transform.CompareTag("EnemyBall")) && myColl[i].transform != this.transform)
             {
-                Debug.Log(myColl[i].transform);
                 Ice ice = Instantiate(IceObj).GetComponent<Ice>();
                 ice.SetIce(myColl[i].gameObject);   
             }
