@@ -9,6 +9,7 @@ public class StageData
 {
     public int[] StageStar = new int[5];
     public bool[] IsAcitve = new bool[5] { false, false, false, false, false };
+    public bool[] IsPlay = new bool[5] { false, false, false, false, false };
 }
 
 [System.Serializable]
@@ -24,7 +25,7 @@ public class PlayerData
 
     public string PlayerName = "김준우";
     public int _Gold = 0;
-    public int _Ticket = 1000;
+    public int _Ticket = 30;
     public bool PlayFirst = true;
 
 
@@ -109,19 +110,13 @@ public class PlayerDB : MonoBehaviour
             playerdata.MyStageData[i] = new StageData();
             for (int j = 0; j < 5; j++)
             {
+                playerdata.MyStageData[i].IsPlay = new bool[5];
                 playerdata.MyStageData[i].IsAcitve = new bool[5];
                 playerdata.MyStageData[i].StageStar = new int[5];
                 
             }
 
             playerdata.MyStageData[0].IsAcitve[0] = true;
-            //나중에 테스트 끝나면 지우면됨
-            
-            for(int k = 0;k<5;k++)
-            {
-                playerdata.MyStageData[i].IsAcitve[k] = true;
-            }
-            
         }
         
     }

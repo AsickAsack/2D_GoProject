@@ -161,7 +161,7 @@ public struct NewTutorial
                     return false;
                 else
                 {
-                    CurStage = new Vector2(CurStage.x + 1, 0);
+                    CurStage = new Vector2(CurStage.x + 1, 1);
                     return true;
                 }
             }
